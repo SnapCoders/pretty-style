@@ -9,9 +9,9 @@
 
 ## COMANDOS PARA USAR NO PROJETO
 
-git flow feature start <nome-da-branch> (Sem precisar informar feature/ pois ele já coloca automaticamente) = quando for iniciar uma nova funcionalidade
+ - git flow feature start <nome-da-branch> (Sem precisar informar feature/ pois ele já coloca automaticamente) = quando for iniciar uma nova funcionalidade
 
-git flow feature finish (nào precisa informar o nome da branch) = quando terminar a funcionalidade
+ - git flow feature finish (nào precisa informar o nome da branch) = quando terminar a funcionalidade
 
 ## COMANDOS PARA CLONAGEM DO REPOSITÓRIO
 
