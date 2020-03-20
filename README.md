@@ -6,11 +6,10 @@ git flow feature finish (nào precisa informar o nome da branch) = quando termin
 
 ## COMANDOS PARA CLONAGEM DO REPOSITÓRIO
 
-git clone <link>
-git checkout master
-git flow init
+ - git clone <link>
+ - git checkout master
+ - git flow init
 
 <enter_em_tudo>
 
-git checkout develop
-
+ - git checkout develop
