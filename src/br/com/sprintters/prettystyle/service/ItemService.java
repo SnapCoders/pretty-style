@@ -1,7 +1,7 @@
 package br.com.sprintters.prettystyle.service;
 
 import br.com.sprintters.prettystyle.model.Item;
-import br.com.sprintters.prettystyle.DAO.ItemDAO;
+import br.com.sprintters.prettystyle.dao.ItemDAO;
 
 import java.util.ArrayList;
 

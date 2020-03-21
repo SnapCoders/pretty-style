@@ -1,7 +1,7 @@
 package br.com.sprintters.prettystyle.service;
 
 import br.com.sprintters.prettystyle.model.Address;
-import br.com.sprintters.prettystyle.DAO.AddressDAO;
+import br.com.sprintters.prettystyle.dao.AddressDAO;
 
 import java.util.ArrayList;
 

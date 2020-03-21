@@ -1,7 +1,7 @@
 package br.com.sprintters.prettystyle.service;
 
 import br.com.sprintters.prettystyle.model.Category;
-import br.com.sprintters.prettystyle.DAO.CategoryDAO;
+import br.com.sprintters.prettystyle.dao.CategoryDAO;
 
 import java.util.ArrayList;
 

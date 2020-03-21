@@ -1,7 +1,7 @@
 package br.com.sprintters.prettystyle.service;
 
 import br.com.sprintters.prettystyle.model.Request;
-import br.com.sprintters.prettystyle.DAO.RequestDAO;
+import br.com.sprintters.prettystyle.dao.RequestDAO;
 
 import java.util.ArrayList;
 

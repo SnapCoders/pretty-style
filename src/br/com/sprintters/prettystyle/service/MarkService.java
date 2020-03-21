@@ -1,7 +1,7 @@
 package br.com.sprintters.prettystyle.service;
 
 import br.com.sprintters.prettystyle.model.Mark;
-import br.com.sprintters.prettystyle.DAO.MarkDAO;
+import br.com.sprintters.prettystyle.dao.MarkDAO;
 
 import java.util.ArrayList;
 

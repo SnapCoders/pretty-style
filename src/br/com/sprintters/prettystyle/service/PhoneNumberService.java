@@ -1,7 +1,7 @@
 package br.com.sprintters.prettystyle.service;
 
 import br.com.sprintters.prettystyle.model.PhoneNumber;
-import br.com.sprintters.prettystyle.DAO.PhoneNumberDAO;
+import br.com.sprintters.prettystyle.dao.PhoneNumberDAO;
 
 import java.util.ArrayList;
 
