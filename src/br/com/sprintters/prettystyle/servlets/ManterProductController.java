@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import br.com.sprintters.prettystyle.model.Product;
 import br.com.sprintters.prettystyle.service.ProductService;
 
-@WebServlet("/ManterCliente.do")
+@WebServlet("/ManterProduct.do")
 public class ManterProductController extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
