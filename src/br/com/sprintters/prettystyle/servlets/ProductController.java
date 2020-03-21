@@ -12,7 +12,7 @@ import br.com.sprintters.prettystyle.model.Product;
 import br.com.sprintters.prettystyle.service.ProductService;
 
 @WebServlet("/ManterProduct.do")
-public class ManterProductController extends HttpServlet {
+public class ProductController extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
     /**
@@ -36,8 +36,8 @@ public class ManterProductController extends HttpServlet {
         product.setPrice(pPrice);
 
         ProductService cs = new ProductService();
-        cs.criar(Product);
-        Product = cs.carregar(Product.getId());
+        cs.create(product);
+        product = cs.find(Product.getId());
 
         PrintWriter out = response.getWriter();
         out.println("<html><head><title>Cadastro de produto</title></head><body>");
