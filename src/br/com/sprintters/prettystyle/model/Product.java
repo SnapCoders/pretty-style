@@ -62,7 +62,7 @@ public class Product extends Entity{
 	}
 
 
-	public void setPrice(String price) {
+	public void setPrice(double price) {
 		this.price = price;
 	}
 
