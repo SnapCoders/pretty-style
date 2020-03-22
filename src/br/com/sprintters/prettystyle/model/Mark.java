@@ -1,16 +1,25 @@
 package br.com.sprintters.prettystyle.model;
 
+import java.sql.Timestamp;
+
 import br.com.sprintters.prettystyle.model.generic.Entity;
 
-public class Mark extends Entity{
+public class Mark extends Entity {
 	private String name;
 
-	public Mark() {
-		super();
-	}
+	public Mark() { }
 
 	public Mark(String name) {
-		super();
+		this.name = name;
+	}
+	
+	public Mark(int id, String name) {
+		super(id);
+		this.name = name;
+	}
+	
+	public Mark(int id, String name, Timestamp createdAt, Timestamp updatedAt, Timestamp deletedAt) {
+		super(id, createdAt, updatedAt, deletedAt);
 		this.name = name;
 	}
 
@@ -26,5 +35,4 @@ public class Mark extends Entity{
 	public String toString() {
 		return "Mark [name=" + name + "]";
 	}
-
 }

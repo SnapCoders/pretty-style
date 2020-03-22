@@ -1,19 +1,31 @@
 package br.com.sprintters.prettystyle.model;
 
+import java.sql.Timestamp;
+
 import br.com.sprintters.prettystyle.model.generic.Entity;
 
-public class User extends Entity{
-	
+public class User extends Entity {
 	private String name;
 	private String surname;
 	private String email;
 	
-	public User() {
-		super();
-	}
+	public User() { }
 
 	public User(String name, String surname, String email) {
-		super();
+		this.name = name;
+		this.surname = surname;
+		this.email = email;
+	}
+	
+	public User(int id, String name, String surname, String email) {
+		super(id);
+		this.name = name;
+		this.surname = surname;
+		this.email = email;
+	}
+	
+	public User(int id, String name, String surname, String email, Timestamp createdAt, Timestamp updatedAt, Timestamp deletedAt) {
+		super(id, createdAt, updatedAt, deletedAt);
 		this.name = name;
 		this.surname = surname;
 		this.email = email;
@@ -47,7 +59,4 @@ public class User extends Entity{
 	public String toString() {
 		return "User [name=" + name + ", surname=" + surname + ", email=" + email + "]";
 	}
-	
-	
-
 }
