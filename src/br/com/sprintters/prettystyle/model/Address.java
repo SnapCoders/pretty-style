@@ -13,9 +13,12 @@ public class Address extends Entity {
 	private String zip;
 	private String complement;
 	
+	private int idUser;
+	private User user;
+	
 	public Address() { }
-
-	public Address(String place, String number, String neighborhood, String city, String country, String zip, String complement) {
+	
+	public Address(String place, String number, String neighborhood, String city, String country, String zip, String complement, int idUser) {
 		this.place = place;
 		this.number = number;
 		this.neighborhood = neighborhood;
@@ -23,9 +26,22 @@ public class Address extends Entity {
 		this.country = country;
 		this.zip = zip;
 		this.complement = complement;
+		this.idUser = idUser;
+	}
+
+	public Address(String place, String number, String neighborhood, String city, String country, String zip, String complement, User user) {
+		this.place = place;
+		this.number = number;
+		this.neighborhood = neighborhood;
+		this.city = city;
+		this.country = country;
+		this.zip = zip;
+		this.complement = complement;
+		this.idUser = user.getId();
+		this.user = user;
 	}
 	
-	public Address(int id, String place, String number, String neighborhood, String city, String country, String zip, String complement) {
+	public Address(int id, String place, String number, String neighborhood, String city, String country, String zip, String complement, int idUser) {
 		super(id);
 		this.place = place;
 		this.number = number;
@@ -34,9 +50,23 @@ public class Address extends Entity {
 		this.country = country;
 		this.zip = zip;
 		this.complement = complement;
+		this.idUser = idUser;
 	}
 	
-	public Address(int id, String place, String number, String neighborhood, String city, String country, String zip, String complement, Timestamp createdAt, Timestamp updatedAt, Timestamp deletedAt) {
+	public Address(int id, String place, String number, String neighborhood, String city, String country, String zip, String complement, User user) {
+		super(id);
+		this.place = place;
+		this.number = number;
+		this.neighborhood = neighborhood;
+		this.city = city;
+		this.country = country;
+		this.zip = zip;
+		this.complement = complement;
+		this.idUser = user.getId();
+		this.user = user;
+	}
+	
+	public Address(int id, String place, String number, String neighborhood, String city, String country, String zip, String complement, int idUser, Timestamp createdAt, Timestamp updatedAt, Timestamp deletedAt) {
 		super(id, createdAt, updatedAt, deletedAt);
 		this.place = place;
 		this.number = number;
@@ -45,6 +75,20 @@ public class Address extends Entity {
 		this.country = country;
 		this.zip = zip;
 		this.complement = complement;
+		this.idUser = idUser;
+	}
+	
+	public Address(int id, String place, String number, String neighborhood, String city, String country, String zip, String complement, User user, Timestamp createdAt, Timestamp updatedAt, Timestamp deletedAt) {
+		super(id, createdAt, updatedAt, deletedAt);
+		this.place = place;
+		this.number = number;
+		this.neighborhood = neighborhood;
+		this.city = city;
+		this.country = country;
+		this.zip = zip;
+		this.complement = complement;
+		this.idUser = user.getId();
+		this.user = user;
 	}
 
 	public String getPlace() {
@@ -102,10 +146,27 @@ public class Address extends Entity {
 	public void setComplement(String complement) {
 		this.complement = complement;
 	}
+	
+	public int getIdUser() {
+		return idUser;
+	}
+
+	public void setIdUser(int idUser) {
+		this.idUser = idUser;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
 
 	@Override
 	public String toString() {
 		return "Address [place=" + place + ", number=" + number + ", neighborhood=" + neighborhood + ", city=" + city
-				+ ", country=" + country + ", zip=" + zip + ", complement=" + complement + "]";
+				+ ", country=" + country + ", zip=" + zip + ", complement=" + complement + ", idUser=" + idUser
+				+ ", user=" + user + "]";
 	}
 }
