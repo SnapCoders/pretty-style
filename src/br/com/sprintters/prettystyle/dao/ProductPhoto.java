@@ -1,5 +1,5 @@
 package br.com.sprintters.prettystyle.dao;
-package br.com.sprintters.prettystyle.model;
+package br.com.sprintters.prettystyle.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
