@@ -1,18 +1,28 @@
 package br.com.sprintters.prettystyle.model;
 
+import java.sql.Timestamp;
+
 import br.com.sprintters.prettystyle.model.generic.Entity;
 
-public class Category extends Entity{
-	
+public class Category extends Entity {
 	private String name;
 	private String color;
 	
-	public Category() {
-		super();
-	}
+	public Category() { }
 
 	public Category(String name, String color) {
-		super();
+		this.name = name;
+		this.color = color;
+	}
+	
+	public Category(int id, String name, String color) {
+		super(id);
+		this.name = name;
+		this.color = color;
+	}
+	
+	public Category(int id, String name, String color, Timestamp createdAt, Timestamp updatedAt, Timestamp deletedAt) {
+		super(id, createdAt, updatedAt, deletedAt);
 		this.name = name;
 		this.color = color;
 	}
@@ -37,7 +47,4 @@ public class Category extends Entity{
 	public String toString() {
 		return "Category [name=" + name + ", color=" + color + "]";
 	}
-	
-	
-
 }

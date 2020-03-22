@@ -1,16 +1,25 @@
 package br.com.sprintters.prettystyle.model;
 
+import java.sql.Timestamp;
+
 import br.com.sprintters.prettystyle.model.generic.Entity;
 
 public class Provider extends Entity{
 	private String cnpj;
 
-	public Provider() {
-		super();
-	}
+	public Provider() { }
 
 	public Provider(String cnpj) {
-		super();
+		this.cnpj = cnpj;
+	}
+	
+	public Provider(int id, String cnpj) {
+		super(id);
+		this.cnpj = cnpj;
+	}
+	
+	public Provider(int id, String cnpj, Timestamp createdAt, Timestamp updatedAt, Timestamp deletedAt) {
+		super(id, createdAt, updatedAt, deletedAt);
 		this.cnpj = cnpj;
 	}
 
@@ -26,7 +35,4 @@ public class Provider extends Entity{
 	public String toString() {
 		return "Provider [cnpj=" + cnpj + "]";
 	}
-	
-	
-
 }

@@ -1,20 +1,24 @@
 package br.com.sprintters.prettystyle.dao;
 
+import java.util.Base64;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.sql.DriverManager;
 
 public class ConnectionFactory {
 	static {
 		try {
-			
 			Class.forName("com.mysql.cj.jdbc.Driver");
-		} catch(ClassNotFoundException e) {
+		} catch (ClassNotFoundException e) {
 			throw new RuntimeException(e);
 		}
 	}
-	//Apagar a senha
+	
 	public static Connection createConnection() throws SQLException {
-		return DriverManager.getConnection("jdbc:mysql://localhost/SistemaPaises?useTimezone=true&serverTimezone=UTC&useSSL=false&user=root&password=root");
+		String database = "db_pretty_style";
+		String password = new String(Base64.getDecoder().decode("OUttIzQ3bUs="));
+		
+		return DriverManager
+				.getConnection("jdbc:mysql://localhost:3306/" + database + "?useTimezone=true&serverTimezone=UTC&useSSL=false", "root", password);
 	}
 }

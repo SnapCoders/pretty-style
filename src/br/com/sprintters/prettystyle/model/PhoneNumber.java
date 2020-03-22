@@ -1,18 +1,28 @@
 package br.com.sprintters.prettystyle.model;
 
+import java.sql.Timestamp;
+
 import br.com.sprintters.prettystyle.model.generic.Entity;
 
 public class PhoneNumber extends Entity {
-	
 	private int ddd;
 	private String number;
 	
-	public PhoneNumber() {
-		super();
-	}
+	public PhoneNumber() { }
 
 	public PhoneNumber(int ddd, String number) {
-		super();
+		this.ddd = ddd;
+		this.number = number;
+	}
+	
+	public PhoneNumber(int id, int ddd, String number) {
+		super(id);
+		this.ddd = ddd;
+		this.number = number;
+	}
+	
+	public PhoneNumber(int id, int ddd, String number, Timestamp createdAt, Timestamp updatedAt, Timestamp deletedAt) {
+		super(id, createdAt, updatedAt, deletedAt);
 		this.ddd = ddd;
 		this.number = number;
 	}
@@ -37,8 +47,4 @@ public class PhoneNumber extends Entity {
 	public String toString() {
 		return "PhoneNumber [ddd=" + ddd + ", number=" + number + "]";
 	}
-	
-	
-	
-
 }

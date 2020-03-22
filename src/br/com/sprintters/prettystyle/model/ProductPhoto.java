@@ -1,18 +1,28 @@
 package br.com.sprintters.prettystyle.model;
 
+import java.sql.Timestamp;
+
 import br.com.sprintters.prettystyle.model.generic.Entity;
 
 public class ProductPhoto extends Entity {
-	
 	private String name;
 	private String url;
 	
-	public ProductPhoto() {
-		super();
-	}
+	public ProductPhoto() { }
 
 	public ProductPhoto(String name, String url) {
-		super();
+		this.name = name;
+		this.url = url;
+	}
+	
+	public ProductPhoto(int id, String name, String url) {
+		super(id);
+		this.name = name;
+		this.url = url;
+	}
+	
+	public ProductPhoto(int id, String name, String url, Timestamp createdAt, Timestamp updatedAt, Timestamp deletedAt) {
+		super(id, createdAt, updatedAt, deletedAt);
 		this.name = name;
 		this.url = url;
 	}
@@ -37,9 +47,4 @@ public class ProductPhoto extends Entity {
 	public String toString() {
 		return "ProductPhoto [name=" + name + ", url=" + url + "]";
 	}
-	
-	
-	
-	
-
 }

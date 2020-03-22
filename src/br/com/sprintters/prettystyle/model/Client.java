@@ -1,17 +1,25 @@
 package br.com.sprintters.prettystyle.model;
 
+import java.sql.Timestamp;
+
 import br.com.sprintters.prettystyle.model.generic.Entity;
 
 public class Client extends Entity {
-	
 	private String cpf;
 
-	public Client() {
-		super();
-	}
+	public Client() { }
 
 	public Client(String cpf) {
-		super();
+		this.cpf = cpf;
+	}
+	
+	public Client(int id, String cpf) {
+		super(id);
+		this.cpf = cpf;
+	}
+	
+	public Client(int id, String cpf, Timestamp createdAt, Timestamp updatedAt, Timestamp deletedAt) {
+		super(id, createdAt, updatedAt, deletedAt);
 		this.cpf = cpf;
 	}
 
@@ -27,7 +35,4 @@ public class Client extends Entity {
 	public String toString() {
 		return "Client [cpf=" + cpf + "]";
 	}
-	
-	
-
 }
