@@ -26,12 +26,12 @@ import java.io.PrintWriter;
          * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
          */
         protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-            String pDdd = request.getParameter("ddd");
+            int pDdd = Integer.parseInt(request.getParameter("ddd"));
             String pNumber = request.getParameter("number");
 
             PhoneNumber phoneNumber = new PhoneNumber();
-            PhoneNumber.setDdd(pDdd);
-            PhoneNumber.setNumber(pNumber);
+            phoneNumber.setDdd(pDdd);
+            phoneNumber.setNumber(pNumber);
 
             PhoneNumberService cs = new PhoneNumberService();
             cs.create(phoneNumber);

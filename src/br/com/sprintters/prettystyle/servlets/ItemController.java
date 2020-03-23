@@ -1,7 +1,7 @@
 package br.com.sprintters.prettystyle.servlets;
 
-import br.com.sprintters.prettystyle.model.Quantity;
-import br.com.sprintters.prettystyle.service.QuantityService;
+import br.com.sprintters.prettystyle.model.Item;
+import br.com.sprintters.prettystyle.service.ItemService;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -26,20 +26,20 @@ import java.io.PrintWriter;
          * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
          */
         protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-            String pQuantity = request.getParameter("quantity");
+            int pQuantity = Integer.parseInt(request.getParameter("quantity"));
 
             Item item = new Item();
             item.setQuantity(pQuantity);
 
-            QuantityService cs = new QuantityService();
-            cs.create(quantity);
-            quantity = cs.find(quantity.getId());
+            ItemService cs = new ItemService();
+            cs.create(item);
+            item = cs.find(item.getId());
 
             PrintWriter out = response.getWriter();
             out.println("<html><head></head><body>");
-            out.println("id: "+quantity.getId()+"<br>");
-            out.println("quantity: "+quantity.getQuantity()+"<br>");
-            out.println("idProduct: "+quantity.getIdProduct()+"<br>");
+            out.println("id: "+item.getId()+"<br>");
+            out.println("quantity: "+item.getQuantity()+"<br>");
+            out.println("idProduct: "+item.getIdProduct()+"<br>");
             out.println("</body></html>");
 
         }

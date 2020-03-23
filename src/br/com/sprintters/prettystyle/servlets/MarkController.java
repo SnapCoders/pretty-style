@@ -38,8 +38,8 @@ import java.io.PrintWriter;
 
             PrintWriter out = response.getWriter();
             out.println("<html><head><title>Mark</title></head><body>");
-            out.println("id: "+product.getId()+"<br>");
-            out.println("name: "+product.getName()+"<br>");
+            out.println("id: "+mark.getId()+"<br>");
+            out.println("name: "+mark.getName()+"<br>");
             out.println("</body></html>");
 
         }

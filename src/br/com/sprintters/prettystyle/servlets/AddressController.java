@@ -44,7 +44,7 @@ import java.io.PrintWriter;
             address.setComplement(pComplement);
 
             AddressService cs = new AddressService();
-            cs.create(address);
+            cs.create(Address);
             address = cs.find(Address.getId());
 
             PrintWriter out = response.getWriter();

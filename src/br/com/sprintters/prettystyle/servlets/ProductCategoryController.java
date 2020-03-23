@@ -35,7 +35,6 @@ import java.io.PrintWriter;
 
             PrintWriter out = response.getWriter();
             out.println("<html><head></head><body>");
-            out.println("id: "+productCategory.getId()+"<br>");
             out.println("idProduct: "+productCategory.getIdProduct()+"<br>");
             out.println("idCategory: "+productCategory.getIdCategory()+"<br>");
             out.println("</body></html>");

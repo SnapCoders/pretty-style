@@ -27,17 +27,12 @@ import java.io.PrintWriter;
          */
         protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-            Request request = new Request();
-
             RequestService cs = new RequestService();
             cs.create(request);
             request = cs.find(Request.getId());
 
             PrintWriter out = response.getWriter();
             out.println("<html><head></head><body>");
-            out.println("id: "+request.getId()+"<br>");
-            out.println("idItem: "+request.getIdItem()+"<br>");
-            out.println("idCliente: "+request.getIdClient()+"<br>");
             out.println("</body></html>");
 
         }

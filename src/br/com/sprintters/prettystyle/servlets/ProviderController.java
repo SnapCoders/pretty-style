@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.security.Provider;
 
 @WebServlet("/Provider.do")
     public class ProviderController extends HttpServlet {
@@ -37,9 +36,8 @@ import java.security.Provider;
             Provider = cs.find(Provider.getId());
 
             PrintWriter out = response.getWriter();
-            out.println("id: "+Provider.getId()+"<br>");
-            out.println("name: "+Provider.getCnpj()+"<br>");
-            out.println("id_user: "+product.getUser_id()+"<br>");
+            out.println("id: "+provider.getId()+"<br>");
+            out.println("name: "+provider.getCnpj()+"<br>");
             out.println("</body></html>");
 
         }

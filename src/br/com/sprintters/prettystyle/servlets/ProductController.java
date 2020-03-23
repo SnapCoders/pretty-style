@@ -28,7 +28,7 @@ public class ProductController extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String pName = request.getParameter("name");
         String pDescription = request.getParameter("description");
-        String pPrice = request.getParameter("price");
+        double pPrice = Double.parseDouble(request.getParameter("price"));
 
         Product product = new Product();
         product.setName(pName);
