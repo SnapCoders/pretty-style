@@ -1,94 +1,90 @@
 package br.com.sprintters.prettystyle.dao;
-package br.com.sprintters.prettystyle.dao;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Connection;
+import java.util.ArrayList;
 import java.sql.SQLException;
 
+import br.com.sprintters.prettystyle.model.Client;
+
+import java.sql.PreparedStatement;
+
 public class ClientDAO {
-	public void create(Client client) {
-		String sqlInsert = "INSERT INTO client (cpf, id_user, created_at) values (?,?, now())";
-		
-		try(Connection conn = ConnectionFactory.createConnection();
-				PreparedStatement stm = conn.prepareStatement(sqlInsert);) {
-			
-			stm.setString(1, client.getCpf());
-			stm.setInt(2, client.getIdUser());
-			stm.execute();
-		}
-		catch(SQLException e) {
-			e.printStackTrace();
-		}
-	}
-	
-	public void update(Client client) {
-		String sqlUpdate = "UPDATE client SET cpf = ?, id_user = ?, updated_at = now() where id = ?";
-		
-		try(Connection conn = ConnectionFactory.createConnection();
-				PreparedStatement stm = conn.prepareStatement(sqlUpdate);) {
-			
-			stm.setString(1, client.getCpf());
-			stm.setInt(2, client.getIdUser());
-			stm.setInt(3, client.getId());
-			stm.execute();
-		}
-		catch(SQLException e) {
-			e.printStackTrace();
-		}
-	}
-	
-	public void delete(Client client) {
-		String sqlUpdate = "UPDATE client SET deleted_at = now() where id = ?";
+	public int insert(Client to) throws Exception {
+		int id = 0;
+		String sqlInsert = "INSERT INTO client (cpf, id_user, created_at) VALUES (?, ?, NOW())";
 		
 		try (Connection conn = ConnectionFactory.createConnection();
-				PreparedStatement stm = conn.prepareStatement(sqlUpdate);) {
-			stm.setInt(1, client.getId());
+			 PreparedStatement stm = conn.prepareStatement(sqlInsert)) {
+			stm.setString(1, to.getCpf());
+			stm.setInt(2, to.getIdUser());
 			stm.execute();
+			try (ResultSet rs = stm.executeQuery("SELECT LAST_INSERT_ID()")) {
+				if (rs.next()) {				
+					id = rs.getInt(1);
+				}
+			} catch (SQLException ex) {
+				throw new Exception(ex.getMessage());
+			}
+		} catch (SQLException e) {
+			throw new Exception(e.getMessage());
 		}
-		catch(SQLException e) {
-			e.printStackTrace();
+		
+		return id;
+	}
+	
+	public void update(Client to) throws Exception {
+		String sqlUpdate = "UPDATE client SET cpf = ?, id_user = ?, updated_at = NOW() WHERE id = ?";
+		
+		try (Connection conn = ConnectionFactory.createConnection();
+			 PreparedStatement stm = conn.prepareStatement(sqlUpdate)) {
+			stm.setString(1, to.getCpf());
+			stm.setInt(2, to.getIdUser());
+			stm.setInt(3, to.getId());
+			stm.execute();
+		} catch (SQLException e) {
+			throw new Exception(e.getMessage());
 		}
 	}
 	
-	public Client find(int id) {
-		Client client = new Client();
-		String sqlSelect = "SELECT * FROM client where client.id = ?";
+	public void delete(Client to) throws Exception {
+		String sqlDelete = "UPDATE client SET deleted_at = NOW() WHERE id = ?";
 		
 		try (Connection conn = ConnectionFactory.createConnection();
-				PreparedStatement stm = conn.prepareStatement(sqlSelect);) {
+			 PreparedStatement stm = conn.prepareStatement(sqlDelete)) {
+			stm.setInt(1, to.getId());
+			stm.execute();
+		} catch (SQLException e) {
+			throw new Exception(e.getMessage());
+		}
+	}
+	
+	public Client find(int id) throws Exception {
+		Client to = new Client();
+		String sqlSelect = "SELECT * FROM client WHERE id = ?";
+		
+		try (Connection conn = ConnectionFactory.createConnection();
+			 PreparedStatement stm = conn.prepareStatement(sqlSelect)) {
 			stm.setInt(1, id);
 			
 			try (ResultSet rs = stm.executeQuery();) {
 				if (rs.next()) {
-					client.setId(rs.getInt("id"));
-					client.setCpf(rs.getString("cpf"));
-					client.setIdUser(rs.getInt("id_user"));
-					client.setCreatedAt(rs.getTimestamp("created_at"));
-					client.setUpdatedAt(rs.getTimestamp("updated_at"));
-					client.setDeletedAt(rs.getTimestamp("deleted_at"));
+					to.setId(rs.getInt("id"));
+					to.setCpf(rs.getString("cpf"));
+					to.setIdUser(rs.getInt("id_user"));
+					to.setCreatedAt(rs.getTimestamp("created_at"));
+					to.setUpdatedAt(rs.getTimestamp("updated_at"));
+					to.setDeletedAt(rs.getTimestamp("deleted_at"));
 				}
-				else {
-					client.setId(0);
-					client.setCpf(null);
-					client.setIdUser(0);
-					client.setCreatedAt(null);
-					client.setUpdatedAt(null);
-					client.setDeletedAt(null);
-				}
+			} catch (SQLException ex) {
+				throw new Exception(ex.getMessage());
 			}
-			catch(SQLException e) {
-				e.printStackTrace();
-			}
-			
-		}
-		catch (SQLException e1) {
-			System.out.println(e1.getStackTrace());
+		} catch (SQLException e) {
+			throw new Exception(e.getMessage());
 		}
 		
-		return client;
+		return to;
 	}
-		
 	
 	public ArrayList<Client> list() throws Exception  {
 		ArrayList<Client> clients = new ArrayList<Client>();
@@ -98,7 +94,7 @@ public class ClientDAO {
 			 PreparedStatement stm = conn.prepareStatement(sqlSelect)) {
 			try (ResultSet rs = stm.executeQuery()) {
 				while (rs.next()) {
-					Client client = new Client(
+					Client to = new Client(
 						rs.getInt("id"),
 						rs.getString("cpf"),
 						rs.getInt("id_user"),
@@ -106,7 +102,7 @@ public class ClientDAO {
 						rs.getTimestamp("updated_at"),
 						rs.getTimestamp("deleted_at")
 					);
-					clients.add(client);
+					clients.add(to);
 				}
 			} catch (SQLException ex) {
 				throw new Exception(ex.getMessage());

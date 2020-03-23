@@ -1,99 +1,92 @@
 package br.com.sprintters.prettystyle.dao;
-package br.com.sprintters.prettystyle.dao;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.sql.Connection;
 import java.sql.SQLException;
+import java.sql.PreparedStatement;
+
+import br.com.sprintters.prettystyle.model.User;
 
 public class UserDAO {
-
-	public void create(User user) {
-		String sqlInsert = "INSERT INTO user (name, surname, email, created_at) values (?,?,?, now())";
-		
-		try(Connection conn = ConnectionFactory.createConnection();
-				PreparedStatement stm = conn.prepareStatement(sqlInsert);) {
-			
-			stm.setString(1, user.getName());
-			stm.setString(2, user.getSurname());
-			stm.setInt(3, user.getEmail());
-			stm.execute();
-		}
-		catch(SQLException e) {
-			e.printStackTrace();
-		}
-	}
-	
-	public void update(User user) {
-		String sqlUpdate = "UPDATE user SET name = ?, surname = ? ,email = ? ,updated_at = now() where id = ?";
-		
-		try(Connection conn = ConnectionFactory.createConnection();
-				PreparedStatement stm = conn.prepareStatement(sqlUpdate);) {
-			
-			stm.setString(1, user.getName());
-			stm.setString(2, user.getSurname());
-			stm.setString(3, user.getEmail());
-			stm.setInt(4, user.getId());
-			stm.execute();
-		}
-		catch(SQLException e) {
-			e.printStackTrace();
-		}
-	}
-	
-	public void delete(User user) {
-		String sqlUpdate = "UPDATE user SET deleted_at = now() where id = ?";
+	public int insert(User to) throws Exception {
+		int id = 0;
+		String sqlInsert = "INSERT INTO user (name, surname, email, created_at) VALUES (?, ?, ?, NOW())";
 		
 		try (Connection conn = ConnectionFactory.createConnection();
-				PreparedStatement stm = conn.prepareStatement(sqlUpdate);) {
-			stm.setInt(1, user.getId());
+			 PreparedStatement stm = conn.prepareStatement(sqlInsert)) {
+			stm.setString(1, to.getName());
+			stm.setString(2, to.getSurname());
+			stm.setString(3, to.getEmail());
 			stm.execute();
+			try (ResultSet rs = stm.executeQuery("SELECT LAST_INSERT_ID()")) {
+				if (rs.next()) {
+					id = rs.getInt(1);
+				}
+			} catch (SQLException ex) {
+				throw new Exception(ex.getMessage());
+			}
+		} catch (SQLException e) {
+			throw new Exception(e.getMessage());
 		}
-		catch(SQLException e) {
-			e.printStackTrace();
+		
+		return id;
+	}
+	
+	public void update(User to) throws Exception {
+		String sqlUpdate = "UPDATE user SET name = ?, surname = ? ,email = ? ,updated_at = NOW() WHERE id = ?";
+		
+		try (Connection conn = ConnectionFactory.createConnection();
+			 PreparedStatement stm = conn.prepareStatement(sqlUpdate)) {
+			stm.setString(1, to.getName());
+			stm.setString(2, to.getSurname());
+			stm.setString(3, to.getEmail());
+			stm.setInt(4, to.getId());
+			stm.execute();
+		} catch (SQLException e) {
+			throw new Exception(e.getMessage());
 		}
 	}
 	
-	public User find(int id) {
-		User user = new User();
-		String sqlSelect = "SELECT * FROM user where user.id = ?";
+	public void delete(User to) throws Exception {
+		String sqlDelete = "UPDATE user SET deleted_at = NOW() WHERE id = ?";
 		
 		try (Connection conn = ConnectionFactory.createConnection();
-				PreparedStatement stm = conn.prepareStatement(sqlSelect);) {
+			 PreparedStatement stm = conn.prepareStatement(sqlDelete)) {
+			stm.setInt(1, to.getId());
+			stm.execute();
+		} catch (SQLException e) {
+			throw new Exception(e.getMessage());
+		}
+	}
+	
+	public User find(int id) throws Exception {
+		User to = new User();
+		String sqlSelect = "SELECT * FROM user WHERE id = ?";
+		
+		try (Connection conn = ConnectionFactory.createConnection();
+			 PreparedStatement stm = conn.prepareStatement(sqlSelect)) {
 			stm.setInt(1, id);
 			
 			try (ResultSet rs = stm.executeQuery();) {
 				if (rs.next()) {
-					user.setId(rs.getInt("id"));
-					user.setName(rs.getString("name"));
-					user.setSurname(rs.getString("surname"));
-					user.setEmail(rs.getString("email"));
-					user.setCreatedAt(rs.getTimestamp("created_at"));
-					user.setUpdatedAt(rs.getTimestamp("updated_at"));
-					user.setDeletedAt(rs.getTimestamp("deleted_at"));
+					to.setId(rs.getInt("id"));
+					to.setName(rs.getString("name"));
+					to.setSurname(rs.getString("surname"));
+					to.setEmail(rs.getString("email"));
+					to.setCreatedAt(rs.getTimestamp("created_at"));
+					to.setUpdatedAt(rs.getTimestamp("updated_at"));
+					to.setDeletedAt(rs.getTimestamp("deleted_at"));
 				}
-				else {
-					user.setId(0);
-					user.setName(null);
-					user.setSurname(null);
-					user.setEmail(null);
-					user.setCreatedAt(null);
-					user.setUpdatedAt(null);
-					user.setDeletedAt(null);
-				}
+			} catch (SQLException ex) {
+				throw new Exception(ex.getMessage());
 			}
-			catch(SQLException e) {
-				e.printStackTrace();
-			}
-			
-		}
-		catch (SQLException e1) {
-			System.out.println(e1.getStackTrace());
+		} catch (SQLException e) {
+			throw new Exception(e.getMessage());
 		}
 		
-		return user;
+		return to;
 	}
-		
 	
 	public ArrayList<User> list() throws Exception  {
 		ArrayList<User> users = new ArrayList<User>();
@@ -103,7 +96,7 @@ public class UserDAO {
 			 PreparedStatement stm = conn.prepareStatement(sqlSelect)) {
 			try (ResultSet rs = stm.executeQuery()) {
 				while (rs.next()) {
-					User user = new User(
+					User to = new User(
 							rs.getInt("id"),
 							rs.getString("name"),
 							rs.getString("surname"),
@@ -112,7 +105,7 @@ public class UserDAO {
 							rs.getTimestamp("updated_at"),
 							rs.getTimestamp("deleted_at")
 					);
-					users.add(user);
+					users.add(to);
 				}
 			} catch (SQLException ex) {
 				throw new Exception(ex.getMessage());

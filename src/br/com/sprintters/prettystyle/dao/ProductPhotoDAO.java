@@ -1,99 +1,93 @@
 package br.com.sprintters.prettystyle.dao;
-package br.com.sprintters.prettystyle.dao;
+
+import java.sql.ResultSet;
+import java.util.ArrayList;
+
+import br.com.sprintters.prettystyle.model.ProductPhoto;
 
 import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.PreparedStatement;
 
-public class ProductPhoto {
-
-	public void create(ProductPhoto photo) {
-		String sqlInsert = "INSERT INTO product_photo (url, name, id_product, created_at) values (?,?,?, now())";
-		
-		try(Connection conn = ConnectionFactory.createConnection();
-				PreparedStatement stm = conn.prepareStatement(sqlInsert);) {
-			
-			stm.setString(1, photo.getUrl());
-			stm.setString(2, photo.getName());
-			stm.setInt(3, photo.getIdProduct());
-			stm.execute();
-		}
-		catch(SQLException e) {
-			e.printStackTrace();
-		}
-	}
-	
-	public void update(ProductPhoto photo) {
-		String sqlUpdate = "UPDATE product_photo SET url = ?,name = ?, id_product = ? ,updated_at = now() where id = ?";
-		
-		try(Connection conn = ConnectionFactory.createConnection();
-				PreparedStatement stm = conn.prepareStatement(sqlUpdate);) {
-			
-			stm.setString(1, photo.getUrl());
-			stm.setString(2, photo.getName());
-			stm.setInt(3, photo.getIdProduct());
-			stm.setInt(4, photo.getId());
-			stm.execute();
-		}
-		catch(SQLException e) {
-			e.printStackTrace();
-		}
-	}
-	
-	public void delete(ProductPhoto photo) {
-		String sqlUpdate = "UPDATE product_photo SET deleted_at = now() where id = ?";
+public class ProductPhotoDAO {
+	public int insert(ProductPhoto to) throws Exception {
+		int id = 0;
+		String sqlInsert = "INSERT INTO product_photo (url, name, id_product, created_at) VALUES (?, ?, ?, NOW())";
 		
 		try (Connection conn = ConnectionFactory.createConnection();
-				PreparedStatement stm = conn.prepareStatement(sqlUpdate);) {
-			stm.setInt(1, photo.getId());
+			 PreparedStatement stm = conn.prepareStatement(sqlInsert)) {
+			stm.setString(1, to.getUrl());
+			stm.setString(2, to.getName());
+			stm.setInt(3, to.getIdProduct());
 			stm.execute();
+			try (ResultSet rs = stm.executeQuery("SELECT LAST_INSERT_ID()")) {
+				if (rs.next()) {				
+					id = rs.getInt(1);
+				}
+			} catch (SQLException ex) {
+				throw new Exception(ex.getMessage());
+			}
+		} catch (SQLException e) {
+			throw new Exception(e.getMessage());
 		}
-		catch(SQLException e) {
-			e.printStackTrace();
+		
+		return id;
+	}
+	
+	public void update(ProductPhoto to) throws Exception {
+		String sqlUpdate = "UPDATE product_photo SET url = ?,name = ?, id_product = ? ,updated_at = NOW() WHERE id = ?";
+		
+		try (Connection conn = ConnectionFactory.createConnection();
+			 PreparedStatement stm = conn.prepareStatement(sqlUpdate)) {
+			stm.setString(1, to.getUrl());
+			stm.setString(2, to.getName());
+			stm.setInt(3, to.getIdProduct());
+			stm.setInt(4, to.getId());
+			stm.execute();
+		} catch (SQLException e) {
+			throw new Exception(e.getMessage());
 		}
 	}
 	
-	public ProductPhoto find(int id) {
-		ProductPhoto photo = new ProductPhoto();
-		String sqlSelect = "SELECT * FROM product_photo where product_photo.id = ?";
+	public void delete(ProductPhoto to) throws Exception {
+		String sqlUpdate = "UPDATE product_photo SET deleted_at = NOW() WHERE id = ?";
 		
 		try (Connection conn = ConnectionFactory.createConnection();
-				PreparedStatement stm = conn.prepareStatement(sqlSelect);) {
+			 PreparedStatement stm = conn.prepareStatement(sqlUpdate)) {
+			stm.setInt(1, to.getId());
+			stm.execute();
+		} catch (SQLException e) {
+			throw new Exception(e.getMessage());
+		}
+	}
+	
+	public ProductPhoto find(int id) throws Exception {
+		ProductPhoto to = new ProductPhoto();
+		String sqlSelect = "SELECT * FROM product_photo WHERE id = ?";
+		
+		try (Connection conn = ConnectionFactory.createConnection();
+			 PreparedStatement stm = conn.prepareStatement(sqlSelect)) {
 			stm.setInt(1, id);
 			
-			try (ResultSet rs = stm.executeQuery();) {
+			try (ResultSet rs = stm.executeQuery()) {
 				if (rs.next()) {
-					photo.setId(rs.getInt("id"));
-					photo.setUrl(rs.getString("url"));
-					photo.setName(rs.getString("name"));
-					photo.setIdProduct(rs.getInt("id_product"));
-					photo.setCreatedAt(rs.getTimestamp("created_at"));
-					photo.setUpdatedAt(rs.getTimestamp("updated_at"));
-					photo.setDeletedAt(rs.getTimestamp("deleted_at"));
+					to.setId(rs.getInt("id"));
+					to.setUrl(rs.getString("url"));
+					to.setName(rs.getString("name"));
+					to.setIdProduct(rs.getInt("id_product"));
+					to.setCreatedAt(rs.getTimestamp("created_at"));
+					to.setUpdatedAt(rs.getTimestamp("updated_at"));
+					to.setDeletedAt(rs.getTimestamp("deleted_at"));
 				}
-				else {
-					photo.setId(0);
-					photo.setUrl(null);
-					photo.setName(null);
-					photo.setIdProduct(0);
-					photo.setCreatedAt(null);
-					photo.setUpdatedAt(null);
-					photo.setDeletedAt(null);
-				}
+			} catch (SQLException ex) {
+				throw new Exception(ex.getMessage());
 			}
-			catch(SQLException e) {
-				e.printStackTrace();
-			}
-			
-		}
-		catch (SQLException e1) {
-			System.out.println(e1.getStackTrace());
+		} catch (SQLException e) {
+			throw new Exception(e.getMessage());
 		}
 		
-		return photo;
+		return to;
 	}
-		
 	
 	public ArrayList<ProductPhoto> list() throws Exception  {
 		ArrayList<ProductPhoto> photos = new ArrayList<ProductPhoto>();
@@ -103,7 +97,7 @@ public class ProductPhoto {
 			 PreparedStatement stm = conn.prepareStatement(sqlSelect)) {
 			try (ResultSet rs = stm.executeQuery()) {
 				while (rs.next()) {
-					ProductPhoto photo = new ProductPhoto(
+					ProductPhoto to = new ProductPhoto(
 							rs.getInt("id"),
 							rs.getString("url"),
 							rs.getString("name"),
@@ -112,7 +106,7 @@ public class ProductPhoto {
 							rs.getTimestamp("updated_at"),
 							rs.getTimestamp("deleted_at")
 					);
-					photos.add(photo);
+					photos.add(to);
 				}
 			} catch (SQLException ex) {
 				throw new Exception(ex.getMessage());
