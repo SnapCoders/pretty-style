@@ -15,20 +15,14 @@ import br.com.sprintters.prettystyle.service.ProductService;
 public class ProductController extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
-    /**
-     * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-     */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         doPost(request, response);
     }
 
-    /**
-     * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-     */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String pName = request.getParameter("name");
         String pDescription = request.getParameter("description");
-        String pPrice = request.getParameter("price");
+        Double pPrice = Double.parseDouble(request.getParameter("price"));
 
         Product product = new Product();
         product.setName(pName);
@@ -36,8 +30,13 @@ public class ProductController extends HttpServlet {
         product.setPrice(pPrice);
 
         ProductService cs = new ProductService();
-        cs.create(product);
-        product = cs.find(Product.getId());
+        
+        try {
+        	cs.create(product);
+        	product = cs.find(product.getId());
+        } catch (Exception e) {
+        	e.printStackTrace();
+        }
 
         PrintWriter out = response.getWriter();
         out.println("<html><head><title>Cadastro de produto</title></head><body>");
@@ -46,7 +45,5 @@ public class ProductController extends HttpServlet {
         out.println("description: "+product.getDescription()+"<br>");
         out.println("price: "+product.getPrice()+"<br>");
         out.println("</body></html>");
-
     }
-
 }
