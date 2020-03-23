@@ -1,95 +1,89 @@
 package br.com.sprintters.prettystyle.dao;
-package br.com.sprintters.prettystyle.dao;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.sql.Connection;
 import java.sql.SQLException;
+import java.sql.PreparedStatement;
+
+import br.com.sprintters.prettystyle.model.Category;
 
 public class CategoryDAO {
-
-	public void create(Category category) {
-		String sqlInsert = "INSERT INTO category (name, color) values (?, ?)";
-		
-		try(Connection conn = ConnectionFactory.createConnection();
-				PreparedStatement stm = conn.prepareStatement(sqlInsert);) {
-			
-			stm.setString(1, category.getName());
-			stm.setString(2, category.getColor());
-			stm.execute();
-		}
-		catch(SQLException e) {
-			e.printStackTrace();
-		}
-	}
-	
-	public void update(Category category) {
-		String sqlUpdate = "UPDATE category SET name = ?, color = ?, updated_at = now() where category.id = ?";
-		
-		try(Connection conn = ConnectionFactory.createConnection();
-				PreparedStatement stm = conn.prepareStatement(sqlUpdate);) {
-			
-			stm.setString(1, category.getName());
-			stm.setString(2, category.getColor());
-			stm.setInt(3, category.getId());
-			stm.execute();
-		}
-		catch(SQLException e) {
-			e.printStackTrace();
-		}
-	}
-	
-	public void delete(Category category) {
-		String sqlUpdate = "UPDATE category SET deleted_at = now() where id = ?";
+	public int insert(Category to) throws Exception {
+		int id = 0;
+		String sqlInsert = "INSERT INTO category (name, color) VALUES (?, ?)";
 		
 		try (Connection conn = ConnectionFactory.createConnection();
-				PreparedStatement stm = conn.prepareStatement(sqlUpdate);) {
-			stm.setInt(1, category.getId());
+			 PreparedStatement stm = conn.prepareStatement(sqlInsert)) {
+			stm.setString(1, to.getName());
+			stm.setString(2, to.getColor());
 			stm.execute();
+			try (ResultSet rs = stm.executeQuery("SELECT LAST_INSERT_ID()")) {
+				if (rs.next()) {				
+					id = rs.getInt(1);
+				}
+			} catch (SQLException ex) {
+				throw new Exception(ex.getMessage());
+			}
+		} catch (SQLException e) {
+			throw new Exception(e.getMessage());
 		}
-		catch(SQLException e) {
-			e.printStackTrace();
+		
+		return id;
+	}
+	
+	public void update(Category to) throws Exception {
+		String sqlUpdate = "UPDATE category SET name = ?, color = ?, updated_at = NOW() WHERE id = ?";
+		
+		try (Connection conn = ConnectionFactory.createConnection();
+			 PreparedStatement stm = conn.prepareStatement(sqlUpdate)) {
+			stm.setString(1, to.getName());
+			stm.setString(2, to.getColor());
+			stm.setInt(3, to.getId());
+			stm.execute();
+		} catch (SQLException e) {
+			throw new Exception(e.getMessage());
 		}
 	}
 	
-	public Category find(int id) {
-		Category category = new Category();
-		String sqlSelect = "SELECT * FROM category where category.id = ?";
+	public void delete(Category to) throws Exception {
+		String sqlDelete = "UPDATE category SET deleted_at = NOW() WHERE id = ?";
 		
 		try (Connection conn = ConnectionFactory.createConnection();
-				PreparedStatement stm = conn.prepareStatement(sqlSelect);) {
+			 PreparedStatement stm = conn.prepareStatement(sqlDelete)) {
+			stm.setInt(1, to.getId());
+			stm.execute();
+		} catch (SQLException e) {
+			throw new Exception(e.getMessage());
+		}
+	}
+	
+	public Category find(int id) throws Exception {
+		Category to = new Category();
+		String sqlSelect = "SELECT * FROM category WHERE id = ?";
+		
+		try (Connection conn = ConnectionFactory.createConnection();
+			 PreparedStatement stm = conn.prepareStatement(sqlSelect)) {
 			stm.setInt(1, id);
 			
-			try (ResultSet rs = stm.executeQuery();) {
+			try (ResultSet rs = stm.executeQuery()) {
 				if (rs.next()) {
-					category.setId(rs.getInt("id"));
-					category.setName(rs.getString("name"));
-					category.setColor(rs.getString("color"));
-					category.setCreatedAt(rs.getTimestamp("created_at"));
-					category.setUpdatedAt(rs.getTimestamp("updated_at"));
-					category.setDeletedAt(rs.getTimestamp("deleted_at"));
+					to.setId(rs.getInt("id"));
+					to.setName(rs.getString("name"));
+					to.setColor(rs.getString("color"));
+					to.setCreatedAt(rs.getTimestamp("created_at"));
+					to.setUpdatedAt(rs.getTimestamp("updated_at"));
+					to.setDeletedAt(rs.getTimestamp("deleted_at"));
 				}
-				else {
-					category.setId(0);
-					category.setName(null);
-					category.setColor(null);
-					category.setCreatedAt(null);
-					category.setUpdatedAt(null);
-					category.setDeletedAt(null);
-				}
+			} catch (SQLException ex) {
+				throw new Exception(ex.getMessage());
 			}
-			catch(SQLException e) {
-				e.printStackTrace();
-			}
-			
-		}
-		catch (SQLException e1) {
-			System.out.println(e1.getStackTrace());
+		} catch (SQLException e) {
+			throw new Exception(e.getMessage());
 		}
 		
-		return category;
+		return to;
 	}
-		
 	
 	public ArrayList<Category> list() throws Exception  {
 		ArrayList<Category> categories = new ArrayList<Category>();
@@ -99,7 +93,7 @@ public class CategoryDAO {
 			 PreparedStatement stm = conn.prepareStatement(sqlSelect)) {
 			try (ResultSet rs = stm.executeQuery()) {
 				while (rs.next()) {
-					Category category = new Category(
+					Category to = new Category(
 						rs.getInt("id"),
 						rs.getString("name"),
 						rs.getString("color"),
@@ -107,7 +101,7 @@ public class CategoryDAO {
 						rs.getTimestamp("updated_at"),
 						rs.getTimestamp("deleted_at")
 					);
-					categories.add(category);
+					categories.add(to);
 				}
 			} catch (SQLException ex) {
 				throw new Exception(ex.getMessage());

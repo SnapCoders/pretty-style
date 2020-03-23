@@ -1,103 +1,95 @@
 package br.com.sprintters.prettystyle.dao;
-package br.com.sprintters.prettystyle.dao;
+
+import java.sql.ResultSet;
+import java.util.ArrayList;
+
+import br.com.sprintters.prettystyle.model.Product;
 
 import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.PreparedStatement;
 
 public class ProductDAO {
-
-	public void create(Product prod) {		
-		String sqlInsert = "INSERT INTO product (name, description, price, id_mark, created_at) values (?, ?, ?, ?, now())";
-		
-		try(Connection conn = ConnectionFactory.createConnection();
-				PreparedStatement stm = conn.prepareStatement(sqlInsert);) {
-			
-			stm.setString(1, prod.getName());
-			stm.setString(2, prod.getDescription());
-			stm.setDouble(3, prod.getPrice());
-			stm.setInt(4, prod.getIdMark());
-			stm.execute();
-		}
-		catch(SQLException e) {
-			e.printStackTrace();
-		}
-	}
-	
-	
-	public void update(Product prod) {
-		String sqlUpdate = "UPDATE product SET name = ?, description = ?, price = ?, id_mark = ?, updated_at = now() where id = ?";
-		
-		try(Connection conn = ConnectionFactory.createConnection();
-				PreparedStatement stm = conn.prepareStatement(sqlUpdate);) {
-			
-			stm.setString(1, prod.getName());
-			stm.setString(2, prod.getDescription());
-			stm.setDouble(3, prod.getPrice());
-			stm.setInt(4, prod.getIdMark);
-			stm.setInt(5, prod.getId());
-			stm.execute();
-		}
-		catch(SQLException e) {
-			e.printStackTrace();
-		}
-	}
-	
-	
-	public void delete(Product prod) {
-		String sqlUpdate = "UPDATE product SET deleted_at = now() where id = ?";
+	public int insert(Product to) throws Exception {
+		int id = 0;
+		String sqlInsert = "INSERT INTO product (name, description, price, id_mark, created_at) VALUES (?, ?, ?, ?, NOW())";
 		
 		try (Connection conn = ConnectionFactory.createConnection();
-				PreparedStatement stm = conn.prepareStatement(sqlUpdate);) {
-			stm.setInt(1, prod.getId());
+			 PreparedStatement stm = conn.prepareStatement(sqlInsert)) {
+			stm.setString(1, to.getName());
+			stm.setString(2, to.getDescription());
+			stm.setDouble(3, to.getPrice());
+			stm.setInt(4, to.getIdMark());
 			stm.execute();
+			try (ResultSet rs = stm.executeQuery("SELECT LAST_INSERT_ID()")) {
+				if (rs.next()) {				
+					id = rs.getInt(1);
+				}
+			} catch (SQLException e) {
+				throw new Exception(e.getMessage());
+			}
+		} catch (SQLException ex) {
+			throw new Exception(ex.getMessage());
 		}
-		catch(SQLException e) {
-			e.printStackTrace();
+		
+		return id;
+	}
+	
+	public void update(Product to) throws Exception {
+		String sqlUpdate = "UPDATE product SET name = ?, description = ?, price = ?, id_mark = ?, updated_at = NOW() WHERE id = ?";
+		
+		try (Connection conn = ConnectionFactory.createConnection();
+			 PreparedStatement stm = conn.prepareStatement(sqlUpdate)) {
+			stm.setString(1, to.getName());
+			stm.setString(2, to.getDescription());
+			stm.setDouble(3, to.getPrice());
+			stm.setInt(4, to.getIdMark());
+			stm.setInt(5, to.getId());
+			stm.execute();
+		} catch (SQLException e) {
+			throw new Exception(e.getMessage());
 		}
 	}
 	
-	public Product find(int id) {
-		Product prod = new Product();
-		String sqlSelect = "SELECT * FROM product where product.id = ?";
+	public void delete(Product to) throws Exception {
+		String sqlDelete = "UPDATE product SET deleted_at = NOW() WHERE id = ?";
 		
 		try (Connection conn = ConnectionFactory.createConnection();
-				PreparedStatement stm = conn.prepareStatement(sqlSelect);) {
+			 PreparedStatement stm = conn.prepareStatement(sqlDelete)) {
+			stm.setInt(1, to.getId());
+			stm.execute();
+		} catch (SQLException e) {
+			throw new Exception(e.getMessage());
+		}
+	}
+	
+	public Product find(int id) throws Exception {
+		Product to = new Product();
+		String sqlSelect = "SELECT * FROM product WHERE id = ?";
+		
+		try (Connection conn = ConnectionFactory.createConnection();
+			 PreparedStatement stm = conn.prepareStatement(sqlSelect)) {
 			stm.setInt(1, id);
 			
-			try (ResultSet rs = stm.executeQuery();) {
+			try (ResultSet rs = stm.executeQuery()) {
 				if (rs.next()) {
-					prod.setId(rs.getInt("id"));
-					prod.setName(rs.getString("name"));
-					prod.setDescription(rs.getString("description"));
-					prod.setPrice(rs.getDouble("price"));
-					prod.setIdMark(rs.getInt("id_mark"));
-					prod.setCreatedAt(rs.getTimestamp("created_at"));
-					prod.setUpdatedAt(rs.getTimestamp("updated_at"));
-					prod.setDeletedAt(rs.getTimestamp("deleted_at"));
+					to.setId(rs.getInt("id"));
+					to.setName(rs.getString("name"));
+					to.setDescription(rs.getString("description"));
+					to.setPrice(rs.getDouble("price"));
+					to.setIdMark(rs.getInt("id_mark"));
+					to.setCreatedAt(rs.getTimestamp("created_at"));
+					to.setUpdatedAt(rs.getTimestamp("updated_at"));
+					to.setDeletedAt(rs.getTimestamp("deleted_at"));
 				}
-				else {
-					prod.setId(0);
-					prod.setName(null);
-					prod.setDescription(null);
-					prod.setPrice(null);
-					prod.setIdMark(0);
-					prod.setCreatedAt(null);
-					prod.setUpdatedAt(null);
-					prod.setDeletedAt(null);
-				}
+			} catch (SQLException ex) {
+				throw new Exception(ex.getMessage());
 			}
-			catch(SQLException e) {
-				e.printStackTrace();
-			}
-			
-		}
-		catch (SQLException e1) {
-			System.out.println(e1.getStackTrace());
+		} catch (SQLException e) {
+			throw new Exception(e.getMessage());
 		}
 		
-		return prod;
+		return to;
 	}
 	
 	public ArrayList<Product> list() throws Exception  {
@@ -108,7 +100,7 @@ public class ProductDAO {
 			 PreparedStatement stm = conn.prepareStatement(sqlSelect)) {
 			try (ResultSet rs = stm.executeQuery()) {
 				while (rs.next()) {
-					Product prod = new Product(
+					Product to = new Product(
 						rs.getInt("id"),
 						rs.getString("name"),
 						rs.getString("description"),
@@ -119,7 +111,7 @@ public class ProductDAO {
 						rs.getTimestamp("deleted_at")
 						
 					);
-					products.add(prod);
+					products.add(to);
 				}
 			} catch (SQLException ex) {
 				throw new Exception(ex.getMessage());
@@ -130,7 +122,4 @@ public class ProductDAO {
 		
 		return products;
 	}
-	
-	
-
 }

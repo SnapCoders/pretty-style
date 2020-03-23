@@ -12,10 +12,21 @@ public class Client extends Entity {
 
 	public Client() { }
 
+	public Client(String cpf, int idUser) {
+		this.cpf = cpf;
+		this.idUser = idUser;
+	}
+	
 	public Client(String cpf, User user) {
 		this.cpf = cpf;
 		this.idUser = user.getId();
 		this.user = user;
+	}
+	
+	public Client(int id, String cpf, int idUser) {
+		super(id);
+		this.cpf = cpf;
+		this.idUser = idUser;
 	}
 	
 	public Client(int id, String cpf, User user) {
@@ -23,6 +34,12 @@ public class Client extends Entity {
 		this.cpf = cpf;
 		this.idUser = user.getId();
 		this.user = user;
+	}
+	
+	public Client(int id, String cpf, int idUser, Timestamp createdAt, Timestamp updatedAt, Timestamp deletedAt) {
+		super(id, createdAt, updatedAt, deletedAt);
+		this.cpf = cpf;
+		this.idUser = idUser;
 	}
 	
 	public Client(int id, String cpf, User user, Timestamp createdAt, Timestamp updatedAt, Timestamp deletedAt) {

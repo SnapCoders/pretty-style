@@ -1,95 +1,89 @@
 package br.com.sprintters.prettystyle.dao;
-package br.com.sprintters.prettystyle.dao;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.sql.Connection;
 import java.sql.SQLException;
 
-public class ItemDAO {
+import br.com.sprintters.prettystyle.model.Item;
 
-	public void create(Item item) {		
+import java.sql.PreparedStatement;
+
+public class ItemDAO {
+	public int insert(Item to) throws Exception {
+		int id = 0;
 		String sqlInsert = "INSERT INTO item (quantity, id_product, created_at) values (?, ?, now())";
 		
-		try(Connection conn = ConnectionFactory.createConnection();
-				PreparedStatement stm = conn.prepareStatement(sqlInsert);) {
-			
-			stm.setInt(1, item.getQuantity());
-			stm.setInt(2, item.getIdProduct());
+		try (Connection conn = ConnectionFactory.createConnection();
+			 PreparedStatement stm = conn.prepareStatement(sqlInsert)) {
+			stm.setInt(1, to.getQuantity());
+			stm.setInt(2, to.getIdProduct());
 			stm.execute();
+			try (ResultSet rs = stm.executeQuery("SELECT LAST_INSERT_ID()")) {
+				if (rs.next()) {				
+					id = rs.getInt(1);
+				}
+			} catch (SQLException ex) {
+				throw new Exception(ex.getMessage());
+			}
+		} catch (SQLException e) {
+			throw new Exception(e.getMessage());
 		}
-		catch(SQLException e) {
-			e.printStackTrace();
-		}
-	}
-	
-	
-	public void update(Item item) {
-		String sqlUpdate = "UPDATE item SET quantity = ?, id_product = ?, updated_at = now() where id = ?";
 		
-		try(Connection conn = ConnectionFactory.createConnection();
-				PreparedStatement stm = conn.prepareStatement(sqlUpdate);) {
-			
-			stm.setInt(1, item.getQuantity());
-			stm.setInt(2, item.getIdProduct());
-			stm.setInt(3, item.getId());
-			stm.execute();
-		}
-		catch(SQLException e) {
-			e.printStackTrace();
-		}
+		return id;
 	}
 	
-	
-	public void delete(Item item) {
-		String sqlUpdate = "UPDATE item SET deleted_at = now() where id = ?";
+	public void update(Item to) throws Exception {
+		String sqlUpdate = "UPDATE item SET quantity = ?, id_product = ?, updated_at = NOW() WHERE id = ?";
 		
 		try (Connection conn = ConnectionFactory.createConnection();
-				PreparedStatement stm = conn.prepareStatement(sqlUpdate);) {
-			stm.setInt(1, item.getId());
+			 PreparedStatement stm = conn.prepareStatement(sqlUpdate)) {
+			stm.setInt(1, to.getQuantity());
+			stm.setInt(2, to.getIdProduct());
+			stm.setInt(3, to.getId());
 			stm.execute();
-		}
-		catch(SQLException e) {
-			e.printStackTrace();
+		} catch (SQLException e) {
+			throw new Exception(e.getMessage());
 		}
 	}
 	
-	public Item find(int id) {
-		Item item = new Item();
-		String sqlSelect = "SELECT * FROM item where item.id = ?";
+	public void delete(Item to) throws Exception {
+		String sqlDelete = "UPDATE item SET deleted_at = NOW() WHERE id = ?";
 		
 		try (Connection conn = ConnectionFactory.createConnection();
-				PreparedStatement stm = conn.prepareStatement(sqlSelect);) {
+			 PreparedStatement stm = conn.prepareStatement(sqlDelete)) {
+			stm.setInt(1, to.getId());
+			stm.execute();
+		} catch (SQLException e) {
+			throw new Exception(e.getMessage());
+		}
+	}
+	
+	public Item find(int id) throws Exception {
+		Item to = new Item();
+		String sqlSelect = "SELECT * FROM item WHERE id = ?";
+		
+		try (Connection conn = ConnectionFactory.createConnection();
+			 PreparedStatement stm = conn.prepareStatement(sqlSelect)) {
 			stm.setInt(1, id);
 			
 			try (ResultSet rs = stm.executeQuery();) {
 				if (rs.next()) {
-					item.setId(rs.getInt("id"));
-					item.setQuantity(rs.getInt("quantity"));
-					item.setIdProduct(rs.getInt("id_product"));
-					item.setCreatedAt(rs.getTimestamp("created_at"));
-					item.setUpdatedAt(rs.getTimestamp("updated_at"));
-					item.setDeletedAt(rs.getTimestamp("deleted_at"));
+					to.setId(rs.getInt("id"));
+					to.setQuantity(rs.getInt("quantity"));
+					to.setIdProduct(rs.getInt("id_product"));
+					to.setCreatedAt(rs.getTimestamp("created_at"));
+					to.setUpdatedAt(rs.getTimestamp("updated_at"));
+					to.setDeletedAt(rs.getTimestamp("deleted_at"));
 				}
-				else {
-					item.setId(0);
-					item.setQuantity(0);
-					item.setIdProduct(0);
-					item.setCreatedAt(null);
-					item.setUpdatedAt(null);
-					item.setDeletedAt(null);
-				}
+			} catch (SQLException ex) {
+				throw new Exception(ex.getMessage());
 			}
-			catch(SQLException e) {
-				e.printStackTrace();
-			}
-			
-		}
-		catch (SQLException e1) {
-			System.out.println(e1.getStackTrace());
+		} catch (SQLException e) {
+			throw new Exception(e.getMessage());
 		}
 		
-		return item;
+		return to;
 	}
 	
 	public ArrayList<Item> list() throws Exception  {
@@ -100,16 +94,17 @@ public class ItemDAO {
 			 PreparedStatement stm = conn.prepareStatement(sqlSelect)) {
 			try (ResultSet rs = stm.executeQuery()) {
 				while (rs.next()) {
-					Item item = new Item(
+					Item to = new Item(
 						rs.getInt("id"),
 						rs.getInt("quantity"),
 						rs.getInt("id_product"),
+						rs.getInt("id_request"),
 						rs.getTimestamp("created_at"),
 						rs.getTimestamp("updated_at"),
 						rs.getTimestamp("deleted_at")
 						
 					);
-					items.add(item);
+					items.add(to);
 				}
 			} catch (SQLException ex) {
 				throw new Exception(ex.getMessage());

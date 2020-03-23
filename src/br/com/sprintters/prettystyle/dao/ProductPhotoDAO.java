@@ -1,24 +1,24 @@
 package br.com.sprintters.prettystyle.dao;
 
 import java.sql.ResultSet;
-import java.sql.Connection;
-import java.sql.SQLException;
 import java.util.ArrayList;
 
-import br.com.sprintters.prettystyle.model.PhoneNumber;
+import br.com.sprintters.prettystyle.model.ProductPhoto;
 
+import java.sql.Connection;
+import java.sql.SQLException;
 import java.sql.PreparedStatement;
 
-public class PhoneNumberDAO {
-	public int insert(PhoneNumber to) throws Exception {
+public class ProductPhotoDAO {
+	public int insert(ProductPhoto to) throws Exception {
 		int id = 0;
-		String sqlInsert = "INSERT INTO phone_number (ddd, number, id_user, created_at) VALUES (?, ?, ?, NOW())";
+		String sqlInsert = "INSERT INTO product_photo (url, name, id_product, created_at) VALUES (?, ?, ?, NOW())";
 		
 		try (Connection conn = ConnectionFactory.createConnection();
 			 PreparedStatement stm = conn.prepareStatement(sqlInsert)) {
-			stm.setInt(1, to.getDdd());
-			stm.setString(2, to.getNumber());
-			stm.setInt(3, to.getIdUser());
+			stm.setString(1, to.getUrl());
+			stm.setString(2, to.getName());
+			stm.setInt(3, to.getIdProduct());
 			stm.execute();
 			try (ResultSet rs = stm.executeQuery("SELECT LAST_INSERT_ID()")) {
 				if (rs.next()) {				
@@ -34,14 +34,14 @@ public class PhoneNumberDAO {
 		return id;
 	}
 	
-	public void update(PhoneNumber to) throws Exception {
-		String sqlUpdate = "UPDATE phone_number SET ddd = ?, number = ? ,id_user = ?, updated_at = NOW() WHERE id = ?";
+	public void update(ProductPhoto to) throws Exception {
+		String sqlUpdate = "UPDATE product_photo SET url = ?,name = ?, id_product = ? ,updated_at = NOW() WHERE id = ?";
 		
 		try (Connection conn = ConnectionFactory.createConnection();
 			 PreparedStatement stm = conn.prepareStatement(sqlUpdate)) {
-			stm.setInt(1, to.getDdd());
-			stm.setString(2, to.getNumber());
-			stm.setInt(3, to.getIdUser());
+			stm.setString(1, to.getUrl());
+			stm.setString(2, to.getName());
+			stm.setInt(3, to.getIdProduct());
 			stm.setInt(4, to.getId());
 			stm.execute();
 		} catch (SQLException e) {
@@ -49,8 +49,8 @@ public class PhoneNumberDAO {
 		}
 	}
 	
-	public void delete(PhoneNumber to) throws Exception {
-		String sqlUpdate = "UPDATE phone_number SET deleted_at = NOW() WHERE id = ?";
+	public void delete(ProductPhoto to) throws Exception {
+		String sqlUpdate = "UPDATE product_photo SET deleted_at = NOW() WHERE id = ?";
 		
 		try (Connection conn = ConnectionFactory.createConnection();
 			 PreparedStatement stm = conn.prepareStatement(sqlUpdate)) {
@@ -61,9 +61,9 @@ public class PhoneNumberDAO {
 		}
 	}
 	
-	public PhoneNumber find(int id) throws Exception {
-		PhoneNumber to = new PhoneNumber();
-		String sqlSelect = "SELECT * FROM phone_number WHERE id = ?";
+	public ProductPhoto find(int id) throws Exception {
+		ProductPhoto to = new ProductPhoto();
+		String sqlSelect = "SELECT * FROM product_photo WHERE id = ?";
 		
 		try (Connection conn = ConnectionFactory.createConnection();
 			 PreparedStatement stm = conn.prepareStatement(sqlSelect)) {
@@ -72,42 +72,12 @@ public class PhoneNumberDAO {
 			try (ResultSet rs = stm.executeQuery()) {
 				if (rs.next()) {
 					to.setId(rs.getInt("id"));
-					to.setDdd(rs.getInt("ddd"));
-					to.setNumber(rs.getString("number"));
-					to.setIdUser(rs.getInt("id_user"));
+					to.setUrl(rs.getString("url"));
+					to.setName(rs.getString("name"));
+					to.setIdProduct(rs.getInt("id_product"));
 					to.setCreatedAt(rs.getTimestamp("created_at"));
 					to.setUpdatedAt(rs.getTimestamp("updated_at"));
 					to.setDeletedAt(rs.getTimestamp("deleted_at"));
-				}
-			} catch (SQLException ex) {
-				 throw new Exception(ex.getMessage());
-			}
-		} catch (SQLException e) {
-			throw new Exception(e.getMessage());
-		}
-		
-		return to;
-	}
-		
-	
-	public ArrayList<PhoneNumber> list() throws Exception  {
-		ArrayList<PhoneNumber> phones = new ArrayList<PhoneNumber>();
-		String sqlSelect = "SELECT * FROM phone_number WHERE deleted_at IS NULL";
-		
-		try (Connection conn = ConnectionFactory.createConnection();
-			 PreparedStatement stm = conn.prepareStatement(sqlSelect)) {
-			try (ResultSet rs = stm.executeQuery()) {
-				while (rs.next()) {
-					PhoneNumber to = new PhoneNumber(
-						rs.getInt("id"),
-						rs.getInt("ddd"),
-						rs.getString("number"),
-						rs.getInt("id_user"),
-						rs.getTimestamp("created_at"),
-						rs.getTimestamp("updated_at"),
-						rs.getTimestamp("deleted_at")
-					);
-					phones.add(to);
 				}
 			} catch (SQLException ex) {
 				throw new Exception(ex.getMessage());
@@ -116,6 +86,35 @@ public class PhoneNumberDAO {
 			throw new Exception(e.getMessage());
 		}
 		
-		return phones;
+		return to;
+	}
+	
+	public ArrayList<ProductPhoto> list() throws Exception  {
+		ArrayList<ProductPhoto> photos = new ArrayList<ProductPhoto>();
+		String sqlSelect = "SELECT * FROM product_photo WHERE deleted_at IS NULL";
+		
+		try (Connection conn = ConnectionFactory.createConnection();
+			 PreparedStatement stm = conn.prepareStatement(sqlSelect)) {
+			try (ResultSet rs = stm.executeQuery()) {
+				while (rs.next()) {
+					ProductPhoto to = new ProductPhoto(
+							rs.getInt("id"),
+							rs.getString("url"),
+							rs.getString("name"),
+							rs.getInt("id_product"),
+							rs.getTimestamp("created_at"),
+							rs.getTimestamp("updated_at"),
+							rs.getTimestamp("deleted_at")
+					);
+					photos.add(to);
+				}
+			} catch (SQLException ex) {
+				throw new Exception(ex.getMessage());
+			}
+		} catch (SQLException e) {
+			throw new Exception(e.getMessage());
+		}
+		
+		return photos;
 	}
 }

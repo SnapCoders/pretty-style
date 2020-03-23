@@ -13,11 +13,24 @@ public class ProductPhoto extends Entity {
 
 	public ProductPhoto() { }
 
+	public ProductPhoto(String name, String url, int idProduct) {
+		this.name = name;
+		this.url = url;
+		this.idProduct = idProduct;
+	}
+	
 	public ProductPhoto(String name, String url, Product product) {
 		this.name = name;
 		this.url = url;
 		this.idProduct = product.getId();
 		this.product = product;
+	}
+	
+	public ProductPhoto(int id, String name, String url, int idProduct) {
+		super(id);
+		this.name = name;
+		this.url = url;
+		this.idProduct = idProduct;
 	}
 	
 	public ProductPhoto(int id, String name, String url, Product product) {
@@ -26,6 +39,13 @@ public class ProductPhoto extends Entity {
 		this.url = url;
 		this.idProduct = product.getId();
 		this.product = product;
+	}
+	
+	public ProductPhoto(int id, String name, String url, int idProduct, Timestamp createdAt, Timestamp updatedAt, Timestamp deletedAt) {
+		super(id, createdAt, updatedAt, deletedAt);
+		this.name = name;
+		this.url = url;
+		this.idProduct = idProduct;
 	}
 	
 	public ProductPhoto(int id, String name, String url, Product product, Timestamp createdAt, Timestamp updatedAt, Timestamp deletedAt) {

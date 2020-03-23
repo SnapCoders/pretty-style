@@ -15,12 +15,25 @@ public class Item extends Entity {
 
 	public Item() { }
 
+	public Item(int quantity, int idProduct, int idRequest) {
+		this.quantity = quantity;
+		this.idProduct = idProduct;
+		this.idRequest = idRequest;
+	}
+	
 	public Item(int quantity, Product product, Request request) {
 		this.quantity = quantity;
 		this.idProduct = product.getId();
 		this.product = product;
 		this.idRequest = request.getId();
 		this.request = request;
+	}
+	
+	public Item(int id, int quantity, int idProduct, int idRequest) {
+		super(id);
+		this.quantity = quantity;
+		this.idProduct = idProduct;
+		this.idRequest = idRequest;
 	}
 
 	public Item(int id, int quantity, Product product, Request request) {
@@ -30,6 +43,13 @@ public class Item extends Entity {
 		this.product = product;
 		this.idRequest = request.getId();
 		this.request = request;
+	}
+	
+	public Item(int id, int quantity, int idProduct, int idRequest, Timestamp createdAt, Timestamp updatedAt, Timestamp deletedAt) {
+		super(id, createdAt, updatedAt, deletedAt);
+		this.quantity = quantity;
+		this.idProduct = idProduct;
+		this.idRequest = idRequest;
 	}
 	
 	public Item(int id, int quantity, Product product, Request request, Timestamp createdAt, Timestamp updatedAt, Timestamp deletedAt) {

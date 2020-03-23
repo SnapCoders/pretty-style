@@ -1,92 +1,87 @@
 package br.com.sprintters.prettystyle.dao;
-package br.com.sprintters.prettystyle.dao;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
+import br.com.sprintters.prettystyle.model.Mark;
+
+import java.sql.PreparedStatement;
 
 public class MarkDAO {
-	
-	public void create(Mark mark) {
-		String sqlInsert = "INSERT INTO mark (name, created_at) values (?, now())";
-		
-		try(Connection conn = ConnectionFactory.createConnection();
-				PreparedStatement stm = conn.prepareStatement(sqlInsert);) {
-			
-			stm.setString(1, mark.getName());
-			stm.execute();
-		}
-		catch(SQLException e) {
-			e.printStackTrace();
-		}
-	}
-	
-	public void update(Mark mark) {
-		String sqlUpdate = "UPDATE mark SET name = ?, updated_at = now() where id = ?";
-		
-		try(Connection conn = ConnectionFactory.createConnection();
-				PreparedStatement stm = conn.prepareStatement(sqlUpdate);) {
-			
-			stm.setString(1, mark.getName());
-			stm.setInt(2, mark.getId());
-			stm.execute();
-		}
-		catch(SQLException e) {
-			e.printStackTrace();
-		}
-	}
-	
-	public void delete(Mark mark) {
-		String sqlUpdate = "UPDATE mark SET deleted_at = now() where id = ?";
+	public int insert(Mark to) throws Exception {
+		int id = 0;
+		String sqlInsert = "INSERT INTO mark (name, created_at) VALUES (?, NOW())";
 		
 		try (Connection conn = ConnectionFactory.createConnection();
-				PreparedStatement stm = conn.prepareStatement(sqlUpdate);) {
-			stm.setInt(1, mark.getId());
+			 PreparedStatement stm = conn.prepareStatement(sqlInsert)) {
+			stm.setString(1, to.getName());
 			stm.execute();
+			try (ResultSet rs = stm.executeQuery("SELECT LAST_INSERT_ID()")) {
+				if (rs.next()) {				
+					id = rs.getInt(1);
+				}
+			} catch (SQLException ex) {
+				throw new Exception(ex.getMessage());
+			}
+		} catch (SQLException e) {
+			throw new Exception(e.getMessage());
 		}
-		catch(SQLException e) {
-			e.printStackTrace();
+		
+		return id;
+	}
+	
+	public void update(Mark to) throws Exception {
+		String sqlUpdate = "UPDATE mark SET name = ?, updated_at = NOW() WHERE id = ?";
+		
+		try (Connection conn = ConnectionFactory.createConnection();
+			 PreparedStatement stm = conn.prepareStatement(sqlUpdate)) {
+			stm.setString(1, to.getName());
+			stm.setInt(2, to.getId());
+			stm.execute();
+		} catch (SQLException e) {
+			throw new Exception(e.getMessage());
 		}
 	}
 	
-	public Mark find(int id) {
-		Mark mark = new Mark();
-		String sqlSelect = "SELECT * FROM mark where mark.id = ?";
+	public void delete(Mark to) throws Exception {
+		String sqlDelete = "UPDATE mark SET deleted_at = NOW() WHERE id = ?";
+		
+		try (Connection conn = ConnectionFactory.createConnection();
+			 PreparedStatement stm = conn.prepareStatement(sqlDelete)) {
+			stm.setInt(1, to.getId());
+			stm.execute();
+		} catch (SQLException e) {
+			throw new Exception(e.getMessage());
+		}
+	}
+	
+	public Mark find(int id) throws Exception {
+		Mark to = new Mark();
+		String sqlSelect = "SELECT * FROM mark WHERE id = ?";
 		
 		try (Connection conn = ConnectionFactory.createConnection();
 				PreparedStatement stm = conn.prepareStatement(sqlSelect);) {
 			stm.setInt(1, id);
 			
-			try (ResultSet rs = stm.executeQuery();) {
+			try (ResultSet rs = stm.executeQuery()) {
 				if (rs.next()) {
-					mark.setId(rs.getInt("id"));
-					mark.setName(rs.getString("name"));
-					mark.setCreatedAt(rs.getTimestamp("created_at"));
-					mark.setUpdatedAt(rs.getTimestamp("updated_at"));
-					mark.setDeletedAt(rs.getTimestamp("deleted_at"));
+					to.setId(rs.getInt("id"));
+					to.setName(rs.getString("name"));
+					to.setCreatedAt(rs.getTimestamp("created_at"));
+					to.setUpdatedAt(rs.getTimestamp("updated_at"));
+					to.setDeletedAt(rs.getTimestamp("deleted_at"));
 				}
-				else {
-					mark.setId(0);
-					mark.setName(null);
-					mark.setCreatedAt(null);
-					mark.setUpdatedAt(null);
-					mark.setDeletedAt(null);
-				}
+			} catch (SQLException ex) {
+				throw new Exception(ex.getMessage());
 			}
-			catch(SQLException e) {
-				e.printStackTrace();
-			}
-			
-		}
-		catch (SQLException e1) {
-			System.out.println(e1.getStackTrace());
+		} catch (SQLException e) {
+			throw new Exception(e.getMessage());
 		}
 		
-		return mark;
+		return to;
 	}
-		
 	
 	public ArrayList<Mark> list() throws Exception  {
 		ArrayList<Mark> marks = new ArrayList<Mark>();
@@ -96,14 +91,14 @@ public class MarkDAO {
 			 PreparedStatement stm = conn.prepareStatement(sqlSelect)) {
 			try (ResultSet rs = stm.executeQuery()) {
 				while (rs.next()) {
-					Mark mark = new Mark(
+					Mark to = new Mark(
 						rs.getInt("id"),
 						rs.getString("name"),
 						rs.getTimestamp("created_at"),
 						rs.getTimestamp("updated_at"),
 						rs.getTimestamp("deleted_at")
 					);
-					marks.add(mark);
+					marks.add(to);
 				}
 			} catch (SQLException ex) {
 				throw new Exception(ex.getMessage());
@@ -115,5 +110,3 @@ public class MarkDAO {
 		return marks;
 	}
 }
-
-

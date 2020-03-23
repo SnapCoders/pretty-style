@@ -1,95 +1,88 @@
 package br.com.sprintters.prettystyle.dao;
-package br.com.sprintters.prettystyle.dao;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.sql.Connection;
 import java.sql.SQLException;
+import java.sql.PreparedStatement;
+
+import br.com.sprintters.prettystyle.model.Request;
 
 public class RequestDAO {
-
-	public void create(Request req) {		
-		String sqlInsert = "INSERT INTO request (id_item, id_client, created_at) values (?, ?, now())";
-		
-		try(Connection conn = ConnectionFactory.createConnection();
-				PreparedStatement stm = conn.prepareStatement(sqlInsert);) {
-			
-			stm.setInt(1, req.getIdItem());
-			stm.setInt(2, req.getIdClient());
-			stm.execute();
-		}
-		catch(SQLException e) {
-			e.printStackTrace();
-		}
-	}
-	
-	
-	public void update(Request req) {
-		String sqlUpdate = "UPDATE request SET id_item = ?, id_client = ?, updated_at = now() where id = ?";
-		
-		try(Connection conn = ConnectionFactory.createConnection();
-				PreparedStatement stm = conn.prepareStatement(sqlUpdate);) {
-			
-			stm.setInt(1, req.getIdItem());
-			stm.setInt(2, req.getIdClient());
-			stm.setInt(3, req.getId());
-			stm.execute();
-		}
-		catch(SQLException e) {
-			e.printStackTrace();
-		}
-	}
-	
-	
-	public void delete(Request req) {
-		String sqlUpdate = "UPDATE request SET deleted_at = now() where id = ?";
+	public int insert(Request to) throws Exception {
+		int id = 0;
+		String sqlInsert = "INSERT INTO request (total_price, id_client, created_at) VALUES (?, ?, NOW())";
 		
 		try (Connection conn = ConnectionFactory.createConnection();
-				PreparedStatement stm = conn.prepareStatement(sqlUpdate);) {
-			stm.setInt(1, req.getId());
+			 PreparedStatement stm = conn.prepareStatement(sqlInsert)) {
+			stm.setDouble(1, to.getTotalPrice());
+			stm.setInt(2, to.getIdClient());
 			stm.execute();
+			try (ResultSet rs = stm.executeQuery("SELECT LAST_INSERT_ID()")) {
+				if (rs.next()) {
+					id = rs.getInt(1);
+				}
+			} catch (SQLException ex) {
+				throw new Exception(ex.getMessage());
+			}
+		} catch (SQLException e) {
+			throw new Exception(e.getMessage());
 		}
-		catch(SQLException e) {
-			e.printStackTrace();
+		
+		return id;
+	}
+	
+	public void update(Request to) throws Exception {
+		String sqlUpdate = "UPDATE request SET id_item = ?, id_client = ?, updated_at = NOW() WHERE id = ?";
+		
+		try (Connection conn = ConnectionFactory.createConnection();
+			 PreparedStatement stm = conn.prepareStatement(sqlUpdate)) {
+			stm.setDouble(1, to.getTotalPrice());
+			stm.setInt(2, to.getIdClient());
+			stm.setInt(3, to.getId());
+			stm.execute();
+		} catch (SQLException e) {
+			throw new Exception(e.getMessage());
 		}
 	}
 	
-	public Request find(int id) {
-		Request req = new Request();
+	public void delete(Request to) throws Exception {
+		String sqlDelete = "UPDATE request SET deleted_at = NOW() WHERE id = ?";
+		
+		try (Connection conn = ConnectionFactory.createConnection();
+			 PreparedStatement stm = conn.prepareStatement(sqlDelete)) {
+			stm.setInt(1, to.getId());
+			stm.execute();
+		} catch (SQLException e) {
+			throw new Exception(e.getMessage());
+		}
+	}
+	
+	public Request find(int id) throws Exception {
+		Request to = new Request();
 		String sqlSelect = "SELECT * FROM request where request.id = ?";
 		
 		try (Connection conn = ConnectionFactory.createConnection();
 				PreparedStatement stm = conn.prepareStatement(sqlSelect);) {
 			stm.setInt(1, id);
 			
-			try (ResultSet rs = stm.executeQuery();) {
+			try (ResultSet rs = stm.executeQuery()) {
 				if (rs.next()) {
-					req.setId(rs.getInt("id"));
-					req.setItem(rs.getInt("id_item"));
-					req.setIdClient(rs.getInt("id_client"));
-					req.setCreatedAt(rs.getTimestamp("created_at"));
-					req.setUpdatedAt(rs.getTimestamp("updated_at"));
-					req.setDeletedAt(rs.getTimestamp("deleted_at"));
+					to.setId(rs.getInt("id"));
+					to.setTotalPrice(rs.getDouble("total_price"));
+					to.setIdClient(rs.getInt("id_client"));
+					to.setCreatedAt(rs.getTimestamp("created_at"));
+					to.setUpdatedAt(rs.getTimestamp("updated_at"));
+					to.setDeletedAt(rs.getTimestamp("deleted_at"));
 				}
-				else {
-					req.setId(0);
-					req.setIdItem(0);
-					req.setIdClient(0);
-					req.setCreatedAt(null);
-					req.setUpdatedAt(null);
-					req.setDeletedAt(null);
-				}
+			} catch(SQLException ex) {
+				throw new Exception(ex.getMessage());
 			}
-			catch(SQLException e) {
-				e.printStackTrace();
-			}
-			
-		}
-		catch (SQLException e1) {
-			System.out.println(e1.getStackTrace());
+		} catch (SQLException e) {
+			throw new Exception(e.getMessage());
 		}
 		
-		return req;
+		return to;
 	}
 	
 	public ArrayList<Request> list() throws Exception  {
@@ -100,16 +93,16 @@ public class RequestDAO {
 			 PreparedStatement stm = conn.prepareStatement(sqlSelect)) {
 			try (ResultSet rs = stm.executeQuery()) {
 				while (rs.next()) {
-					Request req = new Request(
-						rs.getInt("id"),
-						rs.getInt("id_item"),
+					Request to = new Request(
+						rs.getInt("id"),	
 						rs.getInt("id_client"),
+						rs.getDouble("total_price"),
 						rs.getTimestamp("created_at"),
 						rs.getTimestamp("updated_at"),
 						rs.getTimestamp("deleted_at")
 						
 					);
-					reqs.add(req);
+					reqs.add(to);
 				}
 			} catch (SQLException ex) {
 				throw new Exception(ex.getMessage());

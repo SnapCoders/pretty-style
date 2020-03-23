@@ -12,22 +12,39 @@ public class Request extends Entity {
 	
 	public Request() { }
 
-	public Request(int idClient, Client client, double totalPrice) {
+	public Request(int idClient, double totalPrice) {
 		this.idClient = idClient;
+		this.totalPrice = totalPrice;
+	}
+	
+	public Request(Client client, double totalPrice) {
+		this.idClient = client.getId();
 		this.client = client;
 		this.totalPrice = totalPrice;
 	}
 	
-	public Request(int id, int idClient, Client client, double totalPrice) {
+	public Request(int id, int idClient, double totalPrice) {
 		super(id);
 		this.idClient = idClient;
+		this.totalPrice = totalPrice;
+	}
+	
+	public Request(int id, Client client, double totalPrice) {
+		super(id);
+		this.idClient = client.getId();
 		this.client = client;
 		this.totalPrice = totalPrice;
 	}
 	
-	public Request(int id, int idClient, Client client, double totalPrice, Timestamp createdAt, Timestamp updatedAt, Timestamp deletedAt) {
+	public Request(int id, int idClient, double totalPrice, Timestamp createdAt, Timestamp updatedAt, Timestamp deletedAt) {
 		super(id, createdAt, updatedAt, deletedAt);
 		this.idClient = idClient;
+		this.totalPrice = totalPrice;
+	}
+	
+	public Request(int id, Client client, double totalPrice, Timestamp createdAt, Timestamp updatedAt, Timestamp deletedAt) {
+		super(id, createdAt, updatedAt, deletedAt);
+		this.idClient = client.getId();
 		this.client = client;
 		this.totalPrice = totalPrice;
 	}
