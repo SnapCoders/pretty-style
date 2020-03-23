@@ -12,23 +12,43 @@ public class RequestService {
         dao = new RequestDAO();
     }
 
-    public void create(Request request) {
-        dao.create(request);
+    public int create(Request request) throws Exception {
+        try {
+        	return dao.insert(request);
+    	} catch (Exception e) {
+    		throw new Exception(e.getMessage());
+    	}
     }
 
-    public void update(Request request) {
-        dao.update(request);
+    public void update(Request request) throws Exception {
+        try {
+        	dao.update(request);
+    	} catch (Exception e) {
+    		throw new Exception(e.getMessage());
+    	}
     }
 
-    public void delete(Request request) {
-        dao.delete(request);
+    public void delete(Request request) throws Exception {
+        try {
+        	dao.delete(request);
+    	} catch (Exception e) {
+    		throw new Exception(e.getMessage());
+    	}
     }
 
-    public ArrayList<Request> list(int id) {
-        return dao.list(id);
+    public Request find(int id) throws Exception {
+    	try {
+    		return dao.find(id);
+    	} catch (Exception e) {
+    		throw new Exception(e.getMessage());
+    	}
     }
 
-    public Request find(int id) {
-        return dao.find(id);
+    public ArrayList<Request> list() throws Exception {
+    	try {
+    		return dao.list();
+    	} catch (Exception e) {
+    		throw new Exception(e.getMessage());
+    	}
     }
 }

@@ -12,23 +12,35 @@ public class ProductCategoryService {
         dao = new ProductCategoryDAO();
     }
 
-    public void create(ProductCategory productCategory) {
-        dao.create(productCategory);
+    public void create(ProductCategory productCategory) throws Exception {
+        try {
+        	dao.insert(productCategory);
+    	} catch (Exception e) {
+    		throw new Exception(e.getMessage());
+    	}
     }
 
-    public void update(ProductCategory productCategory) {
-        dao.update(productCategory);
+    public void delete(ProductCategory productCategory) throws Exception {
+        try {
+        	dao.delete(productCategory);
+    	} catch (Exception e) {
+    		throw new Exception(e.getMessage());
+    	}
     }
 
-    public void delete(ProductCategory productCategory) {
-        dao.delete(productCategory);
+    public ProductCategory find(int idProduct, int idCategory) throws Exception {
+    	try {
+    		return dao.find(idProduct, idCategory);
+    	} catch (Exception e) {
+    		throw new Exception(e.getMessage());
+    	}
     }
 
-    public ArrayList<ProductCategory> list(int id) {
-        return dao.list(id);
-    }
-
-    public ProductCategory find(int id) {
-        return dao.find(id);
+    public ArrayList<ProductCategory> list() throws Exception {
+    	try {
+    		return dao.list();
+    	} catch (Exception e) {
+    		throw new Exception(e.getMessage());
+    	}
     }
 }

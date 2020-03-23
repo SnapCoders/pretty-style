@@ -11,23 +11,43 @@ public class ProductPhotoService {
         dao = new ProductPhotoDAO();
     }
 
-    public void create(ProductPhoto productPhoto) {
-        dao.create(productPhoto);
+    public int create(ProductPhoto productPhoto) throws Exception {
+        try {
+        	return dao.insert(productPhoto);
+    	} catch (Exception e) {
+    		throw new Exception(e.getMessage());
+    	}
     }
 
-    public void update(ProductPhoto productPhoto) {
-        dao.update(productPhoto);
+    public void update(ProductPhoto productPhoto) throws Exception {
+        try {
+        	dao.update(productPhoto);
+    	} catch (Exception e) {
+    		throw new Exception(e.getMessage());
+    	}
     }
 
-    public void delete(ProductPhoto productPhoto) {
-        dao.delete(productPhoto);
+    public void delete(ProductPhoto productPhoto) throws Exception {
+        try {
+        	dao.delete(productPhoto);
+    	} catch (Exception e) {
+    		throw new Exception(e.getMessage());
+    	}
     }
 
-    public ArrayList<ProductPhoto> list(int id) {
-        return dao.list(id);
+    public ProductPhoto find(int id) throws Exception {
+    	try {
+    		return dao.find(id);
+    	} catch (Exception e) {
+    		throw new Exception(e.getMessage());
+    	}
     }
 
-    public ProductPhoto find(int id) {
-        return dao.find(id);
+    public ArrayList<ProductPhoto> list() throws Exception {
+    	try {
+    		return dao.list();
+    	} catch (Exception e) {
+    		throw new Exception(e.getMessage());
+    	}
     }
 }

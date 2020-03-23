@@ -12,23 +12,43 @@ public class PhoneNumberService {
         dao = new PhoneNumberDAO();
     }
 
-    public void create(PhoneNumber phoneNumber) {
-        dao.create(phoneNumber);
+    public int create(PhoneNumber phoneNumber) throws Exception {
+        try {
+        	return dao.insert(phoneNumber);
+    	} catch (Exception e) {
+    		throw new Exception(e.getMessage());
+    	}
     }
 
-    public void update(PhoneNumber phoneNumber) {
-        dao.update(phoneNumber);
+    public void update(PhoneNumber phoneNumber) throws Exception {
+        try {
+        	dao.update(phoneNumber);
+    	} catch (Exception e) {
+    		throw new Exception(e.getMessage());
+    	}
     }
 
-    public void delete(PhoneNumber phoneNumber) {
-        dao.delete(phoneNumber);
+    public void delete(PhoneNumber phoneNumber) throws Exception {
+        try {
+        	dao.delete(phoneNumber);
+    	} catch (Exception e) {
+    		throw new Exception(e.getMessage());
+    	}
     }
 
-    public ArrayList<PhoneNumber> list(int id) {
-        return dao.list(id);
+    public PhoneNumber find(int id) throws Exception {
+    	try {
+    		return dao.find(id);
+    	} catch (Exception e) {
+    		throw new Exception(e.getMessage());
+    	}
     }
 
-    public PhoneNumber find(int id) {
-        return dao.find(id);
+    public ArrayList<PhoneNumber> list() throws Exception {
+    	try {
+    		return dao.list();
+    	} catch (Exception e) {
+    		throw new Exception(e.getMessage());
+    	}
     }
 }

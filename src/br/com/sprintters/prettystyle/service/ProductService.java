@@ -12,23 +12,43 @@ public class ProductService{
         dao = new ProductDAO();
     }
 
-    public void create(Product product) {
-        dao.create(product);
+    public int create(Product product) throws Exception {
+        try {
+        	return dao.insert(product);
+    	} catch (Exception e) {
+    		throw new Exception(e.getMessage());
+    	}
     }
 
-    public void update(Product product) {
-        dao.update(product);
+    public void update(Product product) throws Exception {
+        try {
+        	dao.update(product);
+    	} catch (Exception e) {
+    		throw new Exception(e.getMessage());
+    	}
     }
 
-    public void delete(Product product) {
-        dao.delete(product);
+    public void delete(Product product) throws Exception {
+        try {
+        	dao.delete(product);
+    	} catch (Exception e) {
+    		throw new Exception(e.getMessage());
+    	}
     }
 
-    public ArrayList<Product> list(int id) {
-        return dao.list(id);
+    public Product find(int id) throws Exception {
+    	try {
+    		return dao.find(id);
+    	} catch (Exception e) {
+    		throw new Exception(e.getMessage());
+    	}
     }
 
-    public Product find(int id) {
-        return dao.find(id);
+    public ArrayList<Product> list() throws Exception {
+    	try {
+    		return dao.list();
+    	} catch (Exception e) {
+    		throw new Exception(e.getMessage());
+    	}
     }
 }

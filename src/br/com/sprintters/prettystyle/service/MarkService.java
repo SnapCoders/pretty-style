@@ -12,23 +12,43 @@ public class MarkService {
         dao = new MarkDAO();
     }
 
-    public void create(Mark mark) {
-        dao.create(mark);
+    public int create(Mark mark) throws Exception {
+        try {
+        	return dao.insert(mark);
+    	} catch (Exception e) {
+    		throw new Exception(e.getMessage());
+    	}
     }
 
-    public void update(Mark mark) {
-        dao.update(mark);
+    public void update(Mark mark) throws Exception {
+        try {
+        	dao.update(mark);
+    	} catch (Exception e) {
+    		throw new Exception(e.getMessage());
+    	}
     }
 
-    public void delete(Mark mark) {
-        dao.delete(mark);
+    public void delete(Mark mark) throws Exception {
+        try {
+        	dao.delete(mark);
+    	} catch (Exception e) {
+    		throw new Exception(e.getMessage());
+    	}
     }
 
-    public ArrayList<Mark> list(int id) {
-        return dao.list(id);
+    public Mark find(int id) throws Exception {
+    	try {
+    		return dao.find(id);
+    	} catch (Exception e) {
+    		throw new Exception(e.getMessage());
+    	}
     }
 
-    public Mark find(int id) {
-        return dao.find(id);
+    public ArrayList<Mark> list(int id) throws Exception {
+    	try {
+    		return dao.list();
+    	} catch (Exception e) {
+    		throw new Exception(e.getMessage());
+    	}
     }
 }

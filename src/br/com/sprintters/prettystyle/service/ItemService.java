@@ -12,23 +12,43 @@ public class ItemService {
         dao = new ItemDAO();
     }
 
-    public void create(Item item) {
-        dao.create(item);
+    public int create(Item item) throws Exception {
+        try {
+        	return dao.insert(item);
+    	} catch (Exception e) {
+    		throw new Exception(e.getMessage());
+    	}
     }
 
-    public void update(Item item) {
-        dao.update(item);
+    public void update(Item item) throws Exception {
+        try {
+        	dao.update(item);
+    	} catch (Exception e) {
+    		throw new Exception(e.getMessage());
+    	}
     }
 
-    public void delete(Item item) {
-        dao.delete(item);
+    public void delete(Item item) throws Exception {
+        try {
+        	dao.delete(item);
+    	} catch (Exception e) {
+    		throw new Exception(e.getMessage());
+    	}
     }
 
-    public ArrayList<Item> list(int id) {
-        return dao.list(id);
+    public Item find(int id) throws Exception {
+    	try {
+    		return dao.find(id);
+    	} catch (Exception e) {
+    		throw new Exception(e.getMessage());
+    	}
     }
 
-    public Item find(int id) {
-        return dao.find(id);
+    public ArrayList<Item> list() throws Exception {
+    	try {
+    		return dao.list();
+    	} catch (Exception e) {
+    		throw new Exception(e.getMessage());
+    	}
     }
 }

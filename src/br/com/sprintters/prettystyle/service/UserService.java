@@ -12,23 +12,43 @@ public class UserService {
         dao = new UserDAO();
     }
 
-    public void create(User user) {
-        dao.create(user);
+    public int create(User user) throws Exception {
+        try {
+        	return dao.insert(user);
+    	} catch (Exception e) {
+    		throw new Exception(e.getMessage());
+    	}
     }
 
-    public void update(User user) {
-        dao.update(user);
+    public void update(User user) throws Exception {
+        try {
+        	dao.update(user);
+    	} catch (Exception e) {
+    		throw new Exception(e.getMessage());
+    	}
     }
 
-    public void delete(User user) {
-        dao.delete(user);
+    public void delete(User user) throws Exception {
+        try {
+        	dao.delete(user);
+    	} catch (Exception e) {
+    		throw new Exception(e.getMessage());
+    	}
     }
 
-    public ArrayList<User> list(int id) {
-        return dao.list(id);
+    public User find(int id) throws Exception {
+    	try {
+    		return dao.find(id);
+    	} catch (Exception e) {
+    		throw new Exception(e.getMessage());
+    	}
     }
 
-    public User find(int id) {
-        return dao.find(id);
+    public ArrayList<User> list() throws Exception {
+    	try {
+    		return dao.list();
+    	} catch (Exception e) {
+    		throw new Exception(e.getMessage());
+    	}
     }
 }

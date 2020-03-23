@@ -12,24 +12,43 @@ public class CategoryService {
         dao = new CategoryDAO();
     }
 
-    public void create(Category category) {
-        dao.create(category);
+    public int create(Category category) throws Exception {
+    	try {
+    		return dao.insert(category);
+    	} catch (Exception e) {
+    		throw new Exception(e.getMessage());
+    	}
     }
 
-    public void update(Category category) {
-        dao.update(category);
+    public void update(Category category) throws Exception {
+    	try {
+    		dao.update(category);
+    	} catch (Exception e) {
+    		throw new Exception(e.getMessage());
+    	}
     }
 
-    public void delete(Category category) {
-        dao.delete(category);
+    public void delete(Category category) throws Exception {
+        try {
+        	dao.delete(category);
+    	} catch (Exception e) {
+    		throw new Exception(e.getMessage());
+    	}
     }
 
-    public ArrayList<Category> list(int id) {
-        return dao.list(id);
+    public Category find(int id) throws Exception {
+    	try {
+    		return dao.find(id);
+    	} catch (Exception e) {
+    		throw new Exception(e.getMessage());
+    	}
     }
 
-    public Category find(int id) {
-        return dao.find(id);
+    public ArrayList<Category> list() throws Exception {
+    	try {
+    		return dao.list();
+    	} catch (Exception e) {
+    		throw new Exception(e.getMessage());
+    	}
     }
 }
-
