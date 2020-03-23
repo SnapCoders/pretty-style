@@ -13,11 +13,24 @@ public class PhoneNumber extends Entity {
 	
 	public PhoneNumber() { }
 
+	public PhoneNumber(int ddd, String number, int idUser) {
+		this.ddd = ddd;
+		this.number = number;
+		this.idUser = idUser;
+	}
+	
 	public PhoneNumber(int ddd, String number, User user) {
 		this.ddd = ddd;
 		this.number = number;
 		this.idUser = user.getId();
 		this.user = user;
+	}
+	
+	public PhoneNumber(int id, int ddd, String number, int idUser) {
+		super(id);
+		this.ddd = ddd;
+		this.number = number;
+		this.idUser = idUser;
 	}
 	
 	public PhoneNumber(int id, int ddd, String number, User user) {
@@ -26,6 +39,13 @@ public class PhoneNumber extends Entity {
 		this.number = number;
 		this.idUser = user.getId();
 		this.user = user;
+	}
+	
+	public PhoneNumber(int id, int ddd, String number, int idUser, Timestamp createdAt, Timestamp updatedAt, Timestamp deletedAt) {
+		super(id, createdAt, updatedAt, deletedAt);
+		this.ddd = ddd;
+		this.number = number;
+		this.idUser = idUser;
 	}
 	
 	public PhoneNumber(int id, int ddd, String number, User user, Timestamp createdAt, Timestamp updatedAt, Timestamp deletedAt) {

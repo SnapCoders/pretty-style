@@ -11,6 +11,19 @@ public class ProductCategory {
 	
 	private Timestamp createdAt;
 	
+	public ProductCategory() { }
+	
+	public ProductCategory(int idProduct, int idCategory) {
+		this.idProduct = idProduct;
+		this.idCategory = idCategory;
+	}
+	
+	public ProductCategory(int idProduct, int idCategory, Timestamp createdAt) {
+		this.idProduct = idProduct;
+		this.idCategory = idCategory;
+		this.createdAt = createdAt;
+	}
+	
 	public int getIdProduct() {
 		return idProduct;
 	}

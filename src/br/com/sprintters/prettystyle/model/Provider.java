@@ -12,10 +12,21 @@ public class Provider extends Entity {
 
 	public Provider() { }
 
+	public Provider(String cnpj, int idUser) {
+		this.cnpj = cnpj;
+		this.idUser = idUser;
+	}
+	
 	public Provider(String cnpj, User user) {
 		this.cnpj = cnpj;
 		this.idUser = user.getId();
 		this.user = user;
+	}
+	
+	public Provider(int id, String cnpj, int idUser) {
+		super(id);
+		this.cnpj = cnpj;
+		this.idUser = idUser;
 	}
 	
 	public Provider(int id, String cnpj, User user) {
@@ -23,6 +34,12 @@ public class Provider extends Entity {
 		this.cnpj = cnpj;
 		this.idUser = user.getId();
 		this.user = user;
+	}
+	
+	public Provider(int id, String cnpj, int idUser, Timestamp createdAt, Timestamp updatedAt, Timestamp deletedAt) {
+		super(id, createdAt, updatedAt, deletedAt);
+		this.cnpj = cnpj;
+		this.idUser = idUser;
 	}
 	
 	public Provider(int id, String cnpj, User user, Timestamp createdAt, Timestamp updatedAt, Timestamp deletedAt) {
