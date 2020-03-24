@@ -1,0 +1,188 @@
+create database db_pretty_style;
+use db_pretty_style;
+
+create table mark (
+	id			int auto_increment,
+    name		varchar(100) not null,
+    
+    created_at	timestamp not null default now(),
+    updated_at	timestamp null,
+    deleted_at	timestamp null,
+    
+    constraint pk_id primary key (id)
+);
+
+-- select * from mark;
+
+create table product (
+	id			int auto_increment,
+    name		varchar(180) not null,
+    description	varchar(300) not null,
+    price		double not null,
+    id_mark		int,
+    
+    created_at	timestamp not null default now(),
+    updated_at	timestamp null,
+    deleted_at	timestamp null,
+    
+    constraint pk_id primary key (id),
+    constraint fk_product__id_mark foreign key (id_mark) references mark (id)
+);
+
+-- select * from product;
+
+create table category (
+	id			int auto_increment,
+    name		varchar(180) not null,
+    color		varchar(7) not null,
+    
+    created_at	timestamp not null default now(),
+    updated_at	timestamp null,
+    deleted_at	timestamp null,
+    
+    constraint pk_id primary key (id)
+);
+
+-- select * from category;
+
+create table product_category (
+    id_product	int,
+    id_category	int,
+    
+    created_at	timestamp not null default now(),
+    
+    constraint fk_product_category__id_product foreign key (id_product) references product (id),
+    constraint fk_product_category__id_category foreign key (id_category) references category (id)
+);
+
+-- select * from product_category;
+
+create table product_photo (
+	id			int auto_increment,
+    url			varchar(300) not null,
+    name		varchar(100) not null,
+    id_product	int,
+    
+    created_at	timestamp not null default now(),
+    updated_at	timestamp null,
+    deleted_at	timestamp null,
+    
+    constraint pk_id primary key (id),
+    constraint fk_product_photo__id_product foreign key (id_product) references product (id)
+);
+
+-- select * from product_photo;
+
+create table user (
+	id			int auto_increment,
+    name		varchar(150) not null,
+    surname		varchar(150) not null,
+    email		varchar(150) not null,
+    
+    created_at	timestamp not null default now(),
+    updated_at	timestamp null,
+    deleted_at	timestamp null,
+    
+    constraint pk_id primary key (id)
+);
+
+-- select * from user;
+
+create table provider (
+	id			int auto_increment,
+    cnpj		varchar(18) not null,
+    id_user		int,
+    
+    created_at	timestamp not null default now(),
+    updated_at	timestamp null,
+    deleted_at	timestamp null,
+    
+    constraint pk_id primary key (id),
+    constraint fk_provider__id_user foreign key (id_user) references user (id)
+);
+
+-- select * from provider;
+
+create table client (
+	id			int auto_increment,
+    cpf			varchar(14) not null,
+    id_user		int,
+    
+    created_at	timestamp not null default now(),
+    updated_at	timestamp null,
+    deleted_at	timestamp null,
+    
+    constraint pk_id primary key (id),
+    constraint fk_client__id_user foreign key (id_user) references user (id)
+);
+
+-- select * from client;
+
+create table address (
+	id				int auto_increment,
+    place			varchar(150) not null,
+    number			varchar(12) not null,
+    neighborhood	varchar(100) not null,
+    city			varchar(80) not null,
+    country			varchar(80) not null,
+    zip				varchar(8) not null,
+    complement		varchar(250) not null,
+    id_user			int,
+    
+    created_at	timestamp not null default now(),
+    updated_at	timestamp null,
+    deleted_at	timestamp null,
+    
+    constraint pk_id primary key (id),
+    constraint fk_address__id_user foreign key (id_user) references user (id)
+);
+
+-- select * from address;
+
+create table phone_number (
+	id				int auto_increment,
+    ddd				smallint not null,
+    number			varchar(10) not null,
+    id_user			int,
+    
+    created_at	timestamp not null default now(),
+    updated_at	timestamp null,
+    deleted_at	timestamp null,
+    
+    constraint pk_id primary key (id),
+    constraint fk_phone_number__id_user foreign key (id_user) references user (id)
+);
+
+-- select * from phone_number;
+
+create table request (
+	id			int auto_increment,
+	total_price	double,
+    id_client	int,
+    
+    created_at	timestamp not null default now(),
+    updated_at	timestamp null,
+    deleted_at	timestamp null,
+    
+    constraint pk_id primary key (id),
+    constraint fk_request__id_client foreign key (id_client) references client (id)
+);
+
+-- select * from request;
+
+create table item (
+	id			int auto_increment,
+    quantity	int not null,
+    id_product	int,
+    id_request int,
+    
+    created_at	timestamp not null default now(),
+    updated_at	timestamp null,
+    deleted_at	timestamp null,
+    
+    constraint pk_id primary key (id),
+    constraint fk_item__id_product foreign key (id_product) references product (id),
+    constraint fk_item__id_request foreign key (id_request) references request (id)
+);
+
+-- select * from item;
