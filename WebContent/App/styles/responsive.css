@@ -1,0 +1,63 @@
+@media screen and (max-width: 1440px) {
+  header#main_header div.top_header div.search_area input {
+    width: 350px;
+  }
+}
+
+@media (max-width: 1380px) {
+  header#main_header div {
+    font-size: 5px;
+  }
+}
+
+@media only screen and (max-width: 1375px) {
+  header#main_header div input {
+    width: 250px !important;
+    padding: 5px 5px !important;
+  }
+
+  header#main_header nav ul li {
+    font-size: 14px !important;
+    padding: 15px 55px !important;
+  }
+}
+
+@media only screen and (max-width: 1215px) {
+  header#main_header div.logo_area img {
+    width: 250px !important;
+    padding: 5px 5px !important;
+  }
+
+  header#main_header nav ul li {
+    font-size: 14px !important;
+    padding: 15px 40px !important;
+  }
+}
+
+/* @media only screen and (max-width: 1180px) {
+  section.banner_section {
+    max-width: 1000px !important;
+    text-align: center !important;
+  }
+
+  section.banner_section div.banner {
+    width: 1080px !important;
+    height: 400px !important;
+    margin: 10px 50px !important;
+    display: table-cell !important;
+  }
+}
+*/
+
+@media only screen and (max-width: 1130px) {
+  header#main_header div.search_area {
+    display: none !important;
+  }
+}
+
+@media only screen and (max-width: 1000px) {
+  header#main_header nav ul li {
+    font-size: 10px !important;
+    padding: 15px 40px !important;
+  }
+}

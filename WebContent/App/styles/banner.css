@@ -1,0 +1,32 @@
+section.banner_section {
+  display: flex;
+  margin: 10px 20px;
+}
+
+section.banner_section div.banner {
+  border: 1px solid #222;
+  border-radius: 15px;
+  margin: 0 auto;
+}
+
+section.banner_section div.banner img {
+  width: 100%;
+  height: 100%;
+  border-radius: 15px;
+}
+
+section.banner_section div.banner div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+section.banner_section div.banner div.banner_circle_step {
+  width: 10px;
+  height: 10px;
+  border: 1px solid #0B7BBF;
+  border-radius: 50%;
+  display: inline-block;
+  background-color: #3EAEF2;
+  margin: -30px 5px 0 5px;
+} 
