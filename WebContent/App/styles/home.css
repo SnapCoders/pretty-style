@@ -1,27 +1,27 @@
-section.banner_section {
+section.banner-section {
   display: flex;
   margin: 10px 20px;
 }
 
-section.banner_section div.banner {
+section.banner-section div.banner {
   border: 1px solid #222;
   border-radius: 15px;
   margin: 0 auto;
 }
 
-section.banner_section div.banner img {
+section.banner-section div.banner img {
   width: 100%;
   height: 100%;
   border-radius: 15px;
 }
 
-section.banner_section div.banner div {
+section.banner-section div.banner div {
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-section.banner_section div.banner div.banner_circle_step {
+section.banner-section div.banner div.banner_circle_step {
   width: 10px;
   height: 10px;
   border: 1px solid #0B7BBF;
@@ -29,4 +29,12 @@ section.banner_section div.banner div.banner_circle_step {
   display: inline-block;
   background-color: #3EAEF2;
   margin: -30px 5px 0 5px;
-} 
+}
+
+section.best-sellers div.jumbotron {
+	margin: 10px 0 10px 0;
+	border: 1px solid #707070;
+	border-radius: 10px;
+	background: #ffffff;
+	padding: 10px;
+}
