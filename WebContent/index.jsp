@@ -15,14 +15,15 @@
     <link rel="stylesheet" href="App/styles/header.css">
     <link rel="stylesheet" href="App/styles/home.css">
     <link rel="stylesheet" href="App/styles/payments-steps.css">
+    <link rel="stylesheet" href="App/styles/login.css">
+    <link rel="stylesheet" href="App/styles/cadastro-simples.css">
+    <link rel="stylesheet" href="App/styles/cadastro-business.css">
     <link rel="stylesheet" href="App/styles/responsive.css">
   </head>
   <body>
   	<c:import url="App/components/header.jsp" />
   	<div class="container">
-	    <!-- <%@ include file="App/components/header.jsp" %> -->
-	    <c:import url="App/pages/home.jsp" />
-	    <c:import url="App/pages/payments-steps.jsp" />
+	    <c:import url="App/pages/cadastro-business.jsp"/>
   	</div>
     <script src="App/lib/jquery/3.4.1/jquery-3.4.1.min.js"></script>
     <script src="App/lib/bootstrap/4.4.1/js/bootstrap.min.js"></script>
