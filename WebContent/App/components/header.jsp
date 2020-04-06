@@ -1,35 +1,35 @@
-<header id="main_header">
-  <div class="top_header">
-    <div class="logo_area">
+<header id="main-header">
+  <div class="top-header">
+    <div class="logo-area">
       <img src="App/assets/logos/pretty-style-logo-light.svg" alt="Logo Pretty style">
     </div>
-    <div class="search_area">
+    <div class="search-area">
       <input type="text" placeholder="O que você deseja pesquisar?">
       <img src="App/assets/icons/search.svg">
     </div>
-    <div class="search_area_responsive" style="display: none;">
+    <div class="search-area-responsive" style="display: none;">
     </div>
-    <div class="client_area">
+    <div class="client-area">
       <div class="account">
-        <div class="account_icon">
+        <div class="account-icon">
           <img src="App/assets/icons/home.svg">
         </div>
         <strong>Minha conta</strong>
-        <img src="App/assets/icons/arrow_down.svg">
+        <img src="App/assets/icons/arrow-down.svg">
       </div>
       <div class="favorite">
-        <div class="favorite_icon">
+        <div class="favorite-icon">
           <img src="App/assets/icons/heart.svg">
         </div>
       </div>
       <div class="cart">
-        <div class="cart_icon">
+        <div class="cart-icon">
           <img src="App/assets/icons/cart.svg">
         </div>
       </div>
     </div>
   </div>
-  <div class="bottom_header">
+  <div class="bottom-header">
     <nav>
       <ul>
         <li class="active">SALES</li>

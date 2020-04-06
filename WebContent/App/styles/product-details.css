@@ -1,0 +1,333 @@
+div.product-details-container div.container div.header div.content {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	margin-bottom: 10px;
+}
+
+div.product-details-container div.container div.header div.content div.title label {
+	margin-bottom: 0;
+	color: #707070;
+	font-size: 20px;
+}
+
+div.product-details-container div.container div.header div.content div.line {
+	width: 80%;
+}
+
+div.product-details-container div.container div.jumbotron.main {
+	border: 1px solid rgba(0, 0, 0, 0.3);
+	border-radius: 10px;
+	background: #ffffff;
+	padding: 15px;
+}
+
+div.product-details-container div.container div.jumbotron.main div.content div.product-photo-area {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+div.product-details-container div.container div.jumbotron.main div.content div.product-photo-area div.product-photo {
+    border: 1px solid rgba(0, 0, 0, 0.3);
+	border-radius: 10px;
+	background: #ffffff;
+    padding: 10px;
+    margin: 0 5px;
+}
+
+div.product-details-container div.container div.jumbotron.main div.content div.product-photo-area div.product-photo:hover {
+    border: 1px solid #0E9AEF;
+}
+
+div.product-details-container div.container div.jumbotron.main div.content div.product-photo-area img.arrow-left,
+div.product-details-container div.container div.jumbotron.main div.content div.product-photo-area img.arrow-right {
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    z-index: 10;
+}
+
+div.product-details-container div.container div.jumbotron.main div.content div.product-photo-area img.arrow-left:hover,
+div.product-details-container div.container div.jumbotron.main div.content div.product-photo-area img.arrow-right:hover {
+    filter: brightness(90%);
+}
+
+div.product-details-container div.container div.jumbotron.main div.content div.product-photo-area div.product-photo img {
+    width: 350px;
+    height: 350px;
+    cursor: pointer;
+}
+
+div.product-details-container div.container div.jumbotron.main div.content div.product-photo-area div.product-photo div.next-circles {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+div.product-details-container div.container div.jumbotron.main div.content div.product-photo-area div.product-photo div.next-circles div.circle-next {
+    width: 15px;
+    height: 15px;
+    background: #ffffff;
+    border: 1px solid #0E9AEF;
+    border-radius: 50%;
+    margin: 5px;
+    cursor: pointer;
+}
+
+div.product-details-container div.container div.jumbotron.main div.content div.product-photo-area div.product-photo div.next-circles div.circle-next.active {
+    width: 15px;
+    height: 15px;
+    background: #0E9AEF;
+    border-radius: 50%;
+    margin: 5px;
+    cursor: pointer;
+}
+
+div.product-details-container div.container div.jumbotron.main div.content div.product-photo-area div.product-photo div.next-circles div.circle-next:hover {
+    filter: brightness(90%);
+}
+
+div.product-details-container div.container div.jumbotron.main div.content div.product-details-area {
+    padding: 30px;
+    height: 100%;
+}
+
+div.product-details-container div.container div.jumbotron.main div.content div.product-details-area div.product-title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 40%;
+}
+
+div.product-details-container div.container div.jumbotron.main div.content div.product-details-area div.product-title div.product-info {
+    display: flex;
+    flex-direction: column;
+}
+
+div.product-details-container div.container div.jumbotron.main div.content div.product-details-area div.product-title div.product-info label {
+    color: #707070;
+    font-size: 38px;
+}
+
+div.product-details-container div.container div.jumbotron.main div.content div.product-details-area div.product-title div.product-info span.product-description {
+    color: #707070;
+    font-size: 16px;
+    filter: brightness(90%);
+}
+
+div.product-details-container div.container div.jumbotron.main div.content div.product-details-area div.product-title div.product-info div.stars {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+/* div.product-details-container div.container div.jumbotron.main div.content div.product-details-area div.product-title div.product-info div.stars img.yellow-star {
+    width: 5px;
+    height: 5px;
+    background: url('App/assets/icons/yellow-star.svg');
+}
+
+div.product-details-container div.container div.jumbotron.main div.content div.product-details-area div.product-title div.product-info div.stars img.gray-star {
+    width: 5px;
+    height: 5px;
+    background: url('App/assets/icons/gray-star.svg');
+} */
+
+div.product-details-container div.container div.jumbotron.main div.content div.product-details-area div.product-title div.product-info div.stars span.star {
+    color: #EEFF00;
+    font-size: 2rem;
+    padding: -1px 1rem;
+}
+
+div.product-details-container div.container div.jumbotron.main div.content div.product-details-area div.product-title div.product-info div.stars span.star::before {
+    content: '\2606';
+    cursor: pointer;
+}
+
+div.product-details-container div.container div.jumbotron.main div.content div.product-details-area div.product-title div.product-info div.stars span.star.rated::before {
+    content: '\2605';
+}
+
+div.product-details-container div.container div.jumbotron.main div.content div.product-details-area div.product-title div.product-info div.stars {
+    counter-reset: rateme 0;
+    font-size: 0rem;
+    font-weight: 900;
+}
+
+div.product-details-container div.container div.jumbotron.main div.content div.product-details-area div.product-title div.product-info div.stars span.star.rated {
+    counter-increment: rateme 1;
+}
+
+div.product-details-container div.container div.jumbotron.main div.content div.product-details-area div.product-title div.product-info div.stars::after {
+    content: counter(rateme) '/5';
+}
+
+div.product-details-container div.container div.jumbotron.main div.content div.product-details-area div.product-title div.like-product {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-end;
+    width: 30%;
+    height: 100%;
+}
+
+div.product-details-container div.container div.jumbotron.main div.content div.product-details-area div.product-title div.like-product div.favorite {
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+div.product-details-container div.container div.jumbotron.main div.content div.product-details-area div.product-title div.like-product div.favorite:hover {
+    filter: brightness(90%);
+}
+
+div.product-details-container div.container div.jumbotron.main div.content div.product-details-area div.product-title div.like-product div.favorite div.favorite-icon {
+    width: 40px;
+    height: 40px;
+    background-color: #0B7BBF;
+    border-radius: 50%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+div.product-details-container div.container div.jumbotron.main div.content div.product-details-area div.product-title div.like-product div.favorite div.favorite-icon img {
+    width: 20px;
+    height: 20px;
+}
+
+div.product-details-container div.container div.jumbotron.main div.content div.product-details-area div.product-price {
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+div.product-details-container div.container div.jumbotron.main div.content div.product-details-area div.product-price div.price span,
+div.product-details-container div.container div.jumbotron.main div.content div.product-details-area div.product-price div.price div.quantity span {
+    color: #707070;
+    font-size: 16px;
+    filter: brightness(90%);
+}
+
+div.product-details-container div.container div.jumbotron.main div.content div.product-details-area div.product-price div.price label {
+    color: #707070;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+div.product-details-container div.container div.jumbotron.main div.content div.product-details-area div.product-price div.price div.quantity,
+div.product-details-container div.container div.jumbotron.main div.content div.product-details-area div.product-price div.freight div.freight-and-deadline {
+    display: flex;
+}
+
+div.product-details-container div.container div.jumbotron.main div.content div.product-details-area div.product-price div.price div.quantity select {
+    height: 26px;
+    padding: 2px;
+    margin-left: 5px;
+}
+
+div.product-details-container div.container div.jumbotron.main div.content div.product-details-area div.product-price div.freight div.freight-and-deadline input {
+    width: 110px;
+    margin-right: 5px;
+}
+
+div.product-details-container div.container div.jumbotron.main div.content div.product-details-area div.product-price div.freight div.freight-and-deadline button {
+    background: #0E9AEF;
+	border: 1px solid #0E9AEF;
+	border-radius: 25px;
+	color: #ffffff;
+	font-size: 14px;
+	font-weight: bold;
+	height: 36px;
+	outline: 0;
+	padding: 5px 10px;
+	transition: 0.2s;
+	width: 50px;
+	
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+div.product-details-container div.container div.jumbotron.main div.content div.product-details-area div.product-price div.freight div.freight-and-deadline button:hover {
+    filter: brightness(90%);
+}
+
+div.product-details-container div.container div.jumbotron.main div.content div.product-details-area div.product-price div.freight span,
+div.product-details-container div.container div.jumbotron.main div.content div.product-details-area div.product-price div.freight div.freight-and-deadline span {
+    color: #707070;
+    font-size: 16px;
+    filter: brightness(90%);
+}
+
+div.product-details-container div.container div.jumbotron.main div.content div.product-details-area div.product-info-more {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+div.product-details-container div.container div.jumbotron.main div.content div.product-details-area div.product-info-more span:first-child {
+    color: #707070;
+    font-size: 14px;
+    filter: brightness(90%);
+}
+
+div.product-details-container div.container div.jumbotron.main div.content div.product-details-area div.product-info-more span:last-child {
+    color: #707070;
+    font-size: 12px;
+    filter: brightness(90%);
+}
+
+div.product-details-container div.container div.jumbotron.main div.content div.product-details-area div.button-area {
+    margin-top: 20px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+div.product-details-container div.container div.jumbotron.main div.content div.product-details-area div.button-area button {
+    background: #0E9AEF;
+	border: 1px solid #0E9AEF;
+	border-radius: 25px;
+	color: #ffffff;
+	font-size: 18px;
+	font-weight: bold;
+	height: 50px;
+	outline: 0;
+	padding: 5px 15px;
+	transition: 0.2s;
+	width: 280px;
+	
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+div.product-details-container div.container div.jumbotron.main div.content div.product-details-area div.button-area button:hover {
+    filter: brightness(90%);
+}
+
+    /* .pagination a:hover:not(.active) {background-color: #ddd;}
+
+    .pagination {
+        display: inline-block;
+        padding-left: 40px;
+    }
+
+    .pagination a {
+        color: black;
+        float: left;
+        padding: 8px 16px;
+        text-decoration: none;
+        transition: background-color .3s;
+        border: 1px solid #ddd;
+        margin: 0 4px;
+    }
+
+    .pagination a.active {
+        background-color: #0E9AEF;
+        color: white;
+        border: 1px solid #0E9AEF;
+    } */
