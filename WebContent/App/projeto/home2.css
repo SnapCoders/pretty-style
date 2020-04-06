@@ -1,0 +1,23 @@
+.client-form {
+    margin-right: 1%;
+    margin-left: 1%;
+}
+
+.center {
+    padding: 3px;
+    margin-left: 36.5%;
+    width: 20%;
+    border-radius: 10px;
+    border: 1px solid #0E9AEF;
+}
+
+.risco-form {
+    border-radius: 10px;
+    border: 1px solid #707070;
+}
+  
+.form {
+    margin-left: 15%;
+    margin-top: 1%;
+    margin-bottom: 0.5%;
+}
