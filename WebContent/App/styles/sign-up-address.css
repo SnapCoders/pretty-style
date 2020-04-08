@@ -1,0 +1,37 @@
+div.sign-up-address-container div.container div.jumbotron.main {
+	margin-top: 20px;
+	border: 1px solid rgba(0, 0, 0, 0.3);
+	border-radius: 10px;
+	background: #ffffff;
+	padding: 15px;
+}
+
+.client-form {
+    margin-right: 1%;
+    margin-left: 1%;
+}
+
+.form {
+    margin-right: 1%;
+    margin-left: 1%;
+    margin-bottom: 1%;
+    margin-top: 1%;
+}
+.center {
+    padding: 3px;
+    margin-left: 38%;
+    width: 20%;
+    border-radius: 10px;
+    border: 1px solid #0E9AEF;
+}
+
+.risco-form {
+    border-radius: 2%;
+    border: 1px solid #707070;
+}
+.sexo-input {
+    margin: auto;
+    margin-left: 45%;
+    margin-bottom: 1.5%;
+    margin-top: 1.5%;
+}
