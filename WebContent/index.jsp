@@ -19,8 +19,9 @@
     <link rel="stylesheet" href="App/styles/sign-up-simple.css">
     <link rel="stylesheet" href="App/styles/sign-up-business.css">
     <link rel="stylesheet" href="App/styles/product-details.css">
-    
     <link rel="stylesheet" href="App/styles/payments-steps.css">
+    <link rel="stylesheet" href="App/styles/favorites.css">
+    
     <link rel="stylesheet" href="App/styles/responsive.css">
   </head>
   <body>
@@ -29,7 +30,10 @@
   		<c:import url="App/pages/sign-up-simple.jsp"/>
   		<c:import url="App/pages/sign-up-business.jsp"/>
   		<c:import url="App/pages/sign-in.jsp"/>
+	    <c:import url="App/pages/home.jsp"/>
 	    <c:import url="App/pages/product-details.jsp"/>
+	    <c:import url="App/pages/payments-steps.jsp"/>
+	    <c:import url="App/pages/favorites.jsp"/>
   	</div>
     <script src="App/lib/jquery/3.4.1/jquery-3.4.1.min.js"></script>
     <script src="App/lib/bootstrap/4.4.1/js/bootstrap.min.js"></script>
