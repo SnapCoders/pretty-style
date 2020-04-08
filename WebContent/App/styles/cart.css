@@ -1,62 +1,263 @@
-.tela{
-    background: #E9E9E9;
-}
-.Titulo {
-    padding: 1vh;
-    font-size: 3vh;
-}
-
-.paginaPrimaria{
-    width: 1300px;
-    height: 700px;
+div.cart-container div.container div.header div.content {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	margin-bottom: 10px;
 }
 
-.setas{
-    font-size: 6vh;
-    left: -1.2vh;
-    top: 19vh;
-}
-.star{
-    color: greenyellow;
-    font-size: 2rem;
-    padding: -1px 1rem; /* space out the stars */
-}
-.star::before{
-    content: '\2606';    /* star outline */
-    cursor: pointer;
-}
-.star.rated::before{
-    /* the style for a selected star */
-    content: '\2605';  /* filled star */
+div.cart-container div.container div.header div.content div.title label {
+	margin-bottom: 0;
+	color: #707070;
+	font-size: 20px;
 }
 
-.stars{
-    counter-reset: rateme 0;
-    font-size: 0rem;
-    font-weight: 900;
+div.cart-container div.container div.header div.content div.line {
+	width: 80%;
 }
-.star.rated{
-    counter-increment: rateme 1;
+
+div.cart-container div.container div.jumbotron.main {
+	border: 1px solid rgba(0, 0, 0, 0.3);
+	border-radius: 10px;
+	background: #ffffff;
+	padding: 15px;
 }
-.stars::after{
-    content: counter(rateme) '/5';
+
+div.cart-container div.container div.jumbotron.main div.content div.product-details-area {
+    display: flex;
+    align-items: center;
+	justify-content: flex-start;
+	height: 250px;
+    padding: 30px 0;
 }
-.form-control {
-    display: block;
-    width: 47%;
-    height: calc(1.5em + .75rem + 2px);
-    padding: .375rem .75rem;
-    font-size: 1rem;
-    font-weight: 400;
-    line-height: 1.5;
-    color: #495057;
-    background-color: #fff;
-    background-clip: padding-box;
-    border: 1px solid #ced4da;
-    border-radius: .25rem;
-    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+
+div.cart-container div.container div.jumbotron.main div.content div.product-details-area div.quantity {
+    display: flex;
 }
-.hr{
-    border: 1x solid #222;
-    font-weight: bold;
+
+div.cart-container div.container div.jumbotron.main div.content div.product-details-area div.quantity select {
+    height: 26px;
+    padding: 2px;
+    margin-left: 5px;
+}
+
+div.cart-container div.container div.jumbotron.main div.content div.product-details-area div.product-photo-area {
+	cursor: pointer;
+}
+
+div.cart-container div.container div.jumbotron.main div.content div.product-details-area div.product-photo-area img {
+	width: 200px;
+	height: 200px;
+	border: 1px solid rgba(0, 0, 0, 0.3);
+	border-radius: 16px;
+}
+
+div.cart-container div.container div.jumbotron.main div.content div.product-details-area div.product-photo-area img:hover {
+	border: 1px solid #0E9AEF;
+}
+
+div.cart-container div.container div.jumbotron.main div.content div.product-details-area div.product-info {
+	margin: 0 15px;
+	height: 100%;
+	
+	display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+}
+
+div.cart-container div.container div.jumbotron.main div.content div.product-details-area div.product-info label {
+	margin-bottom: 0;
+	color: #707070;
+	font-size: 38px;
+}
+
+div.cart-container div.container div.jumbotron.main div.content div.product-details-area div.product-info span {
+	color: #707070;
+	font-size: 14px;
+}
+
+div.cart-container div.container div.jumbotron.main div.content div.product-details-area div.product-info div.content label {
+	margin-bottom: 0;
+	color: #707070;
+	font-size: 22px;
+	font-weight: bold;
+}
+
+div.cart-container div.container div.jumbotron.main div.jumbotron.resume {
+	margin: 10px 0 0 0;
+	border: 1px solid #707070;
+	border-radius: 10px;
+	background: #E9E9E9;
+	padding: 10px;
+}
+
+div.cart-container div.container div.jumbotron.main div.jumbotron.resume div.resume-header {
+	text-align: center;
+	font-size: 24px;
+	font-weight: bold;
+	color: #0E9AEF;
+}
+
+div.cart-container div.container div.jumbotron.main div.jumbotron.resume div.resume-body div.resume-items {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+div.cart-container div.container div.jumbotron.main div.jumbotron.resume div.resume-body div.resume-items label {
+	font-weight: bold;
+	color: #707070;
+}
+
+div.cart-container div.container div.jumbotron.main div.jumbotron.resume div.resume-body div.resume-items div.labels {
+	display: flex;
+	flex-direction: column;
+}
+
+div.cart-container div.container div.jumbotron.main div.jumbotron.resume div.resume-body div.resume-items div.values {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-end;
+}
+
+div.cart-container div.container div.jumbotron.main div.jumbotron.resume div.resume-body div.resume-total {
+	display: flex;
+	justify-content: space-between;
+}
+
+div.cart-container div.container div.jumbotron.main div.jumbotron.resume div.resume-body div.resume-total div.labels label {
+	color: #707070;
+	font-size: 28px;
+	font-weight: bold;
+}
+
+div.cart-container div.container div.jumbotron.main div.jumbotron.resume div.resume-body div.resume-total div.values {
+	display: flex;
+	align-items: flex-end;
+	flex-direction: column;
+}
+
+div.cart-container div.container div.jumbotron.main div.jumbotron.resume div.resume-body div.resume-total div.values label {
+	color: #707070;
+	font-size: 28px;
+	font-weight: bold;
+	margin-bottom: 0;
+}
+
+div.cart-container div.container div.jumbotron.main div.jumbotron.resume div.resume-body div.resume-total div.values span.total-installment {
+	color: #707070;
+	font-size: 14px;
+}
+
+div.cart-container div.container div.jumbotron.main div.jumbotron.resume div.resume-body div.resume-total div.values span.total-with-discount {
+	color: #0E9AEF;
+	font-size: 14px;
+	font-weight: bold;
+	margin-top: 10px;
+}
+
+div.cart-container div.container div.jumbotron.main div.jumbotron.resume div.resume-body div.resume-deadline {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+div.cart-container div.container div.jumbotron.main div.jumbotron.resume div.resume-body div.resume-deadline div.labels label {
+	color: #707070;
+	font-size: 20px;
+	font-weight: bold;
+}
+
+div.cart-container div.container div.jumbotron.main div.jumbotron.resume div.resume-body div.resume-deadline div.values {
+	border: 1px solid #707070;
+	border-radius: 8px;
+	background: #ffffff;
+	height: 80px;
+	width: 120px;
+
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
+
+div.cart-container div.container div.jumbotron.main div.jumbotron.resume div.resume-body div.resume-deadline div.values label {
+	color: #707070;
+	font-size: 16px;
+	font-weight: bold;
+	margin: 0;
+}
+
+div.cart-container div.container div.jumbotron.main div.jumbotron.resume div.resume-body div.resume-deadline div.values span {
+	color: #0E9AEF;
+	font-size: 16px;
+	font-weight: bold;
+	margin-top: -2px;
+}
+
+div.cart-container div.container div.jumbotron.main div.jumbotron.resume div.resume-body div.resume-button {
+    display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+div.cart-container div.container div.jumbotron.main div.jumbotron.resume div.resume-body div.resume-button button {
+    margin-top: 15px;
+    background: #0E9AEF;
+    width: 100%;
+	height: 46px;
+	border: 1px solid #0E9AEF;
+	border-radius: 46px;
+	color: #ffffff;
+	font-size: 22px;
+	font-weight: bold;
+	padding: 4px 15px;
+	outline: 0;
+	
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+div.cart-container div.container div.jumbotron.main div.jumbotron.resume div.resume-body div.resume-button button:hover {
+    filter: brightness(90%);
+}
+
+div.cart-container div.container div.jumbotron.main div.jumbotron.resume div.resume-body div.resume-freight {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+div.cart-container div.container div.jumbotron.main div.jumbotron.resume div.resume-body div.resume-freight label {
+    color: #707070;
+	font-size: 20px;
+	font-weight: bold;
+	margin: 0;
+}
+
+div.cart-container div.container div.jumbotron.main div.jumbotron.resume div.resume-body div.resume-freight input {
+    width: 110px;
+    border-radius: 50px;
+}
+
+div.cart-container div.container div.jumbotron.main div.jumbotron.resume div.resume-body div.resume-freight button {
+    background: #0E9AEF;
+    width: 57px;
+	height: 36px;
+	border: 1px solid #0E9AEF;
+	border-radius: 46px;
+	color: #ffffff;
+	font-size: 18px;
+	font-weight: bold;
+	padding: 4px 15px;
+	outline: 0;
+	
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+div.cart-container div.container div.jumbotron.main div.jumbotron.resume div.resume-body div.resume-freight button:hover {
+    filter: brightness(90%);
 }
