@@ -24,6 +24,7 @@
     <link rel="stylesheet" href="App/styles/register-profile.css">
     <link rel="stylesheet" href="App/styles/sign-up-address.css">
     <link rel="stylesheet" href="App/styles/profile-address.css">
+    <link rel="stylesheet" href="App/styles/catalog-myproducts-thanks.css">
     
     <link rel="stylesheet" href="App/styles/responsive.css">
   </head>
@@ -40,6 +41,8 @@
 	    <c:import url="App/pages/register-profile.jsp"/>
 	    <c:import url="App/pages/sign-up-address.jsp"/>
 	    <c:import url="App/pages/profile-address.jsp"/>
+	   	<c:import url="App/pages/thanks.jsp"/>
+	   	<c:import url="App/pages/catalog.jsp"/>
 	    
   	</div>
     <script src="App/lib/jquery/3.4.1/jquery-3.4.1.min.js"></script>
