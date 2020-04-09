@@ -11,8 +11,8 @@
     
     <link rel="stylesheet" href="App/lib/bootstrap/4.4.1/css/bootstrap.min.css">
 
-    <link rel="stylesheet" href="App/styles/index.css">
-    <link rel="stylesheet" href="App/styles/header.css">
+    <link rel="stylesheet" href="App/styles/global/index.css">
+    <link rel="stylesheet" href="App/styles/global/header.css">
     
     <link rel="stylesheet" href="App/styles/home.css">
     <link rel="stylesheet" href="App/styles/sign-in.css">
@@ -22,8 +22,13 @@
     <link rel="stylesheet" href="App/styles/payments-steps.css">
     <link rel="stylesheet" href="App/styles/favorites.css">
     <link rel="stylesheet" href="App/styles/cart.css">
-    
-    <link rel="stylesheet" href="App/styles/responsive.css">
+    <!-- thanks -->
+    <link rel="stylesheet" href="App/styles/profile.css">
+    <!-- catalogo -->
+    <link rel="stylesheet" href="App/styles/save-address.css">
+    <link rel="stylesheet" href="App/styles/profile-address.css">
+    <!-- requests -->
+    <link rel="stylesheet" href="App/styles/global/responsive.css">
   </head>
   <body>
   	<c:import url="App/components/header.jsp" />
@@ -36,6 +41,12 @@
 	    <c:import url="App/pages/payments-steps.jsp"/>
 	    <c:import url="App/pages/favorites.jsp"/>
 	    <c:import url="App/pages/cart.jsp"/>
+	    <!-- thanks -->
+	    <c:import url="App/pages/profile.jsp"/>
+	    <!-- catalogo -->
+	    <c:import url="App/pages/save-address.jsp"/>
+	    <c:import url="App/pages/profile-address.jsp"/>
+	    <!-- requests -->
   	</div>
     <script src="App/lib/jquery/3.4.1/jquery-3.4.1.min.js"></script>
     <script src="App/lib/bootstrap/4.4.1/js/bootstrap.min.js"></script>

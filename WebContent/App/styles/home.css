@@ -91,11 +91,16 @@ section.best-sellers div.jumbotron.product {
 	border-radius: 10px;
 	background: #ffffff;
   padding: 10px;
+  cursor: pointer;
   
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   justify-content: center;
+}
+
+section.best-sellers div.jumbotron.product:hover {
+  border: 1px solid #0E9AEF;
 }
 
 section.best-sellers div.jumbotron.product div.photo-product img {
