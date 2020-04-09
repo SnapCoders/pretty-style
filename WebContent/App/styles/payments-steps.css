@@ -189,7 +189,7 @@ div.payments-steps-container div.container div.header hr {
 
 div.payments-steps-container div.container div.jumbotron.main {
 	margin-top: 20px;
-	border: 1px solid #707070;
+	border: 1px solid rgba(0, 0, 0, 0.3);
 	border-radius: 10px;
 	background: #ffffff;
 	padding: 15px;
@@ -248,6 +248,10 @@ div.payments-steps-container div.container div.jumbotron.main div.location-body 
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
+}
+
+div.payments-steps-container div.container div.jumbotron.main div.location-body div.location-body-actions button:hover {
+	filter: brightness(90%);
 }
 
 div.payments-steps-container div.container div.jumbotron.main div.location label {
@@ -412,6 +416,12 @@ div.payments-steps-container div.container div.jumbotron.main div.payments-metho
 div.payments-steps-container div.container div.jumbotron.main div.payments-methods div.methods div.credit-card img,
 div.payments-steps-container div.container div.jumbotron.main div.payments-methods div.methods div.bank-slip img {
 	width: 200px;
+	cursor: pointer;
+}
+
+div.payments-steps-container div.container div.jumbotron.main div.payments-methods div.methods div.credit-card img:hover,
+div.payments-steps-container div.container div.jumbotron.main div.payments-methods div.methods div.bank-slip img:hover {
+	filter: brightness(90%);
 }
 
 div.payments-steps-container div.container div.jumbotron.main div.payments-methods div.methods div.credit-card label,
@@ -435,6 +445,11 @@ div.payments-steps-container div.container div.jumbotron.main div.payments-metho
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
+}
+
+div.payments-steps-container div.container div.jumbotron.main div.payments-methods div.methods div.credit-card button:hover,
+div.payments-steps-container div.container div.jumbotron.main div.payments-methods div.methods div.bank-slip button:hover {
+	filter: brightness(90%);
 }
 
 div.payments-steps-container div.container div.jumbotron.main div.payments-methods hr {
@@ -495,6 +510,10 @@ div.payments-steps-container div.container div.jumbotron.main div.payments-metho
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
+}
+
+div.payments-steps-container div.container div.jumbotron.main div.payments-methods div.credit-or-bank div.pay-and-total button:hover {
+	filter: brightness(90%);
 }
 
 div.payments-steps-container div.container div.jumbotron.main div.payments-methods div.credit-or-bank div.pay-and-total label {

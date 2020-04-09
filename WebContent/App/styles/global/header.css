@@ -1,0 +1,93 @@
+header#main-header {
+  background-color: #3EAEF2;
+  text-align: center;
+}
+
+header#main-header div.top-header {
+  padding-bottom: 10px;
+}
+
+header#main-header div.top-header div {
+  display: inline-block;
+  vertical-align: middle;
+  margin: 0 50px;
+}
+
+header#main-header div.top-header div input {
+  width: 450px;
+  height: 36px;
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  border-radius: 10px;
+  padding: 5px 15px;
+}
+
+header#main-header div.top-header div.client-area div {
+  margin: 0 3px;
+}
+
+header#main-header div.top-header div.logo-area,
+header#main-header div.top-header div.search-area img,
+header#main-header div.top-header div.client-area div.account,
+header#main-header div.top-header div.client-area div.favorite,
+header#main-header div.top-header div.client-area div.cart,
+header#main-header div.bottom-header nav ul li {
+  cursor: pointer;
+}
+
+header#main-header div.top-header div.client-area div.account div.account-icon,
+header#main-header div.top-header div.client-area div.favorite div.favorite-icon,
+header#main-header div.top-header div.client-area div.cart div.cart-icon {
+  width: 40px;
+  height: 40px;
+  background-color: #0B7BBF;
+  border-radius: 50%;
+  text-align: center;
+}
+
+header#main-header div.top-header div.client-area div.account div.account-icon img,
+header#main-header div.top-header div.client-area div.favorite div.favorite-icon img,
+header#main-header div.top-header div.client-area div.cart div.cart-icon img,
+header#main-header div.top-header div.search-area img {
+  width: 20px;
+  height: 20px;
+  margin-top: 9px;
+}
+
+header#main-header div.top-header div.search-area img {
+  position: relative;
+  right: 36px;
+  top: -5px;
+}
+
+header#main-header div.top-header div.client-area div.account strong {
+  color: #ffffff;
+  font-size: 18px;
+}
+
+header#main-header div.top-header div.client-area div.account img {
+  width: 15px;
+  height: 15px;
+}
+
+header#main-header div.bottom-header nav {
+  background-color: #0B7BBF;
+  margin-top: -15px;
+}
+
+header#main-header div.bottom-header nav ul li {
+  display: inline-block;
+  padding: 15px 60px;
+  color: #ffffff;
+  font-size: 18px;
+  font-weight: bold;
+  border: 5px solid #0B7BBF;
+}
+
+header#main-header div.bottom-header nav ul li.active {
+  border-bottom: 5px solid #3EAEF2;
+  color: #ffffff;
+}
+
+header#main-header div.bottom-header nav ul li:hover {
+  border-bottom: 5px solid #3EAEF2;
+}

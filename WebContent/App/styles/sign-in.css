@@ -1,16 +1,33 @@
+div.login-container div.container div.header div.content {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	margin-bottom: 10px;
+}
+
+div.login-container div.container div.header div.content div.title label {
+	margin-bottom: 0;
+	color: #707070;
+	font-size: 20px;
+}
+
+div.login-container div.container div.header div.content div.line {
+	width: 80%;
+}
+
 div.login-container div.container div.jumbotron.main {
-	border: 1px solid #707070;
+	border: 1px solid rgba(0, 0, 0, 0.2);
 	border-radius: 10px;
 	background: #ffffff;
 	padding: 15px;
 }
 
 div.login-container div.container div.jumbotron.main div.content {
-	padding: 50px 300px 50px 300px;
+	padding: 50px 30% 50px 30%;
 }
 
 div.login-container div.container div.jumbotron.main div.content label {
-	margin-bottom: 0;
+	margin-bottom: 2px;
 	color: #707070;
 }
 
@@ -18,7 +35,7 @@ div.login-container div.container div.jumbotron.main div.content div.row {
 	margin: 30px 0;
 }
 
-div.login-container div.container div.jumbotron.main div.content div.password-area label.forgot-your-password {
+div.login-container div.container div.jumbotron.main div.content div.password-area a.forgot-your-password {
 	right: 0px;
     position: absolute;
     padding-right: 300px;
@@ -32,18 +49,24 @@ div.login-container div.container div.jumbotron.main div.content div.button-area
 
 div.login-container div.container div.jumbotron.main div.content div.button-area button {
 	background: #0E9AEF;
-	width: 280px;
-	height: 50px;
 	border: 1px solid #0E9AEF;
 	border-radius: 25px;
 	color: #ffffff;
 	font-size: 18px;
 	font-weight: bold;
+	height: 50px;
+	outline: 0;
 	padding: 5px 15px;
+	transition: 0.2s;
+	width: 280px;
 	
 	display: flex;
 	align-items: center;
 	justify-content: center;
+}
+
+div.login-container div.container div.jumbotron.main div.content div.button-area button:hover {
+	filter: brightness(90%);
 }
 
 div.login-container div.container div.jumbotron.main div.content div.new-client-area {
