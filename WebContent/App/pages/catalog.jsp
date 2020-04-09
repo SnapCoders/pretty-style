@@ -10,231 +10,202 @@
 				</div>
 			</div>
 		</div>
-		<div class="row">
-			<div class="jumbotron bg-white col-2" id="mg-catalogo"
-				style="border: 1px solid rgba(0, 0, 0, 0.3);">
-				<p>Categorias</p>
-				<hr>
-				<div style="display: flex">
-					<label class="chk"> <input type="checkbox" name="exemplo" />
-						<span id="span-check"> <span id="span-color"></span>
-					</span>
-					</label>
-					<p class="item-category">Masculino</p>
-				</div>
-				<div style="display: flex">
-					<label class="chk"> <input type="checkbox" name="exemplo" />
-						<span id="span-check"> <span id="span-color"></span>
-					</span>
-					</label>
-					<p class="item-category">Feminino</p>
-				</div>
-				<div style="display: flex">
-					<label class="chk"> <input type="checkbox" name="exemplo" />
-						<span id="span-check"> <span id="span-color"></span>
-					</span>
-					</label>
-					<p class="item-category">Acessórios</p>
-				</div>
-				<div style="display: flex">
-					<label class="chk"> <input type="checkbox" name="exemplo" />
-						<span id="span-check"> <span id="span-color"></span>
-					</span>
-					</label>
-					<p class="item-category">Pets</p>
-				</div>
-
-			</div>
-			<div class="jumbotron bg-white col-9 border-jumbo" style="border: 1px solid rgba(0, 0, 0, 0.3);">
-				<div class="row row-cols-4 row-cols-md-4">
-					<div class="col mb-4">
-						<div class="card card-style">
-							<div class="div-img">
-								<img src="App/assets/img/jbl.png" class="img-fluid" alt="..." style="height: 100%;">
+		<div class="col-md-12 body">
+			<div class="row">
+				<div class="col-md-2 body-filters">
+					<div class="jumbotron filters">
+						<label>Categorias</label>
+						<hr />
+						<div class="filters-inputs">
+							<div class="male-filter">
+								<label class="container-check">Masculino
+								  <input type="checkbox" checked="checked">
+								  <span class="checkmark"></span>
+								</label>
 							</div>
-							<div class="card-body pb-0">
-								<h5 class="fsize-1-1em p-color">JBL Flip 3 Portable</h5>
-								<p class="card-text" id="bt-p">Caixinha de som portátil da JBL.</p>
-								<div class="stars">
-									<span class="star yellow-star">&nbsp;</span>
-									<span class="star yellow-star">&nbsp;</span>
-									<span class="star yellow-star">&nbsp;</span>
-									<span class="star yellow-star">&nbsp;</span>
-									<span class="star gray-star">&nbsp;</span>
-								</div>
-								<p>
-									<strong>R$ 250,00</strong>
-								</p>
+							<div class="female-filter">
+								<label class="container-check">Feminino
+								  <input type="checkbox">
+								  <span class="checkmark"></span>
+								</label>
+							</div>
+							<div class="acessories-filter">
+								<label class="container-check">Acessórios
+								  <input type="checkbox">
+								  <span class="checkmark"></span>
+								</label>
+							</div>
+							<div class="pets-filter">
+								<label class="container-check">Pets
+								  <input type="checkbox">
+								  <span class="checkmark"></span>
+								</label>
 							</div>
 						</div>
-					</div>
-					<div class="col mb-4">
-						<div class="card card-style">
-							<div class="div-img">
-								<img src="App/assets/img/jbl.png" class="img-fluid" alt="..." style="height: 100%;">
-							</div>
-							<div class="card-body pb-0">
-								<h5 class="fsize-1-1em p-color">JBL Flip 3 Portable</h5>
-								<p class="card-text" id="bt-p">Caixinha de som portátil da
-									JBL.</p>
-								<div class="stars">
-									<span class="star yellow-star">&nbsp;</span> <span
-										class="star yellow-star">&nbsp;</span> <span
-										class="star yellow-star">&nbsp;</span> <span
-										class="star yellow-star">&nbsp;</span> <span
-										class="star gray-star">&nbsp;</span>
-								</div>
-								<p>
-									<strong>R$ 250,00</strong>
-								</p>
-							</div>
-						</div>
-					</div>
-					<div class="col mb-4">
-						<div class="card card-style">
-							<div class="div-img">
-								<img src="App/assets/img/jbl.png" class="img-fluid" alt="..." style="height: 100%;">
-							</div>
-							<div class="card-body pb-0">
-								<h5 class="fsize-1-1em p-color">JBL Flip 3 Portable</h5>
-								<p class="card-text" id="bt-p">Caixinha de som portátil da JBL.</p>
-								<div class="stars">
-									<span class="star yellow-star">&nbsp;</span>
-									<span class="star yellow-star">&nbsp;</span>
-									<span class="star yellow-star">&nbsp;</span>
-									<span class="star yellow-star">&nbsp;</span>
-									<span class="star gray-star">&nbsp;</span>
-								</div>
-								<p>
-									<strong>R$ 250,00</strong>
-								</p>
-							</div>
-						</div>
-					</div>
-					<div class="col mb-4">
-						<div class="card card-style">
-							<div class="div-img">
-								<img src="App/assets/img/jbl.png" class="img-fluid" alt="..."
-									style="height: 100%;">
-							</div>
-							<div class="card-body pb-0">
-								<h5 class="fsize-1-1em p-color">JBL Flip 3 Portable</h5>
-								<p class="card-text" id="bt-p">Caixinha de som portátil da
-									JBL.</p>
-								<div class="stars">
-									<span class="star yellow-star">&nbsp;</span> <span
-										class="star yellow-star">&nbsp;</span> <span
-										class="star yellow-star">&nbsp;</span> <span
-										class="star yellow-star">&nbsp;</span> <span
-										class="star gray-star">&nbsp;</span>
-								</div>
-								<p>
-									<strong>R$ 250,00</strong>
-								</p>
-							</div>
-						</div>
-					</div>
-					<div class="col mb-4">
-						<div class="card card-style">
-							<div class="div-img">
-								<img src="App/assets/img/jbl.png" class="img-fluid" alt="..."
-									style="height: 100%;">
-							</div>
-							<div class="card-body pb-0">
-								<h5 class="fsize-1-1em p-color">JBL Flip 3 Portable</h5>
-								<p class="card-text" id="bt-p">Caixinha de som portátil da
-									JBL.</p>
-								<div class="stars">
-									<span class="star yellow-star">&nbsp;</span> <span
-										class="star yellow-star">&nbsp;</span> <span
-										class="star yellow-star">&nbsp;</span> <span
-										class="star yellow-star">&nbsp;</span> <span
-										class="star gray-star">&nbsp;</span>
-								</div>
-								<p>
-									<strong>R$ 250,00</strong>
-								</p>
-							</div>
-						</div>
-					</div>
-					<div class="col mb-4">
-						<div class="card card-style">
-							<div class="div-img">
-								<img src="App/assets/img/jbl.png" class="img-fluid" alt="..."
-									style="height: 100%;">
-							</div>
-							<div class="card-body pb-0">
-								<h5 class="fsize-1-1em p-color">JBL Flip 3 Portable</h5>
-								<p class="card-text" id="bt-p">Caixinha de som portátil da
-									JBL.</p>
-								<div class="stars">
-									<span class="star yellow-star">&nbsp;</span> <span
-										class="star yellow-star">&nbsp;</span> <span
-										class="star yellow-star">&nbsp;</span> <span
-										class="star yellow-star">&nbsp;</span> <span
-										class="star gray-star">&nbsp;</span>
-								</div>
-								<p>
-									<strong>R$ 250,00</strong>
-								</p>
-							</div>
-						</div>
-					</div>
-					<div class="col mb-4">
-						<div class="card card-style">
-							<div class="div-img">
-								<img src="App/assets/img/jbl.png" class="img-fluid" alt="..."
-									style="height: 100%;">
-							</div>
-							<div class="card-body pb-0">
-								<h5 class="fsize-1-1em p-color">JBL Flip 3 Portable</h5>
-								<p class="card-text" id="bt-p">Caixinha de som portátil da
-									JBL.</p>
-								<div class="stars">
-									<span class="star yellow-star">&nbsp;</span> <span
-										class="star yellow-star">&nbsp;</span> <span
-										class="star yellow-star">&nbsp;</span> <span
-										class="star yellow-star">&nbsp;</span> <span
-										class="star gray-star">&nbsp;</span>
-								</div>
-								<p>
-									<strong>R$ 250,00</strong>
-								</p>
-							</div>
-						</div>
-					</div>
-					<div class="col mb-4">
-						<div class="card card-style">
-							<div class="div-img">
-								<img src="App/assets/img/jbl.png" class="img-fluid" alt="..."
-									style="height: 100%;">
-							</div>
-							<div class="card-body pb-0">
-								<h5 class="fsize-1-1em p-color">JBL Flip 3 Portable</h5>
-								<p class="card-text" id="bt-p">Caixinha de som portátil da
-									JBL.</p>
-								<div class="stars">
-									<span class="star yellow-star">&nbsp;</span> <span
-										class="star yellow-star">&nbsp;</span> <span
-										class="star yellow-star">&nbsp;</span> <span
-										class="star yellow-star">&nbsp;</span> <span
-										class="star gray-star">&nbsp;</span>
-								</div>
-								<p>
-									<strong>R$ 250,00</strong>
-								</p>
-							</div>
-						</div>
+						<div class="divisor"></div>
+						<label>Preço</label>
+						<hr />
 					</div>
 				</div>
-				<div class="row button-area">
-					<button type="button">ANTERIOR</button>
-					<div class="pagination active">1</div>
-					<div class="pagination">2</div>
-					<button type="button">PRÓXIMA</button>
+				<div class="col-md-10 body-main">
+					<div class="jumbotron main">
+						<div class="row">
+							<div class="col-md-12">
+								<div class="row">
+									<div class="col-md-3 col-product">
+										<div class="jumbotron product">
+											<div class="photo-product">
+												<img src="App/assets/img/jbl.png" alt="JBL Flip 3 Portable">
+											</div>
+											<label class="title-product">JBL Flip 3 Portable</label>
+											<p>Caixinha de som portátil da JBL.</p>
+											<div class="stars">
+												<span class="star yellow-star">&nbsp;</span>
+												<span class="star yellow-star">&nbsp;</span>
+												<span class="star yellow-star">&nbsp;</span>
+												<span class="star yellow-star">&nbsp;</span>
+												<span class="star gray-star">&nbsp;</span>
+											</div>
+											<label class="price-product">R$ 250,00</label>
+										</div>
+									</div>
+									<div class="col-md-3 col-product">
+										<div class="jumbotron product">
+											<div class="photo-product">
+												<img src="App/assets/img/jbl.png" alt="JBL Flip 3 Portable">
+											</div>
+											<label class="title-product">JBL Flip 3 Portable</label>
+											<p>Caixinha de som portátil da JBL.</p>
+											<div class="stars">
+												<span class="star yellow-star">&nbsp;</span>
+												<span class="star yellow-star">&nbsp;</span>
+												<span class="star yellow-star">&nbsp;</span>
+												<span class="star yellow-star">&nbsp;</span>
+												<span class="star gray-star">&nbsp;</span>
+											</div>
+											<label class="price-product">R$ 250,00</label>
+										</div>
+									</div>
+									<div class="col-md-3 col-product">
+										<div class="jumbotron product">
+											<div class="photo-product">
+												<img src="App/assets/img/jbl.png" alt="JBL Flip 3 Portable">
+											</div>
+											<label class="title-product">JBL Flip 3 Portable</label>
+											<p>Caixinha de som portátil da JBL.</p>
+											<div class="stars">
+												<span class="star yellow-star">&nbsp;</span>
+												<span class="star yellow-star">&nbsp;</span>
+												<span class="star yellow-star">&nbsp;</span>
+												<span class="star yellow-star">&nbsp;</span>
+												<span class="star gray-star">&nbsp;</span>
+											</div>
+											<label class="price-product">R$ 250,00</label>
+										</div>
+									</div>
+									<div class="col-md-3 col-product">
+										<div class="jumbotron product">
+											<div class="photo-product">
+												<img src="App/assets/img/jbl.png" alt="JBL Flip 3 Portable">
+											</div>
+											<label class="title-product">JBL Flip 3 Portable</label>
+											<p>Caixinha de som portátil da JBL.</p>
+											<div class="stars">
+												<span class="star yellow-star">&nbsp;</span>
+												<span class="star yellow-star">&nbsp;</span>
+												<span class="star yellow-star">&nbsp;</span>
+												<span class="star yellow-star">&nbsp;</span>
+												<span class="star gray-star">&nbsp;</span>
+											</div>
+											<label class="price-product">R$ 250,00</label>
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-md-3 col-product">
+										<div class="jumbotron product">
+											<div class="photo-product">
+												<img src="App/assets/img/jbl.png" alt="JBL Flip 3 Portable">
+											</div>
+											<label class="title-product">JBL Flip 3 Portable</label>
+											<p>Caixinha de som portátil da JBL.</p>
+											<div class="stars">
+												<span class="star yellow-star">&nbsp;</span>
+												<span class="star yellow-star">&nbsp;</span>
+												<span class="star yellow-star">&nbsp;</span>
+												<span class="star yellow-star">&nbsp;</span>
+												<span class="star gray-star">&nbsp;</span>
+											</div>
+											<label class="price-product">R$ 250,00</label>
+										</div>
+									</div>
+									<div class="col-md-3 col-product">
+										<div class="jumbotron product">
+											<div class="photo-product">
+												<img src="App/assets/img/jbl.png" alt="JBL Flip 3 Portable">
+											</div>
+											<label class="title-product">JBL Flip 3 Portable</label>
+											<p>Caixinha de som portátil da JBL.</p>
+											<div class="stars">
+												<span class="star yellow-star">&nbsp;</span>
+												<span class="star yellow-star">&nbsp;</span>
+												<span class="star yellow-star">&nbsp;</span>
+												<span class="star yellow-star">&nbsp;</span>
+												<span class="star gray-star">&nbsp;</span>
+											</div>
+											<label class="price-product">R$ 250,00</label>
+										</div>
+									</div>
+									<div class="col-md-3 col-product">
+										<div class="jumbotron product">
+											<div class="photo-product">
+												<img src="App/assets/img/jbl.png" alt="JBL Flip 3 Portable">
+											</div>
+											<label class="title-product">JBL Flip 3 Portable</label>
+											<p>Caixinha de som portátil da JBL.</p>
+											<div class="stars">
+												<span class="star yellow-star">&nbsp;</span>
+												<span class="star yellow-star">&nbsp;</span>
+												<span class="star yellow-star">&nbsp;</span>
+												<span class="star yellow-star">&nbsp;</span>
+												<span class="star gray-star">&nbsp;</span>
+											</div>
+											<label class="price-product">R$ 250,00</label>
+										</div>
+									</div>
+									<div class="col-md-3 col-product">
+										<div class="jumbotron product">
+											<div class="photo-product">
+												<img src="App/assets/img/jbl.png" alt="JBL Flip 3 Portable">
+											</div>
+											<label class="title-product">JBL Flip 3 Portable</label>
+											<p>Caixinha de som portátil da JBL.</p>
+											<div class="stars">
+												<span class="star yellow-star">&nbsp;</span>
+												<span class="star yellow-star">&nbsp;</span>
+												<span class="star yellow-star">&nbsp;</span>
+												<span class="star yellow-star">&nbsp;</span>
+												<span class="star gray-star">&nbsp;</span>
+											</div>
+											<label class="price-product">R$ 250,00</label>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-12">
+								<div class="row button-area">
+									<button type="button">ANTERIOR</button>
+									<div class="pagination active">1</div>
+									<div class="pagination">2</div>
+									<button type="button">PRÓXIMA</button>
+								</div>
+							</div>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
 	</div>
 </div>
-
