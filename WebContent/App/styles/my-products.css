@@ -45,11 +45,10 @@ div.myproducts-container div.container div.jumbotron.main {
   width: 200px;
   padding: 20px;
 }
-#square-img{
+#square{
   border: 1px solid #0E9AEF;
   border-radius: .25rem;
   background-color: #fff;
-  padding-top: 20%;
   padding-bottom: 20%;
 }
 
