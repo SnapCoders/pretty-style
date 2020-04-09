@@ -43,6 +43,7 @@
 	    <c:import url="App/pages/profile-address.jsp"/>
 	   	<c:import url="App/pages/thanks.jsp"/>
 	   	<c:import url="App/pages/catalog.jsp"/>
+	   	<c:import url="App/pages/my-products.jsp"/>
 	    
   	</div>
     <script src="App/lib/jquery/3.4.1/jquery-3.4.1.min.js"></script>
