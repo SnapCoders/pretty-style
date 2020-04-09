@@ -62,7 +62,7 @@
 	  					<input class="form-control" id="cellphone" placeholder="Ex: (11) 9 99885-9944" />
 	  				</div>
 				</div>
-  				<div class="row sex-area">
+  				<!-- <div class="row sex-area">
   					<label for="sex">Sexo<span style="color: #ff0000; margin-left: 5px;">*</span></label>
   					<div class="sex-inputs">
   						<div>
@@ -74,9 +74,9 @@
 	  						<span style="margin-left: 10px;">Feminino</span>
   						</div>
 	  				</div>
-	  			</div>
+	  			</div> -->
 	  			<div class="row button-area">
-  					<button type="button">CRIE SEU CADASTRO</button>
+  					<button type="button">SALVAR</button>
   				</div>
   			</div>
 		</div>

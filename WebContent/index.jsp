@@ -22,9 +22,9 @@
     <link rel="stylesheet" href="App/styles/payments-steps.css">
     <link rel="stylesheet" href="App/styles/favorites.css">
     <link rel="stylesheet" href="App/styles/cart.css">
-    <!-- thanks -->
+    <link rel="stylesheet" href="App/styles/thanks.css">
     <link rel="stylesheet" href="App/styles/profile.css">
-    <!-- catalogo -->
+    <link rel="stylesheet" href="App/styles/catalog.css">
     <link rel="stylesheet" href="App/styles/save-address.css">
     <link rel="stylesheet" href="App/styles/profile-address.css">
     <!-- requests -->
@@ -41,9 +41,9 @@
 	    <c:import url="App/pages/payments-steps.jsp"/>
 	    <c:import url="App/pages/favorites.jsp"/>
 	    <c:import url="App/pages/cart.jsp"/>
-	    <!-- thanks -->
+	   	<c:import url="App/pages/thanks.jsp"/>
 	    <c:import url="App/pages/profile.jsp"/>
-	    <!-- catalogo -->
+	   	<c:import url="App/pages/catalog.jsp"/>
 	    <c:import url="App/pages/save-address.jsp"/>
 	    <c:import url="App/pages/profile-address.jsp"/>
 	    <!-- requests -->
