@@ -4,7 +4,7 @@
 			<div class="slideshow-container">
 				<div class="mySlides fade-slide">
 					<div class="numbertext">1 / 3</div>
-					<img src="App/assets/img/moda-1-1.jpg" style="width:100%">
+					<img src="App/assets/img/moda-1.jpg" style="width:100%">
 					<div class="text">PROMOÇÃO % OFF</div>
 				</div>
 				<div class="mySlides fade-slide">
@@ -44,7 +44,7 @@
 					<div class="col-md-12">
 						<div class="row">
 							<div class="col-md-3">
-								<div class="jumbotron product">
+								<div class="jumbotron product" onclick="window.location.href='App/pages/product-details.jsp'">
 									<div class="photo-product">
 										<img src="App/assets/img/jbl.png" alt="JBL Flip 3 Portable">
 									</div>
@@ -192,7 +192,7 @@
 	var slideIndex = 1;
 	showSlides(slideIndex);
 	
-	setInterval(function() { showSlides(2); }, 3000);
+	setInterval(function() { currentSlide(slideIndex+1); }, 5000);
 	
 	function plusSlides(n) {
 	  showSlides(slideIndex += n);

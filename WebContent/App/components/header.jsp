@@ -1,30 +1,30 @@
 <header id="main-header">
   <div class="top-header">
     <div class="logo-area">
-      <img src="App/assets/logos/pretty-style-logo-light.svg" alt="Logo Pretty style">
+      <img src="../assets/logos/pretty-style-logo-light.svg" alt="Logo Pretty style">
     </div>
     <div class="search-area">
       <input type="text" placeholder="O que você deseja pesquisar?">
-      <img src="App/assets/icons/search.svg">
+      <img src="../assets/icons/search.svg">
     </div>
     <div class="search-area-responsive" style="display: none;">
     </div>
     <div class="client-area">
       <div class="account">
         <div class="account-icon">
-          <img src="App/assets/icons/home.svg">
+          <img src="../assets/icons/home.svg">
         </div>
         <strong>Minha conta</strong>
-        <img src="App/assets/icons/arrow-down.svg">
+        <img src="../assets/icons/arrow-down.svg">
       </div>
       <div class="favorite">
         <div class="favorite-icon">
-          <img src="App/assets/icons/heart.svg">
+          <img src="../assets/icons/heart.svg">
         </div>
       </div>
       <div class="cart">
         <div class="cart-icon">
-          <img src="App/assets/icons/cart.svg">
+          <img src="../assets/icons/cart.svg">
         </div>
       </div>
     </div>

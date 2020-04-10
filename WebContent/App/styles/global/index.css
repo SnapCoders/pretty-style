@@ -12,6 +12,10 @@ body {
   -webkit-font-smoothing: antialiased !important;
 }
 
+a {
+  text-decoration: none;
+}
+
 button, input {
   outline: 0;
   border: 0;
