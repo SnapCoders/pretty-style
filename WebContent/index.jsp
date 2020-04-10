@@ -48,7 +48,7 @@
 	    <c:import url="App/pages/profile-address.jsp"/>
 	   	<c:import url="App/pages/my-products.jsp"/>
   	</div>
-    <script src="App/lib/jquery/3.4.1/jquery-3.4.1.min.js"></script>
+    <script src="App/lib/jquery/1.9.1/jquery-3.4.1.min.js"></script>
     <script src="App/lib/bootstrap/4.4.1/js/bootstrap.min.js"></script>
   </body>
 </html>

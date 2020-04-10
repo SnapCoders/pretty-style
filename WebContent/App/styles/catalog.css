@@ -23,7 +23,7 @@ div.catalog-container div.container div.jumbotron.main {
 	padding: 15px;
 }
 
-.stars {
+div.catalog-container .stars {
   width: 150px;
 }
 
@@ -208,42 +208,6 @@ div.catalog-container div.container div.jumbotron.main {
 }
 
 /*Estrelas*/
-div.catalog-container div.stars {
-  counter-reset: rateme 0;
-  font-size: 0rem;
-  font-weight: 900;
-  height: 25px;
-  margin: -10px 0 20px 0;
-  
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-}
-
-div.stars span.star {
-  color: #EEFF00;
-  font-size: 2rem;
-  padding: -1px 1rem;
-  width: 30px;
-  height: 60px;
-}
-
-div.stars span.star::before {
-  content: '\2606';
-  cursor: pointer;
-}
-
- div.stars span.star.rated::before {
-  content: '\2605';
-}
-
- div.stars span.star.rated {
-  counter-increment: rateme 1;
-}
-
-div.stars::after {
-  content: counter(rateme) '/5';
-}
 
 
 
@@ -258,37 +222,6 @@ div.stars::after {
   width: 90%;
 }
 
-/* Four Steps */
-.corpo{
-  display: flex;
-  padding-top: 3%;
-}
-
-.step{
-  height: 50px;
-  width: 50px;
-  border: 3px solid #00FF43;
-  border-radius: 100%;
-  text-align: center;
-  margin: 0 20px;
-  padding: 10%;
-}
-
-.step-all {
-  margin: 0.7% 8%;
-}
-
-.step-name{
-  text-align: center;
-  font-size: 0.8em;
-  color: #707070;
-  font-weight: bold;
-}
-
-.step-number{
-  color: #00FF43;
-  font-weight: bold;
-}
 div.catalog-container div.container div.button-area {
   display: flex;
   align-items: center;

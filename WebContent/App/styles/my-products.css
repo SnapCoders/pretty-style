@@ -1,348 +1,178 @@
-div.myproducts-container div.container div.header div.content {
+div.requests-container div.container div.header div.content {
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
 	margin-bottom: 10px;
 }
 
-div.myproducts-container div.container div.header div.content div.title label {
+div.requests-container div.container div.header div.content div.title label {
 	margin-bottom: 0;
 	color: #707070;
 	font-size: 20px;
 }
 
-div.myproducts-container div.container div.header div.content div.line {
-	width: 90%;
+div.requests-container div.container div.header div.content div.line {
+	width: 86%;
 }
 
-div.myproducts-container div.container div.jumbotron.main {
-	margin-top: 20px;
+div.requests-container div.container div.jumbotron.main {
 	border: 1px solid rgba(0, 0, 0, 0.3);
 	border-radius: 10px;
 	background: #ffffff;
 	padding: 15px;
 }
 
-.stars {
-  width: 150px;
+div.requests-container div.container div.jumbotron.main div.content div.product-photo {
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.title-h5{
-  font-size: 2.5rem;
-  color: #707070;
-}
-
-.pd-2rem{
-  padding: 2rem;
-}
-
-.bd-none{
-  border: none;
-}
-
-#img-produtos{
-  height:200px;
+div.requests-container div.container div.jumbotron.main div.content div.product-photo img {
   width: 200px;
-  padding: 20px;
-}
-#square{
-  border: 1px solid #0E9AEF;
-  border-radius: .25rem;
-  background-color: #fff;
-  padding-bottom: 20%;
+	height: 200px;
+	border: 1px solid rgba(0, 0, 0, 0.3);
+	border-radius: 16px;
 }
 
-.wd-82{
-  width: 82%;
-}
-
-.pd-2{
-  padding: 2%;
-}
-
-.hg-35{
-  height: 35%;
-}
-.mtop-1{
-  margin-top: 1%;
-}
-
-.fsize-1-2em{
-  font-size: 1.2em;
-}
-
-.fsize-1-1em{
-  font-size: 1.1em;
-}
-.fsize-1-4em{
-  font-size:1.4em;
-}
-
-
-.p-color{
-  color: #707070;
-}
-.color-blue{
-  color: #0E9AEF;
-}
-
-/* myproductso reutilizavel */
-
-.border-jumbo{
-  padding: 2rem;
-  border: 1px solid #707070;
-}
-
-.card-style{
-  width: 12rem;
+div.requests-container div.container div.jumbotron.main div.content div.product-photo img:hover {
   border: 1px solid #0E9AEF;
 }
 
-.div-img{
-  height: 11rem;
-  padding: 6%;
-}
-
-/* finish */
-
-#thanks{
-  text-align: center;
-}
-
-#div-thanks{
-  padding: 1.7% 5%;
-}
-#img-right{
-  height: 80px;
-}
-
-#confirm{
-  display: flex;
-  padding-top: 2%;
-  padding-left: 2.8%;
-}
-#msg-receber-pedido{
-  color: #00FF43;
-  align-self: center;
-  padding-left: 1.5%;
-  font-size: 1.4em;
-  width: max-content;
-}
-
-#body-thanks{
-  padding-left: 2.9%;
-  padding-top: 1.6%;
-}
-
-#bt-p{
-  color: #707070;
-  font-size: 0.9em;
-}
-
-#nPedido{
-  border: 2px solid #0E9AEF;
-  border-radius: 10px;
-  display: flex;
-  margin-top: 3%;
-}
-
-#pedido-p{
-  color: #707070;
-  font-size: 0.9em;
-  padding: 20px 50px;
-  margin: 0;
-}
-
-#codigoPedido{
-  margin: auto;
-  font-size: 1.5em;
-  color: #0E9AEF;
-  font-weight: bold;
-  margin-right: 3%;
-}
-
-#img-status img{
-  height: min-content;
-  width: -webkit-fill-available;
-}
-
-
-/* myproductso */
-#mg-myproductso{
-  margin: 0% 3%;
+div.requests-container div.container div.jumbotron.main div.content div.product-details-area {
   height: 100%;
-  padding: 1%;  
+
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
 }
 
-.chk input {
-  display: none;
+div.requests-container div.container div.jumbotron.main div.content div.product-details-area div.row {
+  height: 50%;
 }
 
-.chk #span-check {
-  width: 1.5rem;
-  height: 1.5rem;
-  display: block;
-  background-color: #fff;
-  border: 1px solid #DDD;
-  border-radius: 5px;
-  /* padding: 5px; */
+div.requests-container div.container div.jumbotron.main div.content div.product-info div.product-details {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
 }
 
-.chk #span-color {
-  width: 0.9rem;
-  height: 0.9rem;
-  display: block;
-  background-color: #0E9AEF;
-  border-radius: 5px;
-  margin: 17%;
-}
-
-.chk input:checked + #span-check #span-color {
-  display: none;
-}
-
-.item-category{
-  margin-left: 6%;
+div.requests-container div.container div.jumbotron.main div.content div.product-info div.product-details label {
   color: #707070;
+  font-weight: bold;
+  font-size: 34px;
+  margin-bottom: 0;
 }
 
-/*Estrelas*/
-div.myproducts-container div.stars {
-  counter-reset: rateme 0;
-  font-size: 0rem;
-  font-weight: 900;
-  height: 25px;
-  margin: -10px 0 20px 0;
-  
+div.requests-container div.container div.jumbotron.main div.content div.product-info div.product-details span {
+  color: #707070;
+  font-size: 16px;
+  filter: brightness(90%);
+}
+
+div.requests-container div.container div.jumbotron.main div.content div.product-stars div.stars {
   display: flex;
   align-items: center;
   justify-content: flex-start;
 }
 
-div.stars span.star {
+div.requests-container div.container div.jumbotron.main div.content div.product-stars div.stars span.star {
   color: #EEFF00;
   font-size: 2rem;
   padding: -1px 1rem;
-  width: 30px;
-  height: 60px;
 }
 
-div.stars span.star::before {
+div.requests-container div.container div.jumbotron.main div.content div.product-stars div.stars span.star::before {
   content: '\2606';
   cursor: pointer;
 }
 
- div.stars span.star.rated::before {
+div.requests-container div.container div.jumbotron.main div.content div.product-stars div.stars span.star.rated::before {
   content: '\2605';
 }
 
- div.stars span.star.rated {
+div.requests-container div.container div.jumbotron.main div.content div.product-stars div.stars {
+  counter-reset: rateme 0;
+  font-size: 0rem;
+  font-weight: 900;
+}
+
+div.requests-container div.container div.jumbotron.main div.content div.product-stars div.stars span.star.rated {
   counter-increment: rateme 1;
 }
 
-div.stars::after {
+div.requests-container div.container div.jumbotron.main div.content div.product-stars div.stars::after {
   content: counter(rateme) '/5';
 }
 
-
-
-/* meus pedidos */
-
-.my-product{
-  width: 880px;
-}
-
-#img-status-2 img {
-  height: 100px;
-  width: 90%;
-}
-
-/* Four Steps */
-.corpo{
+div.requests-container div.container div.jumbotron.main div.content div.product-price {
   display: flex;
-  padding-top: 3%;
+  align-items: flex-start;
+  justify-content: flex-end;
 }
 
-.step{
-  height: 50px;
-  width: 50px;
-  border: 3px solid #00FF43;
-  border-radius: 100%;
-  text-align: center;
-  margin: 0 20px;
-  padding: 10%;
-}
-
-.step-all {
-  margin: 0.7% 8%;
-}
-
-.step-name{
-  text-align: center;
-  font-size: 0.8em;
-  color: #707070;
+div.requests-container div.container div.jumbotron.main div.content div.product-price label {
+  margin-bottom: 0;
+  margin-left: 5px;
+	color: #707070;
+  font-size: 18px;
   font-weight: bold;
 }
 
-.step-number{
+div.requests-container div.container div.jumbotron.main div.content div.product-price span {
+	color: #707070;
+	font-size: 18px;
+}
+
+div.requests-container div.container div.jumbotron.main div.content div.product-info div.request-steps {
+  margin-bottom: -52px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+div.requests-container div.container div.jumbotron.main div.content div.product-info div.row.steps hr {
+  width: 96%;
+  margin-top: 0; 
+  margin-bottom: 0;
+}
+
+div.requests-container div.container div.jumbotron.main div.content div.product-info div.request-steps div.step label {
+  top: 0;
+  color: #707070;
+  font-size: 12px;
+  position: absolute;
+  white-space: nowrap;
+}
+
+div.requests-container div.container div.jumbotron.main div.content div.product-info div.request-steps div.step {
+  width: 60px;
+  height: 60px;
+  border: 2px solid #00FF43;
+  background: #ffffff;
+  border-radius: 30px;
   color: #00FF43;
   font-weight: bold;
-}
-div.myproducts-container div.container div.button-area {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-div.myproducts-container div.container div.button-area div.pagination {
-  width: 40px;
-  height: 40px;
-  border-radius: 25px;
-  border: 1px solid #0E9AEF;
-  background: #ffffff;
-  color: #0E9AEF;
-  font-weight: bold;
-  margin: 0 10px;
+  font-size: 24px;
 
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-
-div.myproducts-container div.container div.button-area div.pagination.active {
-  width: 40px;
-  height: 40px;
-  border-radius: 25px;
-  border: 1px solid #0E9AEF;
-  background: #0E9AEF;
-
-  color: #ffffff;
-  font-weight: bold;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
+div.requests-container div.container div.jumbotron.main div.content div.product-info div.request-steps div.step img {
+  display: none;
 }
 
-div.myproducts-container div.container div.button-area button {
-  background: #0E9AEF;
-	border: 1px solid #0E9AEF;
-	border-radius: 25px;
-	color: #ffffff;
-	font-size: 14px;
-	font-weight: bold;
-	height: 40px;
-	outline: 0;
-	padding: 5px 10px;
-  transition: 0.2s;
-  margin: 0 15px;
-	
-	display: flex;
-	align-items: center;
-	justify-content: center;
+div.requests-container div.container div.jumbotron.main div.content div.product-info div.request-steps div.step.checked span {
+  display: none;
 }
 
-div.product-details-container div.button-area button:hover {
-  filter: brightness(90%);
+div.requests-container div.container div.jumbotron.main div.content div.product-info div.request-steps div.step.checked img {
+  width: 80px;
+  height: 80px;
+  display: block;
 }
