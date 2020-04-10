@@ -4,17 +4,17 @@
 			<div class="slideshow-container">
 				<div class="mySlides fade-slide">
 					<div class="numbertext">1 / 3</div>
-					<img src="App/assets/img/moda-1.jpg" style="width:100%">
+					<img src="assets/img/moda-1.jpg" style="width:100%">
 					<div class="text">PROMOÇÃO % OFF</div>
 				</div>
 				<div class="mySlides fade-slide">
 					<div class="numbertext">2 / 3</div>
-					<img src="App/assets/img/moda-2.jpg" style="width:100%">
+					<img src="assets/img/moda-2.jpg" style="width:100%">
 					<div class="text">PRETTY STYLE</div>
 				</div>
 				<div class="mySlides fade-slide">
 					<div class="numbertext">3 / 3</div>
-					<img src="App/assets/img/moda-3.jpg" style="width:100%">
+					<img src="assets/img/moda-3.jpg" style="width:100%">
 					<div class="text">COLEÇÃO OUTONO INVERNO 2020</div>
 				</div>
 				<a class="prev" onclick="plusSlides(-1)">&#10094;</a>
@@ -40,13 +40,13 @@
 		<section class="best-sellers">
 			<div class="jumbotron">
 				<div class="col-md-12 content">
-					<img src="App/assets/icons/arrow-left.svg" alt="Arrow left" class="arrow-left">
+					<img src="assets/icons/arrow-left.svg" alt="Arrow left" class="arrow-left">
 					<div class="col-md-12">
 						<div class="row">
 							<div class="col-md-3">
-								<div class="jumbotron product" onclick="window.location.href='App/pages/product-details.jsp'">
+								<div class="jumbotron product" onclick="window.location.href='pages/product-details.jsp'">
 									<div class="photo-product">
-										<img src="App/assets/img/jbl.png" alt="JBL Flip 3 Portable">
+										<img src="assets/img/jbl.png" alt="JBL Flip 3 Portable">
 									</div>
 									<label class="title-product">JBL Flip 3 Portable</label>
 									<div class="stars">
@@ -62,7 +62,7 @@
 							<div class="col-md-3">
 								<div class="jumbotron product">
 									<div class="photo-product">
-										<img src="App/assets/img/jbl.png" alt="JBL Flip 3 Portable">
+										<img src="assets/img/jbl.png" alt="JBL Flip 3 Portable">
 									</div>
 									<label class="title-product">JBL Flip 3 Portable</label>
 									<div class="stars">
@@ -78,7 +78,7 @@
 							<div class="col-md-3">
 								<div class="jumbotron product">
 									<div class="photo-product">
-										<img src="App/assets/img/jbl.png" alt="JBL Flip 3 Portable">
+										<img src="assets/img/jbl.png" alt="JBL Flip 3 Portable">
 									</div>
 									<label class="title-product">JBL Flip 3 Portable</label>
 									<div class="stars">
@@ -94,7 +94,7 @@
 							<div class="col-md-3">
 								<div class="jumbotron product">
 									<div class="photo-product">
-										<img src="App/assets/img/jbl.png" alt="JBL Flip 3 Portable">
+										<img src="assets/img/jbl.png" alt="JBL Flip 3 Portable">
 									</div>
 									<label class="title-product">JBL Flip 3 Portable</label>
 									<div class="stars">
@@ -109,16 +109,16 @@
 							</div>
 						</div>
 					</div>
-					<img src="App/assets/icons/arrow-right.svg" alt="Arrow right" class="arrow-right">
+					<img src="assets/icons/arrow-right.svg" alt="Arrow right" class="arrow-right">
 				</div>
 				<div class="col-md-12 content">
-					<img src="App/assets/icons/arrow-left.svg" alt="Arrow left" class="arrow-left">
+					<img src="assets/icons/arrow-left.svg" alt="Arrow left" class="arrow-left">
 					<div class="col-md-12">
 						<div class="row">
 							<div class="col-md-3">
 								<div class="jumbotron product">
 									<div class="photo-product">
-										<img src="App/assets/img/jbl.png" alt="JBL Flip 3 Portable">
+										<img src="assets/img/jbl.png" alt="JBL Flip 3 Portable">
 									</div>
 									<label class="title-product">JBL Flip 3 Portable</label>
 									<div class="stars">
@@ -134,7 +134,7 @@
 							<div class="col-md-3">
 								<div class="jumbotron product">
 									<div class="photo-product">
-										<img src="App/assets/img/jbl.png" alt="JBL Flip 3 Portable">
+										<img src="assets/img/jbl.png" alt="JBL Flip 3 Portable">
 									</div>
 									<label class="title-product">JBL Flip 3 Portable</label>
 									<div class="stars">
@@ -150,7 +150,7 @@
 							<div class="col-md-3">
 								<div class="jumbotron product">
 									<div class="photo-product">
-										<img src="App/assets/img/jbl.png" alt="JBL Flip 3 Portable">
+										<img src="assets/img/jbl.png" alt="JBL Flip 3 Portable">
 									</div>
 									<label class="title-product">JBL Flip 3 Portable</label>
 									<div class="stars">
@@ -166,7 +166,7 @@
 							<div class="col-md-3">
 								<div class="jumbotron product">
 									<div class="photo-product">
-										<img src="App/assets/img/jbl.png" alt="JBL Flip 3 Portable">
+										<img src="assets/img/jbl.png" alt="JBL Flip 3 Portable">
 									</div>
 									<label class="title-product">JBL Flip 3 Portable</label>
 									<div class="stars">
@@ -181,7 +181,7 @@
 							</div>
 						</div>
 					</div>
-					<img src="App/assets/icons/arrow-right.svg" alt="Arrow right" class="arrow-right">
+					<img src="assets/icons/arrow-right.svg" alt="Arrow right" class="arrow-right">
 				</div>
 			</div>
 		</section>
