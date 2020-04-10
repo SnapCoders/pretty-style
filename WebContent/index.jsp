@@ -33,22 +33,9 @@
   <body>
   	<c:import url="App/components/header.jsp" />
   	<div class="container">
-  		<c:import url="App/pages/sign-up-simple.jsp"/>
-  		<c:import url="App/pages/sign-up-business.jsp"/>
-  		<c:import url="App/pages/sign-in.jsp"/>
 	    <c:import url="App/pages/home.jsp"/>
-	    <c:import url="App/pages/product-details.jsp"/>
-	    <c:import url="App/pages/payments-steps.jsp"/>
-	    <c:import url="App/pages/favorites.jsp"/>
-	    <c:import url="App/pages/cart.jsp"/>
-	   	<c:import url="App/pages/thanks.jsp"/>
-	    <c:import url="App/pages/profile.jsp"/>
-	   	<c:import url="App/pages/catalog.jsp"/>
-	    <c:import url="App/pages/save-address.jsp"/>
-	    <c:import url="App/pages/profile-address.jsp"/>
-	   	<c:import url="App/pages/requests.jsp"/>
   	</div>
-    <script src="App/lib/jquery/1.9.1/jquery-3.4.1.min.js"></script>
+    <script src="App/lib/jquery/1.9.1/jquery-1.9.1.min.js"></script>
     <script src="App/lib/bootstrap/4.4.1/js/bootstrap.min.js"></script>
   </body>
 </html>
