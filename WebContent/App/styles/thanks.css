@@ -412,46 +412,52 @@ div.stars::after {
 }
 
 
-
-/* meus pedidos */
-
-.my-product{
-  width: 880px;
-}
-
-#img-status-2 img {
-  height: 100px;
-  width: 90%;
-}
-
-/* Four Steps */
-.corpo{
+div.thanks-container div.container div.jumbotron.main div.content div.request-steps {
+  margin-bottom: -52px;
   display: flex;
-  padding-top: 3%;
+  align-items: center;
+  justify-content: space-between;
 }
 
-.step{
-  height: 50px;
-  width: 50px;
-  border: 3px solid #00FF43;
-  border-radius: 100%;
-  text-align: center;
-  margin: 0 20px;
-  padding: 10%;
+div.thanks-container div.container div.jumbotron.main div.content div.row.steps hr {
+  width: 96%;
+  margin-top: 0; 
+  margin-bottom: 0;
 }
 
-.step-all {
-  margin: 0.7% 8%;
-}
-
-.step-name{
-  text-align: center;
-  font-size: 0.8em;
+div.thanks-container div.container div.jumbotron.main div.content div.request-steps div.step label {
+  top: 0;
   color: #707070;
-  font-weight: bold;
+  font-size: 12px;
+  position: absolute;
+  white-space: nowrap;
 }
 
-.step-number{
+div.thanks-container div.container div.jumbotron.main div.content div.request-steps div.step {
+  width: 60px;
+  height: 60px;
+  border: 2px solid #00FF43;
+  background: #ffffff;
+  border-radius: 30px;
   color: #00FF43;
   font-weight: bold;
-} 
+  font-size: 24px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+div.thanks-container div.container div.jumbotron.main div.content div.request-steps div.step img {
+  display: none;
+}
+
+div.thanks-container div.container div.jumbotron.main div.content div.request-steps div.step.checked span {
+  display: none;
+}
+
+div.requests-container div.container div.jumbotron.main div.content div.product-info div.request-steps div.step.checked img {
+  width: 80px;
+  height: 80px;
+  display: block;
+}

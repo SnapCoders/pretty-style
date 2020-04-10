@@ -39,8 +39,7 @@
 					<strong id="msg-receber-pedido">Recebemos seu pedido</strong>
 				</div>
 				<div class="container" id="body-thanks">
-					<strong class="color-blue fsize-1-4em">Olá, Bruno Amaral
-						Futema.</strong>
+					<strong class="color-blue fsize-1-4em">Olá, Bruno Amaral Futema.</strong>
 					<div class="pt-5">
 						<p id=bt-p>Agradecemos sua preferência pelo PrettyStyle!</p>
 						<p id=bt-p>A partir de agora, você será informado(a) por
@@ -53,39 +52,30 @@
 					</div>
 					<div id="img-status">
 						<!-- <img src="/icons/Grupo 143.svg" alt=""> -->
-						<div class="corpo">
-							<div class="step-all">
-								<p class="step-name">
-									Pedido <br>Realizado
-								</p>
+						<div class="row steps">
+							<div class=" col-md-12 request-steps">
+								<div class="step checked">
+									<label>Pedido Realizado</label>
+									<span>1</span>
+									<img src="App/assets/icons/large-check.svg" alt="Check">
+								</div>
 								<div class="step">
-									<p class="step-number">1</p>
+									<label>Aprovação de pagamento</label>
+									<span>2</span>
+									<img src="App/assets/icons/large-check.svg" alt="Check">
+								</div>
+								<div class="step">
+									<label>Produto(s) em transporte</label>
+									<span>3</span>
+									<img src="App/assets/icons/large-check.svg" alt="Check">
+								</div>
+								<div class="step">
+									<label>Produto(s) Entregue(s)</label>
+									<span>4</span>
+									<img src="App/assets/icons/large-check.svg" alt="Check">
 								</div>
 							</div>
-							<div class="step-all">
-								<p class="step-name">
-									Aprovação<br>de pagamento
-								</p>
-								<div class="step">
-									<p class="step-number">2</p>
-								</div>
-							</div>
-							<div class="step-all">
-								<p class="step-name">
-									Produto(s) em<br>transporte
-								</p>
-								<div class="step">
-									<p class="step-number">3</p>
-								</div>
-							</div>
-							<div class="step-all">
-								<p class="step-name">
-									Produto(s)<br>entregue(s)
-								</p>
-								<div class="step">
-									<p class="step-number">4</p>
-								</div>
-							</div>
+							<hr />
 						</div>
 					</div>
 				</div>

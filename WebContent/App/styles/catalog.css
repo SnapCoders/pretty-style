@@ -19,6 +19,18 @@ div.catalog-container div.container div.body {
   padding: 0;
 }
 
+div.catalog-container div.container div.jumbotron.main {
+	margin-top: 20px;
+	border: 1px solid rgba(0, 0, 0, 0.3);
+	border-radius: 10px;
+	background: #ffffff;
+	padding: 15px;
+}
+
+div.catalog-container .stars {
+  width: 150px;
+}
+
 div.catalog-container div.container div.body-filters {
   border-right: 1px solid rgba(0, 0, 0, 0.3);
 }

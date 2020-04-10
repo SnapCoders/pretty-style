@@ -27,7 +27,7 @@
     <link rel="stylesheet" href="App/styles/catalog.css">
     <link rel="stylesheet" href="App/styles/save-address.css">
     <link rel="stylesheet" href="App/styles/profile-address.css">
-    <link rel="stylesheet" href="App/styles/my-products.css">
+    <link rel="stylesheet" href="App/styles/requests.css">
     <link rel="stylesheet" href="App/styles/global/responsive.css">
   </head>
   <body>
@@ -46,9 +46,9 @@
 	   	<c:import url="App/pages/catalog.jsp"/>
 	    <c:import url="App/pages/save-address.jsp"/>
 	    <c:import url="App/pages/profile-address.jsp"/>
-	   	<c:import url="App/pages/my-products.jsp"/>
+	   	<c:import url="App/pages/requests.jsp"/>
   	</div>
-    <script src="App/lib/jquery/3.4.1/jquery-3.4.1.min.js"></script>
+    <script src="App/lib/jquery/1.9.1/jquery-3.4.1.min.js"></script>
     <script src="App/lib/bootstrap/4.4.1/js/bootstrap.min.js"></script>
   </body>
 </html>
