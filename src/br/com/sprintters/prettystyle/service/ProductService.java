@@ -51,4 +51,15 @@ public class ProductService{
     		throw new Exception(e.getMessage());
     	}
     }
+    
+    public ArrayList<Product> listMore() {
+    	ArrayList<Product> lista = new ArrayList<Product>();
+
+    	lista.add(new Product("Teste", "Teste description", 500.00, 2));
+		lista.add(new Product("Teste2", "Teste2 description", 550.00, 3));
+		lista.add(new Product("Teste3", "Teste3 description", 920.00, 4));
+		lista.add(new Product("Teste 4", "Teste 4", 159.00, 4));
+		
+		return lista;
+    }
 }

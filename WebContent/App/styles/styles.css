@@ -201,7 +201,6 @@ section.best-sellers div.jumbotron.product {
 	border-radius: 10px;
 	background: #ffffff;
   padding: 10px;
-  cursor: pointer;
   
   display: flex;
   flex-direction: column;
@@ -215,11 +214,16 @@ section.best-sellers div.jumbotron.product:hover {
 
 section.best-sellers div.jumbotron.product div.photo-product img {
   width: 100%;
+  cursor: pointer;
 }
 
 section.best-sellers div.jumbotron.product label {
   color: #707070;
   font-size: 18px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  width: 12em;
 }
 
 section.best-sellers div.jumbotron.product label:last-child {
