@@ -1,5 +1,11 @@
+<%@ page import="java.util.ArrayList"%>
+<%@ page import="br.com.sprintters.prettystyle.model.Mark"%>
+<%@ page import="br.com.sprintters.prettystyle.service.MarkService"  %>
+
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 	<head>
@@ -7,14 +13,14 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		
-		<link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+		<link rel="shortcut icon" href="<%=request.getContextPath()%>/favicon.ico" type="image/x-icon" />
 
-		<title>Pretty Style</title>
+		<title>Pretty Style - Detalhes do Produto</title>
     
 		<link rel="stylesheet" href="../../lib/bootstrap/4.4.1/css/bootstrap.min.css">
 
-		<link rel="stylesheet" href="../../styles/global/index.css">
-		<link rel="stylesheet" href="../../styles/global/header.css">
+		<link rel="stylesheet" href="../../styles/index.css">
+		<link rel="stylesheet" href="../../styles/header.css">
     
 		<link rel="stylesheet" href="styles.css">
 	</head>
@@ -30,6 +36,7 @@
 							</div>
 							<div class="line">
 								<hr />
+								<a class="btn btn-sm btn-primary" href="../../../index.jsp">Voltar</a>
 							</div>
 						</div>
 					</div>
@@ -119,7 +126,7 @@
 		<script src="../../lib/jquery/1.9.1/jquery-1.9.1.min.js"></script>
 		<script src="../../lib/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 		
-		<script src="utils.js"></script>
+		<!-- <script src="utils.js"></script> -->
 	</body>
 </html>
  
