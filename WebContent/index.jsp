@@ -40,7 +40,7 @@
   			ArrayList<Product> teste1 = new ArrayList<Product>(teste.subList(0, (teste.size()/2)));
   			ArrayList<Product> teste2 = new ArrayList<Product>(teste.subList(teste.size()/2, teste.size()));
   			
-  			request.setAttribute("bestSellersOne", lista);
+  			request.setAttribute("bestSellersOne", bestSellers1);
   			request.setAttribute("bestSellersTwo", bestSellers2);
   			request.setAttribute("teste1", teste1);
   			request.setAttribute("teste2", teste2);
