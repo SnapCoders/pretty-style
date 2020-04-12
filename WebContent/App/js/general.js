@@ -27,16 +27,16 @@ function showSlides(n) {
 	dots[slideIndex-1].className += " active-slide";
 }
 
-document.addEventListener('DOMContentLoaded', function() {
-	let stars = document.querySelectorAll('.star');
-	stars.forEach(function(star) {
-		star.addEventListener('click', setRating);
-	});
+//document.addEventListener('DOMContentLoaded', function() {
+//	let stars = document.querySelectorAll('.star');
+//	stars.forEach(function(star) {
+//		star.addEventListener('click', setRating);
+//	});
 
-	let rating = parseInt(document.querySelector('.stars').getAttribute('data-rating'));
-	let target = stars[rating - 1];
-	target.dispatchEvent(new MouseEvent('click'));
-});
+//	let rating = parseInt(document.querySelector('.stars').getAttribute('data-rating'));
+//	let target = stars[rating - 1];
+//	target.dispatchEvent(new MouseEvent('click'));
+//});
 
 function setRating(ev) {
 	let span = ev.currentTarget;
