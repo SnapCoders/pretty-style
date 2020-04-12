@@ -10,7 +10,7 @@ header#main-header div.top-header {
 header#main-header div.top-header div {
   display: inline-block;
   vertical-align: middle;
-  margin: 0 50px;
+  margin: 0 14px;
 }
 
 header#main-header div.top-header div input {
@@ -27,6 +27,7 @@ header#main-header div.top-header div.client-area div {
 
 header#main-header div.top-header div.logo-area,
 header#main-header div.top-header div.search-area img,
+header#main-header div.top-header div.client-area div.admin,
 header#main-header div.top-header div.client-area div.account,
 header#main-header div.top-header div.client-area div.favorite,
 header#main-header div.top-header div.client-area div.cart,
@@ -34,6 +35,15 @@ header#main-header div.bottom-header nav ul li {
   cursor: pointer;
 }
 
+header#main-header div.top-header div.search-area img:hover,
+header#main-header div.top-header div.client-area div.admin:hover,
+header#main-header div.top-header div.client-area div.account:hover,
+header#main-header div.top-header div.client-area div.favorite:hover,
+header#main-header div.top-header div.client-area div.cart:hover {
+  filter: brightness(90%);
+}
+
+header#main-header div.top-header div.client-area div.admin div.admin-icon,
 header#main-header div.top-header div.client-area div.account div.account-icon,
 header#main-header div.top-header div.client-area div.favorite div.favorite-icon,
 header#main-header div.top-header div.client-area div.cart div.cart-icon {
@@ -44,6 +54,7 @@ header#main-header div.top-header div.client-area div.cart div.cart-icon {
   text-align: center;
 }
 
+header#main-header div.top-header div.client-area div.admin div.admin-icon img,
 header#main-header div.top-header div.client-area div.account div.account-icon img,
 header#main-header div.top-header div.client-area div.favorite div.favorite-icon img,
 header#main-header div.top-header div.client-area div.cart div.cart-icon img,
@@ -59,6 +70,7 @@ header#main-header div.top-header div.search-area img {
   top: -5px;
 }
 
+header#main-header div.top-header div.client-area div.admin strong,
 header#main-header div.top-header div.client-area div.account strong {
   color: #ffffff;
   font-size: 18px;
