@@ -44,7 +44,7 @@ public class MarkService {
     	}
     }
 
-    public ArrayList<Mark> list(int id) throws Exception {
+    public ArrayList<Mark> list() throws Exception {
     	try {
     		return dao.list();
     	} catch (Exception e) {
