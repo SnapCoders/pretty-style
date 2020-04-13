@@ -24,6 +24,7 @@ public class ProductDAO {
 			try (ResultSet rs = stm.executeQuery("SELECT LAST_INSERT_ID()")) {
 				if (rs.next()) {				
 					id = rs.getInt(1);
+					to.setIdMark(id);
 				}
 			} catch (SQLException e) {
 				throw new Exception(e.getMessage());
