@@ -19,6 +19,7 @@
     
 		<link rel="stylesheet" href="../../../lib/bootstrap/4.4.1/css/bootstrap.min.css">
 		<link rel="stylesheet" href="../../../lib/datatables/datatables.min.css">
+		<link rel="stylesheet" href="../../../lib/sweetalert/sweetalert.css">
 
 		<link rel="stylesheet" href="../../../styles/index.css">
 		<link rel="stylesheet" href="../../../styles/header.css">
@@ -53,26 +54,23 @@
 							<table id="tbProducts" class="table table-bordered table-hover">
 								<thead class="thead-dark">
 									<tr>
-										<th scope="col" style="text-align: center;">Id</th>
-										<th scope="col" style="text-align: center;">Nome</th>
-										<th scope="col" style="text-align: center;">Descrição</th>
-										<th scope="col" style="text-align: center;">Preço</th>
-										<th scope="col" style="text-align: center;">Ações</th>
+										<th scope="col" style="text-align: center; min-width: 15px;">Id</th>
+										<th scope="col" style="text-align: center; min-width: 225px;">Nome</th>
+										<th scope="col" style="text-align: center; min-width: 380px;">Descrição</th>
+										<th scope="col" style="text-align: center; min-width: 70px;">Preço</th>
+										<th scope="col" style="text-align: center; min-width: 115px;">Ações</th>
 									</tr>
 								</thead>
 								<tbody>
 									<c:forEach var="product" items="${products}">
 										<tr>
-											<th scope="row">${product.id}</th>
-											<td>${product.name}<span class="badge badge-pill badge-primary" style="margin-left: 10px;">50% OFF</span></td>
+											<th id="product-id" scope="row">${product.id}</th>
+											<td>${product.name}<!-- <span class="badge badge-pill badge-primary" style="margin-left: 10px;">50% OFF</span> --></td>
 											<td>${product.description}</td>
 											<td><fmt:formatNumber value="${product.price}" type="currency" currencySymbol="R$"/></td>
 											<td style="text-align: center;">
 												<button class="btn btn-sm btn-outline-primary">Editar</button>
-												<button type="submit" class="btn btn-sm btn-outline-danger">
-													Excluir
-												</button>
-												<input type="hidden" name="id" value="${product.id}" />
+												<button id="btn-remove" type="button" class="btn btn-sm btn-outline-danger" onclick="handleDelete(${product.id});">Excluir</button>
 											</td>
 										</tr>
 									</c:forEach>
@@ -87,53 +85,7 @@
 		<script src="../../../lib/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 		<script src="../../../lib/datatables/datatables.min.js"></script>
 		<script src="../../../lib/sweetalert/sweetalert.min.js"></script>
-		<script>
-			$(document).ready(function () {
-				swal({
-			        title: "Atenção!",
-			        text: "Deseja realmente excluir o registro?",
-			        type: "warning",
-			        showCancelButton: true,
-			        confirmButtonText: "Sim",
-			        confirmButtonColor: "#3CB371",
-			        cancelButtonText: "N\u00e3o",
-			        closeOnConfirm: false,
-			        closeOnCancel: true
-			    }, function (isConfirm) {
-			        if (!isConfirm) return;
-			        $.ajax({
-			            url: "/products",
-			            type: "DELETE",
-			            data: {
-			                id: id
-			            },
-			            success: function (data) {
-			                if (data.Sucesso == true) {
-			                    sweetAlert
-			                    ({
-			                        title: "Sucesso!",
-			                        text: data.Mensagem,
-			                        type: "success"
-			                    },
-			                    function () {
-			                        Load();
-			                    });
-			                }
-			                else {
-			                    sweetAlert
-			                    ({
-			                        title: "Erro",
-			                        text: "Ocorreu um erro ao deletar o registro!",
-			                        type: "error"
-			                    });
-			                }
-			            },
-			            error: function (data) {
-			                swal("Erro", "Erro ao Deletar o Registro!", "error");
-			            }
-			        });
-			    });
-			});
-		</script>
+		<script src="../../../js/general.js"></script>
+		<script src="script.js"></script>
 	</body>
 </html>
