@@ -42,19 +42,10 @@
 						      			<div class="card-body">
 						        			<h5 class="card-title">Gerenciar produtos cadastrados</h5>
 						        			<p class="card-text">Gerencie seus produtos podendo cadastrar, editar e listar para visualização.</p>
-						                	<a href="list-products/list-products.jsp" class="btn btn-primary">Listar todos os produtos</a>
+						                	<a href="list-products/list-products.jsp" class="btn btn-primary">Gerenciar meus produtos</a>
 						            	</div>
 						        	</div>
 						      	</div>
-							    <div class="col-sm-6">
-								    <div class="card">
-								        <div class="card-body">
-										    <h5 class="card-title">Special title treatment</h5>
-										    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-							        		<a href="#" class="btn btn-primary">Go somewhere</a>
-							      		</div>
-							    	</div>
-							    </div>
 							</div>
 			  			</div>
 			  		</div>
