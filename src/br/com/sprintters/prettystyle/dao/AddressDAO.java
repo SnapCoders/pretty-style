@@ -29,7 +29,8 @@ public class AddressDAO {
 			stm.execute();
 			try (ResultSet rs = stm.executeQuery("SELECT LAST_INSERT_ID()")) {
 				if (rs.next()) {				
-					id = rs.getInt(1);
+					to.setId(rs.getInt(1));
+					id = rs.getInt(1);					
 				}
 			} catch (SQLException ex) {
 				throw new Exception(ex.getMessage());

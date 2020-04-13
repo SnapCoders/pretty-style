@@ -7,6 +7,7 @@ import br.com.sprintters.prettystyle.model.generic.Entity;
 public class Request extends Entity {
 	private int idClient;
 	private Client client;
+	private Product product;
 	
 	private double totalPrice;
 	
@@ -21,6 +22,11 @@ public class Request extends Entity {
 		this.idClient = client.getId();
 		this.client = client;
 		this.totalPrice = totalPrice;
+	}
+	
+	public Request(Product product, int idClient) {
+		this.idClient = idClient;
+		this.product = product;		
 	}
 	
 	public Request(int id, int idClient, double totalPrice) {
@@ -63,6 +69,14 @@ public class Request extends Entity {
 
 	public void setClient(Client client) {
 		this.client = client;
+	}
+	
+	public Product getProduct() {
+		return product;
+	}
+
+	public void setProduct(Product product) {
+		this.product = product;
 	}
 	
 	public double getTotalPrice() {
