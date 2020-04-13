@@ -69,7 +69,10 @@
 											<td><fmt:formatNumber value="${product.price}" type="currency" currencySymbol="R$"/></td>
 											<td style="text-align: center;">
 												<button class="btn btn-sm btn-outline-primary">Editar</button>
-												<button class="btn btn-sm btn-outline-danger">Excluir</button>
+												<button type="submit" class="btn btn-sm btn-outline-danger">
+													Excluir
+												</button>
+												<input type="hidden" name="id" value="${product.id}" />
 											</td>
 										</tr>
 									</c:forEach>
@@ -83,10 +86,53 @@
 		<script src="../../../lib/jquery/1.9.1/jquery-1.9.1.min.js"></script>
 		<script src="../../../lib/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 		<script src="../../../lib/datatables/datatables.min.js"></script>
-		<script type="text/javascript">
+		<script src="../../../lib/sweetalert/sweetalert.min.js"></script>
+		<script>
 			$(document).ready(function () {
-			  $('#tbProducts').DataTable();
-			  $('.carousel').carousel();
+				swal({
+			        title: "Atenção!",
+			        text: "Deseja realmente excluir o registro?",
+			        type: "warning",
+			        showCancelButton: true,
+			        confirmButtonText: "Sim",
+			        confirmButtonColor: "#3CB371",
+			        cancelButtonText: "N\u00e3o",
+			        closeOnConfirm: false,
+			        closeOnCancel: true
+			    }, function (isConfirm) {
+			        if (!isConfirm) return;
+			        $.ajax({
+			            url: "/products",
+			            type: "DELETE",
+			            data: {
+			                id: id
+			            },
+			            success: function (data) {
+			                if (data.Sucesso == true) {
+			                    sweetAlert
+			                    ({
+			                        title: "Sucesso!",
+			                        text: data.Mensagem,
+			                        type: "success"
+			                    },
+			                    function () {
+			                        Load();
+			                    });
+			                }
+			                else {
+			                    sweetAlert
+			                    ({
+			                        title: "Erro",
+			                        text: "Ocorreu um erro ao deletar o registro!",
+			                        type: "error"
+			                    });
+			                }
+			            },
+			            error: function (data) {
+			                swal("Erro", "Erro ao Deletar o Registro!", "error");
+			            }
+			        });
+			    });
 			});
 		</script>
 	</body>

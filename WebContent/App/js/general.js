@@ -1,32 +1,3 @@
-var slideIndex = 1;
-showSlides(slideIndex);
-
-setInterval(function() { currentSlide(slideIndex+1); }, 5000);
-
-function plusSlides(n) {
-	showSlides(slideIndex += n);
-}
-
-function currentSlide(n) {
-	showSlides(slideIndex = n);
-}
-
-function showSlides(n) {
-	var i;
-	var slides = document.getElementsByClassName("mySlides");
-	var dots = document.getElementsByClassName("dot");
-	if (n > slides.length) {slideIndex = 1}    
-	if (n < 1) {slideIndex = slides.length}
-	for (i = 0; i < slides.length; i++) {
-		slides[i].style.display = "none";  
-	}
-	for (i = 0; i < dots.length; i++) {
-		dots[i].className = dots[i].className.replace(" active-slide", "");
-	}
-	slides[slideIndex-1].style.display = "block";  
-	dots[slideIndex-1].className += " active-slide";
-}
-
 //document.addEventListener('DOMContentLoaded', function() {
 //	let stars = document.querySelectorAll('.star');
 //	stars.forEach(function(star) {
@@ -56,4 +27,40 @@ function setRating(ev) {
 		}
 	});
 	document.querySelector('.stars').setAttribute('data-rating', num);
+}
+
+function AlertaAvisoConfirm(title, question, url, type, method) {
+	swal({
+		title: title,
+		text: question,
+		type: type,
+		showCancelButton: true,
+		confirmButtonText: "Sim",
+		confirmButtonColor: "#3CB371",
+		cancelButtonText: "N\u00e3o",
+		closeOnConfirm: false,
+		closeOnCancel: true
+	}, function (isConfirm) {
+		if (!isConfirm) return;
+		$.ajax({
+			url: url, type: method,
+			success: function (data) {
+				if (data.success) {
+					swal({
+						title: 'Sucesso!', text: data.message, type: "success"
+					}, function () {
+						//Load();
+						document.location.reload(true);
+					});
+				} else {
+					swal({
+						title: "Erro", text: "Ocorreu um erro ao deletar o registro!", type: "error"
+					});
+				}
+			},
+			error: function (data) {
+				swal("Erro", data.message, "error");
+			}
+		});
+	});
 }
