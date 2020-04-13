@@ -16,9 +16,9 @@ public class ConnectionFactory {
 	
 	public static Connection createConnection() throws SQLException {
 		String database = "db_pretty_style";
-		String password = "amanda";
+		String password = "root";
 		
 		return DriverManager
-				.getConnection("jdbc:mysql://localhost:3306/" + database + "?useTimezone=true&serverTimezone=UTC&useSSL=false", "amanda", password);
+				.getConnection("jdbc:mysql://localhost:3306/" + database + "?useTimezone=true&serverTimezone=UTC&characterEncoding=utf-8&useSSL=false", "root", password);
 	}
 }
