@@ -18,6 +18,7 @@
 		<title>Pretty Style - Cadastrar Produto</title>
     
 		<link rel="stylesheet" href="../../../lib/bootstrap/4.4.1/css/bootstrap.min.css">
+		<link rel="stylesheet" href="../../../lib/sweetalert/sweetalert.css">
 
 		<link rel="stylesheet" href="../../../styles/index.css">
 		<link rel="stylesheet" href="../../../styles/header.css">
@@ -47,34 +48,36 @@
 			  		</div>
 			  		<div class="jumbotron main">
 			  			<div class="col-md-12 content">
-			  				<div class="row">
-			  					<div class="col-md-6">
-				  					<label for="name">Nome do produto<span style="color: #ff0000; margin-left: 5px;">*</span></label>
-				  					<input class="form-control" id="name" placeholder="Nome do produto" />
+			  				<form action="/PrettyStyle/products" method="post" name="add-product">
+				  				<div class="row">
+				  					<div class="col-md-6">
+					  					<label for="name">Nome do produto<span style="color: #ff0000; margin-left: 5px;">*</span></label>
+					  					<input class="form-control" id="name" name="name" placeholder="Nome do produto" />
+					  				</div>
+					  				<div class="col-md-6">
+					  					<label for="description">Descrição<span style="color: #ff0000; margin-left: 5px;">*</span></label>
+					  					<input class="form-control" id="description" name="description" placeholder="Breve descrição do produto" />
+					  				</div>
 				  				</div>
-				  				<div class="col-md-6">
-				  					<label for="description">Descrição<span style="color: #ff0000; margin-left: 5px;">*</span></label>
-				  					<input class="form-control" id="description" placeholder="Breve descrição do produto" />
+				  				<div class="row">
+				  					<div class="col-md-6">
+					  					<label for="mark">Selecione a marca do seu Produto<span style="color: #ff0000; margin-left: 5px;">*</span></label>
+					  					<select class="form-control" id="mark" name="idMark">
+					  						<option value="0">--Selecione--</option>
+					  						<c:forEach var="mark" items="${marks}">
+					  							<option value="${mark.id}">${mark.name}</option>
+					  						</c:forEach>
+					  					</select>
+					  				</div>
+				  					<div class="col-md-6">
+					  					<label for="price">Preço<span style="color: #ff0000; margin-left: 5px;">*</span></label>
+					  					<input class="form-control" id="price" name="price" placeholder="Preço do seu produto" />
+					  				</div>
 				  				</div>
-			  				</div>
-			  				<div class="row">
-			  					<div class="col-md-6">
-				  					<label for="mark">Selecione a marca do seu Produto<span style="color: #ff0000; margin-left: 5px;">*</span></label>
-				  					<select class="form-control" id="mark">
-				  						<option value="0">--Selecione--</option>
-				  						<c:forEach var="mark" items="${marks}">
-				  							<option value="${mark.id}">${mark.name}</option>
-				  						</c:forEach>
-				  					</select>
+					  			<div class="row button-area">
+				  					<button type="submit">CADASTRAR</button>
 				  				</div>
-			  					<div class="col-md-6">
-				  					<label for="price">Preço<span style="color: #ff0000; margin-left: 5px;">*</span></label>
-				  					<input class="form-control" id="price" placeholder="Preço do seu produto" />
-				  				</div>
-			  				</div>
-				  			<div class="row button-area">
-			  					<button type="button">CADASTRAR</button>
-			  				</div>
+			  				</form>
 			  			</div>
 					</div>
 			  	</div>
@@ -82,8 +85,11 @@
  		</div>
 		
 		<script src="../../../lib/jquery/1.9.1/jquery-1.9.1.min.js"></script>
+		<script src="../../../lib/jquery-validation/jquery.validate.min.js"></script>
 		<script src="../../../lib/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+		<script src="../../../lib/sweetalert/sweetalert.min.js"></script>
 		
+		<script src="script.js"></script>
 		<script src="utils.js"></script>
 	</body>
 </html>
