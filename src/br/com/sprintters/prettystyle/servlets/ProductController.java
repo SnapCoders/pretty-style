@@ -1,9 +1,10 @@
 package br.com.sprintters.prettystyle.servlets;
 
 import java.io.IOException;
-import java.io.PrintWriter;
+import org.json.JSONObject;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.HttpMethodConstraint;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -15,35 +16,70 @@ import br.com.sprintters.prettystyle.service.ProductService;
 public class ProductController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
+	@HttpMethodConstraint("GET")
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		doPost(request, response);
+		
 	}
-
+	
+	@HttpMethodConstraint("POST")
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String pName = request.getParameter("name");
 		String pDescription = request.getParameter("description");
 		Double pPrice = Double.parseDouble(request.getParameter("price"));
+		int idMark = Integer.parseInt(request.getParameter("idMark"));
 
-		Product product = new Product();
-		product.setName(pName);
-		product.setDescription(pDescription);
-		product.setPrice(pPrice);
-
+		Product product = new Product(pName, pDescription, pPrice, idMark);
+		
 		ProductService cs = new ProductService();
 
 		try {
 			cs.create(product);
-			product = cs.find(product.getId());
+			
+			JSONObject retorno = new JSONObject();
+			
+			retorno.put("success", true);
+			retorno.put("message","Cadastro realizado com sucesso!");
+			
+			response.setContentType("application/json");
+			response.getWriter().write(retorno.toString());
 		} catch (Exception e) {
-			e.printStackTrace();
+			JSONObject retorno = new JSONObject();
+			
+			retorno.put("success", false);
+			retorno.put("message", "Erro ao cadastrar!");
+			retorno.put("stacktrace", e.getMessage());
+			
+			response.setContentType("application/json");
+			response.getWriter().write(retorno.toString());
 		}
-
-		PrintWriter out = response.getWriter();
-		out.println("<html><head><title>Cadastro de produto</title></head><body>");
-		out.println("id: " + product.getId() + "<br>");
-		out.println("name: " + product.getName() + "<br>");
-		out.println("description: " + product.getDescription() + "<br>");
-		out.println("price: " + product.getPrice() + "<br>");
-		out.println("</body></html>");
+	}
+	
+	@HttpMethodConstraint("DELETE")
+	protected void doDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		int id = Integer.parseInt(request.getQueryString());
+		
+		try {
+			ProductService ps = new ProductService();
+		
+			Product obj = ps.find(id);
+			ps.delete(obj);
+			
+			JSONObject retorno = new JSONObject();
+			
+			retorno.put("success", true);
+			retorno.put("message","Registro excluído com sucesso!");
+			
+			response.setContentType("application/json");
+			response.getWriter().write(retorno.toString());
+		} catch (Exception e) {
+			JSONObject retorno = new JSONObject();
+			
+			retorno.put("success", false);
+			retorno.put("message", "Erro ao Deletar o Registro!");
+			retorno.put("stacktrace", e.getMessage());
+			
+			response.setContentType("application/json");
+			response.getWriter().write(retorno.toString());
+		}
 	}
 }

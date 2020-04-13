@@ -172,14 +172,26 @@ section.best-sellers div.jumbotron div.content {
   justify-content: center;
 }
 
+section.best-sellers div.jumbotron div.content div.carousel-item {
+  padding: 25px;
+}
+
+section.best-sellers div.jumbotron div.content a.carousel-control-prev {
+  width: 4%;
+  margin-left: -6px;
+}
+
+section.best-sellers div.jumbotron div.content a.carousel-control-next {
+  width: 4%;
+  margin-right: -6px;
+}
+
 section.best-sellers div.jumbotron img.arrow-left {
-  margin-left: 25px;
-  margin-right: -15px;
+  margin-left: -10px;
 }
 
 section.best-sellers div.jumbotron img.arrow-right {
-  margin-left: -15px;
-  margin-right: 25px;
+  margin-left: 10px;
 }
 
 section.best-sellers div.jumbotron img.arrow-left,

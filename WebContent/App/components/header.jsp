@@ -1,6 +1,6 @@
 <header id="main-header">
   <div class="top-header">
-    <div class="logo-area">
+    <div class="logo-area" onclick="window.location.href='<%=request.getContextPath()%>/index.jsp';">
       <img src="<%=request.getContextPath()%>/App/assets/logos/pretty-style-logo-light.svg" alt="Logo Pretty style">
     </div>
     <div class="search-area">
@@ -10,6 +10,12 @@
     <div class="search-area-responsive" style="display: none;">
     </div>
     <div class="client-area">
+      <div class="admin" onclick="window.location.href='<%=request.getContextPath()%>/App/pages/admin/admin.jsp';">
+        <div class="admin-icon">
+          <img src="<%=request.getContextPath()%>/App/assets/icons/framework.svg">
+        </div>
+        <strong>Gerenciar</strong>
+      </div>
       <div class="account">
         <div class="account-icon">
           <img src="<%=request.getContextPath()%>/App/assets/icons/home.svg">

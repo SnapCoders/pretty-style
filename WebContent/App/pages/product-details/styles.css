@@ -12,7 +12,27 @@ div.product-details-container div.container div.header div.content div.title lab
 }
 
 div.product-details-container div.container div.header div.content div.line {
-	width: 80%;
+	width: 82%;
+
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+div.product-details-container div.container div.header div.content div.line a {
+	margin: 0 5px;
+}
+
+div.product-details-container div.container div.header div.content div.line hr {
+	width: 100%;
+	margin-right: 10px;
+}
+
+div.product-details-container div.container div.header div.content div.line hr {
+	color: #0E9AEF;
+	font-size: 14px;
+	font-weight: bold;
+	text-decoration: none;
 }
 
 div.product-details-container div.container div.jumbotron.main {

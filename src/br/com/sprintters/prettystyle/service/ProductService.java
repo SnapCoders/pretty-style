@@ -52,13 +52,25 @@ public class ProductService{
     	}
     }
     
+    public ArrayList<Product> listBestSellers() throws Exception {
+    	try {
+    		return dao.listBestSellers();
+    	} catch (Exception e) {
+    		throw new Exception(e.getMessage());
+    	}
+    }
+    
     public ArrayList<Product> listMore() {
     	ArrayList<Product> lista = new ArrayList<Product>();
 
-    	lista.add(new Product("Teste", "Teste description", 500.00, 2));
-		lista.add(new Product("Teste2", "Teste2 description", 550.00, 3));
-		lista.add(new Product("Teste3", "Teste3 description", 920.00, 4));
-		lista.add(new Product("Teste 4", "Teste 4", 159.00, 4));
+    	lista.add(new Product("Teste 1", "Produto teste 1", 500.00, 2));
+		lista.add(new Product("Teste 2", "Produto teste 2", 550.00, 3));
+		lista.add(new Product("Teste 3", "Produto teste 3", 920.00, 4));
+		lista.add(new Product("Teste 4", "Produto teste 4", 159.00, 4));
+		lista.add(new Product("Teste 5", "Produto teste 5", 859.00, 4));
+		lista.add(new Product("Teste 6", "Produto teste 6", 959.00, 4));
+		lista.add(new Product("Teste 7", "Produto teste 7", 120.00, 4));
+		lista.add(new Product("Teste 8", "Produto teste 8", 500.00, 4));
 		
 		return lista;
     }
