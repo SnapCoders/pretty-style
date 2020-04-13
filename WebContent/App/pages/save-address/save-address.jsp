@@ -18,6 +18,7 @@
 
 <link rel="stylesheet"
 	href="../../lib/bootstrap/4.4.1/css/bootstrap.min.css">
+	<link rel="stylesheet" href="../../../lib/sweetalert/sweetalert.css">
 
 <link rel="stylesheet" href="../../styles/index.css">
 <link rel="stylesheet" href="../../styles/header.css">
