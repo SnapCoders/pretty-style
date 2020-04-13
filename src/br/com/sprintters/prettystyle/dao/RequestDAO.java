@@ -6,6 +6,7 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.PreparedStatement;
 
+import br.com.sprintters.prettystyle.model.Product;
 import br.com.sprintters.prettystyle.model.Request;
 
 public class RequestDAO {
@@ -102,6 +103,44 @@ public class RequestDAO {
 						rs.getTimestamp("deleted_at")
 						
 					);
+					reqs.add(to);
+				}
+			} catch (SQLException ex) {
+				throw new Exception(ex.getMessage());
+			}
+		} catch (SQLException e) {
+			throw new Exception(e.getMessage());
+		}
+		
+		return reqs;
+	}
+	
+	public ArrayList<Request> listRequestsByIdClient(int idClient) throws Exception  {
+		ArrayList<Request> reqs = new ArrayList<Request>();
+		String sqlSelect = "SELECT\r\n" + 
+				"	p.name\r\n" + 
+				"    , p.description\r\n" + 
+				"    , p.price\r\n" + 
+				"    , p.id_mark\r\n" + 
+				"    , r.id_client\r\n" + 
+				"FROM\r\n" + 
+				"	product p\r\n" + 
+				"    INNER JOIN item i on p.id = i.id_product\r\n" + 
+				"    INNER JOIN request r on i.id_request = r.id\r\n" + 
+				"WHERE r.id_client = ?;";
+		
+		try (Connection conn = ConnectionFactory.createConnection();
+			 PreparedStatement stm = conn.prepareStatement(sqlSelect)) {
+			stm.setInt(1, idClient);
+			try (ResultSet rs = stm.executeQuery()) {
+				while (rs.next()) {
+					Product p = new Product(
+						rs.getString("name"),	
+						rs.getString("description"),
+						rs.getDouble("price"),
+						rs.getInt("id_mark")
+					);
+					Request to = new Request(p,rs.getInt("id_client"));
 					reqs.add(to);
 				}
 			} catch (SQLException ex) {

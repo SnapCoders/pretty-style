@@ -51,4 +51,12 @@ public class RequestService {
     		throw new Exception(e.getMessage());
     	}
     }
+    
+    public ArrayList<Request> listRequestsByIdClient(int idClient) throws Exception {
+    	try {
+    		return dao.listRequestsByIdClient(idClient);
+    	} catch (Exception e) {
+    		throw new Exception(e.getMessage());
+    	}
+    }
 }

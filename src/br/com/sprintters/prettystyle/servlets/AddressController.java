@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-@WebServlet("/Address.do")
+@WebServlet("/addresses")
 public class AddressController extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
@@ -36,6 +36,9 @@ public class AddressController extends HttpServlet {
         address.setCountry(pCountry);
         address.setZip(pZip);
         address.setComplement(pComplement);
+        
+        //fake user
+        address.setIdUser(1);
 
         AddressService cs = new AddressService();
         
@@ -46,17 +49,6 @@ public class AddressController extends HttpServlet {
         	e.printStackTrace();
         }
 
-        PrintWriter out = response.getWriter();
-        out.println("<html><head></head><body>");
-        out.println("id: "+address.getId()+"<br>");
-        out.println("place: "+address.getPlace()+"<br>");
-        out.println("number: "+address.getNumber()+"<br>");
-        out.println("neighborhood: "+address.getNeighborhood()+"<br>");
-        out.println("city: "+address.getCity()+"<br>");
-        out.println("country: "+address.getCountry()+"<br>");
-        out.println("zip: "+address.getZip()+"<br>");
-        out.println("complement: "+address.getComplement()+"<br>");
-        out.println("idUser: "+address.getIdUser()+"<br>");
-        out.println("</body></html>");
+
     }
 }
