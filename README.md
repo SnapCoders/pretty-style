@@ -25,4 +25,4 @@
  
  # ![Home_part1][]
  
- [Home_part1]: https://github.com/Sprintters/pretty-style/blob/develop/WebContent/App/assets/prototype/img/1-Home_part1.png?style=centerme
+ [Home_part1]: https://github.com/Sprintters/pretty-style/blob/develop/WebContent/App/assets/prototype/img/1-Home_part1.png
