@@ -26,3 +26,6 @@
  # ![Home_part1][]
  
  [Home_part1]: https://github.com/Sprintters/pretty-style/blob/develop/WebContent/App/assets/prototype/img/1-Home_part1.png
+
+## Continuação Home
+<img src="https://github.com/Sprintters/pretty-style/blob/develop/WebContent/App/assets/prototype/img/1-Home_part2.png" style="display: flex; align-items: center; justify-content: center;" />
