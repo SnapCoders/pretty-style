@@ -1,6 +1,5 @@
 package br.com.sprintters.prettystyle.dao;
 
-import java.util.Base64;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.DriverManager;
@@ -16,9 +15,9 @@ public class ConnectionFactory {
 	
 	public static Connection createConnection() throws SQLException {
 		String database = "db_pretty_style";
-		String password = "root";
+		String user = "root";
+		String password = "9Km#47mK";
 		
-		return DriverManager
-				.getConnection("jdbc:mysql://localhost:3306/" + database + "?useTimezone=true&serverTimezone=UTC&characterEncoding=utf-8&useSSL=false", "root", password);
+		return DriverManager.getConnection("jdbc:mysql://localhost:3306/" + database + "?useTimezone=true&serverTimezone=UTC&characterEncoding=utf-8&useSSL=false", user, password);
 	}
 }
