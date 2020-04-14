@@ -26,6 +26,22 @@ $(document).ready(function () {
 // 	});
 // }
 
+function AlertaSucesso(data) {
+	swal({
+		title: 'Sucesso!',
+		text: data.message,
+		type: 'success',
+	});
+};
+
+function AlertaErro(data) {
+	swal({
+		title: 'Erro!',
+		text: data.message,
+		type: 'error',
+	});
+};
+
 function handleLogin(form) {
 	$.ajax({
 		url: '/PrettyStyle/sessions', type: 'POST', data: $(form).serialize(),
@@ -43,21 +59,5 @@ function handleLogin(form) {
 		error: function (data) {
 			AlertaErro(data);
 		}
-	});
-};
-
-function AlertaSucesso(data) {
-	swal({
-		title: 'Sucesso!',
-		text: data.message,
-		type: 'success',
-	});
-};
-
-function AlertaErro(data) {
-	swal({
-		title: 'Erro!',
-		text: data.message,
-		type: 'error',
 	});
 };
