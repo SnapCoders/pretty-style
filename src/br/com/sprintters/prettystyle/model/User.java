@@ -8,6 +8,10 @@ public class User extends Entity {
 	private String name;
 	private String surname;
 	private String email;
+	private String passwordHash;
+	
+	private String password;
+	private boolean signed;
 	
 	public User() { }
 
@@ -53,6 +57,30 @@ public class User extends Entity {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+	public String getPasswordHash() {
+		return passwordHash;
+	}
+
+	public void setPasswordHash(String passwordHash) {
+		this.passwordHash = passwordHash;
+	}
+	
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public boolean isSigned() {
+		return signed;
+	}
+
+	public void setSigned(boolean signed) {
+		this.signed = signed;
 	}
 
 	@Override
