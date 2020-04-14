@@ -56,9 +56,9 @@ public class ProductController extends HttpServlet {
 	
 	@HttpMethodConstraint("DELETE")
 	protected void doDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int id = Integer.parseInt(request.getQueryString());
-		
 		try {
+			int id = Integer.parseInt(request.getQueryString());
+			
 			ProductService ps = new ProductService();
 		
 			Product obj = ps.find(id);

@@ -30,7 +30,7 @@ public class SessionController extends HttpServlet {
 
 			user.setPassword("123456");
 
-			int id = service.create(user);
+			service.create(user);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
