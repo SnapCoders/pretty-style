@@ -27,15 +27,62 @@
  
  # Protótipo
  ## Home
- <div class="pull-right">
-  ![Home_part1][]
- </div>
+ # ![Home1][]
 
  ## Continuação Home
- <div class="pull-left">
-  ![Home_part2][]
- </div>
+ # ![Home2][]
 
-[Home_part1]: https://github.com/Sprintters/pretty-style/blob/develop/WebContent/App/assets/prototype/img/1-Home_part1.png
-[Home_part2]: https://github.com/Sprintters/pretty-style/blob/develop/WebContent/App/assets/prototype/img/1-Home_part2.png
-[Cadastro_Usuario_Simples]:https://github.com/Sprintters/pretty-style/blob/develop/WebContent/App/assets/prototype/img/2-CadastroUsuarioSimples.png
+ ## Criação de conta Simples
+ # ![SignUpSimple][]
+
+ ## Criação de conta Business
+ # ![SignUpBusiness][]
+
+ ## Login
+ # ![SignIn][]
+
+ ## Detalhes do produto
+ # ![ProductDetails][]
+ 
+ ## Carrinho
+ # ![Cart][]
+ 
+ ## Produtos desejáveis
+ # ![Favorites][]
+ 
+ ## Meu perfil
+ # ![MyAccount][]
+ 
+ ## Endereços cadastrados
+ # ![AccountAddresses][]
+ 
+ ## Cadastrar um novo endereço
+ # ![AddressRegister][]
+ 
+ ## Catálogo de produtos
+ # ![Catalog][]
+ 
+ ## Etapas de pagamento
+ # ![PaymentsSteps1][]
+ 
+ ## Agradecimentos
+ # ![PaymentsSteps2][]
+ 
+ ## Meus pedidos
+ # ![MyRequests][]
+
+[Home1]: https://github.com/Sprintters/pretty-style/blob/develop/WebContent/App/assets/prototype/img/1-Home_part1.png
+[Home2]: https://github.com/Sprintters/pretty-style/blob/develop/WebContent/App/assets/prototype/img/1-Home_part2.png
+[SignUpSimple]:https://github.com/Sprintters/pretty-style/blob/develop/WebContent/App/assets/prototype/img/2-CadastroUsuarioSimples.png
+[SignUpBusiness]:https://github.com/Sprintters/pretty-style/blob/develop/WebContent/App/assets/prototype/img/3-CadastroUsuarioBusiness.png
+[SignIn]:https://github.com/Sprintters/pretty-style/blob/develop/WebContent/App/assets/prototype/img/4-LoginUsuario.png
+[ProductDetails]:https://github.com/Sprintters/pretty-style/blob/develop/WebContent/App/assets/prototype/img/5-DetalhesProduto.png
+[Cart]:https://github.com/Sprintters/pretty-style/blob/develop/WebContent/App/assets/prototype/img/6-Carrinho.png
+[Favorites]:https://github.com/Sprintters/pretty-style/blob/develop/WebContent/App/assets/prototype/img/7-Favoritos.png
+[MyAccount]:https://github.com/Sprintters/pretty-style/blob/develop/WebContent/App/assets/prototype/img/8-Perfil_part1.png
+[AccountAddresses]:https://github.com/Sprintters/pretty-style/blob/develop/WebContent/App/assets/prototype/img/8-Perfil_part2.png
+[AddressRegister]:https://github.com/Sprintters/pretty-style/blob/develop/WebContent/App/assets/prototype/img/8-Perfil_part3.png
+[Catalog]:https://github.com/Sprintters/pretty-style/blob/develop/WebContent/App/assets/prototype/img/9-Catalogo.png
+[PaymentsSteps1]:https://github.com/Sprintters/pretty-style/blob/develop/WebContent/App/assets/prototype/img/10-EtapasPagamento_part1.png
+[PaymentsSteps2]:https://github.com/Sprintters/pretty-style/blob/develop/WebContent/App/assets/prototype/img/10-EtapasPagamento_part2.png
+[MyRequests]:https://github.com/Sprintters/pretty-style/blob/develop/WebContent/App/assets/prototype/img/11-MeusPedidos.png
