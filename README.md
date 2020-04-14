@@ -26,50 +26,81 @@
  <hr />
  
  # Protótipo
+
  ## Home
- # ![Home1][]
+ <p align="center">
+  <img width="100%" height="100%" src="https://github.com/Sprintters/pretty-style/blob/develop/WebContent/App/assets/prototype/img/1-Home_part1.png" height="150" width="175" alt="Home" />
+ </p>
 
  ## Continuação Home
- # ![Home2][]
+ <p align="center">
+  <img width="100%" height="100%" src="https://github.com/Sprintters/pretty-style/blob/develop/WebContent/App/assets/prototype/img/1-Home_part2.png" height="150" width="175" alt="Continuação da home" />
+ </p>
 
  ## Criação de conta Simples
- # ![SignUpSimple][]
+ <p align="center">
+  <img width="100%" height="100%" src="https://github.com/Sprintters/pretty-style/blob/develop/WebContent/App/assets/prototype/img/2-CadastroUsuarioSimples.png" height="150" width="175" alt="Cadastro de usuário simples" />
+ </p>
 
  ## Criação de conta Business
- # ![SignUpBusiness][]
+ <p align="center">
+  <img width="100%" height="100%" src="https://github.com/Sprintters/pretty-style/blob/develop/WebContent/App/assets/prototype/img/3-CadastroUsuarioBusiness.png" height="150" width="175" alt="Cadastro de usuário business" />
+ </p>
 
  ## Login
- # ![SignIn][]
+ <p align="center">
+  <img width="100%" height="100%" src="https://github.com/Sprintters/pretty-style/blob/develop/WebContent/App/assets/prototype/img/4-LoginUsuario.png" height="150" width="175" alt="Login" />
+ </p>
 
  ## Detalhes do produto
- # ![ProductDetails][]
+ <p align="center">
+  <img width="100%" height="100%" src="https://github.com/Sprintters/pretty-style/blob/develop/WebContent/App/assets/prototype/img/5-DetalhesProduto.png" height="150" width="175" alt="Detalhes do produto" />
+ </p>
  
  ## Carrinho
- # ![Cart][]
+ <p align="center">
+  <img width="100%" height="100%" src="https://github.com/Sprintters/pretty-style/blob/develop/WebContent/App/assets/prototype/img/6-Carrinho.png" height="150" width="175" alt="Carrinho" />
+ </p>
  
  ## Produtos desejáveis
- # ![Favorites][]
+ <p align="center">
+  <img width="100%" height="100%" src="https://github.com/Sprintters/pretty-style/blob/develop/WebContent/App/assets/prototype/img/7-Favoritos.png" height="150" width="175" alt="Produtos desejáveis" />
+ </p>
  
  ## Meu perfil
- # ![MyAccount][]
+ <p align="center">
+  <img width="100%" height="100%" src="https://github.com/Sprintters/pretty-style/blob/develop/WebContent/App/assets/prototype/img/8-Perfil_part1.png" height="150" width="175" alt="Meu perfil" />
+ </p>
  
  ## Endereços cadastrados
- # ![AccountAddresses][]
+ <p align="center">
+  <img width="100%" height="100%" src="https://github.com/Sprintters/pretty-style/blob/develop/WebContent/App/assets/prototype/img/8-Perfil_part2.png" height="150" width="175" alt="Meus endereços" />
+ </p>
  
  ## Cadastrar um novo endereço
- # ![AddressRegister][]
+ <p align="center">
+  <img width="100%" height="100%" src="https://github.com/Sprintters/pretty-style/blob/develop/WebContent/App/assets/prototype/img/8-Perfil_part3.png" height="150" width="175" alt="Cadastrar um novo endereço" />
+ </p>
  
  ## Catálogo de produtos
- # ![Catalog][]
+ <p align="center">
+  <img width="100%" height="100%" src="https://github.com/Sprintters/pretty-style/blob/develop/WebContent/App/assets/prototype/img/9-Catalogo.png" height="150" width="175" alt="Catálogo de produtos" />
+ </p>
  
  ## Etapas de pagamento
- # ![PaymentsSteps1][]
+ <p align="center">
+  <img width="100%" height="100%" src="https://github.com/Sprintters/pretty-style/blob/develop/WebContent/App/assets/prototype/img/10-EtapasPagamento_part1.png" height="150" width="175" alt="Etapas de pagamento" />
+ </p>
  
  ## Agradecimentos
- # ![PaymentsSteps2][]
+ <p align="center">
+  <img width="100%" height="100%" src="https://github.com/Sprintters/pretty-style/blob/develop/WebContent/App/assets/prototype/img/10-EtapasPagamento_part2.png" height="150" width="175" alt="Agradecimentos" />
+ </p>
  
  ## Meus pedidos
- # ![MyRequests][]
+ <p align="center">
+  <img width="100%" height="100%" src="https://github.com/Sprintters/pretty-style/blob/develop/WebContent/App/assets/prototype/img/11-MeusPedidos.png" height="150" width="175" alt="Meus pedidos" />
+ </p>
 
 [Home1]: https://github.com/Sprintters/pretty-style/blob/develop/WebContent/App/assets/prototype/img/1-Home_part1.png
 [Home2]: https://github.com/Sprintters/pretty-style/blob/develop/WebContent/App/assets/prototype/img/1-Home_part2.png
