@@ -16,7 +16,7 @@
         </div>
         <strong>Gerenciar</strong>
       </div>
-      <div class="account">
+      <div class="account" onclick="window.location.href = '/PrettyStyle/App/pages/sign-in/sign-in.jsp'">
         <div class="account-icon">
           <img src="<%=request.getContextPath()%>/App/assets/icons/home.svg">
         </div>

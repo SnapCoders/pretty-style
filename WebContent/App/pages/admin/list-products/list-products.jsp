@@ -32,7 +32,6 @@
   			
   			request.setAttribute("products", ps.list());
   		%>
-  		<% request.getContextPath(); %>
 		<c:import url="../../../components/header.jsp" />
 		<div class="container">
 			<div class="list-products-container">

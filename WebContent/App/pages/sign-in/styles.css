@@ -22,6 +22,14 @@ div.login-container div.container div.jumbotron.main {
 	padding: 15px;
 }
 
+div.login-container div.container div.jumbotron.main div.content form label.error {
+	color: #f92d2d;
+	font-weight: bold;
+	font-size: 0.8em;
+	margin-top: 5px;
+	filter: opacity(0.8);
+}
+
 div.login-container div.container div.jumbotron.main div.content {
 	padding: 50px 30% 50px 30%;
 }

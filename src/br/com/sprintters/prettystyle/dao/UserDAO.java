@@ -11,13 +11,14 @@ import br.com.sprintters.prettystyle.model.User;
 public class UserDAO {
 	public int insert(User to) throws Exception {
 		int id = 0;
-		String sqlInsert = "INSERT INTO user (name, surname, email, created_at) VALUES (?, ?, ?, NOW())";
+		String sqlInsert = "INSERT INTO user (name, surname, email, password_hash, created_at) VALUES (?, ?, ?, ?, NOW())";
 		
 		try (Connection conn = ConnectionFactory.createConnection();
 			 PreparedStatement stm = conn.prepareStatement(sqlInsert)) {
 			stm.setString(1, to.getName());
 			stm.setString(2, to.getSurname());
 			stm.setString(3, to.getEmail());
+			stm.setString(4, to.getPasswordHash());
 			stm.execute();
 			try (ResultSet rs = stm.executeQuery("SELECT LAST_INSERT_ID()")) {
 				if (rs.next()) {
@@ -115,5 +116,63 @@ public class UserDAO {
 		}
 		
 		return users;
+	}
+	
+	public User findByEmail(String email) throws Exception {
+		User to = new User();
+		String sqlSelect = "SELECT * FROM user WHERE email = ?";
+		
+		try (Connection conn = ConnectionFactory.createConnection();
+			 PreparedStatement stm = conn.prepareStatement(sqlSelect)) {
+			stm.setString(1, email);
+			
+			try (ResultSet rs = stm.executeQuery();) {
+				if (rs.next()) {
+					to.setId(rs.getInt("id"));
+					to.setName(rs.getString("name"));
+					to.setSurname(rs.getString("surname"));
+					to.setEmail(rs.getString("email"));
+					to.setCreatedAt(rs.getTimestamp("created_at"));
+					to.setUpdatedAt(rs.getTimestamp("updated_at"));
+					to.setDeletedAt(rs.getTimestamp("deleted_at"));
+					to.setPasswordHash(rs.getString("password_hash"));
+				}
+			} catch (SQLException ex) {
+				throw new Exception(ex.getMessage());
+			}
+		} catch (SQLException e) {
+			throw new Exception(e.getMessage());
+		}
+		
+		return to;
+	}
+	
+	public User findByUsername(String username) throws Exception {
+		User to = new User();
+		String sqlSelect = "SELECT * FROM user WHERE username = ?";
+		
+		try (Connection conn = ConnectionFactory.createConnection();
+			 PreparedStatement stm = conn.prepareStatement(sqlSelect)) {
+			stm.setString(1, username);
+			
+			try (ResultSet rs = stm.executeQuery();) {
+				if (rs.next()) {
+					to.setId(rs.getInt("id"));
+					to.setName(rs.getString("name"));
+					to.setSurname(rs.getString("surname"));
+					to.setEmail(rs.getString("email"));
+					to.setCreatedAt(rs.getTimestamp("created_at"));
+					to.setUpdatedAt(rs.getTimestamp("updated_at"));
+					to.setDeletedAt(rs.getTimestamp("deleted_at"));
+					to.setPasswordHash(rs.getString("password_hash"));
+				}
+			} catch (SQLException ex) {
+				throw new Exception(ex.getMessage());
+			}
+		} catch (SQLException e) {
+			throw new Exception(e.getMessage());
+		}
+		
+		return to;
 	}
 }

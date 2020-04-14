@@ -1,5 +1,7 @@
 package br.com.sprintters.prettystyle.servlets;
 
+import org.json.JSONObject;
+
 import br.com.sprintters.prettystyle.model.Address;
 import br.com.sprintters.prettystyle.service.AddressService;
 
@@ -10,8 +12,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-
-import org.json.JSONObject;
 
 @WebServlet("/addresses")
 public class AddressController extends HttpServlet {
@@ -43,27 +43,22 @@ public class AddressController extends HttpServlet {
         
         //fake user
         address.setIdUser(1);
-
-        AddressService cs = new AddressService();
-        
-        try {
-        	cs.create(address);
-        	JSONObject retorno = new JSONObject();
-        	retorno.put("success", true);
-        	retorno.put("message", "Cadastro realizado com sucesso.");
-        	
-        	response.setContentType("application/json");
-        	response.getWriter().write(retorno.toString());
-        	
-        } catch (Exception e) {
-        	JSONObject retorno = new JSONObject();
-        	retorno.put("error", true);
-        	retorno.put("message", "Erro ao realizar o cadastro.");
-        	
-        	response.setContentType("application/json");
-        	response.getWriter().write(retorno.toString());;
-        }
-
-
+		AddressService cs = new AddressService();
+		
+		try {
+			cs.create(address);
+			JSONObject retorno = new JSONObject();
+			retorno.put("success", true);
+			retorno.put("message", "Cadastro realizado com sucesso.");
+		
+			response.setContentType("application/json");
+			response.getWriter().write(retorno.toString());
+		} catch (Exception e) {
+			JSONObject retorno = new JSONObject();
+			retorno.put("error", true); retorno.put("message", "Erro ao realizar o cadastro.");
+		
+			response.setContentType("application/json");
+			response.getWriter().write(retorno.toString());
+		}
     }
 }

@@ -1,9 +1,10 @@
 package br.com.sprintters.prettystyle.service;
 
+import java.util.Base64;
+import java.util.ArrayList;
+
 import br.com.sprintters.prettystyle.model.User;
 import br.com.sprintters.prettystyle.dao.UserDAO;
-
-import java.util.ArrayList;
 
 public class UserService {
     UserDAO dao;
@@ -14,6 +15,11 @@ public class UserService {
 
     public int create(User user) throws Exception {
         try {
+        	String passwordHash = cripto(user.getPassword());
+        	
+        	user.setPassword(null);
+        	user.setPasswordHash(passwordHash);
+        	
         	return dao.insert(user);
     	} catch (Exception e) {
     		throw new Exception(e.getMessage());
@@ -50,5 +56,32 @@ public class UserService {
     	} catch (Exception e) {
     		throw new Exception(e.getMessage());
     	}
+    }
+    
+    public User login(String usernameOrEmail, String password) {
+    	User user = null;
+    	
+    	try {
+    		if (usernameOrEmail.contains("@")) user = dao.findByEmail(usernameOrEmail);
+    		else user = dao.findByUsername(usernameOrEmail);
+    		
+    		String passwordDecripted = decripto(user.getPasswordHash());
+    		
+    		if (password.equals(passwordDecripted)) {
+    			user.setSigned(true);
+    		}
+    	} catch (Exception e) {
+    		user.setSigned(false);
+    	}
+    	
+    	return user;
+    }
+    
+    public static String cripto(String password) {
+        return Base64.getEncoder().encodeToString(password.getBytes());
+    }
+    
+    public static String decripto(String passwordHash) {
+        return new String(Base64.getDecoder().decode(passwordHash));
     }
 }
