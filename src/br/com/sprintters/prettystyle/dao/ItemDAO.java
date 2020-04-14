@@ -6,6 +6,8 @@ import java.sql.Connection;
 import java.sql.SQLException;
 
 import br.com.sprintters.prettystyle.model.Item;
+import br.com.sprintters.prettystyle.model.Product;
+import br.com.sprintters.prettystyle.model.Request;
 
 import java.sql.PreparedStatement;
 
@@ -114,5 +116,68 @@ public class ItemDAO {
 		}
 		
 		return items;
+	}
+	public ArrayList<Item> listAllPlusItem(int id) throws Exception {
+		ArrayList<Item> item = new ArrayList<Item>();
+		String sqlSelect = "SELECT quantity, name, description, price FROM "
+				+ "item INNER JOIN product on product.id = id_product  WHERE id_product = ?;";
+		
+		try (Connection conn = ConnectionFactory.createConnection();
+			 PreparedStatement stm = conn.prepareStatement(sqlSelect)) {
+			stm.setInt(1, id);
+			try (ResultSet rs = stm.executeQuery()) {
+				while (rs.next()) {
+					Item to = new Item(
+						rs.getInt("quantity"),
+						rs.getString("name"),
+						rs.getString("description"),
+						rs.getInt("price")
+					);
+					item.add(to);
+				}
+			} catch (SQLException ex) {
+				throw new Exception(ex.getMessage());
+			}
+		} catch (SQLException e) {
+			throw new Exception(e.getMessage());
+		}
+		
+		return item;
+	}
+	public ArrayList<Item> listRequestsByIdClient(int idClient) throws Exception  {
+		ArrayList<Item> reqs = new ArrayList<Item>();
+		String sqlSelect = "SELECT\r\n" + 
+				"	p.name\r\n" + 
+				"    , p.description\r\n" + 
+				"    , p.price\r\n" + 
+				"    , p.id_mark\r\n" + 
+				"    , r.id_client\r\n" + 
+				"FROM\r\n" + 
+				"	product p\r\n" + 
+				"    INNER JOIN item i on p.id = i.id_product\r\n" + 
+				"    INNER JOIN request r on i.id_request = r.id\r\n" + 
+				"WHERE r.id_client = ?;";
+		
+		try (Connection conn = ConnectionFactory.createConnection();
+			 PreparedStatement stm = conn.prepareStatement(sqlSelect)) {
+			stm.setInt(1, idClient);
+			try (ResultSet rs = stm.executeQuery()) {
+				while (rs.next()) {
+					Item to = new Item(
+						rs.getInt("quantity"),	
+						rs.getString("name"),	
+						rs.getString("description"),
+						rs.getInt("price")
+					);
+					reqs.add(to);
+				}
+			} catch (SQLException ex) {
+				throw new Exception(ex.getMessage());
+			}
+		} catch (SQLException e) {
+			throw new Exception(e.getMessage());
+		}
+		
+		return reqs;
 	}
 }
