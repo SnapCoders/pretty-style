@@ -139,4 +139,37 @@ public class AddressDAO {
 		
 		return addresses;
 	}
+	public ArrayList<Address> listAllPlusName(int id) throws Exception {
+		ArrayList<Address> addresses = new ArrayList<Address>();
+		String sqlSelect = "SELECT place, number, neighborhood, city, country, zip, complement, id_user, name, surname FROM "
+				+ "address INNER JOIN user on user.id = id_user  WHERE id_user = ?;";
+		
+		try (Connection conn = ConnectionFactory.createConnection();
+			 PreparedStatement stm = conn.prepareStatement(sqlSelect)) {
+			stm.setInt(1, id);
+			try (ResultSet rs = stm.executeQuery()) {
+				while (rs.next()) {
+					Address to = new Address(
+						rs.getString("place"),
+						rs.getString("number"),
+						rs.getString("neighborhood"),
+						rs.getString("city"),
+						rs.getString("country"),
+						rs.getString("zip"),
+						rs.getString("complement"),						
+						rs.getInt("id_user"),
+						rs.getString("name"),
+						rs.getString("surname")
+					);
+					addresses.add(to);
+				}
+			} catch (SQLException ex) {
+				throw new Exception(ex.getMessage());
+			}
+		} catch (SQLException e) {
+			throw new Exception(e.getMessage());
+		}
+		
+		return addresses;
+	}
 }

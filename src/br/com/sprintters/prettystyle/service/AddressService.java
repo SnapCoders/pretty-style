@@ -51,4 +51,12 @@ public class AddressService {
     		throw new Exception(e.getMessage());
     	}
     }
+    
+    public ArrayList<Address> listPlusName(int id) throws Exception {
+        try {
+        	return dao.listAllPlusName(id);
+    	} catch (Exception e) {
+    		throw new Exception(e.getMessage());
+    	}
+    }
 }
