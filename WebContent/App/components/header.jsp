@@ -29,7 +29,7 @@
         </div>
       </div>
       <div class="cart">
-        <div class="cart-icon">
+        <div class="cart-icon" onclick="window.location.href='<%=request.getContextPath()%>/App/pages/cart/cart.jsp';">
           <img src="<%=request.getContextPath()%>/App/assets/icons/cart.svg">
         </div>
       </div>

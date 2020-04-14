@@ -51,4 +51,11 @@ public class ItemService {
     		throw new Exception(e.getMessage());
     	}
     }
+    public ArrayList<Item> listPlusItem(int idClient) throws Exception {
+        try {
+        	return dao.listRequestsByIdClient(idClient);
+    	} catch (Exception e) {
+    		throw new Exception(e.getMessage());
+    	}
+    }
 }
