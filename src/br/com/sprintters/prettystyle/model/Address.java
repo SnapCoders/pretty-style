@@ -201,4 +201,6 @@ public class Address extends Entity {
 				+ ", country=" + country + ", zip=" + zip + ", complement=" + complement + ", idUser=" + idUser
 				+ ", user=" + user + "]";
 	}
+
+
 }
