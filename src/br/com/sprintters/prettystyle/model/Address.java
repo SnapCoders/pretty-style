@@ -14,6 +14,8 @@ public class Address extends Entity {
 	private String complement;
 	
 	private int idUser;
+	private String name;
+	private String surname;
 	private User user;
 	
 	public Address() { }
@@ -28,7 +30,21 @@ public class Address extends Entity {
 		this.complement = complement;
 		this.idUser = idUser;
 	}
-
+	
+	public Address(String place, String number, String neighborhood, String city, String country, String zip, 
+			String complement, int idUser, String name, String surname) {
+		this.place = place;
+		this.number = number;
+		this.neighborhood = neighborhood;
+		this.city = city;
+		this.country = country;
+		this.zip = zip;
+		this.complement = complement;
+		this.idUser = idUser;
+		this.name = name;
+		this.surname = surname;
+	}
+	
 	public Address(String place, String number, String neighborhood, String city, String country, String zip, String complement, User user) {
 		this.place = place;
 		this.number = number;
@@ -162,7 +178,23 @@ public class Address extends Entity {
 	public void setUser(User user) {
 		this.user = user;
 	}
+	
+	public String getName() {
+		return name;
+	}
 
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getSurname() {
+		return surname;
+	}
+
+	public void setSurname(String surname) {
+		this.surname = surname;
+	}
+	
 	@Override
 	public String toString() {
 		return "Address [place=" + place + ", number=" + number + ", neighborhood=" + neighborhood + ", city=" + city
