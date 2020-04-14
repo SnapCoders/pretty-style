@@ -22,5 +22,7 @@
 <enter_em_tudo>
 
  - git checkout develop
+ 
+ # [![Home_part1][]][Home]
 
-[Flutter logo]: https://raw.githubusercontent.com/flutter/website/master/src/_assets/image/flutter-lockup.png
+[Home_part1]: https://github.com/Sprintters/pretty-style/blob/develop/WebContent/App/assets/prototype/img/1-Home_part1.png
