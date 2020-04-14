@@ -1,3 +1,6 @@
+<%@ page import="java.util.ArrayList"%>
+<%@ page import="br.com.sprintters.prettystyle.model.Category"%>
+<%@ page import="br.com.sprintters.prettystyle.service.CategoryService"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
@@ -12,17 +15,23 @@
 
     <title>Pretty Style - Catálogo</title>
     
-    <link rel="stylesheet" href="App/lib/bootstrap/4.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../lib/bootstrap/4.4.1/css/bootstrap.min.css">
 
-    <link rel="stylesheet" href="App/styles/index.css">
-    <link rel="stylesheet" href="App/styles/header.css">
+    <link rel="stylesheet" href="../../styles/index.css">
+    <link rel="stylesheet" href="../../styles/header.css">
     
-    <link rel="stylesheet" href="App/pages/catalog/styles.css">
-    <link rel="stylesheet" href="App/styles/responsive.css">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="../../styles/responsive.css">
   </head>
   <body>
   	<c:import url="../../components/header.jsp" />
   	<div class="container">
+  	<%
+			CategoryService cs = new CategoryService();
+			ArrayList<Category> lista = cs.list(); 
+			request.setAttribute("lista", lista);
+		%>
+  	
 		<div class="catalog-container">
 			<div class="container">
 				<div class="col-md-12 header">
@@ -41,32 +50,17 @@
 							<div class="jumbotron filters">
 								<label>Categorias</label>
 								<hr />
-								<div class="filters-inputs">
-									<div class="male-filter">
-										<label class="container-check">Masculino
-										  <input type="checkbox" checked="checked">
-										  <span class="checkmark"></span>
-										</label>
+								<c:forEach var="request" items="${lista}">
+									<div class="filters-inputs">
+									
+										<div class="male-filter">
+											<label class="container-check">${request.name}
+											  <input type="checkbox">
+											  <span class="checkmark"></span>
+											</label>
+										</div>
 									</div>
-									<div class="female-filter">
-										<label class="container-check">Feminino
-										  <input type="checkbox">
-										  <span class="checkmark"></span>
-										</label>
-									</div>
-									<div class="acessories-filter">
-										<label class="container-check">Acessórios
-										  <input type="checkbox">
-										  <span class="checkmark"></span>
-										</label>
-									</div>
-									<div class="pets-filter">
-										<label class="container-check">Pets
-										  <input type="checkbox">
-										  <span class="checkmark"></span>
-										</label>
-									</div>
-								</div>
+								</c:forEach>
 								<div class="divisor"></div>
 								<label>Preço</label>
 								<hr />
@@ -80,7 +74,7 @@
 											<div class="col-md-3 col-product">
 												<div class="jumbotron product">
 													<div class="photo-product">
-														<img src="App/assets/img/jbl.png" alt="JBL Flip 3 Portable">
+														<img src="../../assets/img/jbl.png" alt="JBL Flip 3 Portable">
 													</div>
 													<label class="title-product">JBL Flip 3 Portable</label>
 													<p>Caixinha de som portátil da JBL.</p>
@@ -97,7 +91,7 @@
 											<div class="col-md-3 col-product">
 												<div class="jumbotron product">
 													<div class="photo-product">
-														<img src="App/assets/img/jbl.png" alt="JBL Flip 3 Portable">
+														<img src="../../assets/img/jbl.png" alt="JBL Flip 3 Portable">
 													</div>
 													<label class="title-product">JBL Flip 3 Portable</label>
 													<p>Caixinha de som portátil da JBL.</p>
@@ -114,7 +108,7 @@
 											<div class="col-md-3 col-product">
 												<div class="jumbotron product">
 													<div class="photo-product">
-														<img src="App/assets/img/jbl.png" alt="JBL Flip 3 Portable">
+														<img src="../../assets/img/jbl.png" alt="JBL Flip 3 Portable">
 													</div>
 													<label class="title-product">JBL Flip 3 Portable</label>
 													<p>Caixinha de som portátil da JBL.</p>
@@ -131,7 +125,7 @@
 											<div class="col-md-3 col-product">
 												<div class="jumbotron product">
 													<div class="photo-product">
-														<img src="App/assets/img/jbl.png" alt="JBL Flip 3 Portable">
+														<img src="../../assets/img/jbl.png" alt="JBL Flip 3 Portable">
 													</div>
 													<label class="title-product">JBL Flip 3 Portable</label>
 													<p>Caixinha de som portátil da JBL.</p>
@@ -150,7 +144,7 @@
 											<div class="col-md-3 col-product">
 												<div class="jumbotron product">
 													<div class="photo-product">
-														<img src="App/assets/img/jbl.png" alt="JBL Flip 3 Portable">
+														<img src="../../assets/img/jbl.png" alt="JBL Flip 3 Portable">
 													</div>
 													<label class="title-product">JBL Flip 3 Portable</label>
 													<p>Caixinha de som portátil da JBL.</p>
@@ -167,7 +161,7 @@
 											<div class="col-md-3 col-product">
 												<div class="jumbotron product">
 													<div class="photo-product">
-														<img src="App/assets/img/jbl.png" alt="JBL Flip 3 Portable">
+														<img src="../../assets/img/jbl.png" alt="JBL Flip 3 Portable">
 													</div>
 													<label class="title-product">JBL Flip 3 Portable</label>
 													<p>Caixinha de som portátil da JBL.</p>
@@ -184,7 +178,7 @@
 											<div class="col-md-3 col-product">
 												<div class="jumbotron product">
 													<div class="photo-product">
-														<img src="App/assets/img/jbl.png" alt="JBL Flip 3 Portable">
+														<img src="../../assets/img/jbl.png" alt="JBL Flip 3 Portable">
 													</div>
 													<label class="title-product">JBL Flip 3 Portable</label>
 													<p>Caixinha de som portátil da JBL.</p>
@@ -201,7 +195,7 @@
 											<div class="col-md-3 col-product">
 												<div class="jumbotron product">
 													<div class="photo-product">
-														<img src="App/assets/img/jbl.png" alt="JBL Flip 3 Portable">
+														<img src="../../assets/img/jbl.png" alt="JBL Flip 3 Portable">
 													</div>
 													<label class="title-product">JBL Flip 3 Portable</label>
 													<p>Caixinha de som portátil da JBL.</p>
@@ -236,7 +230,7 @@
 		</div>
 	</div>
 		
-	<script src="App/lib/jquery/1.9.1/jquery-1.9.1.min.js"></script>
-	<!-- <script src="App/pages/catalog/utils.js"></script> -->
+	<script src="../../lib/jquery/1.9.1/jquery-1.9.1.min.js"></script>
+	<!-- <script src="../../pages/catalog/utils.js"></script> -->
 	</body>
 </html>
