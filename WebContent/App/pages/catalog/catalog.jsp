@@ -1,3 +1,6 @@
+<%@ page import="java.util.ArrayList"%>
+<%@ page import="br.com.sprintters.prettystyle.model.Category"%>
+<%@ page import="br.com.sprintters.prettystyle.service.CategoryService"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
@@ -23,6 +26,12 @@
   <body>
   	<c:import url="../../components/header.jsp" />
   	<div class="container">
+  	<%
+			CategoryService cs = new CategoryService();
+			ArrayList<Category> lista = cs.list(); 
+			request.setAttribute("lista", lista);
+		%>
+  	
 		<div class="catalog-container">
 			<div class="container">
 				<div class="col-md-12 header">
@@ -41,32 +50,17 @@
 							<div class="jumbotron filters">
 								<label>Categorias</label>
 								<hr />
-								<div class="filters-inputs">
-									<div class="male-filter">
-										<label class="container-check">Masculino
-										  <input type="checkbox" checked="checked">
-										  <span class="checkmark"></span>
-										</label>
+								<c:forEach var="request" items="${lista}">
+									<div class="filters-inputs">
+									
+										<div class="male-filter">
+											<label class="container-check">${request.name}
+											  <input type="checkbox">
+											  <span class="checkmark"></span>
+											</label>
+										</div>
 									</div>
-									<div class="female-filter">
-										<label class="container-check">Feminino
-										  <input type="checkbox">
-										  <span class="checkmark"></span>
-										</label>
-									</div>
-									<div class="acessories-filter">
-										<label class="container-check">Acessórios
-										  <input type="checkbox">
-										  <span class="checkmark"></span>
-										</label>
-									</div>
-									<div class="pets-filter">
-										<label class="container-check">Pets
-										  <input type="checkbox">
-										  <span class="checkmark"></span>
-										</label>
-									</div>
-								</div>
+								</c:forEach>
 								<div class="divisor"></div>
 								<label>Preço</label>
 								<hr />
