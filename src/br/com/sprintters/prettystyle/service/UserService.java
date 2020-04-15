@@ -35,7 +35,7 @@ public class UserService {
         	user.setPassword(null);
         	user.setPasswordHash(passwordHash);
         	
-        	// 2 - Cadastrar o usuário
+        	// 2 - Cadastrar o usuï¿½rio
         	idUser = userDAO.insert(user);
         	
         	// 3 - Cadastrar os telefones
@@ -68,7 +68,18 @@ public class UserService {
 
     public User find(int id) throws Exception {
     	try {
-    		return userDAO.find(id);
+    		User user = new User();
+    		user = userDAO.find(id);
+    		
+    		Client client = clientDAO.findByIdUser(id);
+			Provider provider = providerDAO.findByIdUser(id);
+			
+			if (client != null) {
+				user.setClient(client);
+			} else {
+				user.setProvider(provider);
+			}
+    		return user;
     	} catch (Exception e) {
     		throw new Exception(e.getMessage());
     	}

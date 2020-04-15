@@ -2,8 +2,11 @@ package br.com.sprintters.prettystyle.dao;
 
 import java.sql.ResultSet;
 import java.sql.Connection;
+import java.sql.Date;
 import java.util.ArrayList;
+import java.util.Locale;
 import java.sql.SQLException;
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 
 import br.com.sprintters.prettystyle.model.Client;
@@ -111,6 +114,7 @@ public class ClientDAO {
 		return to;
 	}
 	
+	@SuppressWarnings("deprecation")
 	public Client findByIdUser(int idUser) throws Exception {
 		Client to = new Client();
 		String sqlSelect = "SELECT * FROM client WHERE id_user = ?";
@@ -119,17 +123,23 @@ public class ClientDAO {
 			 PreparedStatement stm = conn.prepareStatement(sqlSelect)) {
 			stm.setInt(1, idUser);
 			
-			try (ResultSet rs = stm.executeQuery()) {
+			try (ResultSet rs = stm.executeQuery()) {	
 				if (rs.next()) {
 					to.setId(rs.getInt("id"));
 					to.setName(rs.getString("name"));
 					to.setSurname(rs.getString("surname"));
-					to.setBirthday(new SimpleDateFormat("dd/MM/yyyy").parse(rs.getString("birthday")));
+					/*
+					 * String birthdayStr = rs.getString("birthday"); SimpleDateFormat sdf = new
+					 * SimpleDateFormat("dd/MM/yyyy"); java.util.Date birthday =
+					 * sdf.parse(birthdayStr);
+					 */
+					to.setBirthday(new Date(2003));
 					to.setIdUser(rs.getInt("id_user"));
 					to.setCreatedAt(rs.getTimestamp("created_at"));
 					to.setUpdatedAt(rs.getTimestamp("updated_at"));
 					to.setDeletedAt(rs.getTimestamp("deleted_at"));
 				}
+				conn.close();
 			} catch (SQLException ex) {
 				throw new Exception(ex.getMessage());
 			}

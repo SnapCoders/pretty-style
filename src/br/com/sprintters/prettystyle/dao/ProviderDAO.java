@@ -93,7 +93,7 @@ public class ProviderDAO {
 	
 	public Provider findByIdUser(int idUser) throws Exception {
 		Provider to = new Provider();
-		String sqlSelect = "SELECT * FROM client WHERE id_user = ?";
+		String sqlSelect = "SELECT * FROM provider WHERE id_user = ?";
 		
 		try (Connection conn = ConnectionFactory.createConnection();
 			 PreparedStatement stm = conn.prepareStatement(sqlSelect)) {
@@ -110,6 +110,7 @@ public class ProviderDAO {
 					to.setUpdatedAt(rs.getTimestamp("updated_at"));
 					to.setDeletedAt(rs.getTimestamp("deleted_at"));
 				}
+				conn.close();
 			} catch (SQLException ex) {
 				throw new Exception(ex.getMessage());
 			}

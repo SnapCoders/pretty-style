@@ -14,6 +14,7 @@ public class User extends Entity {
 	
 	private Client client;
 	private Provider provider;
+
 	
 	private String password;
 	private boolean signed;
