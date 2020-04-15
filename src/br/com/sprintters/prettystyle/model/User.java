@@ -1,38 +1,75 @@
 package br.com.sprintters.prettystyle.model;
 
+import java.util.Date;
 import java.sql.Timestamp;
+import java.util.ArrayList;
 
 import br.com.sprintters.prettystyle.model.generic.Entity;
 
 public class User extends Entity {
+	private String username;
 	private String name;
 	private String surname;
 	private String email;
+	private String emailConfirmation;
 	private String passwordHash;
+	private Date birthday;
+	private String sex;
+	private ArrayList<PhoneNumber> phoneNumbers;
+	
+	private Client client;
+	private Provider provider;
 	
 	private String password;
 	private boolean signed;
+	private boolean isProvider;
 	
 	public User() { }
-
+	
 	public User(String name, String surname, String email) {
 		this.name = name;
 		this.surname = surname;
 		this.email = email;
 	}
-	
-	public User(int id, String name, String surname, String email) {
-		super(id);
+
+	public User(String username, String name, String surname, String email, String emailConfirmation, Date birthday, String sex) {
+		this.username = username;
 		this.name = name;
 		this.surname = surname;
 		this.email = email;
+		this.emailConfirmation = emailConfirmation;
+		this.birthday = birthday;
+		this.sex = sex;
 	}
 	
-	public User(int id, String name, String surname, String email, Timestamp createdAt, Timestamp updatedAt, Timestamp deletedAt) {
-		super(id, createdAt, updatedAt, deletedAt);
+	public User(int id, String username, String name, String surname, String email, String emailConfirmation, Date birthday, String sex) {
+		super(id);
+		this.username = username;
 		this.name = name;
 		this.surname = surname;
 		this.email = email;
+		this.emailConfirmation = emailConfirmation;
+		this.birthday = birthday;
+		this.sex = sex;
+	}
+	
+	public User(int id, String username, String name, String surname, String email, String emailConfirmation, Date birthday, String sex, Timestamp createdAt, Timestamp updatedAt, Timestamp deletedAt) {
+		super(id, createdAt, updatedAt, deletedAt);
+		this.username = username;
+		this.name = name;
+		this.surname = surname;
+		this.email = email;
+		this.emailConfirmation = emailConfirmation;
+		this.birthday = birthday;
+		this.sex = sex;
+	}
+	
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
 	}
 
 	public String getName() {
@@ -59,6 +96,14 @@ public class User extends Entity {
 		this.email = email;
 	}
 
+	public String getEmailConfirmation() {
+		return emailConfirmation;
+	}
+
+	public void setEmailConfirmation(String emailConfirmation) {
+		this.emailConfirmation = emailConfirmation;
+	}
+
 	public String getPasswordHash() {
 		return passwordHash;
 	}
@@ -66,7 +111,47 @@ public class User extends Entity {
 	public void setPasswordHash(String passwordHash) {
 		this.passwordHash = passwordHash;
 	}
-	
+
+	public Date getBirthday() {
+		return birthday;
+	}
+
+	public void setBirthday(Date birthday) {
+		this.birthday = birthday;
+	}
+
+	public String getSex() {
+		return sex;
+	}
+
+	public void setSex(String sex) {
+		this.sex = sex;
+	}
+
+	public ArrayList<PhoneNumber> getPhoneNumbers() {
+		return phoneNumbers;
+	}
+
+	public void setPhoneNumbers(ArrayList<PhoneNumber> phoneNumbers) {
+		this.phoneNumbers = phoneNumbers;
+	}
+
+	public Client getClient() {
+		return client;
+	}
+
+	public void setClient(Client client) {
+		this.client = client;
+	}
+
+	public Provider getProvider() {
+		return provider;
+	}
+
+	public void setProvider(Provider provider) {
+		this.provider = provider;
+	}
+
 	public String getPassword() {
 		return password;
 	}
@@ -81,6 +166,16 @@ public class User extends Entity {
 
 	public void setSigned(boolean signed) {
 		this.signed = signed;
+	}
+
+	public boolean isProvider() {
+		if (this.client == null && this.provider != null) {
+			this.isProvider = false;
+		} else if (this.client != null && this.provider == null) {
+			this.isProvider = true;
+		}
+		
+		return isProvider;
 	}
 
 	@Override

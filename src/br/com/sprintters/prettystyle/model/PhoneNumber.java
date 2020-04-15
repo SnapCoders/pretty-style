@@ -12,6 +12,11 @@ public class PhoneNumber extends Entity {
 	private User user;
 	
 	public PhoneNumber() { }
+	
+	public PhoneNumber(int ddd, String number) {
+		this.ddd = ddd;
+		this.number = number;
+	}
 
 	public PhoneNumber(int ddd, String number, int idUser) {
 		this.ddd = ddd;

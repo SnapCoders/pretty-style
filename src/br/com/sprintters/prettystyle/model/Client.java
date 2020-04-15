@@ -11,6 +11,10 @@ public class Client extends Entity {
 	private User user;
 
 	public Client() { }
+	
+	public Client(String cpf) {
+		this.cpf = cpf;
+	}
 
 	public Client(String cpf, int idUser) {
 		this.cpf = cpf;
