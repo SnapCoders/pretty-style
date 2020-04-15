@@ -141,8 +141,8 @@ public class AddressDAO {
 	}
 	public ArrayList<Address> listAllPlusName(int id) throws Exception {
 		ArrayList<Address> addresses = new ArrayList<Address>();
-		String sqlSelect = "SELECT place, number, neighborhood, city, country, zip, complement, id_user, name, surname FROM "
-				+ "address INNER JOIN user on user.id = id_user  WHERE id_user = ?;";
+		String sqlSelect = "SELECT address.id, place, number, neighborhood, city, country, zip, complement, id_user, name, surname FROM "
+				+ "address INNER JOIN user on user.id = id_user  WHERE address.deleted_at IS NULL and id_user = ? ;";
 		
 		try (Connection conn = ConnectionFactory.createConnection();
 			 PreparedStatement stm = conn.prepareStatement(sqlSelect)) {
@@ -150,6 +150,7 @@ public class AddressDAO {
 			try (ResultSet rs = stm.executeQuery()) {
 				while (rs.next()) {
 					Address to = new Address(
+						rs.getInt("id"),
 						rs.getString("place"),
 						rs.getString("number"),
 						rs.getString("neighborhood"),
