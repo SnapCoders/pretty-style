@@ -21,9 +21,11 @@ public class PhoneNumberDAO {
 			stm.setInt(3, to.getIdUser());
 			stm.execute();
 			try (ResultSet rs = stm.executeQuery("SELECT LAST_INSERT_ID()")) {
-				if (rs.next()) {				
+				if (rs.next()) {					
 					id = rs.getInt(1);
 				}
+				
+				conn.close();
 			} catch (SQLException ex) {
 				throw new Exception(ex.getMessage());
 			}

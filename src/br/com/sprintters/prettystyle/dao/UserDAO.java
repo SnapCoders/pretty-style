@@ -3,7 +3,9 @@ package br.com.sprintters.prettystyle.dao;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.sql.PreparedStatement;
 
 import br.com.sprintters.prettystyle.model.User;
@@ -11,19 +13,30 @@ import br.com.sprintters.prettystyle.model.User;
 public class UserDAO {
 	public int insert(User to) throws Exception {
 		int id = 0;
-		String sqlInsert = "INSERT INTO user (name, surname, email, password_hash, created_at) VALUES (?, ?, ?, ?, NOW())";
+		String sqlInsert = "INSERT INTO user (username, name, surname, email, email_confirmation, password_hash, birthday, sex, created_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, NOW())";
 		
 		try (Connection conn = ConnectionFactory.createConnection();
 			 PreparedStatement stm = conn.prepareStatement(sqlInsert)) {
-			stm.setString(1, to.getName());
-			stm.setString(2, to.getSurname());
-			stm.setString(3, to.getEmail());
-			stm.setString(4, to.getPasswordHash());
+			stm.setString(1, to.getUsername());
+			stm.setString(2, to.getName());
+			stm.setString(3, to.getSurname());
+			stm.setString(4, to.getEmail());
+			stm.setString(5, to.getEmailConfirmation());
+			stm.setString(6, to.getPasswordHash());
+			stm.setDate(7, new java.sql.Date(to.getBirthday().getTime()));
+			
+			to.setSex("M");
+			
+			stm.setString(8, to.getSex());
 			stm.execute();
+			
 			try (ResultSet rs = stm.executeQuery("SELECT LAST_INSERT_ID()")) {
 				if (rs.next()) {
 					id = rs.getInt(1);
+					to.setId(id);
 				}
+				
+				conn.close();
 			} catch (SQLException ex) {
 				throw new Exception(ex.getMessage());
 			}
@@ -35,14 +48,19 @@ public class UserDAO {
 	}
 	
 	public void update(User to) throws Exception {
-		String sqlUpdate = "UPDATE user SET name = ?, surname = ? ,email = ? ,updated_at = NOW() WHERE id = ?";
+		String sqlUpdate = "UPDATE user SET username = ?, name = ?, surname = ? , email = ?, email_confirmation = ?, password_hash = ?, birthday = ?, sex = ?, updated_at = NOW() WHERE id = ?";
 		
 		try (Connection conn = ConnectionFactory.createConnection();
 			 PreparedStatement stm = conn.prepareStatement(sqlUpdate)) {
-			stm.setString(1, to.getName());
-			stm.setString(2, to.getSurname());
-			stm.setString(3, to.getEmail());
-			stm.setInt(4, to.getId());
+			stm.setString(1, to.getUsername());
+			stm.setString(2, to.getName());
+			stm.setString(3, to.getSurname());
+			stm.setString(4, to.getEmail());
+			stm.setString(5, to.getEmailConfirmation());
+			stm.setString(6, to.getPasswordHash());
+			stm.setDate(7, (Date)to.getBirthday());
+			stm.setString(8, to.getSex());
+			stm.setInt(9, to.getId());
 			stm.execute();
 		} catch (SQLException e) {
 			throw new Exception(e.getMessage());
@@ -72,9 +90,13 @@ public class UserDAO {
 			try (ResultSet rs = stm.executeQuery();) {
 				if (rs.next()) {
 					to.setId(rs.getInt("id"));
+					to.setUsername(rs.getString("username"));
 					to.setName(rs.getString("name"));
 					to.setSurname(rs.getString("surname"));
 					to.setEmail(rs.getString("email"));
+					to.setEmailConfirmation(rs.getString("email_confirmation"));
+					to.setBirthday(new SimpleDateFormat("dd/MM/yyyy").parse(rs.getString("birthday")));
+					to.setSex(rs.getString("sex"));
 					to.setCreatedAt(rs.getTimestamp("created_at"));
 					to.setUpdatedAt(rs.getTimestamp("updated_at"));
 					to.setDeletedAt(rs.getTimestamp("deleted_at"));
@@ -99,9 +121,13 @@ public class UserDAO {
 				while (rs.next()) {
 					User to = new User(
 							rs.getInt("id"),
+							rs.getString("username"),
 							rs.getString("name"),
 							rs.getString("surname"),
 							rs.getString("email"),
+							rs.getString("email_confirmation"),
+							rs.getDate("birthday"),
+							rs.getString("sex"),
 							rs.getTimestamp("created_at"),
 							rs.getTimestamp("updated_at"),
 							rs.getTimestamp("deleted_at")
@@ -129,9 +155,13 @@ public class UserDAO {
 			try (ResultSet rs = stm.executeQuery();) {
 				if (rs.next()) {
 					to.setId(rs.getInt("id"));
+					to.setUsername(rs.getString("username"));
 					to.setName(rs.getString("name"));
 					to.setSurname(rs.getString("surname"));
 					to.setEmail(rs.getString("email"));
+					to.setEmailConfirmation(rs.getString("email_confirmation"));
+					to.setBirthday(new SimpleDateFormat("dd/MM/yyyy").parse(rs.getString("birthday")));
+					to.setSex(rs.getString("sex"));
 					to.setCreatedAt(rs.getTimestamp("created_at"));
 					to.setUpdatedAt(rs.getTimestamp("updated_at"));
 					to.setDeletedAt(rs.getTimestamp("deleted_at"));
@@ -158,9 +188,13 @@ public class UserDAO {
 			try (ResultSet rs = stm.executeQuery();) {
 				if (rs.next()) {
 					to.setId(rs.getInt("id"));
+					to.setUsername(rs.getString("username"));
 					to.setName(rs.getString("name"));
 					to.setSurname(rs.getString("surname"));
 					to.setEmail(rs.getString("email"));
+					to.setEmailConfirmation(rs.getString("email_confirmation"));
+					to.setBirthday(new SimpleDateFormat("dd/MM/yyyy").parse(rs.getString("birthday")));
+					to.setSex(rs.getString("sex"));
 					to.setCreatedAt(rs.getTimestamp("created_at"));
 					to.setUpdatedAt(rs.getTimestamp("updated_at"));
 					to.setDeletedAt(rs.getTimestamp("deleted_at"));
