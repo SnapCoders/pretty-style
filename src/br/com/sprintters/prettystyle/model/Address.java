@@ -45,6 +45,21 @@ public class Address extends Entity {
 		this.surname = surname;
 	}
 	
+	public Address(int id, String place, String number, String neighborhood, String city, String country, String zip, 
+			String complement, int idUser, String name, String surname) {
+		super(id);
+		this.place = place;
+		this.number = number;
+		this.neighborhood = neighborhood;
+		this.city = city;
+		this.country = country;
+		this.zip = zip;
+		this.complement = complement;
+		this.idUser = idUser;
+		this.name = name;
+		this.surname = surname;
+	}
+	
 	public Address(String place, String number, String neighborhood, String city, String country, String zip, String complement, User user) {
 		this.place = place;
 		this.number = number;
@@ -106,6 +121,7 @@ public class Address extends Entity {
 		this.idUser = user.getId();
 		this.user = user;
 	}
+	
 
 	public String getPlace() {
 		return place;
