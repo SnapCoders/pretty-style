@@ -3,9 +3,7 @@ package br.com.sprintters.prettystyle.dao;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.SQLException;
-import java.text.SimpleDateFormat;
 import java.sql.PreparedStatement;
 
 import br.com.sprintters.prettystyle.model.User;
@@ -13,21 +11,15 @@ import br.com.sprintters.prettystyle.model.User;
 public class UserDAO {
 	public int insert(User to) throws Exception {
 		int id = 0;
-		String sqlInsert = "INSERT INTO user (username, name, surname, email, email_confirmation, password_hash, birthday, sex, created_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, NOW())";
+		String sqlInsert = "INSERT INTO user (username, email, email_confirmation, password_hash, created_at) VALUES (?, ?, ?, ?, NOW())";
 		
 		try (Connection conn = ConnectionFactory.createConnection();
 			 PreparedStatement stm = conn.prepareStatement(sqlInsert)) {
 			stm.setString(1, to.getUsername());
-			stm.setString(2, to.getName());
-			stm.setString(3, to.getSurname());
-			stm.setString(4, to.getEmail());
-			stm.setString(5, to.getEmailConfirmation());
-			stm.setString(6, to.getPasswordHash());
-			stm.setDate(7, new java.sql.Date(to.getBirthday().getTime()));
+			stm.setString(2, to.getEmail());
+			stm.setString(3, to.getEmailConfirmation());
+			stm.setString(4, to.getPasswordHash());
 			
-			to.setSex("M");
-			
-			stm.setString(8, to.getSex());
 			stm.execute();
 			
 			try (ResultSet rs = stm.executeQuery("SELECT LAST_INSERT_ID()")) {
@@ -48,20 +40,18 @@ public class UserDAO {
 	}
 	
 	public void update(User to) throws Exception {
-		String sqlUpdate = "UPDATE user SET username = ?, name = ?, surname = ? , email = ?, emailConfirmation = ?, password_hash = ?, birthday = ?, sex = ?, updated_at = NOW() WHERE id = ?";
+		String sqlUpdate = "UPDATE user SET username = ?, email = ?, email_confirmation = ?, password_hash = ?, updated_at = NOW() WHERE id = ?";
 		
 		try (Connection conn = ConnectionFactory.createConnection();
 			 PreparedStatement stm = conn.prepareStatement(sqlUpdate)) {
 			stm.setString(1, to.getUsername());
-			stm.setString(2, to.getName());
-			stm.setString(3, to.getSurname());
-			stm.setString(4, to.getEmail());
-			stm.setString(5, to.getEmailConfirmation());
-			stm.setString(6, to.getPasswordHash());
-			stm.setDate(7, (Date)to.getBirthday());
-			stm.setString(8, to.getSex());
-			stm.setInt(9, to.getId());
+			stm.setString(2, to.getEmail());
+			stm.setString(3, to.getEmailConfirmation());
+			stm.setString(4, to.getPasswordHash());
+			stm.setInt(5, to.getId());
+			
 			stm.execute();
+			
 		} catch (SQLException e) {
 			throw new Exception(e.getMessage());
 		}
@@ -73,7 +63,9 @@ public class UserDAO {
 		try (Connection conn = ConnectionFactory.createConnection();
 			 PreparedStatement stm = conn.prepareStatement(sqlDelete)) {
 			stm.setInt(1, to.getId());
+			
 			stm.execute();
+			
 		} catch (SQLException e) {
 			throw new Exception(e.getMessage());
 		}
@@ -91,16 +83,13 @@ public class UserDAO {
 				if (rs.next()) {
 					to.setId(rs.getInt("id"));
 					to.setUsername(rs.getString("username"));
-					to.setName(rs.getString("name"));
-					to.setSurname(rs.getString("surname"));
 					to.setEmail(rs.getString("email"));
 					to.setEmailConfirmation(rs.getString("email_confirmation"));
-					to.setBirthday(new SimpleDateFormat("dd/MM/yyyy").parse(rs.getString("birthday")));
-					to.setSex(rs.getString("sex"));
 					to.setCreatedAt(rs.getTimestamp("created_at"));
 					to.setUpdatedAt(rs.getTimestamp("updated_at"));
 					to.setDeletedAt(rs.getTimestamp("deleted_at"));
 				}
+				conn.close();
 			} catch (SQLException ex) {
 				throw new Exception(ex.getMessage());
 			}
@@ -122,49 +111,11 @@ public class UserDAO {
 					User to = new User(
 							rs.getInt("id"),
 							rs.getString("username"),
-							rs.getString("name"),
-							rs.getString("surname"),
 							rs.getString("email"),
 							rs.getString("email_confirmation"),
-							rs.getDate("birthday"),
-							rs.getString("sex"),
 							rs.getTimestamp("created_at"),
 							rs.getTimestamp("updated_at"),
 							rs.getTimestamp("deleted_at")
-					);
-					users.add(to);
-				}
-			} catch (SQLException ex) {
-				throw new Exception(ex.getMessage());
-			}
-		} catch (SQLException e) {
-			throw new Exception(e.getMessage());
-		}
-		
-		return users;
-	}
-	
-	public ArrayList<User> listById(int id) throws Exception  {
-		ArrayList<User> users = new ArrayList<User>();
-		String sqlSelect = "SELECT username, name, surname, email, emailConfirmation, sex, birthday, ddd, number, cpf "
-				+ "FROM user INNER JOIN phone_number on phone_number.id_user = user.id "
-				+ "INNER JOIN client on client.id_user = user.id  WHERE user.id = ?";
-		try (Connection conn = ConnectionFactory.createConnection();
-			 PreparedStatement stm = conn.prepareStatement(sqlSelect)) {
-			stm.setInt(1, id);
-			try (ResultSet rs = stm.executeQuery()) {
-				while (rs.next()) {
-					User to = new User(
-							rs.getString("username"),
-							rs.getString("name"),
-							rs.getString("surname"),
-							rs.getString("email"),
-							rs.getString("emailConfirmation"),
-							rs.getString("sex"),
-							new java.sql.Date(rs.getDate("birthday").getTime()),
-							rs.getInt("ddd"),
-							rs.getString("number"),
-							rs.getString("cpf")
 					);
 					users.add(to);
 				}
@@ -190,12 +141,8 @@ public class UserDAO {
 				if (rs.next()) {
 					to.setId(rs.getInt("id"));
 					to.setUsername(rs.getString("username"));
-					to.setName(rs.getString("name"));
-					to.setSurname(rs.getString("surname"));
 					to.setEmail(rs.getString("email"));
 					to.setEmailConfirmation(rs.getString("email_confirmation"));
-					to.setBirthday(new SimpleDateFormat("dd/MM/yyyy").parse(rs.getString("birthday")));
-					to.setSex(rs.getString("sex"));
 					to.setCreatedAt(rs.getTimestamp("created_at"));
 					to.setUpdatedAt(rs.getTimestamp("updated_at"));
 					to.setDeletedAt(rs.getTimestamp("deleted_at"));
@@ -223,12 +170,8 @@ public class UserDAO {
 				if (rs.next()) {
 					to.setId(rs.getInt("id"));
 					to.setUsername(rs.getString("username"));
-					to.setName(rs.getString("name"));
-					to.setSurname(rs.getString("surname"));
 					to.setEmail(rs.getString("email"));
 					to.setEmailConfirmation(rs.getString("email_confirmation"));
-					to.setBirthday(new SimpleDateFormat("dd/MM/yyyy").parse(rs.getString("birthday")));
-					to.setSex(rs.getString("sex"));
 					to.setCreatedAt(rs.getTimestamp("created_at"));
 					to.setUpdatedAt(rs.getTimestamp("updated_at"));
 					to.setDeletedAt(rs.getTimestamp("deleted_at"));

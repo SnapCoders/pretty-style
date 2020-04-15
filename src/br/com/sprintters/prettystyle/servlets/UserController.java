@@ -37,7 +37,13 @@ public class UserController extends HttpServlet {
 	        String surname = request.getParameter("surname");
 			String email = request.getParameter("email");
 			String emailConfirmation = request.getParameter("emailConfirmation");
-			Date birthday = new SimpleDateFormat("dd/MM/yyyy").parse(request.getParameter("birthday"));
+			
+			Date birthday = new Date();
+			
+			if (request.getParameter("birthday") != null) {
+				birthday = new SimpleDateFormat("dd/MM/yyyy").parse(request.getParameter("birthday"));
+			}
+			
 			String sex = request.getParameter("sex");
 			String password = request.getParameter("password");
 			
@@ -53,7 +59,7 @@ public class UserController extends HttpServlet {
 			
 			UserService service = new UserService();
 			
-			User user = new User(username, name, surname, email, emailConfirmation, birthday, sex);
+			User user = new User(username, email, emailConfirmation);
 			
 			ArrayList<PhoneNumber> phones = new ArrayList<PhoneNumber>();
 			
@@ -77,19 +83,20 @@ public class UserController extends HttpServlet {
 			phones.add(TphoneNumber);
 			phones.add(CphoneNumber);
 			
-			user.setPhoneNumbers(phones);
-			user.setPassword(password);
-			
 			if (cpf == null && cnpj != null) {
 				Provider provider = new Provider(cnpj, fantasyName, socialReason, contact);
+				
 				user.setProvider(provider);
 			} else if (cpf != null && cnpj == null) {
-				Client client = new Client(cpf);
+				Client client = new Client(name, surname, cpf, birthday, sex);
 				
 				user.setClient(client);
 			}
+			
+			user.setPhoneNumbers(phones);
+			user.setPassword(password);
 	        
-			service.create(user);
+			if (user != null) service.create(user);
 			
 			JSONObject retorno = new JSONObject();
 			
@@ -132,7 +139,7 @@ public class UserController extends HttpServlet {
 			
 			UserService service = new UserService();
 			
-			User user = new User(username, name, surname, email, emailConfirmation, birthday, sex);
+			User user = new User(username, email, emailConfirmation);
 			
 			ArrayList<PhoneNumber> phones = new ArrayList<PhoneNumber>();
 			
@@ -163,7 +170,7 @@ public class UserController extends HttpServlet {
 				Provider provider = new Provider(cnpj, fantasyName, socialReason, contact);
 				user.setProvider(provider);
 			} else if (cpf != null && cnpj == null) {
-				Client client = new Client(cpf);
+				Client client = new Client(name, surname, cpf, birthday, sex);
 				
 				user.setClient(client);
 			}

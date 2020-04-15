@@ -30,12 +30,10 @@
 	<c:import url="../../components/header.jsp" />
 	<div class="container">
 		<%
-			RequestService rs = new RequestService(); 
 			UserService us = new UserService();
 			
 
-/* 			request.setAttribute("lista", rs.listRequestsByIdClient(1)); */ 
-			request.setAttribute("lista1", us.find(5));
+			request.setAttribute("user", us.find(5));
 		%>
 		<div class="register-profile-container">
 			<div class="container">
@@ -58,13 +56,13 @@
 											<label for="username">Username<span
 												style="color: #ff0000; margin-left: 5px;">*</span></label> <input
 												class="form-control" id="username" name="username"
-												placeholder="Como você gostaria de ser chamado?" value="${request.username }"/>
+												placeholder="Como você gostaria de ser chamado?" value="${user.username }"/>
 										</div>
 										<div class="col-md-6 email-area">
 											<label for="email">E-mail<span
 												style="color: #ff0000; margin-left: 5px;">*</span></label> <input
 												class="form-control" id="email" name="email"
-												placeholder="Ex: seuemail@email.com.br" value="${request.email }"/>
+												placeholder="Ex: seuemail@email.com.br" value="${user.email }"/>
 										</div>
 									</div>
 									<div class="row">
@@ -72,13 +70,13 @@
 											<label for="name">Seu nome<span
 												style="color: #ff0000; margin-left: 5px;">*</span></label> <input
 												class="form-control" id="name" name="name"
-												placeholder="Digite seu primeiro nome" value="${request.name}"/>
+												placeholder="Digite seu primeiro nome" value="${user.getClient().getName()}"/>
 										</div>
 										<div class="col-md-6 email-confirmation-area">
 											<label for="email-confirmation">Confirmação de e-mail<span
 												style="color: #ff0000; margin-left: 5px;">*</span></label> <input
 												class="form-control" id="email-confirmation" name="email-confirmation"
-												placeholder="Ex: seuemail@email.com.br" value="${request.emailConfirmation }"/>
+												placeholder="Ex: seuemail@email.com.br" value="${user.emailConfirmation }"/>
 										</div>
 									</div>
 									<div class="row">
@@ -86,7 +84,7 @@
 											<label for="surname">Seu sobrenome<span
 												style="color: #ff0000; margin-left: 5px;">*</span></label> <input
 												class="form-control" id="surname" name="surname"
-												placeholder="Digite seu sobrenome" value="${request.surname}"/>
+												placeholder="Digite seu sobrenome" value="${user.getClient().getSurname()}"/>
 										</div>
 										<div class="col-md-6 password-area">
 											<label for="password">Senha<span
@@ -99,13 +97,13 @@
 										<div class="col-md-6 cpf-area">
 											<label for="cpf">CPF<span
 												style="color: #ff0000; margin-left: 5px;">*</span></label>
-												<input class="form-control" id="cpf" name="cpf" placeholder="Ex: 123.456.789-85" value="${request.cpf }"/>
+												<input class="form-control" id="cpf" name="cpf" placeholder="Ex: 123.456.789-85" value="${user.getClient().getCpf() }"/>
 										</div>
 										<div class="col-md-6 birthday-area">
 											<label for="birthday">Data de nascimento<span
 												style="color: #ff0000; margin-left: 5px;">*</span></label> <input
 												class="form-control" id="birthday" name="birthday" placeholder="Ex: 01/01/2020" 
-												value="${request.birthday }"/>
+												value="${user.getClient().getBirthday() }"/>
 										</div>
 									</div>
 									<div class="row">
@@ -119,7 +117,7 @@
 											<label for="cellphone">Celular<span
 												style="color: #ff0000; margin-left: 5px;">*</span></label> <input
 												class="form-control" id="cellphone" name="cellphone"
-												placeholder="Ex: (11) 9 99885-9944" value="(${request.ddd }) ${request.number}" />
+												placeholder="Ex: (11) 9 99885-9944" />
 										</div>
 									</div>
 	
@@ -146,6 +144,7 @@
 		</div>
 	</div>
 	<script src="../../lib/jquery/1.9.1/jquery-1.9.1.min.js"></script>
+	<script src="../../lib/jquery-validation/jquery.validate.min.js"></script>
 	<script src="../../lib/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 	<script src="../../js/general.js"></script>
 	<script src="../../js/index.js"></script>

@@ -1,6 +1,5 @@
 package br.com.sprintters.prettystyle.model;
 
-import java.util.Date;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 
@@ -8,21 +7,14 @@ import br.com.sprintters.prettystyle.model.generic.Entity;
 
 public class User extends Entity {
 	private String username;
-	private String name;
-	private String surname;
 	private String email;
-	private int ddd;
-	private String cpf;
-	private String number;
 	private String emailConfirmation;
 	private String passwordHash;
-	private Date birthday;
-	private String sex;
 	private ArrayList<PhoneNumber> phoneNumbers;
 	
 	private Client client;
 	private Provider provider;
-	private PhoneNumber pn;
+
 	
 	private String password;
 	private boolean signed;
@@ -30,57 +22,28 @@ public class User extends Entity {
 	
 	public User() { }
 	
-	public User(String name, String surname, String email) {
-		this.name = name;
-		this.surname = surname;
-		this.email = email;
-	}
-
-	public User(String username, String name, String surname, String email, String emailConfirmation, String sex, 
-			Date birthday, int ddd, String number, String cpf) {
+	public User(String username, String email) {
 		this.username = username;
-		this.name = name;
-		this.surname = surname;
 		this.email = email;
-		this.emailConfirmation = emailConfirmation;
-		this.birthday = birthday;
-		this.sex = sex;
-		this.ddd = ddd;
-		this.number = number;
-		this.cpf = cpf;
 	}
 	
-	public User(String username, String name, String surname, String email, String emailConfirmation, Date birthday, String sex) {
-		this.username = username;
-		this.name = name;
-		this.surname = surname;
-		this.email = email;
+	public User(String username, String email, String emailConfirmation) {
+		this.username = username;this.email = email;
 		this.emailConfirmation = emailConfirmation;
-		this.birthday = birthday;
-		this.sex = sex;
 	}
 	
-	public User(int id, String username, String name, String surname, String email, String emailConfirmation, Date birthday, String sex) {
+	public User(int id, String username, String name, String surname, String email, String emailConfirmation) {
 		super(id);
 		this.username = username;
-		this.name = name;
-		this.surname = surname;
 		this.email = email;
 		this.emailConfirmation = emailConfirmation;
-		this.birthday = birthday;
-		this.sex = sex;
-
 	}
 	
-	public User(int id, String username, String name, String surname, String email, String emailConfirmation, Date birthday, String sex, Timestamp createdAt, Timestamp updatedAt, Timestamp deletedAt) {
+	public User(int id, String username, String email, String emailConfirmation, Timestamp createdAt, Timestamp updatedAt, Timestamp deletedAt) {
 		super(id, createdAt, updatedAt, deletedAt);
 		this.username = username;
-		this.name = name;
-		this.surname = surname;
 		this.email = email;
 		this.emailConfirmation = emailConfirmation;
-		this.birthday = birthday;
-		this.sex = sex;
 	}
 	
 	public String getUsername() {
@@ -89,22 +52,6 @@ public class User extends Entity {
 
 	public void setUsername(String username) {
 		this.username = username;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public String getSurname() {
-		return surname;
-	}
-
-	public void setSurname(String surname) {
-		this.surname = surname;
 	}
 
 	public String getEmail() {
@@ -129,22 +76,6 @@ public class User extends Entity {
 
 	public void setPasswordHash(String passwordHash) {
 		this.passwordHash = passwordHash;
-	}
-
-	public Date getBirthday() {
-		return birthday;
-	}
-
-	public void setBirthday(Date birthday) {
-		this.birthday = birthday;
-	}
-
-	public String getSex() {
-		return sex;
-	}
-
-	public void setSex(String sex) {
-		this.sex = sex;
 	}
 
 	public ArrayList<PhoneNumber> getPhoneNumbers() {
@@ -199,38 +130,6 @@ public class User extends Entity {
 
 	@Override
 	public String toString() {
-		return "User [name=" + name + ", surname=" + surname + ", email=" + email + "]";
-	}
-
-	public int getDdd() {
-		return ddd;
-	}
-
-	public void setDdd(int ddd) {
-		this.ddd = ddd;
-	}
-
-	public String getNumber() {
-		return number;
-	}
-
-	public void setNumber(String number) {
-		this.number = number;
-	}
-
-	public PhoneNumber getPn() {
-		return pn;
-	}
-
-	public void setPn(PhoneNumber pn) {
-		this.pn = pn;
-	}
-
-	public String getCpf() {
-		return cpf;
-	}
-
-	public void setCpf(String cpf) {
-		this.cpf = cpf;
+		return "User [username=" + username + ", email=" + email + "]";
 	}
 }

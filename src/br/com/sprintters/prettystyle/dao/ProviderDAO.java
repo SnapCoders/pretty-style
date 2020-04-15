@@ -4,7 +4,6 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.sql.Connection;
 import java.sql.SQLException;
-
 import br.com.sprintters.prettystyle.model.Provider;
 
 import java.sql.PreparedStatement;
@@ -84,6 +83,36 @@ public class ProviderDAO {
 				}
 			} catch (SQLException e) {
 				throw new Exception(e.getMessage());
+			}
+		} catch (SQLException e) {
+			throw new Exception(e.getMessage());
+		}
+		
+		return to;
+	}
+	
+	public Provider findByIdUser(int idUser) throws Exception {
+		Provider to = new Provider();
+		String sqlSelect = "SELECT * FROM provider WHERE id_user = ?";
+		
+		try (Connection conn = ConnectionFactory.createConnection();
+			 PreparedStatement stm = conn.prepareStatement(sqlSelect)) {
+			stm.setInt(1, idUser);
+			
+			try (ResultSet rs = stm.executeQuery()) {
+				if (rs.next()) {
+					to.setId(rs.getInt("id"));
+					to.setFantasyName(rs.getString("fantasy_name"));
+					to.setSocialReason(rs.getString("social_reason"));
+					to.setContact(rs.getString("contact"));
+					to.setIdUser(rs.getInt("id_user"));
+					to.setCreatedAt(rs.getTimestamp("created_at"));
+					to.setUpdatedAt(rs.getTimestamp("updated_at"));
+					to.setDeletedAt(rs.getTimestamp("deleted_at"));
+				}
+				conn.close();
+			} catch (SQLException ex) {
+				throw new Exception(ex.getMessage());
 			}
 		} catch (SQLException e) {
 			throw new Exception(e.getMessage());

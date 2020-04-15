@@ -2,8 +2,12 @@ package br.com.sprintters.prettystyle.dao;
 
 import java.sql.ResultSet;
 import java.sql.Connection;
+import java.sql.Date;
 import java.util.ArrayList;
+import java.util.Locale;
 import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 
 import br.com.sprintters.prettystyle.model.Client;
 
@@ -12,16 +16,30 @@ import java.sql.PreparedStatement;
 public class ClientDAO {
 	public int insert(Client to) throws Exception {
 		int id = 0;
-		String sqlInsert = "INSERT INTO client (cpf, id_user, created_at) VALUES (?, ?, NOW())";
+		String sqlInsert = "INSERT INTO client (name, surname, cpf, birthday, sex, id_user, created_at) VALUES (?, ?, ?, ?, ?, ?, NOW())";
 		
 		try (Connection conn = ConnectionFactory.createConnection();
 			 PreparedStatement stm = conn.prepareStatement(sqlInsert)) {
-			stm.setString(1, to.getCpf());
-			stm.setInt(2, to.getIdUser());
+			stm.setString(1, to.getName());
+			stm.setString(2, to.getSurname());
+			stm.setString(3, to.getCpf());
+			stm.setDate(4, new java.sql.Date(to.getBirthday().getTime()));
+			
+			if (to.getSex().equals("on")) {
+				to.setSex("M");
+			} else  {
+				to.setSex("F");
+			}
+			
+			stm.setString(5, to.getSex());
+			stm.setInt(6, to.getIdUser());
+			
 			stm.execute();
+			
 			try (ResultSet rs = stm.executeQuery("SELECT LAST_INSERT_ID()")) {
 				if (rs.next()) {				
 					id = rs.getInt(1);
+					to.setId(id);
 				}
 			} catch (SQLException ex) {
 				throw new Exception(ex.getMessage());
@@ -34,14 +52,20 @@ public class ClientDAO {
 	}
 	
 	public void update(Client to) throws Exception {
-		String sqlUpdate = "UPDATE client SET cpf = ?, id_user = ?, updated_at = NOW() WHERE id = ?";
+		String sqlUpdate = "UPDATE client SET name = ?, surname = ?, cpf = ?, birthday = ?, sex = ?, id_user = ?, updated_at = NOW() WHERE id = ?";
 		
 		try (Connection conn = ConnectionFactory.createConnection();
 			 PreparedStatement stm = conn.prepareStatement(sqlUpdate)) {
-			stm.setString(1, to.getCpf());
-			stm.setInt(2, to.getIdUser());
-			stm.setInt(3, to.getId());
+			stm.setString(1, to.getName());
+			stm.setString(2, to.getSurname());
+			stm.setString(3, to.getCpf());
+			stm.setDate(4, new java.sql.Date(to.getBirthday().getTime()));
+			stm.setString(5, to.getSex());
+			stm.setInt(6, to.getIdUser());
+			stm.setInt(7, to.getId());
+			
 			stm.execute();
+			
 		} catch (SQLException e) {
 			throw new Exception(e.getMessage());
 		}
@@ -53,7 +77,9 @@ public class ClientDAO {
 		try (Connection conn = ConnectionFactory.createConnection();
 			 PreparedStatement stm = conn.prepareStatement(sqlDelete)) {
 			stm.setInt(1, to.getId());
+			
 			stm.execute();
+			
 		} catch (SQLException e) {
 			throw new Exception(e.getMessage());
 		}
@@ -67,15 +93,53 @@ public class ClientDAO {
 			 PreparedStatement stm = conn.prepareStatement(sqlSelect)) {
 			stm.setInt(1, id);
 			
-			try (ResultSet rs = stm.executeQuery();) {
+			try (ResultSet rs = stm.executeQuery()) {
 				if (rs.next()) {
 					to.setId(rs.getInt("id"));
-					to.setCpf(rs.getString("cpf"));
+					to.setName(rs.getString("name"));
+					to.setSurname(rs.getString("surname"));
+					to.setBirthday(new SimpleDateFormat("dd/MM/yyyy").parse(rs.getString("birthday")));
 					to.setIdUser(rs.getInt("id_user"));
 					to.setCreatedAt(rs.getTimestamp("created_at"));
 					to.setUpdatedAt(rs.getTimestamp("updated_at"));
 					to.setDeletedAt(rs.getTimestamp("deleted_at"));
 				}
+			} catch (SQLException ex) {
+				throw new Exception(ex.getMessage());
+			}
+		} catch (SQLException e) {
+			throw new Exception(e.getMessage());
+		}
+		
+		return to;
+	}
+	
+	@SuppressWarnings("deprecation")
+	public Client findByIdUser(int idUser) throws Exception {
+		Client to = new Client();
+		String sqlSelect = "SELECT * FROM client WHERE id_user = ?";
+		
+		try (Connection conn = ConnectionFactory.createConnection();
+			 PreparedStatement stm = conn.prepareStatement(sqlSelect)) {
+			stm.setInt(1, idUser);
+			
+			try (ResultSet rs = stm.executeQuery()) {	
+				if (rs.next()) {
+					to.setId(rs.getInt("id"));
+					to.setName(rs.getString("name"));
+					to.setSurname(rs.getString("surname"));
+					/*
+					 * String birthdayStr = rs.getString("birthday"); SimpleDateFormat sdf = new
+					 * SimpleDateFormat("dd/MM/yyyy"); java.util.Date birthday =
+					 * sdf.parse(birthdayStr);
+					 */
+					to.setBirthday(new Date(2003));
+					to.setIdUser(rs.getInt("id_user"));
+					to.setCreatedAt(rs.getTimestamp("created_at"));
+					to.setUpdatedAt(rs.getTimestamp("updated_at"));
+					to.setDeletedAt(rs.getTimestamp("deleted_at"));
+				}
+				conn.close();
 			} catch (SQLException ex) {
 				throw new Exception(ex.getMessage());
 			}
@@ -96,7 +160,11 @@ public class ClientDAO {
 				while (rs.next()) {
 					Client to = new Client(
 						rs.getInt("id"),
+						rs.getString("name"),
+						rs.getString("surname"),
 						rs.getString("cpf"),
+						new SimpleDateFormat("dd/MM/yyyy").parse(rs.getString("birthday")),
+						rs.getString("sex"),
 						rs.getInt("id_user"),
 						rs.getTimestamp("created_at"),
 						rs.getTimestamp("updated_at"),

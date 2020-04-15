@@ -47,15 +47,24 @@ public class SessionController extends HttpServlet {
 			if (user.isSigned()) {
 				JWTTokenService jwt = new JWTTokenService();
 				
-				String nameAndSurname = user.getName() + user.getSurname();
+				String name = "";
+				
+				if (user.isProvider()) {
+					name = user.getProvider().getFantasyName();
+				} else {
+					name = user.getClient().getName();
+				}
+				
+				String nameAndSurname = name + user.getUsername();
+				
 				String nameAndSurnameBase64 = Base64.getEncoder().encodeToString(nameAndSurname.getBytes());
 				
-				String token = jwt.signJWT(user.getId(), user.getName(), user.getEmail(), nameAndSurnameBase64);
+				String token = jwt.signJWT(user, name, nameAndSurnameBase64);
 				
 				JSONObject retorno = new JSONObject();
 				
 				retorno.put("success", true);
-				retorno.put("message", "Olá " + user.getName() + ", seja bem vindo!");
+				retorno.put("message", "Olá " + name + ", seja bem vindo!");
 				retorno.put("token", token);
 				
 				response.setContentType("application/json");
