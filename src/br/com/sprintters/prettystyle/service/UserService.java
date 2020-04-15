@@ -27,7 +27,7 @@ public class UserService {
         	user.setPassword(null);
         	user.setPasswordHash(passwordHash);
         	
-        	// 2 - Cadastrar o usuário
+        	// 2 - Cadastrar o usuï¿½rio
         	idUser = userDAO.insert(user);
         	
         	// 3 - Cadastrar os telefones
@@ -69,6 +69,14 @@ public class UserService {
     public ArrayList<User> list() throws Exception {
     	try {
     		return userDAO.list();
+    	} catch (Exception e) {
+    		throw new Exception(e.getMessage());
+    	}
+    }
+    
+    public ArrayList<User> listUsingId(int id) throws Exception {
+    	try {
+    		return userDAO.listById(id);
     	} catch (Exception e) {
     		throw new Exception(e.getMessage());
     	}

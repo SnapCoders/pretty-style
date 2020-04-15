@@ -48,7 +48,7 @@ public class UserDAO {
 	}
 	
 	public void update(User to) throws Exception {
-		String sqlUpdate = "UPDATE user SET username = ?, name = ?, surname = ? , email = ?, email_confirmation = ?, password_hash = ?, birthday = ?, sex = ?, updated_at = NOW() WHERE id = ?";
+		String sqlUpdate = "UPDATE user SET username = ?, name = ?, surname = ? , email = ?, emailConfirmation = ?, password_hash = ?, birthday = ?, sex = ?, updated_at = NOW() WHERE id = ?";
 		
 		try (Connection conn = ConnectionFactory.createConnection();
 			 PreparedStatement stm = conn.prepareStatement(sqlUpdate)) {
@@ -131,6 +131,40 @@ public class UserDAO {
 							rs.getTimestamp("created_at"),
 							rs.getTimestamp("updated_at"),
 							rs.getTimestamp("deleted_at")
+					);
+					users.add(to);
+				}
+			} catch (SQLException ex) {
+				throw new Exception(ex.getMessage());
+			}
+		} catch (SQLException e) {
+			throw new Exception(e.getMessage());
+		}
+		
+		return users;
+	}
+	
+	public ArrayList<User> listById(int id) throws Exception  {
+		ArrayList<User> users = new ArrayList<User>();
+		String sqlSelect = "SELECT username, name, surname, email, emailConfirmation, sex, birthday, ddd, number, cpf "
+				+ "FROM user INNER JOIN phone_number on phone_number.id_user = user.id "
+				+ "INNER JOIN client on client.id_user = user.id  WHERE user.id = ?";
+		try (Connection conn = ConnectionFactory.createConnection();
+			 PreparedStatement stm = conn.prepareStatement(sqlSelect)) {
+			stm.setInt(1, id);
+			try (ResultSet rs = stm.executeQuery()) {
+				while (rs.next()) {
+					User to = new User(
+							rs.getString("username"),
+							rs.getString("name"),
+							rs.getString("surname"),
+							rs.getString("email"),
+							rs.getString("emailConfirmation"),
+							rs.getString("sex"),
+							new java.sql.Date(rs.getDate("birthday").getTime()),
+							rs.getInt("ddd"),
+							rs.getString("number"),
+							rs.getString("cpf")
 					);
 					users.add(to);
 				}
