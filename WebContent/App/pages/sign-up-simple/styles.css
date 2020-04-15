@@ -22,6 +22,14 @@ div.sign-up-simple-container div.container div.jumbotron.main {
 	padding: 15px;
 }
 
+div.sign-up-simple-container div.container div.jumbotron.main div.content form label.error {
+	color: #f92d2d;
+	font-weight: bold;
+	font-size: 0.8em;
+	margin-top: 5px;
+	filter: opacity(0.8);
+}
+
 div.sign-up-simple-container div.container div.jumbotron.main div.content label {
 	margin-bottom: 2px;
 	color: #707070;
@@ -46,7 +54,19 @@ div.sign-up-simple-container div.container div.jumbotron.main div.content div.se
 	width: 100%;
 }
 
+div.sign-up-simple-container div.container div.jumbotron.main div.content div.sex-area div.sex-inputs div.radio-area {
+	display: flex;
+	align-items: center;
+}
+
+div.sign-up-simple-container div.container div.jumbotron.main div.content div.sex-area div.sex-inputs div.radio-area label#sex-error {
+	position: absolute;
+	bottom: 90px;
+}
+
 div.sign-up-simple-container div.container div.jumbotron.main div.content div.button-area {
+	margin-top: 60px;
+
 	display: flex;
 	align-items: center;
 	justify-content: center;
