@@ -61,4 +61,35 @@ public class AddressController extends HttpServlet {
 			response.getWriter().write(retorno.toString());
 		}
     }
+    
+    @HttpMethodConstraint("DELETE")
+    protected void doDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    	try {
+    		int id = Integer.parseInt(request.getQueryString());
+    		
+    		AddressService as = new AddressService();
+    		
+    		Address obj = as.find(id);
+    		as.delete(obj); 
+    		
+    		JSONObject retorno = new JSONObject();
+			
+			retorno.put("success", true);
+			retorno.put("message","Endereço excluído com sucesso!");
+			
+			response.setContentType("application/json");
+			response.getWriter().write(retorno.toString());
+    	} catch (Exception e) {
+			JSONObject retorno = new JSONObject();
+			
+			retorno.put("success", false);
+			retorno.put("message", "Erro ao Deletar o Endereço!");
+			retorno.put("stacktrace", e.getMessage());
+			
+			response.setContentType("application/json");
+			response.getWriter().write(retorno.toString());
+		}
+    }
+    
+    
 }
