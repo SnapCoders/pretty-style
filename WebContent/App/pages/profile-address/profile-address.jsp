@@ -17,8 +17,8 @@
 
 <title>Pretty Style</title>
 
-<link rel="stylesheet"
-	href="../../lib/bootstrap/4.4.1/css/bootstrap.min.css">
+<link rel="stylesheet"href="../../lib/bootstrap/4.4.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="../../lib/sweetalert/sweetalert.css">
 
 <link rel="stylesheet" href="../../styles/index.css">
 <link rel="stylesheet" href="../../styles/header.css">
@@ -56,14 +56,14 @@
 							<div class="row">
 									<div class="col-md-6">
 										<c:forEach var="request" items="${lista1}">
-											<div class="jumbotron address active">
+											<div id="card-address" class="jumbotron address ">
 												<div class="header">
 													<label>Casa</label>
 													<div class="icons">
 														<button type="button">
 															<img src="../../assets/icons/edit.svg" alt="Editar">
 														</button>
-														<button type="button">
+														<button type="button" onclick="handleDelete(${request.id});">
 															<img src="../../assets/icons/bin.svg" alt="Lixeira">
 														</button>
 													</div>
@@ -80,7 +80,7 @@
 												</div>
 												<hr />
 												<div class="selection-area">
-													<input type="radio" /> <label>Selecionar como
+													<input type="radio" name="id_radio" id="radio" onclick="handleSelectDefault(this)" /> <label>Selecionar como
 														principal</label>
 												</div>
 											</div>
@@ -88,14 +88,14 @@
 									</div>
 									<div class="col-md-6">
 										<c:forEach var="request" items="${lista2}">
-											<div class="jumbotron address active">
+											<div id="card-address"  class="jumbotron address ">
 												<div class="header">
 													<label>Casa</label>
 													<div class="icons">
 														<button type="button">
 															<img src="../../assets/icons/edit.svg" alt="Editar">
 														</button>
-														<button type="button">
+														<button type="button" onclick="handleDelete(${request.id});">
 															<img src="../../assets/icons/bin.svg" alt="Lixeira">
 														</button>
 													</div>
@@ -112,15 +112,13 @@
 												</div>
 												<hr />
 												<div class="selection-area">
-													<input type="radio" /> <label>Selecionar como
+													<input type="radio" name="id_radio" onclick="handleSelectDefault(this)"/> <label>Selecionar como
 														principal</label>
 												</div>
 											</div>
 										</c:forEach>
 									</div>
 								</div>
-							
-							
 						<div class="row button-area">
 							<button type="button">SALVAR</button>
 						</div>
@@ -134,5 +132,7 @@
 	<script src="../../lib/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 	<script src="../../js/general.js"></script>
 	<script src="../../js/index.js"></script>
+	<script src="../../lib/sweetalert/sweetalert.min.js"></script>
+	<script src="script.js"></script>
 </body>
 </html>

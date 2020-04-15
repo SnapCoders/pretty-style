@@ -12,13 +12,13 @@
 
     <title>Pretty Style - Catálogo</title>
     
-    <link rel="stylesheet" href="App/lib/bootstrap/4.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../lib/bootstrap/4.4.1/css/bootstrap.min.css">
 
-    <link rel="stylesheet" href="App/styles/index.css">
-    <link rel="stylesheet" href="App/styles/header.css">
+    <link rel="stylesheet" href="../../styles/index.css">
+    <link rel="stylesheet" href="../../styles/header.css">
     
-    <link rel="stylesheet" href="App/pages/catalog/styles.css">
-    <link rel="stylesheet" href="App/styles/responsive.css">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="../../styles/responsive.css">
   </head>
   <body>
   	<c:import url="../../components/header.jsp" />
@@ -80,7 +80,7 @@
 											<div class="col-md-3 col-product">
 												<div class="jumbotron product">
 													<div class="photo-product">
-														<img src="App/assets/img/jbl.png" alt="JBL Flip 3 Portable">
+														<img src="../../assets/img/jbl.png" alt="JBL Flip 3 Portable">
 													</div>
 													<label class="title-product">JBL Flip 3 Portable</label>
 													<p>Caixinha de som portátil da JBL.</p>
@@ -97,7 +97,7 @@
 											<div class="col-md-3 col-product">
 												<div class="jumbotron product">
 													<div class="photo-product">
-														<img src="App/assets/img/jbl.png" alt="JBL Flip 3 Portable">
+														<img src="../../assets/img/jbl.png" alt="JBL Flip 3 Portable">
 													</div>
 													<label class="title-product">JBL Flip 3 Portable</label>
 													<p>Caixinha de som portátil da JBL.</p>
@@ -114,7 +114,7 @@
 											<div class="col-md-3 col-product">
 												<div class="jumbotron product">
 													<div class="photo-product">
-														<img src="App/assets/img/jbl.png" alt="JBL Flip 3 Portable">
+														<img src="../../assets/img/jbl.png" alt="JBL Flip 3 Portable">
 													</div>
 													<label class="title-product">JBL Flip 3 Portable</label>
 													<p>Caixinha de som portátil da JBL.</p>
@@ -131,7 +131,7 @@
 											<div class="col-md-3 col-product">
 												<div class="jumbotron product">
 													<div class="photo-product">
-														<img src="App/assets/img/jbl.png" alt="JBL Flip 3 Portable">
+														<img src="../../assets/img/jbl.png" alt="JBL Flip 3 Portable">
 													</div>
 													<label class="title-product">JBL Flip 3 Portable</label>
 													<p>Caixinha de som portátil da JBL.</p>
@@ -150,7 +150,7 @@
 											<div class="col-md-3 col-product">
 												<div class="jumbotron product">
 													<div class="photo-product">
-														<img src="App/assets/img/jbl.png" alt="JBL Flip 3 Portable">
+														<img src="../../assets/img/jbl.png" alt="JBL Flip 3 Portable">
 													</div>
 													<label class="title-product">JBL Flip 3 Portable</label>
 													<p>Caixinha de som portátil da JBL.</p>
@@ -167,7 +167,7 @@
 											<div class="col-md-3 col-product">
 												<div class="jumbotron product">
 													<div class="photo-product">
-														<img src="App/assets/img/jbl.png" alt="JBL Flip 3 Portable">
+														<img src="../../assets/img/jbl.png" alt="JBL Flip 3 Portable">
 													</div>
 													<label class="title-product">JBL Flip 3 Portable</label>
 													<p>Caixinha de som portátil da JBL.</p>
@@ -184,7 +184,7 @@
 											<div class="col-md-3 col-product">
 												<div class="jumbotron product">
 													<div class="photo-product">
-														<img src="App/assets/img/jbl.png" alt="JBL Flip 3 Portable">
+														<img src="../../assets/img/jbl.png" alt="JBL Flip 3 Portable">
 													</div>
 													<label class="title-product">JBL Flip 3 Portable</label>
 													<p>Caixinha de som portátil da JBL.</p>
@@ -201,7 +201,7 @@
 											<div class="col-md-3 col-product">
 												<div class="jumbotron product">
 													<div class="photo-product">
-														<img src="App/assets/img/jbl.png" alt="JBL Flip 3 Portable">
+														<img src="../../assets/img/jbl.png" alt="JBL Flip 3 Portable">
 													</div>
 													<label class="title-product">JBL Flip 3 Portable</label>
 													<p>Caixinha de som portátil da JBL.</p>
@@ -236,7 +236,7 @@
 		</div>
 	</div>
 		
-	<script src="App/lib/jquery/1.9.1/jquery-1.9.1.min.js"></script>
-	<!-- <script src="App/pages/catalog/utils.js"></script> -->
+	<script src="../../lib/jquery/1.9.1/jquery-1.9.1.min.js"></script>
+	<!-- <script src="../../pages/catalog/utils.js"></script> -->
 	</body>
 </html>

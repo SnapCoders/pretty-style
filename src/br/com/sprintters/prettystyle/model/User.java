@@ -21,6 +21,11 @@ public class User extends Entity {
 		this.email = email;
 	}
 	
+	public User(String name, String surname) {
+		this.name = name;
+		this.surname = surname;
+	}
+	
 	public User(int id, String name, String surname, String email) {
 		super(id);
 		this.name = name;
