@@ -45,54 +45,54 @@
 				<div class="jumbotron main">
 					<div class="col-md-12 content">
 						<c:forEach var="request" items="${lista}">
-						<div class="row">
-							<div class="col-md-3 product-photo">
-								<img src="../../assets/img/jbl.png" alt="JBL Flip 3 Portable">
-							</div>
-							<div class="col-md-9 product-info">
-								<div class="col-md-12 product-details-area">
-									<div class="row">
-										<div class="col-md-6 product-details">
-											<label>${request.product.name}</label> <span>${request.product.description}</span>
-										</div>
-										<div class="col-md-3 product-stars">
-											<div class="stars">
-												<span class="star yellow-star">&nbsp;</span> <span
-													class="star yellow-star">&nbsp;</span> <span
-													class="star yellow-star">&nbsp;</span> <span
-													class="star yellow-star">&nbsp;</span> <span
-													class="star gray-star">&nbsp;</span>
+							<div class="row">
+								<div class="col-md-3 product-photo">
+									<img src="../../assets/img/jbl.png" alt="JBL Flip 3 Portable">
+								</div>
+								<div class="col-md-9 product-info">
+									<div class="col-md-12 product-details-area">
+										<div class="row">
+											<div class="col-md-6 product-details">
+												<label>${request.product.name}</label> <span>${request.product.description}</span>
+											</div>
+											<div class="col-md-3 product-stars">
+												<div class="stars">
+													<span class="star yellow-star">&nbsp;</span> <span
+														class="star yellow-star">&nbsp;</span> <span
+														class="star yellow-star">&nbsp;</span> <span
+														class="star yellow-star">&nbsp;</span> <span
+														class="star gray-star">&nbsp;</span>
+												</div>
+											</div>
+											<div class="col-md-3 product-price">
+												<span>Preço: </span> <label>R$ <fmt:formatNumber currencySymbol="" value="${request.product.price}" type="currency" /></label>
 											</div>
 										</div>
-										<div class="col-md-3 product-price">
-											<span>Preço: </span> <label>R$ <fmt:formatNumber currencySymbol="" value="${request.product.price}" type="currency" /></label>
+										<div class="row steps">
+											<div class=" col-md-12 request-steps">
+												<div class="step checked">
+													<label>Pedido Realizado</label> <span>1</span> <img
+														src="../../assets/icons/large-check.svg" alt="Check">
+												</div>
+												<div class="step">
+													<label>Aprovação de pagamento</label> <span>2</span> <img
+														src="../../assets/icons/large-check.svg" alt="Check">
+												</div>
+												<div class="step">
+													<label>Produto(s) em transporte</label> <span>3</span> <img
+														src="../../assets/icons/large-check.svg" alt="Check">
+												</div>
+												<div class="step">
+													<label>Produto(s) Entregue(s)</label> <span>4</span> <img
+														src="../../assets/icons/large-check.svg" alt="Check">
+												</div>
+											</div>
+											<hr />
 										</div>
-									</div>
-									<div class="row steps">
-										<div class=" col-md-12 request-steps">
-											<div class="step checked">
-												<label>Pedido Realizado</label> <span>1</span> <img
-													src="../../assets/icons/large-check.svg" alt="Check">
-											</div>
-											<div class="step">
-												<label>Aprovação de pagamento</label> <span>2</span> <img
-													src="../../assets/icons/large-check.svg" alt="Check">
-											</div>
-											<div class="step">
-												<label>Produto(s) em transporte</label> <span>3</span> <img
-													src="../../assets/icons/large-check.svg" alt="Check">
-											</div>
-											<div class="step">
-												<label>Produto(s) Entregue(s)</label> <span>4</span> <img
-													src="../../assets/icons/large-check.svg" alt="Check">
-											</div>
-										</div>
-										<hr />
 									</div>
 								</div>
 							</div>
-						</div>
-						<hr />
+							<hr />
 						</c:forEach>
 					</div>
 				</div>

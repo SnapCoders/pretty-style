@@ -39,11 +39,13 @@
     <nav>
       <ul>
         <li class="active">SALES</li>
-        <li>NOVIDADES</li>
-        <li>ACESSÓRIOS</li>
+        <%-- <li onclick="window.location.href = '<%= request.getContextPath() %>/App/pages/'">NOVIDADES</li> --%>
+        <li onclick="window.location.href = '<%= request.getContextPath() %>/App/pages/sign-up-simple/sign-up-simple.jsp'">SIMPLES</li>
+        <li onclick="window.location.href = '<%= request.getContextPath() %>/App/pages/sign-up-business/sign-up-business.jsp'">BUSINESS</li>
+        <!-- <li>ACESSÓRIOS</li>
         <li>MASCULINO</li>
         <li>FEMININO</li>
-        <li>PETS</li>
+        <li>PETS</li> -->
       </ul>
     </nav>
   </div>
