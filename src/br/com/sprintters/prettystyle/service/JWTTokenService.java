@@ -18,7 +18,7 @@ import br.com.sprintters.prettystyle.model.User;
 public class JWTTokenService {
 	private static String SECRET_KEY = "f187da484711740d3c86fd374ff10465";
 	
-	public String signJWT(int idUser, String name, String email, String nameAndSurnameBase64) throws Exception {
+	public String signJWT(User user, String name, String nameAndSurnameBase64) throws Exception {
 		try {
 			SignatureAlgorithm signatureAlgorithm = SignatureAlgorithm.HS256;
 			
@@ -30,12 +30,10 @@ public class JWTTokenService {
 			
 			UUID uuid = UUID.randomUUID();
 			
-			User userFake = new User("Admin", "Master", "admin.master@prettystyle.com.br");
-			
 			JwtBuilder builder = Jwts.builder().setId(uuid.toString())
 					.setIssuedAt(now)
-					.setSubject(userFake.getEmail())
-					.setIssuer(userFake.getName())
+					.setSubject(user.getEmail())
+					.setIssuer(name)
 					.signWith(signatureAlgorithm, signingKey);
 			
 			LocalDateTime expiresDateTime = LocalDateTime.now().plusDays(30);

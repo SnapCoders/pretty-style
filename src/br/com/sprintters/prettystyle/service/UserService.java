@@ -3,17 +3,25 @@ package br.com.sprintters.prettystyle.service;
 import java.util.Base64;
 import java.util.ArrayList;
 
+import br.com.sprintters.prettystyle.model.Client;
 import br.com.sprintters.prettystyle.model.PhoneNumber;
+import br.com.sprintters.prettystyle.model.Provider;
 import br.com.sprintters.prettystyle.model.User;
+import br.com.sprintters.prettystyle.dao.ClientDAO;
 import br.com.sprintters.prettystyle.dao.PhoneNumberDAO;
+import br.com.sprintters.prettystyle.dao.ProviderDAO;
 import br.com.sprintters.prettystyle.dao.UserDAO;
 
 public class UserService {
     UserDAO userDAO;
+    ClientDAO clientDAO;
+    ProviderDAO providerDAO;
     PhoneNumberDAO phoneNumberDAO;
 
     public UserService() {
         userDAO = new UserDAO();
+        clientDAO = new ClientDAO();
+        providerDAO = new ProviderDAO();
         phoneNumberDAO = new PhoneNumberDAO();
     }
 
@@ -85,6 +93,15 @@ public class UserService {
     		
     		if (password.equals(passwordDecripted)) {
     			user.setSigned(true);
+    			
+    			Client client = clientDAO.findByIdUser(user.getId());
+    			Provider provider = providerDAO.findByIdUser(user.getId());
+    			
+    			if (client != null) {
+    				user.setClient(client);
+    			} else {
+    				user.setProvider(provider);
+    			}
     		}
     	} catch (Exception e) {
     		user.setSigned(false);
