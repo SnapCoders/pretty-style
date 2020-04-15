@@ -42,6 +42,7 @@
         <%-- <li onclick="window.location.href = '<%= request.getContextPath() %>/App/pages/'">NOVIDADES</li> --%>
         <li onclick="window.location.href = '<%= request.getContextPath() %>/App/pages/sign-up-simple/sign-up-simple.jsp'">SIMPLES</li>
         <li onclick="window.location.href = '<%= request.getContextPath() %>/App/pages/sign-up-business/sign-up-business.jsp'">BUSINESS</li>
+        <li onclick="window.location.href = '<%= request.getContextPath() %>/App/pages/payments-steps/payments-steps.jsp'">ETAPAS DE PAGAMENTO</li>
         <!-- <li>ACESSÓRIOS</li>
         <li>MASCULINO</li>
         <li>FEMININO</li>
