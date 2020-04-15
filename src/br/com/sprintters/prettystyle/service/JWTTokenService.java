@@ -1,18 +1,19 @@
 package br.com.sprintters.prettystyle.service;
 
+import java.util.UUID;
+import java.util.Date;
+import java.time.ZoneId;
 import java.security.Key;
 import java.time.LocalDateTime;
-import java.time.ZoneId;
-import java.util.Date;
-import java.util.UUID;
 
 import javax.crypto.spec.SecretKeySpec;
 import javax.xml.bind.DatatypeConverter;
 
-import br.com.sprintters.prettystyle.model.User;
-import io.jsonwebtoken.JwtBuilder;
 import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.JwtBuilder;
 import io.jsonwebtoken.SignatureAlgorithm;
+
+import br.com.sprintters.prettystyle.model.User;
 
 public class JWTTokenService {
 	private static String SECRET_KEY = "f187da484711740d3c86fd374ff10465";
