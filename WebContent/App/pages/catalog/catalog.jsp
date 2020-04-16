@@ -1,3 +1,5 @@
+<%@page import="br.com.sprintters.prettystyle.model.Product"%>
+<%@page import="br.com.sprintters.prettystyle.service.ProductService"%>
 <%@ page import="java.util.ArrayList"%>
 <%@ page import="br.com.sprintters.prettystyle.model.Category"%>
 <%@ page import="br.com.sprintters.prettystyle.service.CategoryService"%>
@@ -30,7 +32,11 @@
 			CategoryService cs = new CategoryService();
 			ArrayList<Category> lista = cs.list(); 
 			request.setAttribute("lista", lista);
-		%>
+			
+			ProductService productService = new ProductService();
+			ArrayList<Product> productList = productService.list();
+			request.setAttribute("products",productList);
+ 		%>
   	
 		<div class="catalog-container">
 			<div class="container">
@@ -71,144 +77,25 @@
 								<div class="row">
 									<div class="col-md-12">
 										<div class="row">
-											<div class="col-md-3 col-product">
-												<div class="jumbotron product">
-													<div class="photo-product">
-														<img src="../../assets/img/jbl.png" alt="JBL Flip 3 Portable">
+											<c:forEach var="product" items="${products}">
+												<div class="col-md-3 col-product">
+													<div class="jumbotron product">
+														<div class="photo-product">
+															<img src="../../assets/img/jbl.png" alt="${product.name}">
+														</div>
+														<label class="title-product">${product.name}</label>
+														<p>${product.description}</p>
+														<div class="stars">
+															<span class="star yellow-star">&nbsp;</span>
+															<span class="star yellow-star">&nbsp;</span>
+															<span class="star yellow-star">&nbsp;</span>
+															<span class="star yellow-star">&nbsp;</span>
+															<span class="star gray-star">&nbsp;</span>
+														</div>
+														<label class="price-product"><fmt:formatNumber value="${product.price}" type="currency" currencySymbol="R$"/></label>
 													</div>
-													<label class="title-product">JBL Flip 3 Portable</label>
-													<p>Caixinha de som portátil da JBL.</p>
-													<div class="stars">
-														<span class="star yellow-star">&nbsp;</span>
-														<span class="star yellow-star">&nbsp;</span>
-														<span class="star yellow-star">&nbsp;</span>
-														<span class="star yellow-star">&nbsp;</span>
-														<span class="star gray-star">&nbsp;</span>
-													</div>
-													<label class="price-product">R$ 250,00</label>
 												</div>
-											</div>
-											<div class="col-md-3 col-product">
-												<div class="jumbotron product">
-													<div class="photo-product">
-														<img src="../../assets/img/jbl.png" alt="JBL Flip 3 Portable">
-													</div>
-													<label class="title-product">JBL Flip 3 Portable</label>
-													<p>Caixinha de som portátil da JBL.</p>
-													<div class="stars">
-														<span class="star yellow-star">&nbsp;</span>
-														<span class="star yellow-star">&nbsp;</span>
-														<span class="star yellow-star">&nbsp;</span>
-														<span class="star yellow-star">&nbsp;</span>
-														<span class="star gray-star">&nbsp;</span>
-													</div>
-													<label class="price-product">R$ 250,00</label>
-												</div>
-											</div>
-											<div class="col-md-3 col-product">
-												<div class="jumbotron product">
-													<div class="photo-product">
-														<img src="../../assets/img/jbl.png" alt="JBL Flip 3 Portable">
-													</div>
-													<label class="title-product">JBL Flip 3 Portable</label>
-													<p>Caixinha de som portátil da JBL.</p>
-													<div class="stars">
-														<span class="star yellow-star">&nbsp;</span>
-														<span class="star yellow-star">&nbsp;</span>
-														<span class="star yellow-star">&nbsp;</span>
-														<span class="star yellow-star">&nbsp;</span>
-														<span class="star gray-star">&nbsp;</span>
-													</div>
-													<label class="price-product">R$ 250,00</label>
-												</div>
-											</div>
-											<div class="col-md-3 col-product">
-												<div class="jumbotron product">
-													<div class="photo-product">
-														<img src="../../assets/img/jbl.png" alt="JBL Flip 3 Portable">
-													</div>
-													<label class="title-product">JBL Flip 3 Portable</label>
-													<p>Caixinha de som portátil da JBL.</p>
-													<div class="stars">
-														<span class="star yellow-star">&nbsp;</span>
-														<span class="star yellow-star">&nbsp;</span>
-														<span class="star yellow-star">&nbsp;</span>
-														<span class="star yellow-star">&nbsp;</span>
-														<span class="star gray-star">&nbsp;</span>
-													</div>
-													<label class="price-product">R$ 250,00</label>
-												</div>
-											</div>
-										</div>
-										<div class="row">
-											<div class="col-md-3 col-product">
-												<div class="jumbotron product">
-													<div class="photo-product">
-														<img src="../../assets/img/jbl.png" alt="JBL Flip 3 Portable">
-													</div>
-													<label class="title-product">JBL Flip 3 Portable</label>
-													<p>Caixinha de som portátil da JBL.</p>
-													<div class="stars">
-														<span class="star yellow-star">&nbsp;</span>
-														<span class="star yellow-star">&nbsp;</span>
-														<span class="star yellow-star">&nbsp;</span>
-														<span class="star yellow-star">&nbsp;</span>
-														<span class="star gray-star">&nbsp;</span>
-													</div>
-													<label class="price-product">R$ 250,00</label>
-												</div>
-											</div>
-											<div class="col-md-3 col-product">
-												<div class="jumbotron product">
-													<div class="photo-product">
-														<img src="../../assets/img/jbl.png" alt="JBL Flip 3 Portable">
-													</div>
-													<label class="title-product">JBL Flip 3 Portable</label>
-													<p>Caixinha de som portátil da JBL.</p>
-													<div class="stars">
-														<span class="star yellow-star">&nbsp;</span>
-														<span class="star yellow-star">&nbsp;</span>
-														<span class="star yellow-star">&nbsp;</span>
-														<span class="star yellow-star">&nbsp;</span>
-														<span class="star gray-star">&nbsp;</span>
-													</div>
-													<label class="price-product">R$ 250,00</label>
-												</div>
-											</div>
-											<div class="col-md-3 col-product">
-												<div class="jumbotron product">
-													<div class="photo-product">
-														<img src="../../assets/img/jbl.png" alt="JBL Flip 3 Portable">
-													</div>
-													<label class="title-product">JBL Flip 3 Portable</label>
-													<p>Caixinha de som portátil da JBL.</p>
-													<div class="stars">
-														<span class="star yellow-star">&nbsp;</span>
-														<span class="star yellow-star">&nbsp;</span>
-														<span class="star yellow-star">&nbsp;</span>
-														<span class="star yellow-star">&nbsp;</span>
-														<span class="star gray-star">&nbsp;</span>
-													</div>
-													<label class="price-product">R$ 250,00</label>
-												</div>
-											</div>
-											<div class="col-md-3 col-product">
-												<div class="jumbotron product">
-													<div class="photo-product">
-														<img src="../../assets/img/jbl.png" alt="JBL Flip 3 Portable">
-													</div>
-													<label class="title-product">JBL Flip 3 Portable</label>
-													<p>Caixinha de som portátil da JBL.</p>
-													<div class="stars">
-														<span class="star yellow-star">&nbsp;</span>
-														<span class="star yellow-star">&nbsp;</span>
-														<span class="star yellow-star">&nbsp;</span>
-														<span class="star yellow-star">&nbsp;</span>
-														<span class="star gray-star">&nbsp;</span>
-													</div>
-													<label class="price-product">R$ 250,00</label>
-												</div>
-											</div>
+											</c:forEach>							
 										</div>
 									</div>
 								</div>
