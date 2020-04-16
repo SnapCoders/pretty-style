@@ -31,7 +31,7 @@
 			<%
 				UserService us = new UserService();
 				
-				request.setAttribute("user", us.find(5));
+				request.setAttribute("user", us.find(1));
 			%>
 			<div class="edit-profile-container">
 				<div class="container">
