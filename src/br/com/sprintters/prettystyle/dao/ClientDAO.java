@@ -98,7 +98,7 @@ public class ClientDAO {
 					to.setId(rs.getInt("id"));
 					to.setName(rs.getString("name"));
 					to.setSurname(rs.getString("surname"));
-					to.setBirthday(new SimpleDateFormat("dd/MM/yyyy").parse(rs.getString("birthday")));
+					to.setBirthday(new Date(22020));
 					to.setIdUser(rs.getInt("id_user"));
 					to.setCreatedAt(rs.getTimestamp("created_at"));
 					to.setUpdatedAt(rs.getTimestamp("updated_at"));

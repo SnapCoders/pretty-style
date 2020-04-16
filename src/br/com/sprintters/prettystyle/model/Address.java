@@ -14,8 +14,6 @@ public class Address extends Entity {
 	private String complement;
 	
 	private int idUser;
-	private String name;
-	private String surname;
 	private User user;
 	
 	private UserAddress userAddress;
@@ -31,35 +29,6 @@ public class Address extends Entity {
 		this.zip = zip;
 		this.complement = complement;
 		this.idUser = idUser;
-	}
-	
-	public Address(String place, String number, String neighborhood, String city, String country, String zip, 
-			String complement, int idUser, String name, String surname) {
-		this.place = place;
-		this.number = number;
-		this.neighborhood = neighborhood;
-		this.city = city;
-		this.country = country;
-		this.zip = zip;
-		this.complement = complement;
-		this.idUser = idUser;
-		this.name = name;
-		this.surname = surname;
-	}
-	
-	public Address(int id, String place, String number, String neighborhood, String city, String country, String zip, 
-			String complement, int idUser, String name, String surname) {
-		super(id);
-		this.place = place;
-		this.number = number;
-		this.neighborhood = neighborhood;
-		this.city = city;
-		this.country = country;
-		this.zip = zip;
-		this.complement = complement;
-		this.idUser = idUser;
-		this.name = name;
-		this.surname = surname;
 	}
 	
 	public Address(String place, String number, String neighborhood, String city, String country, String zip, String complement, User user) {
@@ -197,22 +166,6 @@ public class Address extends Entity {
 		this.user = user;
 	}
 	
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public String getSurname() {
-		return surname;
-	}
-
-	public void setSurname(String surname) {
-		this.surname = surname;
-	}
-	
 	public UserAddress getUserAddress() {
 		return userAddress;
 	}
@@ -227,6 +180,4 @@ public class Address extends Entity {
 				+ ", country=" + country + ", zip=" + zip + ", complement=" + complement + ", idUser=" + idUser
 				+ ", user=" + user + "]";
 	}
-
-
 }

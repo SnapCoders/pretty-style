@@ -1,6 +1,5 @@
 function handleDelete(id) {
 	var id = parseInt(id);
-	console.log("oi");
 	
 	var title = 'Atenção!';
 	var question = 'Deseja realmente excluir este endereço?';

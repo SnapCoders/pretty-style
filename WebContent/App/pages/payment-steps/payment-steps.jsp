@@ -37,12 +37,13 @@
 			int quantity = 0;
 			double total = 0.0;
 			double totalItems = 0.0;
-			double frete = 32.15;
+			double frete = 0.0;
 			double bankSlip = 0.0;
 			
 			for (Item item : lista) {
 				quantity += item.getQuantity();
 				totalItems += item.getPrice() * item.getQuantity();
+				frete += item.getPrice() * 0.124;
 			}
 			
 			total = totalItems + frete;

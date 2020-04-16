@@ -139,40 +139,6 @@ public class AddressDAO {
 		
 		return addresses;
 	}
-	public ArrayList<Address> listAllPlusName(int id) throws Exception {
-		ArrayList<Address> addresses = new ArrayList<Address>();
-		String sqlSelect = "SELECT address.id, place, number, neighborhood, city, country, zip, complement, id_user, name, surname FROM "
-				+ "address INNER JOIN user on user.id = id_user  WHERE address.deleted_at IS NULL and id_user = ? ;";
-		
-		try (Connection conn = ConnectionFactory.createConnection();
-			 PreparedStatement stm = conn.prepareStatement(sqlSelect)) {
-			stm.setInt(1, id);
-			try (ResultSet rs = stm.executeQuery()) {
-				while (rs.next()) {
-					Address to = new Address(
-						rs.getInt("id"),
-						rs.getString("place"),
-						rs.getString("number"),
-						rs.getString("neighborhood"),
-						rs.getString("city"),
-						rs.getString("country"),
-						rs.getString("zip"),
-						rs.getString("complement"),						
-						rs.getInt("id_user"),
-						rs.getString("name"),
-						rs.getString("surname")
-					);
-					addresses.add(to);
-				}
-			} catch (SQLException ex) {
-				throw new Exception(ex.getMessage());
-			}
-		} catch (SQLException e) {
-			throw new Exception(e.getMessage());
-		}
-		
-		return addresses;
-	}
 	
 	public Address findByIdUser(int idUser) throws Exception {
 		Address to = new Address();
@@ -182,7 +148,7 @@ public class AddressDAO {
 				"	address a\r\n" + 
 				"    INNER JOIN user_address ua on a.id = ua.id_address\r\n" + 
 				"    INNER JOIN user u on ua.id_user = u.id\r\n" + 
-				"WHERE u.id = ?;";
+				"WHERE u.id = ? AND a.deleted_at IS NULL;";
 		
 		try (Connection conn = ConnectionFactory.createConnection();
 			 PreparedStatement stm = conn.prepareStatement(sqlSelect)) {
@@ -211,5 +177,48 @@ public class AddressDAO {
 		}
 		
 		return to;
+	}
+	
+	public ArrayList<Address> findListByIdUser(int idUser) throws Exception {
+		ArrayList<Address> addresses = new ArrayList<Address>(); 
+		String sqlSelect = "SELECT\r\n" +
+				"	 a.*" +
+				"FROM\r\n" + 
+				"	address a\r\n" + 
+				"    INNER JOIN user_address ua on a.id = ua.id_address\r\n" + 
+				"    INNER JOIN user u on ua.id_user = u.id\r\n" + 
+				"WHERE u.id = ? AND a.deleted_at IS NULL;";
+		
+		try (Connection conn = ConnectionFactory.createConnection();
+			 PreparedStatement stm = conn.prepareStatement(sqlSelect)) {
+			stm.setInt(1, idUser);
+			
+			try (ResultSet rs = stm.executeQuery()) {
+				while (rs.next()) {
+					Address to = new Address();
+					to.setId(rs.getInt("id"));
+					to.setPlace(rs.getString("place"));
+					to.setNumber(rs.getString("number"));
+					to.setNeighborhood(rs.getString("neighborhood"));
+					to.setCity(rs.getString("city"));
+					to.setCountry(rs.getString("country"));
+					to.setZip(rs.getString("zip"));
+					to.setComplement(rs.getString("complement"));
+					to.setIdUser(rs.getInt("id_user"));
+					to.setCreatedAt(rs.getTimestamp("created_at"));
+					to.setUpdatedAt(rs.getTimestamp("updated_at"));
+					to.setDeletedAt(rs.getTimestamp("deleted_at"));
+					
+					addresses.add(to);
+				}
+				conn.close();
+			} catch (SQLException ex) {
+				throw new Exception(ex.getMessage());
+			}
+		} catch (SQLException e) {
+			throw new Exception(e.getMessage());
+		}
+		
+		return addresses;
 	}
 }

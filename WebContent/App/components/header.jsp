@@ -42,6 +42,11 @@
         <%-- <li onclick="window.location.href = '<%= request.getContextPath() %>/App/pages/'">NOVIDADES</li> --%>
         <li onclick="window.location.href = '<%= request.getContextPath() %>/App/pages/sign-up-simple/sign-up-simple.jsp'">SIMPLES</li>
         <li onclick="window.location.href = '<%= request.getContextPath() %>/App/pages/sign-up-business/sign-up-business.jsp'">BUSINESS</li>
+        <li onclick="window.location.href = '<%= request.getContextPath() %>/App/pages/sign-in/sign-in.jsp'">LOGIN</li>
+        <li onclick="window.location.href = '<%= request.getContextPath() %>/App/pages/edit-profile/edit-profile.jsp'">EDITAR PERFIL</li>
+        <li onclick="window.location.href = '<%= request.getContextPath() %>/App/pages/save-address/save-address.jsp'">CRIAR ENDEREÇO</li>
+        <li onclick="window.location.href = '<%= request.getContextPath() %>/App/pages/profile-address/profile-address.jsp'">MEUS ENDEREÇOS</li>
+        <li onclick="window.location.href = '<%= request.getContextPath() %>/App/pages/requests/requests.jsp'">MEUS PEDIDOS</li>
         <li onclick="window.location.href = '<%= request.getContextPath() %>/App/pages/payment-steps/payment-steps.jsp'">ETAPAS DE PAGAMENTO</li>
         <!-- <li>ACESSÓRIOS</li>
         <li>MASCULINO</li>

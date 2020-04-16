@@ -1,3 +1,4 @@
+<%@page import="br.com.sprintters.prettystyle.model.User"%>
 <%@ page import="java.util.ArrayList"%>
 <%@ page import="br.com.sprintters.prettystyle.model.Address"%>
 <%@ page import="br.com.sprintters.prettystyle.service.AddressService"%>
@@ -18,6 +19,7 @@
 		<title>Pretty Style</title>
 		
 		<link rel="stylesheet" href="../../lib/bootstrap/4.4.1/css/bootstrap.min.css">
+		<link rel="stylesheet" href="../../lib/sweetalert/sweetalert.css">
 		
 		<link rel="stylesheet" href="../../styles/index.css">
 		<link rel="stylesheet" href="../../styles/header.css">
@@ -30,11 +32,15 @@
 		<div class="container">
 			<%
 				AddressService as = new AddressService();
-				ArrayList<Address> lista = as.listPlusName(1); 
+			
+				User user = as.findListByIdUser(1);
+				
+				ArrayList<Address> lista = user.getAddresses(); 
 				ArrayList<Address> listAddress1 = new ArrayList<Address>(lista.subList(0, (lista.size()/2)));
 				ArrayList<Address> listAddress2 = new ArrayList<Address>(lista.subList(lista.size()/2, lista.size()));
 				request.setAttribute("lista1", listAddress1);
 				request.setAttribute("lista2", listAddress2);
+				request.setAttribute("user", user);
 			%>
 			<div class="profile-address-container">
 				<div class="container">
@@ -52,27 +58,27 @@
 						<div class="col-md-12 content">
 							<div class="row">
 								<div class="col-md-6">
-									<c:forEach var="request" items="${lista1}">
-										<div id="card-address" class="jumbotron address active">
+									<c:forEach var="address" items="${lista1}">
+										<div id="card-address" class="jumbotron address">
 											<div class="header">
 												<label>Casa</label>
 												<div class="icons">
 													<button type="button">
 														<img src="../../assets/icons/edit.svg" alt="Editar">
 													</button>
-													<button type="button">
+													<button type="button" onclick="handleDelete(this)">
 														<img src="../../assets/icons/bin.svg" alt="Lixeira">
 													</button>
 												</div>
 											</div>
 											<hr />
 											<div class="body">
-												<label class="client-name">${request.name} ${request.surname}</label>
-												<label>Endereço: <span>${request.place}, ${request.number}</span></label>
-												<label>Bairro: <span>${request.neighborhood}</span></label>
-												<label>Cidade: <span>${request.city }</span></label>
-												<label>Complemento: <span>${request.complement }</span></label>
-												<label>CEP: <span>${request.zip }</span></label>
+												<label class="client-name">${user.client.name} ${user.client.surname}</label>
+												<label>Endereço: <span>${address.place}, ${address.number}</span></label>
+												<label>Bairro: <span>${address.neighborhood}</span></label>
+												<label>Cidade: <span>${address.city }</span></label>
+												<label>Complemento: <span>${address.complement }</span></label>
+												<label>CEP: <span>${address.zip }</span></label>
 											</div>
 											<hr />
 											<div class="selection-area">
@@ -82,31 +88,31 @@
 									</c:forEach>
 								</div>
 								<div class="col-md-6">
-									<c:forEach var="request" items="${lista2}">
-										<div class="jumbotron address active">
+									<c:forEach var="address" items="${lista2}">
+										<div class="jumbotron address">
 											<div class="header">
 												<label>Casa</label>
 												<div class="icons">
 													<button type="button">
 														<img src="../../assets/icons/edit.svg" alt="Editar">
 													</button>
-													<button type="button">
+													<button type="button" onclick="handleDelete(this)">
 														<img src="../../assets/icons/bin.svg" alt="Lixeira">
 													</button>
 												</div>
 											</div>
 											<hr />
 											<div class="body">
-												<label class="client-name">${request.name} ${request.surname}</label>
-												<label>Endereço: <span>${request.place}, ${request.number}</span></label>
-												<label>Bairro: <span>${request.neighborhood}</span></label>
-												<label>Cidade: <span>${request.city }</span></label>
-												<label>Complemento: <span>${request.complement }</span></label>
-												<label>CEP: <span>${request.zip }</span></label>
+												<label class="client-name">${user.client.name} ${user.client.surname}</label>
+												<label>Endereço: <span>${address.place}, ${address.number}</span></label>
+												<label>Bairro: <span>${address.neighborhood}</span></label>
+												<label>Cidade: <span>${address.city}</span></label>
+												<label>Complemento: <span>${address.complement}</span></label>
+												<label>CEP: <span>${address.zip}</span></label>
 											</div>
 											<hr />
 											<div class="selection-area">
-												<input type="radio" /> <label>Selecionar como principal</label>
+												<input type="radio" onclick="handleSelectDefault(this)" /><label>Selecionar como principal</label>
 											</div>
 										</div>
 									</c:forEach>
@@ -122,8 +128,10 @@
 		</div>
 		<script src="../../lib/jquery/1.9.1/jquery-1.9.1.min.js"></script>
 		<script src="../../lib/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+		<script src="../../lib/sweetalert/sweetalert.min.js"></script>
 		<script src="../../js/general.js"></script>
-		<script src="../../js/index.js"></script>
+		
+		<script src="script.js"></script>
 	</body>
 
 </html>

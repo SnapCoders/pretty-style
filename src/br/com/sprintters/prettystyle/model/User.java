@@ -11,6 +11,7 @@ public class User extends Entity {
 	private String emailConfirmation;
 	private String passwordHash;
 	private ArrayList<PhoneNumber> phoneNumbers;
+	private ArrayList<Address> addresses;
 	
 	private Client client;
 	private Provider provider;
@@ -84,6 +85,14 @@ public class User extends Entity {
 
 	public void setPhoneNumbers(ArrayList<PhoneNumber> phoneNumbers) {
 		this.phoneNumbers = phoneNumbers;
+	}
+	
+	public ArrayList<Address> getAddresses() {
+		return addresses;
+	}
+
+	public void setAddresses(ArrayList<Address> addresses) {
+		this.addresses = addresses;
 	}
 
 	public Client getClient() {
