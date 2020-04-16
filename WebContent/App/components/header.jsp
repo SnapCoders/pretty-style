@@ -57,6 +57,7 @@
         <li onclick="window.location.href = '<%= request.getContextPath() %>/App/pages/profile-address/profile-address.jsp'">MEUS ENDEREÇOS</li>
         <li onclick="window.location.href = '<%= request.getContextPath() %>/App/pages/requests/requests.jsp'">MEUS PEDIDOS</li>
         <li onclick="window.location.href = '<%= request.getContextPath() %>/App/pages/payment-steps/payment-steps.jsp'">ETAPAS DE PAGAMENTO</li>
+        <li onclick="window.location.href = '<%= request.getContextPath() %>/App/pages/catalog/catalog.jsp'">CATÁLOGO</li>
         <!-- <li>ACESSÓRIOS</li>
         <li>MASCULINO</li>
         <li>FEMININO</li>
