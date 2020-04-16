@@ -65,7 +65,7 @@
 								<label>Recebemos seu pedido.</label>
 							</div>
 							<div class="row thanks-client">
-								<label>Olá, Bruno Amaral Futema.</label>
+								<label>Olá, ${client.name} ${client.surname} .</label>
 							</div>
 							<div class="row thanks-paragraph">
 								<p>Agradecemos sua preferência pelo PrettyStyle!</p>
@@ -74,7 +74,7 @@
 							</div>
 							<div class="row thanks-number-request">
 								<span>Número do seu pedido</span>
-								<label>${numberRequest}</label>
+								<label>${req.numberRequest}</label>
 							</div>
 							<div class="row thanks-steps">
 								<div class="row steps">
