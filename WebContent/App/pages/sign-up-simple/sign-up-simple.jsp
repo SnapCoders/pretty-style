@@ -39,6 +39,11 @@
 			  			</div>
 			  		</div>
 			  		<div class="jumbotron main">
+			  			<div class="navigation">
+			  				<label class="active">Simples</label>
+			  				<hr style="width: 30px;" />
+			  				<label onclick="window.location.href = '../sign-up-business/sign-up-business.jsp'">Business</label>
+			  			</div>
 			  			<div class="col-md-12 content">
 			  				<form action="/PrettyStyle/users" method="POST" name="add-user-simple">
 				  				<div class="row">
@@ -119,6 +124,7 @@
 		<script src="../../lib/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 		<script src="../../lib/sweetalert/sweetalert.min.js"></script>
 		<script src="../../lib/mask/jquery.mask.js"></script>
+		<script src="../../js/general.js"></script>
 		
 		<script src="script.js"></script>
 	</body>

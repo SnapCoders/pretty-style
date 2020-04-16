@@ -85,6 +85,7 @@
 		<script src="../../../lib/datatables/datatables.min.js"></script>
 		<script src="../../../lib/sweetalert/sweetalert.min.js"></script>
 		<script src="../../../js/general.js"></script>
+		
 		<script src="script.js"></script>
 	</body>
 </html>

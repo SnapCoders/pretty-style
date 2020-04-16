@@ -16,12 +16,23 @@
         </div>
         <strong>Gerenciar</strong>
       </div>
-      <div class="account" onclick="window.location.href = '/PrettyStyle/App/pages/sign-in/sign-in.jsp'">
+      <div class="account">
         <div class="account-icon">
           <img src="<%=request.getContextPath()%>/App/assets/icons/home.svg">
         </div>
-        <strong>Minha conta</strong>
+        <strong onclick="handleShowModal();">Minha conta</strong>
         <img src="<%=request.getContextPath()%>/App/assets/icons/arrow-down.svg">
+        <div id="login-modal" class="login-modal inactive">
+        	<div class="actions">
+        		<button type="button" class="login-button" onclick="window.location.href = '/PrettyStyle/App/pages/sign-in/sign-in.jsp'">ENTRAR</button>
+        		<button type="button" class="create-account-button" onclick="window.location.href = '/PrettyStyle/App/pages/sign-up-simple/sign-up-simple.jsp'">CRIAR CONTA</button>
+        	</div>
+        	<hr />
+        	<div class="pages">
+        		<button type="button" onclick="window.location.href = '/PrettyStyle/App/pages/profile/profile.jsp'">Minha conta</button>
+        		<button type="button" onclick="window.location.href = '/PrettyStyle/App/pages/requests/requests.jsp'">Meus Pedidos</button>
+        	</div>
+        </div>
       </div>
       <div class="favorite">
         <div class="favorite-icon">
@@ -39,9 +50,7 @@
     <nav>
       <ul>
         <li class="active">SALES</li>
-        <%-- <li onclick="window.location.href = '<%= request.getContextPath() %>/App/pages/'">NOVIDADES</li> --%>
-        <li onclick="window.location.href = '<%= request.getContextPath() %>/App/pages/sign-up-simple/sign-up-simple.jsp'">SIMPLES</li>
-        <li onclick="window.location.href = '<%= request.getContextPath() %>/App/pages/sign-up-business/sign-up-business.jsp'">BUSINESS</li>
+        <li onclick="window.location.href = '<%= request.getContextPath() %>/App/pages/'">NOVIDADES</li>
         <li onclick="window.location.href = '<%= request.getContextPath() %>/App/pages/sign-in/sign-in.jsp'">LOGIN</li>
         <li onclick="window.location.href = '<%= request.getContextPath() %>/App/pages/edit-profile/edit-profile.jsp'">EDITAR PERFIL</li>
         <li onclick="window.location.href = '<%= request.getContextPath() %>/App/pages/save-address/save-address.jsp'">CRIAR ENDEREÇO</li>
