@@ -28,14 +28,14 @@
   <body>
   	<c:import url="../../components/header.jsp" />
   	<div class="container">
-  	<%
+  		<%
 			CategoryService cs = new CategoryService();
 			ArrayList<Category> lista = cs.list(); 
-			request.setAttribute("lista", lista);
+			request.setAttribute("categories", lista);
 			
 			ProductService productService = new ProductService();
 			ArrayList<Product> productList = productService.list();
-			request.setAttribute("products",productList);
+			request.setAttribute("products", productList);
  		%>
   	
 		<div class="catalog-container">
@@ -56,11 +56,11 @@
 							<div class="jumbotron filters">
 								<label>Categorias</label>
 								<hr />
-								<c:forEach var="request" items="${lista}">
+								<c:forEach var="category" items="${categories}">
 									<div class="filters-inputs">
 									
 										<div class="male-filter">
-											<label class="container-check">${request.name}
+											<label class="container-check">${category.name}
 											  <input type="checkbox">
 											  <span class="checkmark"></span>
 											</label>
