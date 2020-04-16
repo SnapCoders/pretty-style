@@ -31,7 +31,7 @@
 		<%
   			AddressService as = new AddressService();
 			ItemService is = new ItemService();
-			
+					
 			ArrayList<Item> lista = is.listCartItemsByIdClient(1);
 			
 			int quantity = 0;
@@ -93,8 +93,7 @@
 						<hr />
 			  		</div>
 			  		<div class="jumbotron main">
-			  			<input id="total-price-without-discount" type="hidden" value="${total}" />
-			  			<input id="total-price-with-discount" type="hidden" value="${bankSlip}" />
+
 			  			<div class="col-md-12">
 			  				<div class="row">
 			  					<div class="col-md-7 column-location">
@@ -192,113 +191,122 @@
 			  							<hr />
 			  							<div class="credit-or-bank">
 			  								<div id="credit-card" class="jumbotron credit-card-method">
-			  									<div class="inputs">
-			  										<div class="row">
-			  											<div class="col-md-4">
-			  												<label for="number-credit-card">Número do cartão</label>
-			  											</div>
-			  											<div class="col-md-8">
-			  												<input class="form-control" id="number-credit-card" />
-			  											</div>
-			  										</div>
-			  										<div class="row">
-			  											<div class="col-md-4">
-			  												<label for="printed-name-credit-card">Nome impresso no cartão</label>
-			  											</div>
-			  											<div class="col-md-8">
-			  												<input class="form-control" id="printed-name-credit-card" />
-			  											</div>
-			  										</div>
-			  										<div class="row">
-			  											<div class="col-md-4">
-			  												<label for="mounth-shelf-life-credit-card">Validade</label>
-			  											</div>
-			  											<div class="col-md-4">
-			  												<input class="form-control" id="mounth-shelf-life-credit-card" />
-			  											</div>
-			  											<div class="col-md-4">
-			  												<input class="form-control" id="year-shelf-life-credit-card" />
-			  											</div>
-			  										</div>
-			  										<div class="row">
-			  											<div class="col-md-4">
-			  												<label for="number-parcels">Parcelar em</label>
-			  											</div>
-			  											<div class="col-md-4">
-			  												<select class="form-control" id="number-parcels">
-			  													<option value="0">N° de parcelas</option>
-			  													<option value="1">1 (<fmt:formatNumber value="${bankSlip}" type="currency" currencySymbol="R$"/>)</option>
-			  													<option value="2">2 (<fmt:formatNumber value="${parcela2}" type="currency" currencySymbol="R$"/>)</option>
-			  													<option value="3">3 (<fmt:formatNumber value="${parcela3}" type="currency" currencySymbol="R$"/>)</option>
-			  													<option value="4">4 (<fmt:formatNumber value="${parcela4}" type="currency" currencySymbol="R$"/>)</option>
-			  													<option value="5">5 (<fmt:formatNumber value="${parcela5}" type="currency" currencySymbol="R$"/>)</option>
-			  													<option value="6">6 (<fmt:formatNumber value="${parcela6}" type="currency" currencySymbol="R$"/>)</option>
-			  													<option value="7">7 (<fmt:formatNumber value="${parcela7}" type="currency" currencySymbol="R$"/>)</option>
-			  													<option value="8">8 (<fmt:formatNumber value="${parcela8}" type="currency" currencySymbol="R$"/>)</option>
-			  													<option value="9">9 (<fmt:formatNumber value="${parcela9}" type="currency" currencySymbol="R$"/>)</option>
-			  													<option value="10">10 (<fmt:formatNumber value="${parcela10}" type="currency" currencySymbol="R$"/>)</option>
-			  													<option value="11">11 (<fmt:formatNumber value="${parcela11}" type="currency" currencySymbol="R$"/>)</option>
-			  													<option value="12">12 (<fmt:formatNumber value="${parcela12}" type="currency" currencySymbol="R$"/>)</option>
-			  												</select>
-			  											</div>
-			  											<div class="col-md-1">
-			  												<label for="cvv-credit-card">CVV</label>
-			  											</div>
-			  											<div class="col-md-3">
-			  												<input class="form-control" id="cvv-credit-card" />
-			  											</div>
-			  										</div>
-			  									</div>
-			  									<div class="pay-and-total">
-			  										<label style="color: #ffffff;"><fmt:formatNumber value="${total}" type="currency" currencySymbol="R$"/></label>
-			  										<button type="button" onclick="window.location.href = '../thanks/thanks.jsp'">Pagar</button>
-			  										<label id="total-price">Total: <fmt:formatNumber value="${total}" type="currency" currencySymbol="R$"/></label>
-			  									</div>
+				  								<form method="POST" name="add-request-by-credit-card">
+				  									<input id="total-price-without-discount" name="totalPriceWithoutDiscount" type="hidden" value="${total}" />
+			  										<input id="total-price-with-discount" name="totalPriceWithDiscount" type="hidden" value="${bankSlip}" />
+				  									<input type="hidden" value="creditCard" name="paymentType">
+				  									<div class="inputs">
+				  										<div class="row">
+				  											<div class="col-md-4">
+				  												<label for="number-credit-card" >Número do cartão</label>
+				  											</div>
+				  											<div class="col-md-8">
+				  												<input class="form-control" id="number-credit-card" name="cardNumber" />
+				  											</div>
+				  										</div>
+				  										<div class="row">
+				  											<div class="col-md-4">
+				  												<label for="printed-name-credit-card">Nome impresso no cartão</label>
+				  											</div>
+				  											<div class="col-md-8">
+				  												<input class="form-control" id="printed-name-credit-card" name="cardName" />
+				  											</div>
+				  										</div>
+				  										<div class="row">
+				  											<div class="col-md-4">
+				  												<label for="mounth-shelf-life-credit-card">Validade</label>
+				  											</div>
+				  											<div class="col-md-4">
+				  												<input class="form-control" id="mounth-shelf-life-credit-card" name="validateMonth" />
+				  											</div>
+				  											<div class="col-md-4">
+				  												<input class="form-control" id="year-shelf-life-credit-card" name="validateYear" />
+				  											</div>
+				  										</div>
+				  										<div class="row">
+				  											<div class="col-md-4">
+				  												<label for="number-parcels">Parcelar em</label>
+				  											</div>
+				  											<div class="col-md-4">
+				  												<select class="form-control" id="number-parcels" name="cardParcels">
+				  													<option value="0">N° de parcelas</option>
+				  													<option value="1">1 (<fmt:formatNumber value="${bankSlip}" type="currency" currencySymbol="R$"/>)</option>
+				  													<option value="2">2 (<fmt:formatNumber value="${parcela2}" type="currency" currencySymbol="R$"/>)</option>
+				  													<option value="3">3 (<fmt:formatNumber value="${parcela3}" type="currency" currencySymbol="R$"/>)</option>
+				  													<option value="4">4 (<fmt:formatNumber value="${parcela4}" type="currency" currencySymbol="R$"/>)</option>
+				  													<option value="5">5 (<fmt:formatNumber value="${parcela5}" type="currency" currencySymbol="R$"/>)</option>
+				  													<option value="6">6 (<fmt:formatNumber value="${parcela6}" type="currency" currencySymbol="R$"/>)</option>
+				  													<option value="7">7 (<fmt:formatNumber value="${parcela7}" type="currency" currencySymbol="R$"/>)</option>
+				  													<option value="8">8 (<fmt:formatNumber value="${parcela8}" type="currency" currencySymbol="R$"/>)</option>
+				  													<option value="9">9 (<fmt:formatNumber value="${parcela9}" type="currency" currencySymbol="R$"/>)</option>
+				  													<option value="10">10 (<fmt:formatNumber value="${parcela10}" type="currency" currencySymbol="R$"/>)</option>
+				  													<option value="11">11 (<fmt:formatNumber value="${parcela11}" type="currency" currencySymbol="R$"/>)</option>
+				  													<option value="12">12 (<fmt:formatNumber value="${parcela12}" type="currency" currencySymbol="R$"/>)</option>
+				  												</select>
+				  											</div>
+				  											<div class="col-md-1">
+				  												<label for="cvv-credit-card">CVV</label>
+				  											</div>
+				  											<div class="col-md-3">
+				  												<input class="form-control" id="cvv-credit-card" name="cardCvv" />
+				  											</div>
+				  										</div>
+				  									</div>
+				  									<div class="pay-and-total">
+				  										<label style="color: #ffffff;"><fmt:formatNumber value="${total}" type="currency" currencySymbol="R$"/></label>
+				  										<button type="submit" >Pagar</button>
+				  										<label id="total-price">Total: <fmt:formatNumber value="${total}" type="currency" currencySymbol="R$"/></label>
+				  									</div>
+			  									</form>
 			  								</div>
 			  								<div id="bank-slip" class="jumbotron bank-slip-method" style="display: none;">
-			  									<div class="inputs">
-			  										<div class="row">
-				  										<div class="col-md-1">
-				  											<div class="image-area">
-					  											<img src="../../assets/icons/print.svg" alt="Impressora">
-				  											</div>
-				  										</div>
-				  										<div class="col-md-11">
-				  											<div class="label-area">
-				  												<label>Imprima o boleto e pague no banco.</label>
-				  											</div>
-				  										</div>
+			  									<form method="POST" name="add-request-by-bank-slip">
+			  									<input type="hidden" value="bankSlip" name="paymentType ">
+			  									<input id="total-price-with-discount-bank-slip" name="totalPriceWithDiscount" type="hidden" value="${bankSlip}" />
+				  									<div class="inputs">
+				  										<div class="row">
+					  										<div class="col-md-1">
+					  											<div class="image-area">
+						  											<img src="../../assets/icons/print.svg" alt="Impressora">
+					  											</div>
+					  										</div>
+					  										<div class="col-md-11">
+					  											<div class="label-area">
+					  												<label>Imprima o boleto e pague no banco.</label>
+					  											</div>
+					  										</div>
+					  									</div>
+					  									<div class="row">
+					  										<div class="col-md-1">
+					  											<div class="image-area">
+						  											<img src="../../assets/icons/bank.svg" alt="Banco">
+					  											</div>
+					  										</div>
+					  										<div class="col-md-11">
+					  											<div class="label-area">
+					  												<label>ou pague pela internet utilizando o código de barras do boleto.</label>
+					  											</div>
+					  										</div>
+					  									</div>
+					  									<div class="row">
+					  										<div class="col-md-1">
+					  											<div class="image-area">
+						  											<img src="../../assets/icons/calendar.svg" alt="Calendário">
+					  											</div>
+					  										</div>
+					  										<div class="col-md-11">
+					  											<div class="label-area">
+					  												<label>o prazo de validade do boleto é de 1 dia útil.</label>
+					  											</div>
+					  										</div>
+					  									</div>
 				  									</div>
-				  									<div class="row">
-				  										<div class="col-md-1">
-				  											<div class="image-area">
-					  											<img src="../../assets/icons/bank.svg" alt="Banco">
-				  											</div>
-				  										</div>
-				  										<div class="col-md-11">
-				  											<div class="label-area">
-				  												<label>ou pague pela internet utilizando o código de barras do boleto.</label>
-				  											</div>
-				  										</div>
+				  									<div class="pay-and-total">
+				  										<label style="color: #ffffff;"><fmt:formatNumber value="${total}" type="currency" currencySymbol="R$"/></label>
+				  										<button type="submit">Pagar</button>
+				  										<label>Total: <fmt:formatNumber value="${total}" type="currency" currencySymbol="R$"/></label>
 				  									</div>
-				  									<div class="row">
-				  										<div class="col-md-1">
-				  											<div class="image-area">
-					  											<img src="../../assets/icons/calendar.svg" alt="Calendário">
-				  											</div>
-				  										</div>
-				  										<div class="col-md-11">
-				  											<div class="label-area">
-				  												<label>o prazo de validade do boleto é de 1 dia útil.</label>
-				  											</div>
-				  										</div>
-				  									</div>
-			  									</div>
-			  									<div class="pay-and-total">
-			  										<label style="color: #ffffff;"><fmt:formatNumber value="${total}" type="currency" currencySymbol="R$"/></label>
-			  										<button type="button">Pagar</button>
-			  										<label>Total: <fmt:formatNumber value="${total}" type="currency" currencySymbol="R$"/></label>
-			  									</div>
+			  									</form>
 			  								</div>
 			  							</div>
 			  						</div>

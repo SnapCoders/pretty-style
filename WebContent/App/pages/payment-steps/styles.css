@@ -518,6 +518,12 @@ div.payments-steps-container div.container div.jumbotron.main div.payments-metho
 	font-weight: bold;
 }
 
+div.payments-steps-container div.container div.jumbotron.main div.payments-methods div.credit-or-bank div#credit-card form label.error {
+	color: #f92d2d;
+	font-weight: bold;
+}
+
+
 div.payments-steps-container div.container div.jumbotron.main div.payments-methods div.credit-or-bank div.credit-card-method div.inputs {
 	width: 700px;
 }
