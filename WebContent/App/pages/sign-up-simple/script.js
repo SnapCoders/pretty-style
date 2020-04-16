@@ -1,4 +1,9 @@
 $(document).ready(function () {
+	$('#cpf').mask('000.000.000-00', {reverse: true});
+	$('#birthday').mask('00/00/0000');
+	$('#telephone').mask('(00) 0000-0000');
+	$('#cellphone').mask('(00) 0 0000-0000');
+
 	$('form[name="add-user-simple"]').validate({
 		rules: {
 			username: 'required',

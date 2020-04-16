@@ -18,6 +18,8 @@ public class Address extends Entity {
 	private String surname;
 	private User user;
 	
+	private UserAddress userAddress;
+	
 	public Address() { }
 	
 	public Address(String place, String number, String neighborhood, String city, String country, String zip, String complement, int idUser) {
@@ -209,6 +211,14 @@ public class Address extends Entity {
 
 	public void setSurname(String surname) {
 		this.surname = surname;
+	}
+	
+	public UserAddress getUserAddress() {
+		return userAddress;
+	}
+	
+	public void setUserAddress(UserAddress userAddress) {
+		this.userAddress = userAddress;
 	}
 	
 	@Override

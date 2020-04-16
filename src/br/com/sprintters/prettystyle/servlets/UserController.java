@@ -26,7 +26,7 @@ public class UserController extends HttpServlet {
     
     @HttpMethodConstraint("GET")
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        doPut(request, response);
+    	doPut(request, response);
     }
 
     @HttpMethodConstraint("POST")

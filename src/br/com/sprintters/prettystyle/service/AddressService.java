@@ -59,4 +59,12 @@ public class AddressService {
     		throw new Exception(e.getMessage());
     	}
     }
+    
+    public Address findByIdUser(int idUser) throws Exception {
+    	try {
+    		return dao.findByIdUser(idUser);
+    	} catch (Exception e) {
+    		throw new Exception(e.getMessage());
+    	}
+    }
 }

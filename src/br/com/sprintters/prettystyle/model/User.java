@@ -14,7 +14,7 @@ public class User extends Entity {
 	
 	private Client client;
 	private Provider provider;
-
+	private UserAddress userAddress;
 	
 	private String password;
 	private boolean signed;
@@ -100,6 +100,14 @@ public class User extends Entity {
 
 	public void setProvider(Provider provider) {
 		this.provider = provider;
+	}
+	
+	public UserAddress getUserAddress() {
+		return userAddress;
+	}
+	
+	public void setUserAddress(UserAddress userAddress) {
+		this.userAddress = userAddress;
 	}
 
 	public String getPassword() {

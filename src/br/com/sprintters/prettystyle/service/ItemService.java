@@ -58,4 +58,12 @@ public class ItemService {
     		throw new Exception(e.getMessage());
     	}
     }
+    
+    public ArrayList<Item> listCartItemsByIdClient(int idClient) throws Exception {
+    	try {
+    		return dao.listCartItemsByIdClient(idClient);
+    	} catch (Exception e) {
+    		throw new Exception(e.getMessage());
+    	}
+    }
 }

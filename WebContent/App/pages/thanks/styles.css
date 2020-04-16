@@ -321,7 +321,7 @@ div.thanks-container div.container div.jumbotron.main div.content div.thanks-ste
 }
 
 div.thanks-container div.container div.jumbotron.main div.content div.thanks-steps div.request-steps div.step.checked img {
-	width: 80px;
-	height: 80px;
+	width: 80px !important;
+	height: 80px !important;
 	display: block;
 }
