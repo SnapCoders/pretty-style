@@ -70,6 +70,7 @@ public class RequestDAO {
 			try (ResultSet rs = stm.executeQuery()) {
 				if (rs.next()) {
 					to.setId(rs.getInt("id"));
+					to.setNumberRequest(rs.getString("number_request"));
 					to.setTotalPrice(rs.getDouble("total_price"));
 					to.setIdClient(rs.getInt("id_client"));
 					to.setCreatedAt(rs.getTimestamp("created_at"));

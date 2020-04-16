@@ -6,6 +6,8 @@ import br.com.sprintters.prettystyle.model.generic.Entity;
 
 public class Request extends Entity {
 	private int idClient;
+	private String numberRequest;
+	
 	private Client client;
 	private Product product;
 	
@@ -62,6 +64,14 @@ public class Request extends Entity {
 	public void setIdClient(int idClient) {
 		this.idClient = idClient;
 	}
+	
+	public String getNumberRequest() {
+		return numberRequest;
+	}
+
+	public void setNumberRequest(String numberRequest) {
+		this.numberRequest = numberRequest;
+	}
 
 	public Client getClient() {
 		return client;
@@ -89,6 +99,6 @@ public class Request extends Entity {
 
 	@Override
 	public String toString() {
-		return "Request [idClient=" + idClient + ", client=" + client + ", totalPrice=" + totalPrice + "]";
+		return "Request [idClient=" + idClient + ", numberRequest=" + numberRequest + ", client=" + client + ", product=" + product + ", totalPrice=" + totalPrice + "]";
 	}
 }
