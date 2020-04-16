@@ -475,6 +475,49 @@ div.payments-steps-container div.container div.jumbotron.main div.payments-metho
 	justify-content: center;
 }
 
+div.payments-steps-container div.container div.jumbotron.main div.payments-methods div.credit-or-bank div.bank-slip-method {
+	margin: 10px 0 0 0;
+	border: 1px solid #707070;
+	border-radius: 10px;
+	background: #ffffff;
+	padding: 10px;
+}
+
+div.payments-steps-container div.container div.jumbotron.main div.payments-methods div.credit-or-bank div.bank-slip-method div.row {
+	margin: 10px 0;
+}
+
+div.payments-steps-container div.container div.jumbotron.main div.payments-methods div.credit-or-bank div.bank-slip-method div.image-area {
+	width: 50px;
+	height: 50px;
+	border: 2px solid #0E9AEF;
+	border-radius: 50%;
+
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+div.payments-steps-container div.container div.jumbotron.main div.payments-methods div.credit-or-bank div.bank-slip-method div.image-area img {
+	width: 24px;
+	height: 24px;
+}
+
+div.payments-steps-container div.container div.jumbotron.main div.payments-methods div.credit-or-bank div.bank-slip-method div.label-area {
+	height: 100%;
+
+	display: flex;
+	align-items: center;
+	justify-content: flex-start;
+}
+
+div.payments-steps-container div.container div.jumbotron.main div.payments-methods div.credit-or-bank div.bank-slip-method div.label-area label {
+	margin-bottom: 0;
+	color: #707070;
+	font-size: 16px;
+	font-weight: bold;
+}
+
 div.payments-steps-container div.container div.jumbotron.main div.payments-methods div.credit-or-bank div.credit-card-method div.inputs {
 	width: 700px;
 }

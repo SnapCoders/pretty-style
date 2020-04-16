@@ -118,6 +118,7 @@
 		<script src="../../lib/jquery-validation/jquery.validate.min.js"></script>
 		<script src="../../lib/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 		<script src="../../lib/sweetalert/sweetalert.min.js"></script>
+		<script src="../../lib/mask/jquery.mask.js"></script>
 		
 		<script src="script.js"></script>
 	</body>
