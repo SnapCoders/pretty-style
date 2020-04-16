@@ -170,6 +170,8 @@ create table request (
 
 -- select * from request;
 
+
+
 create table item (
 	id			int auto_increment,
     quantity	int not null,
@@ -186,3 +188,14 @@ create table item (
 );
 
 -- select * from item;
+
+
+-- NOVAS QUERYS
+
+create table item_request (
+	id_item		int,
+    id_request	int,
+    
+    constraint fk_item_request__id_item foreign key (id_item) references item (id),
+    constraint fk_item_request__id_request foreign key (id_request) references request (id)
+);
