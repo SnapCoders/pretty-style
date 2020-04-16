@@ -7,6 +7,7 @@ import br.com.sprintters.prettystyle.model.generic.Entity;
 public class Request extends Entity {
 	private int idClient;
 	private String numberRequest;
+	private String typePayment;
 	
 	private Client client;
 	private Product product;
@@ -15,9 +16,17 @@ public class Request extends Entity {
 	
 	public Request() { }
 
-	public Request(int idClient, double totalPrice) {
+	public Request(int idClient, String numberRequest, String typePayment) {
+		this.idClient = idClient;
+		this.numberRequest = numberRequest;
+		this.typePayment = typePayment;
+	}
+	
+	public Request(int idClient, double totalPrice, String numberRequest, String typePayment) {
 		this.idClient = idClient;
 		this.totalPrice = totalPrice;
+		this.numberRequest = numberRequest;
+		this.typePayment = typePayment;
 	}
 	
 	public Request(Client client, double totalPrice) {
@@ -56,6 +65,18 @@ public class Request extends Entity {
 		this.client = client;
 		this.totalPrice = totalPrice;
 	}
+	
+
+	public Request(int id,int idClient, String numberRequest, String typePayment, Client client, Product product,
+			double totalPrice) {
+		super(id);
+		this.idClient = idClient;
+		this.numberRequest = numberRequest;
+		this.typePayment = typePayment;
+		this.client = client;
+		this.product = product;
+		this.totalPrice = totalPrice;
+	}
 
 	public int getIdClient() {
 		return idClient;
@@ -71,6 +92,14 @@ public class Request extends Entity {
 
 	public void setNumberRequest(String numberRequest) {
 		this.numberRequest = numberRequest;
+	}
+
+	public String getTypePayment() {
+		return typePayment;
+	}
+
+	public void setTypePayment(String typePayment) {
+		this.typePayment = typePayment;
 	}
 
 	public Client getClient() {
