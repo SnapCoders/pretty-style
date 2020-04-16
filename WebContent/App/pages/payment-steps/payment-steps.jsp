@@ -191,7 +191,7 @@
 			  							<hr />
 			  							<div class="credit-or-bank">
 			  								<div id="credit-card" class="jumbotron credit-card-method">
-				  								<form method="POST" name="add-request-by-credit-card">
+				  								<form action="/PrettyStyle/requests" method="POST" name="add-request-by-credit-card">
 				  									<input id="total-price-without-discount" name="totalPriceWithoutDiscount" type="hidden" value="${total}" />
 			  										<input id="total-price-with-discount" name="totalPriceWithDiscount" type="hidden" value="${bankSlip}" />
 				  									<input type="hidden" value="creditCard" name="paymentType">
@@ -260,9 +260,9 @@
 			  									</form>
 			  								</div>
 			  								<div id="bank-slip" class="jumbotron bank-slip-method" style="display: none;">
-			  									<form method="POST" name="add-request-by-bank-slip">
-			  									<input type="hidden" value="bankSlip" name="paymentType ">
-			  									<input id="total-price-with-discount-bank-slip" name="totalPriceWithDiscount" type="hidden" value="${bankSlip}" />
+			  									<form action="/PrettyStyle/requests" method="POST" name="add-request-by-bank-slip">
+			  										<input type="hidden" value="bankSlip" name="paymentType ">
+			  										<input id="total-price-with-discount-bank-slip" name="totalPriceWithDiscount" type="hidden" value="${bankSlip}" />
 				  									<div class="inputs">
 				  										<div class="row">
 					  										<div class="col-md-1">

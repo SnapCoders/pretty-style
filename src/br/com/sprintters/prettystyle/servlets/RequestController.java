@@ -8,6 +8,7 @@ import br.com.sprintters.prettystyle.service.UserService;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.HttpMethodConstraint;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -23,7 +24,8 @@ import java.util.UUID;
 @WebServlet("/requests")
 public class RequestController extends HttpServlet {
     private static final long serialVersionUID = 1L;
-
+    
+    @HttpMethodConstraint("GET")
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
         	RequestService service = new RequestService();
@@ -36,9 +38,9 @@ public class RequestController extends HttpServlet {
         	e.printStackTrace();
         }
     }
-
+    
+    @HttpMethodConstraint("POST")
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    	
         try {
         	String paymentType = request.getParameter("paymentType");
         	double totalPriceWithoutDiscount = Double.parseDouble(request.getParameter("totalPriceWithoutDiscount"));
@@ -48,7 +50,6 @@ public class RequestController extends HttpServlet {
         	UserService userService = new UserService();
         	RequestService requestService = new RequestService();
         	
-        	
         	User user = userService.find(1);
         	Date date = new Date(2001);
         	
@@ -57,29 +58,24 @@ public class RequestController extends HttpServlet {
         	int id = user.getId();
         	
         	UUID uuid = UUID.randomUUID();
+        	
     		String numberRequestPad = String.format("%02d", id);
-    		String numberReq = uuid.toString();    	
-    		String nr = numberRequestPad + "-"+ numberReq;
-    			
+    		String nr = numberRequestPad + "-"+ uuid.toString();
     		
-    		Request req = new Request(1, nr,"Cartão de crédito");
+    		Request req = new Request(1, nr, "Cartão de crédito");
+    		
         	if(paymentType.equals("creditCard")) {
-        		if(cardParcels == 1) {
-        			req.setTotalPrice(totalPriceWithDiscount);
-        		}
-        		else {
-        			req.setTotalPrice(totalPriceWithoutDiscount);
-        		}
-        	}               
+        		if(cardParcels == 1) req.setTotalPrice(totalPriceWithDiscount);
+        		else req.setTotalPrice(totalPriceWithoutDiscount);
+        	}
+        	
         	requestService.create(req);
         	
         	request.setAttribute("client", client);
         	request.setAttribute("req", req);
         	
-        	RequestDispatcher view = request.getRequestDispatcher("thanks.jsp");
+        	RequestDispatcher view = request.getRequestDispatcher("App/pages/thanks/thanks.jsp");
         	view.forward(request, response);
-        	
-        	
         } catch (Exception e) {
 			JSONObject retorno = new JSONObject();
 			
@@ -90,7 +86,5 @@ public class RequestController extends HttpServlet {
 			response.setContentType("application/json");
 			response.getWriter().write(retorno.toString());
 		}
-
-
     }
 }

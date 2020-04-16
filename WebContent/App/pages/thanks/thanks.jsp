@@ -13,13 +13,13 @@
 
 		<title>Pretty Style - Obrigado!</title>
     
-		<link rel="stylesheet" href="../../lib/bootstrap/4.4.1/css/bootstrap.min.css">
-		<link rel="stylesheet" href="../../lib/sweetalert/sweetalert.css">
+		<link rel="stylesheet" href="App/lib/bootstrap/4.4.1/css/bootstrap.min.css">
+		<link rel="stylesheet" href="App/lib/sweetalert/sweetalert.css">
 
-		<link rel="stylesheet" href="../../styles/index.css">
-		<link rel="stylesheet" href="../../styles/header.css">
+		<link rel="stylesheet" href="App/styles/index.css">
+		<link rel="stylesheet" href="App/styles/header.css">
     
-		<link rel="stylesheet" href="styles.css">
+		<link rel="stylesheet" href="App/pages/thanks/styles.css">
 	</head>
 	<body>
 		<c:import url="../../components/header.jsp" />
@@ -31,25 +31,25 @@
 							<div class="col-md-3 cartDiv">
 								<div class="myCart active">
 									Meu carrinho
-									<img src="../../assets/icons/check.svg" alt="Check">
+									<img src="App/assets/icons/check.svg" alt="Check">
 								</div>
 							</div>
 							<div class="col-md-3 identityDiv">
 								<div class="identity active">
 									Identificação
-									<img src="../../assets/icons/check.svg" alt="Check">
+									<img src="App/assets/icons/check.svg" alt="Check">
 								</div>
 							</div>
 							<div class="col-md-3 paymentDiv">
 								<div class="payment active">
 									Pagamento
-									<img src="../../assets/icons/check.svg" alt="Check">
+									<img src="App/assets/icons/check.svg" alt="Check">
 								</div>
 							</div>
 							<div class="col-md-3 thankyouDiv">
 								<div class="thankyou active">
 									Obrigado!
-									<img src="../../assets/icons/check.svg" alt="Check">
+									<img src="App/assets/icons/check.svg" alt="Check">
 								</div>
 							</div>
 						</div>
@@ -61,7 +61,7 @@
 								<h3>Obrigado por efetuar sua compra na PrettyStyle!</h3>
 							</div>
 							<div class="row thanks-received">
-								<img src="../../assets/icons/large-check.svg" alt="Check">
+								<img src="App/assets/icons/large-check.svg" alt="Check">
 								<label>Recebemos seu pedido.</label>
 							</div>
 							<div class="row thanks-client">
@@ -82,22 +82,22 @@
 										<div class="step checked">
 											<label>Pedido Realizado</label>
 											<span>1</span>
-											<img src="../../assets/icons/large-check.svg" alt="Check">
+											<img src="App/assets/icons/large-check.svg" alt="Check">
 										</div>
 										<div class="step">
 											<label>Aprovação de pagamento</label>
 											<span>2</span>
-											<img src="../../assets/icons/large-check.svg" alt="Check">
+											<img src="App/assets/icons/large-check.svg" alt="Check">
 										</div>
 										<div class="step">
 											<label>Produto(s) em transporte</label>
 											<span>3</span>
-											<img src="../../assets/icons/large-check.svg" alt="Check">
+											<img src="App/assets/icons/large-check.svg" alt="Check">
 										</div>
 										<div class="step">
 											<label>Produto(s) Entregue(s)</label>
 											<span>4</span>
-											<img src="../../assets/icons/large-check.svg" alt="Check">
+											<img src="App/assets/icons/large-check.svg" alt="Check">
 										</div>
 									</div>
 									<hr />
@@ -109,12 +109,10 @@
 			</div>
  		</div>
 		
-		<script src="../../lib/jquery/1.9.1/jquery-1.9.1.min.js"></script>
-		<script src="../../lib/jquery-validation/jquery.validate.min.js"></script>
-		<script src="../../lib/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-		<script src="../../lib/sweetalert/sweetalert.min.js"></script>
-		<script src="../../lib/mask/jquery.mask.js"></script>
-		
-		<script src="script.js"></script>
+		<script src="App/lib/jquery/1.9.1/jquery-1.9.1.min.js"></script>
+		<script src="App/lib/jquery-validation/jquery.validate.min.js"></script>
+		<script src="App/lib/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+		<script src="App/lib/sweetalert/sweetalert.min.js"></script>
+		<script src="App/lib/mask/jquery.mask.js"></script>
 	</body>
 </html>

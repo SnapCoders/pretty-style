@@ -1,5 +1,8 @@
 $(document).ready(function () {
 	$('#number-credit-card').mask('0000 0000 0000 0000');
+	$('#mounth-shelf-life-credit-card').mask('00');
+	$('#year-shelf-life-credit-card').mask('00');
+	$('#cvv-credit-card').mask('000');
 
 	$("select#number-parcels").change(function() {
 		var selectedParcel = $(this).children("option:selected").val();
@@ -16,11 +19,7 @@ $(document).ready(function () {
 		}
     });
 	
-	$('#mounth-shelf-life-credit-card').mask('00');
-	$('#year-shelf-life-credit-card').mask('00');
-	$('#cvv-credit-card').mask('000');
-	
-	$.validator.addMethod("valueNotEquals", (value, element, arg) => arg !== value);
+	/* $.validator.addMethod("valueNotEquals", (value, element, arg) => arg !== value);
 	   
 	$('form[name="add-request-by-credit-card"]').validate({
 		rules: {
@@ -46,13 +45,8 @@ $(document).ready(function () {
 		submitHandler: function (form) {
 			handleAdd(form);
 		},
-	});
+	}); */
 });
-
-
-
-
-
 
 function handleSwitchPaymentMethodToCreditCard() {
 	$('#bank-slip').hide();
@@ -63,7 +57,6 @@ function handleSwitchPaymentMethodToBankSlip() {
 	$('#credit-card').hide();
 	$('#bank-slip').show();
 }
-
 
 function handleAdd(form) {
 	$.ajax({
