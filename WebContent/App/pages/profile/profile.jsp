@@ -27,9 +27,9 @@
 	<c:import url="../../components/header.jsp" />
 	<div class="container">
 		<%
-			RequestService rs = new RequestService();
+			//RequestService rs = new RequestService();
 
-			request.setAttribute("lista", rs.listRequestsByIdClient(1));
+			//request.setAttribute("lista", rs.listRequestsByIdClient(1));
 		%>
 		<div class="register-profile-container">
 			<div class="container">

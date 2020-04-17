@@ -63,11 +63,11 @@ public class UserController extends HttpServlet {
 			
 			ArrayList<PhoneNumber> phones = new ArrayList<PhoneNumber>();
 			
-			int Tddd = Integer.parseInt(tellphone.substring(0, 2));
-			String Tphone = tellphone.substring(2, tellphone.length());
+			int Tddd = Integer.parseInt(tellphone.substring(1, 3));
+			String Tphone = tellphone.substring(4, tellphone.length());
 			
-			int Cddd = Integer.parseInt(cellphone.substring(0, 2));
-			String Cphone = cellphone.substring(2, cellphone.length());
+			int Cddd = Integer.parseInt(cellphone.substring(1, 3));
+			String Cphone = cellphone.substring(4, cellphone.length());
 			
 			// (\(?\d{2}\)?\s)?(\d{4,5}\-\d{4}) - validaï¿½ï¿½o de telefone celulares
 			
@@ -109,7 +109,7 @@ public class UserController extends HttpServlet {
 			JSONObject retorno = new JSONObject();
 			
 			retorno.put("success", false);
-			retorno.put("message", "Desculpe houve uma falha na criaï¿½ï¿½o da sua conta, estamos trabalhando para resolver este problema!");
+			retorno.put("message", "Desculpe houve uma falha na criação da sua conta, estamos trabalhando para resolver este problema!");
 			
 			response.setContentType("application/json");
 			response.getWriter().write(retorno.toString());
