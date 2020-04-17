@@ -132,6 +132,7 @@
 				</div>
 			</div>
 		</div>
+<<<<<<< HEAD
 	</div>
 
 	<script src="../../lib/jquery/1.9.1/jquery-1.9.1.min.js"></script>
@@ -141,4 +142,12 @@
 	<script src="script.js"></script>
 	<!-- <script src="utils.js"></script> -->
 </body>
+=======
+		
+		<script src="../../lib/jquery/1.9.1/jquery-1.9.1.min.js"></script>
+		<script src="../../lib/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+		<script src="../../js/general.js"></script>
+		<!-- <script src="utils.js"></script> -->
+	</body>
+>>>>>>> f32f6d5f472ce82cd6a70ba9956a619e5dffc242
 </html>
