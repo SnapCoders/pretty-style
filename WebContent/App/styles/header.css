@@ -35,9 +35,90 @@ header#main-header div.bottom-header nav ul li {
   cursor: pointer;
 }
 
+header#main-header div.top-header div.client-area div.account div.login-modal div.actions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+header#main-header div.top-header div.client-area div.account div.login-modal {
+  min-width: 16em;
+  right: 10.4em;
+  /* top: 6.3em; */
+  opacity: 1;
+  visibility: hidden;
+  transition-delay: .1s;
+  transition: all .3s ease;
+  display: block;
+  margin-top: 1.25em;
+  border-radius: 10px;
+  padding: .5em 1em;
+  left: auto;
+  z-index: 100;
+  position: absolute;
+  background: #F0F0F0;
+  border: 1px solid #0E9AEF;
+}
+
+header#main-header div.top-header div.client-area div.account div.login-modal.inactive {
+  display: none;
+}
+
+header#main-header div.top-header div.client-area div.account div.login-modal.active {
+  display: block;
+}
+
+header#main-header div.top-header div.client-area div.account div.login-modal button {
+  margin: 5px;
+}
+
+header#main-header div.top-header div.client-area div.account div.login-modal button.login-button {
+  background: #0E9AEF;
+  border: 1px solid #0E9AEF;
+  border-radius: 32px;
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: bold;
+  width: 100%;
+  height: 35px;
+}
+
+header#main-header div.top-header div.client-area div.account div.login-modal button.create-account-button {
+  background: #ffffff;
+  border: 1px solid #0E9AEF;
+  border-radius: 32px;
+  color: #0E9AEF;
+  font-size: 16px;
+  font-weight: bold;
+  width: 100%;
+  height: 35px;
+}
+
+header#main-header div.top-header div.client-area div.account div.login-modal div.pages {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+header#main-header div.top-header div.client-area div.account div.login-modal button {
+  background: #ffffff;
+  border: 1px solid #0E9AEF;
+  border-radius: 32px;
+  color: #707070;
+  font-size: 12px;
+  font-weight: bold;
+  width: 50%;
+  height: 30px;
+}
+
+header#main-header div.top-header div.client-area div.account:hover,
+header#main-header div.top-header div.client-area div.account div.login-modal {
+  visibility: visible;
+}
+
 header#main-header div.top-header div.search-area img:hover,
 header#main-header div.top-header div.client-area div.admin:hover,
-header#main-header div.top-header div.client-area div.account:hover,
 header#main-header div.top-header div.client-area div.favorite:hover,
 header#main-header div.top-header div.client-area div.cart:hover {
   filter: brightness(90%);

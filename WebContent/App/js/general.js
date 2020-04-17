@@ -64,3 +64,13 @@ function AlertaAvisoConfirm(title, question, url, type, method) {
 		});
 	});
 }
+
+function handleShowModal() {
+	if ($('#login-modal').hasClass('inactive')) {
+		$('#login-modal').removeClass('inactive');
+		$('#login-modal').addClass('active');
+	} else {
+		$('#login-modal').removeClass('active');
+		$('#login-modal').addClass('inactive');
+	}
+};

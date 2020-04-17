@@ -114,5 +114,6 @@
 		<script src="App/lib/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 		<script src="App/lib/sweetalert/sweetalert.min.js"></script>
 		<script src="App/lib/mask/jquery.mask.js"></script>
+		<script src="App/js/general.js"></script>
 	</body>
 </html>

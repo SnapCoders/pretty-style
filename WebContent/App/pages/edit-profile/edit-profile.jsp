@@ -31,7 +31,7 @@
 			<%
 				UserService us = new UserService();
 				
-				request.setAttribute("user", us.find(5));
+				request.setAttribute("user", us.find(1));
 			%>
 			<div class="edit-profile-container">
 				<div class="container">
@@ -142,6 +142,7 @@
 		<script src="../../lib/jquery/1.9.1/jquery-1.9.1.min.js"></script>
 		<script src="../../lib/jquery-validation/jquery.validate.min.js"></script>
 		<script src="../../lib/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+		<script src="../../js/general.js"></script>
 		
 		<script src="script.js"></script>
 	</body>

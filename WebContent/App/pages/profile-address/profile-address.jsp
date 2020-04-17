@@ -63,7 +63,7 @@
 											<div class="header">
 												<label>Casa</label>
 												<div class="icons">
-													<button type="button">
+													<button type="button" onclick="window.location.href = '../edit-address/edit-address.jsp'"> 
 														<img src="../../assets/icons/edit.svg" alt="Editar">
 													</button>
 													<button type="button" onclick="handleDelete(this)">
@@ -93,7 +93,7 @@
 											<div class="header">
 												<label>Casa</label>
 												<div class="icons">
-													<button type="button">
+													<button type="button"onclick="window.location.href = '../edit-address/edit-address.jsp'">
 														<img src="../../assets/icons/edit.svg" alt="Editar">
 													</button>
 													<button type="button" onclick="handleDelete(this)">

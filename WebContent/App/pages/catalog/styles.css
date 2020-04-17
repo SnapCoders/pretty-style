@@ -139,11 +139,13 @@ div.catalog-container div.container div.jumbotron.main div.jumbotron.product {
   padding: 10px;
   cursor: pointer;
   max-width: 200px;
+  height: 360px;
+  max-height: 360px;
   
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  justify-content: center;
+  justify-content: space-between;
 }
 
 div.catalog-container div.container div.jumbotron.main div.jumbotron.product:hover {

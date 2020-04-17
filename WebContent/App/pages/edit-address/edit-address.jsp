@@ -1,10 +1,9 @@
-<%@page import="br.com.sprintters.prettystyle.model.Product"%>
 <%@page import="java.util.ArrayList"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@page import="br.com.sprintters.prettystyle.model.Product"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ page import="br.com.sprintters.prettystyle.service.ProductService"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>	
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -16,7 +15,8 @@
 
 <title>Pretty Style</title>
 
-<link rel="stylesheet" href="../../lib/bootstrap/4.4.1/css/bootstrap.min.css">
+<link rel="stylesheet"
+	href="../../lib/bootstrap/4.4.1/css/bootstrap.min.css">
 	<link rel="stylesheet" href="../../../lib/sweetalert/sweetalert.css">
 
 <link rel="stylesheet" href="../../styles/index.css">
@@ -28,12 +28,12 @@
 <body>
 	<c:import url="../../components/header.jsp" />
 	<div class="container">
-		<div class="address-container">
+		<div class="edit-address-container">
 			<div class="container">
 				<div class="col-md-12 header">
 					<div class="row content">
 						<div class="title">
-							<label>Cadastrar endereço</label>
+							<label>Editar endereço</label>
 						</div>
 						<div class="line">
 							<hr />
@@ -108,9 +108,9 @@
 		</div>
 	</div>
 	<script src="../../lib/jquery/1.9.1/jquery-1.9.1.min.js"></script>
-	<script src="../../lib/jquery-validation/jquery.validate.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
 	<script src="../../lib/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-	<script src="../../lib/sweetalert/sweetalert.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
 	
 	<script src="../../js/general.js"></script>
 	<script src="searchCep.js"></script>
