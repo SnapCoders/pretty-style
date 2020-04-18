@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import br.com.sprintters.prettystyle.model.ClientProductLike;
 
@@ -85,5 +86,43 @@ public class ClientProductLikeDAO {
 		}
 		
 		return to;
+	}
+	public ArrayList<ClientProductLike> listProductLikeByIdClient(int idClient) throws Exception {
+		ArrayList<ClientProductLike> clientProductLike = new ArrayList<ClientProductLike>();
+		String sqlSelect = "SELECT\r\n" + 
+				"	i.quantity\r\n" + 
+				"    , p.name\r\n" + 
+				"    , p.description\r\n" + 
+				"    , p.price\r\n" +
+				"    , q.action\r\n" +
+				"FROM\r\n" + 
+				"	item i\r\n" + 
+				"    INNER JOIN product p ON i.id_product = p.id\r\n" + 
+				"    INNER JOIN client_product_like" +
+				"WHERE id_client = ?;";
+		
+		try (Connection conn = ConnectionFactory.createConnection();
+			 PreparedStatement stm = conn.prepareStatement(sqlSelect)) {
+			stm.setInt(1, idClient);
+			
+			try (ResultSet rs = stm.executeQuery()) {
+				while (rs.next()) {
+					ClientProductLike to = new ClientProductLike(
+						rs.getString("name"),	
+						rs.getString("description"),
+						rs.getInt("price"),
+						rs.getInt("action")
+					);
+					clientProductLike.add(to);
+				}
+				conn.close();
+			} catch (SQLException ex) {
+				throw new Exception(ex.getMessage());
+			}
+		} catch (SQLException e) {
+			throw new Exception(e.getMessage());
+		}
+		
+		return clientProductLike;
 	}
 }
