@@ -16,6 +16,12 @@ public abstract class Entity {
 		this.updatedAt = updatedAt;
 		this.deletedAt = deletedAt;
 	}
+	
+	public Entity(Timestamp createdAt, Timestamp updatedAt, Timestamp deletedAt) {
+		this.createdAt = createdAt;
+		this.updatedAt = updatedAt;
+		this.deletedAt = deletedAt;
+	}
 
 	public Entity(int id) {
 		this.id = id;
