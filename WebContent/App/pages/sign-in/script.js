@@ -47,10 +47,13 @@ function handleLogin(form) {
 		url: '/PrettyStyle/sessions', type: 'POST', data: $(form).serialize(),
 		success: function (data) {
 			if (data.success) {
+				console.log(parseJwt(data.token));
+				sessionStorage.setItem('id_user', parseInt(parseJwt(data.token).jti));
 				sessionStorage.setItem('token', 'Bearer ' + data.token);
 				
 				AlertaSucesso(data);
 			} else {
+				sessionStorage.setItem('id_user', null);
 				sessionStorage.setItem('token', null);
 				
 				AlertaErro(data);

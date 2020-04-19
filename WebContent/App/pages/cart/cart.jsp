@@ -151,6 +151,7 @@
 		
 	<script src="../../lib/jquery/1.9.1/jquery-1.9.1.min.js"></script>
 	<script src="../../js/general.js"></script>
-	<!-- <script src="../../pages/cart/utils.js"></script> -->
+	
+	<script src="script.js"></script>
 	</body>
 </html>

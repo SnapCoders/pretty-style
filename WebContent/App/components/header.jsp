@@ -40,7 +40,7 @@
         </div>
       </div>
       <div class="cart">
-        <div class="cart-icon" onclick="window.location.href='<%=request.getContextPath()%>/App/pages/cart/cart.jsp';">
+        <div class="cart-icon" onclick="handleListCart();">
           <img src="<%=request.getContextPath()%>/App/assets/icons/cart.svg">
         </div>
       </div>
@@ -66,3 +66,4 @@
     </nav>
   </div>
 </header>
+<script src="<%= request.getContextPath() %>/App/js/headerFunctions.js"></script>
