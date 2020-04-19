@@ -116,7 +116,7 @@ public class ClientDAO {
 	
 	@SuppressWarnings("deprecation")
 	public Client findByIdUser(int idUser) throws Exception {
-		Client to = new Client();
+		Client to = null;
 		String sqlSelect = "SELECT * FROM client WHERE id_user = ?";
 		
 		try (Connection conn = ConnectionFactory.createConnection();
@@ -125,6 +125,7 @@ public class ClientDAO {
 			
 			try (ResultSet rs = stm.executeQuery()) {	
 				if (rs.next()) {
+					to = new Client();
 					to.setId(rs.getInt("id"));
 					to.setName(rs.getString("name"));
 					to.setSurname(rs.getString("surname"));

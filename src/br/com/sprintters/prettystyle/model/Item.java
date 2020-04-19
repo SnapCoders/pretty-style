@@ -10,14 +10,11 @@ public class Item extends Entity {
 	private String description;
 	private int price;
 	
-	
 	private int idProduct;
 	private Product product;
 	
 	private int idRequest;
 	private Request request;
-	
-	
 
 	public Item() { }
 
