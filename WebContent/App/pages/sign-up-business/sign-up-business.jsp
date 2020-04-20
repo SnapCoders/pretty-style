@@ -97,7 +97,7 @@
 					  				</div>
 								</div>
 					  			<div class="row button-area">
-				  					<button type="submit">CRIE SEU CADASTRO</button>
+				  					<button type="submit" >CRIE SEU CADASTRO</button>
 				  				</div>
 			  				</form>
 			  			</div>
