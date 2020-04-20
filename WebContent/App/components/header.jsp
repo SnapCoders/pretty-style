@@ -13,7 +13,7 @@
 		</div>
 		<div class="search-area-responsive" style="display: none;"></div>
 		<div class="client-area">
-			<c:if test="${not empty token}">
+			<c:if test="${not empty isProvider}">
 				<div class="admin" onclick="window.location.href='/PrettyStyle/App/pages/admin/admin.jsp';">
 					<div class="admin-icon">
 						<img src="/PrettyStyle/App/assets/icons/framework.svg">
@@ -29,15 +29,21 @@
 				<img src="/PrettyStyle/App/assets/icons/arrow-down.svg">
 				<div id="login-modal" class="login-modal inactive">
 					<div class="actions">
-						<button type="button" class="login-button" onclick="window.location.href = '/PrettyStyle/App/pages/sign-in/sign-in.jsp'">ENTRAR</button>
-						<button type="button" class="create-account-button" onclick="window.location.href = '/PrettyStyle/App/pages/sign-up-simple/sign-up-simple.jsp'">CRIAR CONTA</button>
-						<button type="button" class="logout-account-button" onclick="handleLogout();">SAIR</button>
+						<c:if test="${empty idUser}">
+							<button type="button" class="login-button" onclick="window.location.href = '/PrettyStyle/App/pages/sign-in/sign-in.jsp'">ENTRAR</button>
+							<button type="button" class="create-account-button" onclick="window.location.href = '/PrettyStyle/App/pages/sign-up-simple/sign-up-simple.jsp'">CRIAR CONTA</button>
+						</c:if>
+						<c:if test="${not empty idUser}">
+							<button type="button" class="logout-account-button" onclick="handleLogout();">SAIR</button>
+						</c:if>
 					</div>
-					<hr />
-					<div class="pages">
-						<button type="button" onclick="window.location.href = '/PrettyStyle/App/pages/profile/profile.jsp'">Minha conta</button>
-						<button type="button" id="id-user" onclick="window.location.href = '/PrettyStyle/controller.do?path=request&command=ListRequests'">Meus Pedidos</button>
-					</div>
+					<c:if test="${not empty idUser}">
+						<hr />
+						<div class="pages">
+							<button type="button" onclick="window.location.href = '/PrettyStyle/App/pages/profile/profile.jsp'">Minha conta</button>
+							<button type="button" id="id-user" onclick="window.location.href = '/PrettyStyle/controller.do?path=request&command=ListRequests'">Meus Pedidos</button>
+						</div>
+					</c:if>
 				</div>
 			</div>
 			<div class="favorite">

@@ -92,7 +92,7 @@
 													<c:forEach var="product" items="${bestSellersOne}">
 														<div class="col-md-3">
 															<div class="jumbotron product">
-																<div class="photo-product" onclick="window.location.href='App/pages/product-details/product-details.jsp'">
+																<div id="id-user" class="photo-product" onclick="window.location.href='/PrettyStyle/controller.do?path=productdetails&command=ViewProduct&id_product=${product.id}'">
 																	<img src="App/assets/img/jbl.png" alt="${product.name}">
 																</div>
 																<label class="title-product">${product.name}</label>
@@ -116,7 +116,7 @@
 													<c:forEach var="product" items="${bestSellersTwo}">
 														<div class="col-md-3">
 															<div class="jumbotron product">
-																<div class="photo-product" onclick="window.location.href='App/pages/product-details/product-details.jsp'">
+																<div class="photo-product" onclick="window.location.href='/PrettyStyle/controller.do?path=productdetails&command=ViewProduct&id_product=${product.id}'">
 																	<img src="App/assets/img/jbl.png" alt="${product.name}">
 																</div>
 																<label class="title-product">${product.name}</label>
