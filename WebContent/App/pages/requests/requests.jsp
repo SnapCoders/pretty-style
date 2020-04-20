@@ -25,11 +25,7 @@
 <body>
 	<c:import url="../../components/header.jsp" />
 	<div class="container">
-		<%
-			RequestService rs = new RequestService();
-
-			request.setAttribute("lista", rs.listRequestsByIdClient(1));
-		%>
+		
 		<div class="requests-container">
 			<div class="container">
 				<div class="col-md-12 header">

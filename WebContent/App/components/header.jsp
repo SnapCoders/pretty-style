@@ -36,7 +36,7 @@
 					<hr />
 					<div class="pages">
 						<button type="button" onclick="window.location.href = '/PrettyStyle/App/pages/profile/profile.jsp'">Minha conta</button>
-						<button type="button" onclick="window.location.href = '/PrettyStyle/App/pages/requests/requests.jsp'">Meus Pedidos</button>
+						<button type="button" id="id-user" onclick="window.location.href = '/PrettyStyle/controller.do?path=request&command=ListRequests'">Meus Pedidos</button>
 					</div>
 				</div>
 			</div>
@@ -61,8 +61,6 @@
 				<li onclick="window.location.href = '/PrettyStyle/App/pages/edit-profile/edit-profile.jsp'">EDITAR PERFIL</li>
 				<li onclick="window.location.href = '/PrettyStyle/App/pages/save-address/save-address.jsp'">CRIAR ENDEREÇO</li>
 				<li onclick="window.location.href = '/PrettyStyle/App/pages/profile-address/profile-address.jsp'">MEUS ENDEREÇOS</li>
-				<li onclick="window.location.href = '/PrettyStyle/App/pages/requests/requests.jsp'">MEUS PEDIDOS</li>
-				<li onclick="window.location.href = '/PrettyStyle/App/pages/payment-steps/payment-steps.jsp'">ETAPAS DE PAGAMENTO</li>
 				<li onclick="window.location.href = '/PrettyStyle/App/pages/catalog/catalog.jsp'">CATÁLOGO</li>
 				<!-- <li>ACESSÓRIOS</li>
 		        <li>MASCULINO</li>
