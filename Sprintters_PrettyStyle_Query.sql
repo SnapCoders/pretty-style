@@ -167,8 +167,9 @@ create table phone_number (
 
 create table request (
 	id				int auto_increment,
-    number_request	varchar(36) not null,
-	total_price		double,
+    number_request	varchar(40) not null,
+	total_price		double not null,
+    type_payment 	varchar(50) not null,
     id_client		int,
     
     created_at		timestamp not null default now(),
