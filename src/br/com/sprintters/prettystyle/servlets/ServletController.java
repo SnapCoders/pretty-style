@@ -35,8 +35,7 @@ public class ServletController extends HttpServlet {
 	    			Command command = (Command)Class.forName("br.com.sprintters.prettystyle.command." + commandCalled).newInstance();
 	    			command.execute(request, response);
 	    		} else {
-	    			RequestDispatcher view = request.getRequestDispatcher("App/pages/sign-in/sign-in.jsp");
-	    			view.forward(request, response);
+	    			response.sendRedirect("App/pages/sign-in/sign-in.jsp");
 	    		}
     		} else {
     			Command command = (Command)Class.forName("br.com.sprintters.prettystyle.command." + commandCalled).newInstance();
