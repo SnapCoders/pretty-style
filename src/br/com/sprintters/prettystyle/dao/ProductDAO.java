@@ -154,4 +154,39 @@ public class ProductDAO {
 		
 		return products;
 	}
+	
+	public ArrayList<Product> listByIdProvider(int idProvider) throws Exception  {
+		ArrayList<Product> products = new ArrayList<Product>();
+		String sqlSelect = "SELECT * FROM product WHERE id_provider = ? AND deleted_at IS NULL";
+		
+		try (Connection conn = ConnectionFactory.createConnection();
+			 PreparedStatement stm = conn.prepareStatement(sqlSelect)) {
+			
+			stm.setInt(1, idProvider);
+			
+			try (ResultSet rs = stm.executeQuery()) {
+				while (rs.next()) {
+					Product to = new Product(
+						rs.getInt("id"),
+						rs.getString("name"),
+						rs.getString("description"),
+						rs.getDouble("price"),
+						rs.getInt("id_mark"),
+						rs.getTimestamp("created_at"),
+						rs.getTimestamp("updated_at"),
+						rs.getTimestamp("deleted_at")
+						
+					);
+					
+					products.add(to);
+				}
+			} catch (SQLException ex) {
+				throw new Exception(ex.getMessage());
+			}
+		} catch (SQLException e) {
+			throw new Exception(e.getMessage());
+		}
+		
+		return products;
+	}
 }
