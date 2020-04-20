@@ -79,6 +79,15 @@ public class ServletController extends HttpServlet {
     		case "productdetails.ViewProduct":
     			isAuthorize = false;
     			break;
+    		case "marks.CreateMark":
+    			isAuthorize = true;
+    			break;
+    		case "categories.CreateCategory":
+    			isAuthorize = true;
+    			break;
+    		case "requests.ListRequests":
+    			isAuthorize = true;
+    			break;
     		case "signin.Login":
     			isAuthorize = false;
     			break;

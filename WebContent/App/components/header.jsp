@@ -30,8 +30,8 @@
 				<div id="login-modal" class="login-modal inactive">
 					<div class="actions">
 						<c:if test="${empty idUser}">
-							<button type="button" class="login-button" onclick="window.location.href = '/PrettyStyle/App/pages/sign-in/sign-in.jsp'">ENTRAR</button>
-							<button type="button" class="create-account-button" onclick="window.location.href = '/PrettyStyle/App/pages/sign-up-simple/sign-up-simple.jsp'">CRIAR CONTA</button>
+							<button type="button" class="login-button" onclick="window.location.href='/PrettyStyle/App/pages/sign-in/sign-in.jsp'">ENTRAR</button>
+							<button type="button" class="create-account-button" onclick="window.location.href='/PrettyStyle/App/pages/sign-up-simple/sign-up-simple.jsp'">CRIAR CONTA</button>
 						</c:if>
 						<c:if test="${not empty idUser}">
 							<button type="button" class="logout-account-button" onclick="handleLogout();">SAIR</button>
@@ -40,8 +40,8 @@
 					<c:if test="${not empty idUser}">
 						<hr />
 						<div class="pages">
-							<button type="button" onclick="window.location.href = '/PrettyStyle/App/pages/profile/profile.jsp'">Minha conta</button>
-							<button type="button" id="id-user" onclick="window.location.href = '/PrettyStyle/controller.do?path=request&command=ListRequests'">Meus Pedidos</button>
+							<button id="id-user" type="button" onclick="window.location.href = '/PrettyStyle/App/pages/profile/profile.jsp'">Minha conta</button>
+							<button id="id-user" type="button" onclick="window.location.href='/PrettyStyle/controller.do?path=request&command=ListRequests'">Meus Pedidos</button>
 						</div>
 					</c:if>
 				</div>

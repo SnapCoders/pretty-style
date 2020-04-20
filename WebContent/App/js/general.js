@@ -48,11 +48,23 @@ function handleLogout() {
 		closeOnCancel: true
 	}, function (isConfirm) {
 		if (!isConfirm) return;
-		
-		sessionStorage.removeItem('token');
-		sessionStorage.removeItem('id_user');
 
-		document.location.reload(true);
+		let idUser = sessionStorage.getItem('id_user');
+		let userToken = sessionStorage.getItem('token');
+
+		$.ajax({
+			url: '/PrettyStyle/controller.do?path=login&command=Logout&id_user=' + idUser + '&token=' + userToken,
+			method: 'POST',
+			success: function (_json) {
+				sessionStorage.removeItem('token');
+				sessionStorage.removeItem('id_user');
+
+				document.location.reload(true);
+			},
+			error: function (json) {
+				AlertaErro(json);
+			}
+		});
 	});
 };
 
