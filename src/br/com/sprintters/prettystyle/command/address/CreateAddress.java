@@ -5,7 +5,6 @@ import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import org.json.JSONObject;
 
@@ -27,8 +26,6 @@ public class CreateAddress implements Command {
 			boolean isJson = Boolean.parseBoolean(request.getParameter("json"));
 
 			int idUser = -1;
-
-			HttpSession session = request.getSession();
 
 			try {
 				idUser = Integer.parseInt(idUserStr);

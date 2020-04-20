@@ -221,10 +221,12 @@ create table user_address (
 -- select * from user_address;
 
 create table client_product_like (
+	id			int auto_increment,
     id_product  int,
     id_client	int,
     action		int,
 
+	constraint pk_id primary key (id),
     constraint fk_client_product__id_product foreign key (id_product) references product (id),
     constraint fk_client_product__id_client foreign key (id_client) references client (id)
 );

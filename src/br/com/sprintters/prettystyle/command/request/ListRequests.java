@@ -12,9 +12,7 @@ import org.json.JSONObject;
 import com.google.gson.Gson;
 
 import br.com.sprintters.prettystyle.command.Command;
-import br.com.sprintters.prettystyle.model.Address;
 import br.com.sprintters.prettystyle.model.generic.Json;
-import br.com.sprintters.prettystyle.service.AddressService;
 import br.com.sprintters.prettystyle.service.RequestService;
 
 public class ListRequests  implements Command {
