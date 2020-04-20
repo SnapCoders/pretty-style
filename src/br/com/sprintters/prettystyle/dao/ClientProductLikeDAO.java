@@ -73,10 +73,9 @@ public class ClientProductLikeDAO {
 					to.setIdClient(rs.getInt("id_product"));
 					to.setIdProduct(rs.getInt("id_client"));
 					to.setAction(rs.getInt("action"));
-					to.setCreatedAt(rs.getTimestamp("created_at"));
-					to.setUpdatedAt(rs.getTimestamp("updated_at"));
-					to.setDeletedAt(rs.getTimestamp("deleted_at"));
 				}
+				
+				conn.close();
 			} catch (SQLException ex) {
 				throw new Exception(ex.getMessage());
 			}

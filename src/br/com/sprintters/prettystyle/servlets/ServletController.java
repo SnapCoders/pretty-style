@@ -55,10 +55,13 @@ public class ServletController extends HttpServlet {
     	boolean isAuthorize = false;
     	
     	switch (commandCalled) {
-    		case "signin.Login":
-    			isAuthorize = false;
-    			break;
     		case "cart.ListCart":
+    			isAuthorize = true;
+    			break;
+    		case "favorites.ListFavorites":
+    			isAuthorize = true;
+    			break;
+    		case "favorites.DeleteFavorite":
     			isAuthorize = true;
     			break;
     		case "paymentsteps.PayStep":
@@ -66,6 +69,9 @@ public class ServletController extends HttpServlet {
     			break;
     		case "paymentsteps.Pay":
     			isAuthorize = true;
+    			break;
+    		case "signin.Login":
+    			isAuthorize = false;
     			break;
     		default:
     			break;
