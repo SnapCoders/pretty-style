@@ -1,3 +1,54 @@
+$(document).ready(function () {
+	let auth = sessionStorage.getItem('token');
+	
+	if (auth) {
+		let idUser = sessionStorage.getItem('id_user');
+
+		$('#id-user').val(idUser);
+
+		$('a#id-user').each(function () {
+			var oldUrl = $(this).attr('href');
+			var newUrl = oldUrl + '&id_user=' + idUser;
+			$(this).attr('href', newUrl);
+		});
+
+		$('div#id-user').each(function () {
+			var str = $(this).attr('onclick');
+			var oldUrl = str.substring(0, str.length-1);
+			var newUrl = oldUrl + '&id_user=' + idUser + "'";
+			$(this).attr('onclick', newUrl);
+		});
+
+		$('button#id-user').each(function () {
+			var str = $(this).attr('onclick');
+			var oldUrl = str.substring(0, str.length-1);
+			var newUrl = oldUrl + '&id_user=' + idUser + "'";
+			$(this).attr('onclick', newUrl);
+		});
+	}
+});
+
+function handleLogout() {
+	swal({
+		title: 'Sair ?',
+		text: 'Deseja realmente sair ?',
+		type: 'info',
+		showCancelButton: true,
+		confirmButtonText: "Sim",
+		confirmButtonColor: "#3CB371",
+		cancelButtonText: "N\u00e3o",
+		closeOnConfirm: false,
+		closeOnCancel: true
+	}, function (isConfirm) {
+		if (!isConfirm) return;
+		
+		sessionStorage.removeItem('token');
+		sessionStorage.removeItem('id_user');
+
+		document.location.reload(true);
+	});
+};
+
 //document.addEventListener('DOMContentLoaded', function() {
 //	let stars = document.querySelectorAll('.star');
 //	stars.forEach(function(star) {
@@ -8,6 +59,42 @@
 //	let target = stars[rating - 1];
 //	target.dispatchEvent(new MouseEvent('click'));
 //});
+
+function AlertaSucesso(data) {
+	swal({
+		title: 'Sucesso!',
+		text: data.message,
+		type: 'success',
+	});
+};
+
+function AlertaErro(data) {
+	swal({
+		title: 'Erro!',
+		text: data.message,
+		type: 'error',
+	});
+};
+
+function navigateTo(path, command) {
+	$.ajax({
+		url: '/PrettyStyle/controller.do?path=' + path + '&command=' + command + '&json=false',
+		type: 'POST',
+		headers: {
+			'id_user': 11,
+		},
+		success: function (data) {
+			if (data.success) {
+				window.location.href = data.data;
+			} else {
+				AlertaErro(data);
+			}
+		},
+		error: function (data) {
+			AlertaErro(data);
+		}
+	});
+}
 
 function parseJwt(token) {
 	var base64Url = token.split('.')[1];
