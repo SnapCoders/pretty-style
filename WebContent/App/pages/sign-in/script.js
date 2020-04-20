@@ -27,7 +27,7 @@ $(document).ready(function () {
 
 function handleLogin(form) {
 	$.ajax({
-		url: '/PrettyStyle/sessions', type: 'POST', data: $(form).serialize(),
+		url: '/PrettyStyle/controller.do?path=signin&command=Login', type: 'POST', data: $(form).serialize(),
 		success: function (data) {
 			if (data.success) {
 				console.log(parseJwt(data.token));
@@ -35,6 +35,8 @@ function handleLogin(form) {
 				sessionStorage.setItem('token', 'Bearer ' + data.token);
 				
 				AlertaSucesso(data);
+
+				setTimeout(function () { window.location.reload(true); }, 2000);
 			} else {
 				sessionStorage.setItem('id_user', null);
 				sessionStorage.setItem('token', null);
