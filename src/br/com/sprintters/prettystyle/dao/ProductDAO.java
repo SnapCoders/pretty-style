@@ -26,6 +26,8 @@ public class ProductDAO {
 					id = rs.getInt(1);
 					to.setIdMark(id);
 				}
+				
+				conn.close();
 			} catch (SQLException e) {
 				throw new Exception(e.getMessage());
 			}
@@ -46,7 +48,10 @@ public class ProductDAO {
 			stm.setDouble(3, to.getPrice());
 			stm.setInt(4, to.getIdMark());
 			stm.setInt(5, to.getId());
+			
 			stm.execute();
+			
+			conn.close();
 		} catch (SQLException e) {
 			throw new Exception(e.getMessage());
 		}
@@ -58,7 +63,10 @@ public class ProductDAO {
 		try (Connection conn = ConnectionFactory.createConnection();
 			 PreparedStatement stm = conn.prepareStatement(sqlDelete)) {
 			stm.setInt(1, to.getId());
+			
 			stm.execute();
+			
+			conn.close();
 		} catch (SQLException e) {
 			throw new Exception(e.getMessage());
 		}
@@ -83,6 +91,8 @@ public class ProductDAO {
 					to.setUpdatedAt(rs.getTimestamp("updated_at"));
 					to.setDeletedAt(rs.getTimestamp("deleted_at"));
 				}
+				
+				conn.close();
 			} catch (SQLException ex) {
 				throw new Exception(ex.getMessage());
 			}
@@ -114,6 +124,8 @@ public class ProductDAO {
 					);
 					products.add(to);
 				}
+				
+				conn.close();
 			} catch (SQLException ex) {
 				throw new Exception(ex.getMessage());
 			}
@@ -145,6 +157,8 @@ public class ProductDAO {
 					);
 					products.add(to);
 				}
+				
+				conn.close();
 			} catch (SQLException ex) {
 				throw new Exception(ex.getMessage());
 			}
@@ -180,6 +194,8 @@ public class ProductDAO {
 					
 					products.add(to);
 				}
+				
+				conn.close();
 			} catch (SQLException ex) {
 				throw new Exception(ex.getMessage());
 			}
@@ -188,6 +204,35 @@ public class ProductDAO {
 		}
 		
 		return products;
+	}
+	
+	public int createFavorite(ClientProductLike to) throws Exception {
+		int id = 0;
+		String sqlInsert = "INSERT INTO client_product_like (id_client, id_product, action) VALUES (?, ?, ?)";
+		
+		try (Connection conn = ConnectionFactory.createConnection();
+			 PreparedStatement stm = conn.prepareStatement(sqlInsert)) {
+			stm.setInt(1, to.getIdClient());
+			stm.setInt(2, to.getIdProduct());
+			stm.setInt(3, to.getAction());
+			
+			stm.execute();
+			
+			try (ResultSet rs = stm.executeQuery("SELECT LAST_INSERT_ID()")) {
+				if (rs.next()) {				
+					id = rs.getInt(1);
+					to.setId(id);
+				}
+				
+				conn.close();
+			} catch (SQLException e) {
+				throw new Exception(e.getMessage());
+			}
+		} catch (SQLException ex) {
+			throw new Exception(ex.getMessage());
+		}
+		
+		return id;
 	}
 	
 	public ArrayList<ClientProductLike> listFavoritesByIdClient(int idClient) throws Exception  {
@@ -245,13 +290,44 @@ public class ProductDAO {
 		return productsLiked;
 	}
 	
+	public ClientProductLike listFavoriteByIdClientAndIdProduct(int idClient, int idProduct) throws Exception {
+		ClientProductLike to = new ClientProductLike();
+		String sqlSelect = "SELECT * FROM client_product_like WHERE id_client = ? AND id_product = ?";
+		
+		try (Connection conn = ConnectionFactory.createConnection();
+			 PreparedStatement stm = conn.prepareStatement(sqlSelect)) {
+			stm.setInt(1, idClient);
+			stm.setInt(2, idProduct);
+			
+			try (ResultSet rs = stm.executeQuery()) {
+				if (rs.next()) {
+					to.setId(rs.getInt("id"));
+					to.setIdClient(idClient);
+					to.setIdProduct(idProduct);
+					to.setAction(rs.getInt("action"));
+				}
+				
+				conn.close();
+			} catch (SQLException ex) {
+				throw new Exception(ex.getMessage());
+			}
+		} catch (SQLException e) {
+			throw new Exception(e.getMessage());
+		}
+		
+		return to;
+	}
+	
 	public void deleteFavoriteById(int id) throws Exception {
 		String sqlDelete = "DELETE FROM client_product_like WHERE id = ?";
 		
 		try (Connection conn = ConnectionFactory.createConnection();
 			 PreparedStatement stm = conn.prepareStatement(sqlDelete)) {
 			stm.setInt(1, id);
+			
 			stm.execute();
+			
+			conn.close();
 		} catch (SQLException e) {
 			throw new Exception(e.getMessage());
 		}

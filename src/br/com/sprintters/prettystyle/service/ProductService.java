@@ -69,9 +69,25 @@ public class ProductService{
     	}
     }
     
+    public int createFavorite(ClientProductLike cpl) throws Exception {
+    	try {
+    		return dao.createFavorite(cpl);
+    	} catch (Exception e) {
+    		throw new Exception(e.getMessage());
+    	}
+    }
+    
     public ArrayList<ClientProductLike> listFavoritesByIdClient(int idClient) throws Exception {
     	try {
     		return dao.listFavoritesByIdClient(idClient);
+    	} catch (Exception e) {
+    		throw new Exception(e.getMessage());
+    	}
+    }
+    
+    public ClientProductLike listFavoriteByIdClientAndIdProduct(int idClient, int idProduct) throws Exception {
+    	try {
+    		return dao.listFavoriteByIdClientAndIdProduct(idClient, idProduct);
     	} catch (Exception e) {
     		throw new Exception(e.getMessage());
     	}

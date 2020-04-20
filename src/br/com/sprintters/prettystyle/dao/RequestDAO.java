@@ -12,17 +12,24 @@ import br.com.sprintters.prettystyle.model.Request;
 public class RequestDAO {
 	public int insert(Request to) throws Exception {
 		int id = 0;
-		String sqlInsert = "INSERT INTO request (total_price, id_client, created_at) VALUES (?, ?, NOW())";
+		String sqlInsert = "INSERT INTO request (total_price, id_client, number_request, type_payment, created_at) VALUES (?, ?, ?, ?, NOW())";
 		
 		try (Connection conn = ConnectionFactory.createConnection();
 			 PreparedStatement stm = conn.prepareStatement(sqlInsert)) {
 			stm.setDouble(1, to.getTotalPrice());
 			stm.setInt(2, to.getIdClient());
+			stm.setString(3, to.getNumberRequest());
+			stm.setString(4, to.getTypePayment());
+			
 			stm.execute();
+			
 			try (ResultSet rs = stm.executeQuery("SELECT LAST_INSERT_ID()")) {
 				if (rs.next()) {
 					id = rs.getInt(1);
+					to.setId(id);
 				}
+				
+				conn.close();
 			} catch (SQLException ex) {
 				throw new Exception(ex.getMessage());
 			}
@@ -41,7 +48,10 @@ public class RequestDAO {
 			stm.setDouble(1, to.getTotalPrice());
 			stm.setInt(2, to.getIdClient());
 			stm.setInt(3, to.getId());
+			
 			stm.execute();
+			
+			conn.close();
 		} catch (SQLException e) {
 			throw new Exception(e.getMessage());
 		}
@@ -53,7 +63,10 @@ public class RequestDAO {
 		try (Connection conn = ConnectionFactory.createConnection();
 			 PreparedStatement stm = conn.prepareStatement(sqlDelete)) {
 			stm.setInt(1, to.getId());
+			
 			stm.execute();
+			
+			conn.close();
 		} catch (SQLException e) {
 			throw new Exception(e.getMessage());
 		}
@@ -77,6 +90,8 @@ public class RequestDAO {
 					to.setUpdatedAt(rs.getTimestamp("updated_at"));
 					to.setDeletedAt(rs.getTimestamp("deleted_at"));
 				}
+				
+				conn.close();
 			} catch(SQLException ex) {
 				throw new Exception(ex.getMessage());
 			}
@@ -102,10 +117,12 @@ public class RequestDAO {
 						rs.getTimestamp("created_at"),
 						rs.getTimestamp("updated_at"),
 						rs.getTimestamp("deleted_at")
-						
 					);
+						
 					reqs.add(to);
 				}
+				
+				conn.close();
 			} catch (SQLException ex) {
 				throw new Exception(ex.getMessage());
 			}
@@ -144,6 +161,8 @@ public class RequestDAO {
 					Request to = new Request(p,rs.getInt("id_client"));
 					reqs.add(to);
 				}
+				
+				conn.close();
 			} catch (SQLException ex) {
 				throw new Exception(ex.getMessage());
 			}

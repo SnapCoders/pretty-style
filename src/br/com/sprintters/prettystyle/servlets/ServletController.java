@@ -44,7 +44,7 @@ public class ServletController extends HttpServlet {
     	} catch (Exception e) {
     		e.printStackTrace();
     		
-    		Json json = new Json(true, "Desculpe, houve algum erro no servidor, estamos trabalhando para resolver este problema!", e);
+    		Json json = new Json(false, "Desculpe, houve algum erro no servidor, estamos trabalhando para resolver este problema!", e);
     		
     		response.setContentType("application/json");
     		response.getWriter().write(new Gson().toJson(json).toString());
@@ -58,10 +58,16 @@ public class ServletController extends HttpServlet {
     		case "cart.ListCart":
     			isAuthorize = true;
     			break;
+    		case "favorites.CreateFavorite":
+    			isAuthorize = true;
+    			break;
     		case "favorites.ListFavorites":
     			isAuthorize = true;
     			break;
     		case "favorites.DeleteFavorite":
+    			isAuthorize = true;
+    			break;
+    		case "paymentsteps.CreatePayStep":
     			isAuthorize = true;
     			break;
     		case "paymentsteps.PayStep":
@@ -70,10 +76,14 @@ public class ServletController extends HttpServlet {
     		case "paymentsteps.Pay":
     			isAuthorize = true;
     			break;
+    		case "productdetails.ViewProduct":
+    			isAuthorize = false;
+    			break;
     		case "signin.Login":
     			isAuthorize = false;
     			break;
     		default:
+    			isAuthorize = false;
     			break;
     	}
     	

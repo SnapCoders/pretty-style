@@ -31,12 +31,6 @@ public class Login implements Command {
 				
 				String name = "";
 				
-				if (user.isProvider()) {
-					name = user.getProvider().getFantasyName();
-				} else {
-					name = user.getClient().getName();
-				}
-				
 				String nameAndSurname = name + user.getUsername();
 				
 				String nameAndSurnameBase64 = Base64.getEncoder().encodeToString(nameAndSurname.getBytes());
@@ -45,7 +39,15 @@ public class Login implements Command {
 				
 				HttpSession session = request.getSession();
 				
+				if (user.isProvider()) {
+					name = user.getProvider().getFantasyName();
+					session.setAttribute("isProvider", true);
+				} else {
+					name = user.getClient().getName();
+				}
+				
 				session.setAttribute("token", token);
+				session.setAttribute("idUser", user.getId());
 				
 				JSONObject retorno = new JSONObject();
 				
