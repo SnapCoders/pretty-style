@@ -3,18 +3,17 @@ package br.com.sprintters.prettystyle.servlets;
 import java.io.IOException;
 
 import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.RequestDispatcher;
+import javax.servlet.annotation.HttpMethodConstraint;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.annotation.HttpMethodConstraint;
 
 import com.google.gson.Gson;
 
 import br.com.sprintters.prettystyle.command.Command;
-import br.com.sprintters.prettystyle.model.generic.Json;
 import br.com.sprintters.prettystyle.middleware.AuthMiddleware;
+import br.com.sprintters.prettystyle.model.generic.Json;
 
 @WebServlet("/controller.do")
 public class ServletController extends HttpServlet {
@@ -56,7 +55,16 @@ public class ServletController extends HttpServlet {
     	boolean isAuthorize = false;
     	
     	switch (commandCalled) {
+    		case "signin.Login":
+    			isAuthorize = false;
+    			break;
     		case "cart.ListCart":
+    			isAuthorize = true;
+    			break;
+    		case "paymentsteps.PayStep":
+    			isAuthorize = true;
+    			break;
+    		case "paymentsteps.Pay":
     			isAuthorize = true;
     			break;
     		default:
