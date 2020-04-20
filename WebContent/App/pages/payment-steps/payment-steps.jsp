@@ -160,7 +160,7 @@
 			  							<hr />
 			  							<div class="credit-or-bank">
 			  								<div id="credit-card" class="jumbotron credit-card-method">
-				  								<form action="/PrettyStyle/requests" method="POST" name="add-request-by-credit-card">
+				  								<form id="id-user" action="/PrettyStyle/controller.do?path=paymentsteps&command=Pay" method="POST" name="add-request-by-credit-card">
 				  									<input id="total-price-without-discount" name="totalPriceWithoutDiscount" type="hidden" value="${total}" />
 			  										<input id="total-price-with-discount" name="totalPriceWithDiscount" type="hidden" value="${bankSlip}" />
 				  									<input type="hidden" value="creditCard" name="paymentType">
@@ -223,7 +223,7 @@
 				  									</div>
 				  									<div class="pay-and-total">
 				  										<label style="color: #ffffff;"><fmt:formatNumber value="${total}" type="currency" currencySymbol="R$"/></label>
-				  										<button type="submit" onclick="window.location.href='/PrettyStyle/controller.do?path=paymetsteps&command=Pay'">Pagar</button>
+				  										<button type="submit">Pagar</button>
 				  										<label id="total-price">Total: <fmt:formatNumber value="${total}" type="currency" currencySymbol="R$"/></label>
 				  									</div>
 			  									</form>

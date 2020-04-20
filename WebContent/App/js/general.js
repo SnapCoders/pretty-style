@@ -3,27 +3,34 @@ $(document).ready(function () {
 	
 	if (auth) {
 		let idUser = sessionStorage.getItem('id_user');
+		let userToken = sessionStorage.getItem('token');
 
 		$('#id-user').val(idUser);
 
 		$('a#id-user').each(function () {
 			var oldUrl = $(this).attr('href');
-			var newUrl = oldUrl + '&id_user=' + idUser;
+			var newUrl = oldUrl + '&id_user=' + idUser + '&token=' + userToken;
 			$(this).attr('href', newUrl);
 		});
 
 		$('div#id-user').each(function () {
 			var str = $(this).attr('onclick');
 			var oldUrl = str.substring(0, str.length-1);
-			var newUrl = oldUrl + '&id_user=' + idUser + "'";
+			var newUrl = oldUrl + '&id_user=' + idUser + '&token=' + userToken + "'";
 			$(this).attr('onclick', newUrl);
 		});
 
 		$('button#id-user').each(function () {
 			var str = $(this).attr('onclick');
 			var oldUrl = str.substring(0, str.length-1);
-			var newUrl = oldUrl + '&id_user=' + idUser + "'";
+			var newUrl = oldUrl + '&id_user=' + idUser + '&token=' + userToken + "'";
 			$(this).attr('onclick', newUrl);
+		});
+
+		$('form#id-user').each(function () {
+			var oldUrl = $(this).attr('action');
+			var newUrl = oldUrl + '&id_user=' + idUser + '&token=' + userToken + "";
+			$(this).attr('action', newUrl);
 		});
 	}
 });

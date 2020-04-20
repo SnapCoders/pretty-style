@@ -61,10 +61,6 @@ public class PayStep implements Command {
 				
 				total = totalItems + frete;
 				bankSlip = total - (total * 0.05);
-	  			
-	  			for (int i = 2; i <= 12; i++) {
-		  			request.setAttribute("parcela" + i, total / i);
-	  			}
 				
 				if (isJson) {
 					Json json = new Json(true, "", lista);
