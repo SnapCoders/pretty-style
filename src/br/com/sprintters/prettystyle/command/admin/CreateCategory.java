@@ -1,4 +1,4 @@
-package br.com.sprintters.prettystyle.command.categories;
+package br.com.sprintters.prettystyle.command.admin;
 
 import java.io.IOException;
 
