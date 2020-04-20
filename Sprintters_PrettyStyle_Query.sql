@@ -219,3 +219,14 @@ create table user_address (
 );
 
 -- select * from user_address;
+
+create table client_product_like (
+    id_product  int,
+    id_client	int,
+    action		int,
+
+    constraint fk_client_product__id_product foreign key (id_product) references product (id),
+    constraint fk_client_product__id_client foreign key (id_client) references client (id)
+);
+
+-- select client_product_like;
