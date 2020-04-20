@@ -66,7 +66,7 @@
 													<button type="button" onclick="window.location.href = '../edit-address/edit-address.jsp'"> 
 														<img src="../../assets/icons/edit.svg" alt="Editar">
 													</button>
-													<button type="button" onclick="handleDelete(this)">
+													<button type="button" onclick="handleDelete(${address.id})">
 														<img src="../../assets/icons/bin.svg" alt="Lixeira">
 													</button>
 												</div>
@@ -96,7 +96,7 @@
 													<button type="button"onclick="window.location.href = '../edit-address/edit-address.jsp'">
 														<img src="../../assets/icons/edit.svg" alt="Editar">
 													</button>
-													<button type="button" onclick="handleDelete(this)">
+													<button type="button" name="acao" onclick="handleDelete(${address.id})">
 														<img src="../../assets/icons/bin.svg" alt="Lixeira">
 													</button>
 												</div>
@@ -117,9 +117,6 @@
 										</div>
 									</c:forEach>
 								</div>
-							</div>
-							<div class="row button-area">
-								<button type="button">SALVAR</button>
 							</div>
 						</div>
 					</div>
