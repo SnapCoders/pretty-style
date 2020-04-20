@@ -1,9 +1,9 @@
 package br.com.sprintters.prettystyle.service;
 
-import br.com.sprintters.prettystyle.model.Category;
-import br.com.sprintters.prettystyle.dao.CategoryDAO;
-
 import java.util.ArrayList;
+
+import br.com.sprintters.prettystyle.dao.CategoryDAO;
+import br.com.sprintters.prettystyle.model.Category;
 
 public class CategoryService {
     CategoryDAO dao;
@@ -47,6 +47,14 @@ public class CategoryService {
     public ArrayList<Category> list() throws Exception {
     	try {
     		return dao.list();
+    	} catch (Exception e) {
+    		throw new Exception(e.getMessage());
+    	}
+    }
+    
+    public ArrayList<Category> listByIdProvider(int idProvider) throws Exception {
+    	try {
+    		return dao.listByIdProvider(idProvider);
     	} catch (Exception e) {
     		throw new Exception(e.getMessage());
     	}

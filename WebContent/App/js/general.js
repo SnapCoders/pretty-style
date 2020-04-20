@@ -53,13 +53,15 @@ function handleLogout() {
 		let userToken = sessionStorage.getItem('token');
 
 		$.ajax({
-			url: '/PrettyStyle/controller.do?path=login&command=Logout&id_user=' + idUser + '&token=' + userToken,
+			url: '/PrettyStyle/controller.do?path=signin&command=Logout&id_user=' + idUser + '&token=' + userToken,
 			method: 'POST',
 			success: function (_json) {
 				sessionStorage.removeItem('token');
 				sessionStorage.removeItem('id_user');
 
 				document.location.reload(true);
+
+				console.log('passei aqui');
 			},
 			error: function (json) {
 				AlertaErro(json);

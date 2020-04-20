@@ -42,8 +42,28 @@
 						    		<div class="card">
 						      			<div class="card-body">
 						        			<h5 class="card-title">Gerenciar produtos cadastrados</h5>
-						        			<p class="card-text">Gerencie seus produtos podendo cadastrar, editar e listar para visualização.</p>
+						        			<p class="card-text">Gerencie seus produtos.</p>
 						                	<a id="id-user" href="/PrettyStyle/controller.do?path=admin&command=ListProducts" class="btn btn-primary">Gerenciar meus produtos</a>
+						            	</div>
+						        	</div>
+						      	</div>
+						      	<div class="col-sm-6">
+						    		<div class="card">
+						      			<div class="card-body">
+						        			<h5 class="card-title">Gerenciar marcas cadastrados</h5>
+						        			<p class="card-text">Cadastre e gerencie as marcas de seus produtos.</p>
+						                	<a id="id-user" href="/PrettyStyle/controller.do?path=admin&command=ListMarks" class="btn btn-primary">Gerenciar minhas marcas</a>
+						            	</div>
+						        	</div>
+						      	</div>
+							</div>
+							<div class="row">
+								<div class="col-sm-6">
+						    		<div class="card">
+						      			<div class="card-body">
+						        			<h5 class="card-title">Gerenciar categorias cadastradas</h5>
+						        			<p class="card-text">Cadastre e gerencie as categorias de seus produtos.</p>
+						                	<a id="id-user" href="/PrettyStyle/controller.do?path=admin&command=ListCategories" class="btn btn-primary">Gerenciar categorias</a>
 						            	</div>
 						        	</div>
 						      	</div>

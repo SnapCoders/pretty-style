@@ -14,7 +14,7 @@
 		
 		<link rel="shortcut icon" href="/PrettyStyle/favicon.ico" type="image/x-icon" />
 
-		<title>Pretty Style - Gerenciar</title>
+		<title>Pretty Style - Gerenciar Produtos</title>
     
 		<link rel="stylesheet" href="/PrettyStyle/App/lib/bootstrap/4.4.1/css/bootstrap.min.css">
 		<link rel="stylesheet" href="/PrettyStyle/App/lib/datatables/datatables.min.css">

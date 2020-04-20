@@ -1,9 +1,9 @@
 package br.com.sprintters.prettystyle.service;
 
-import br.com.sprintters.prettystyle.model.Mark;
-import br.com.sprintters.prettystyle.dao.MarkDAO;
-
 import java.util.ArrayList;
+
+import br.com.sprintters.prettystyle.dao.MarkDAO;
+import br.com.sprintters.prettystyle.model.Mark;
 
 public class MarkService {
     MarkDAO dao;
@@ -47,6 +47,14 @@ public class MarkService {
     public ArrayList<Mark> list() throws Exception {
     	try {
     		return dao.list();
+    	} catch (Exception e) {
+    		throw new Exception(e.getMessage());
+    	}
+    }
+    
+    public ArrayList<Mark> listByIdProvider(int idProvider) throws Exception {
+    	try {
+    		return dao.listByIdProvider(idProvider);
     	} catch (Exception e) {
     		throw new Exception(e.getMessage());
     	}

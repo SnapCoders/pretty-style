@@ -1,29 +1,32 @@
 package br.com.sprintters.prettystyle.command.admin;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.google.gson.Gson;
 
 import br.com.sprintters.prettystyle.command.Command;
 import br.com.sprintters.prettystyle.model.Mark;
+import br.com.sprintters.prettystyle.model.User;
 import br.com.sprintters.prettystyle.model.generic.Json;
 import br.com.sprintters.prettystyle.service.MarkService;
+import br.com.sprintters.prettystyle.service.UserService;
 
-public class CreateMark implements Command {
-
+public class ListMarks implements Command {
 	@Override
-	public void execute(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException, Exception {
+	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, Exception {
 		try {
 			String idUserStr = request.getParameter("id_user");
-			String pName = request.getParameter("name");
 			boolean isJson = Boolean.parseBoolean(request.getParameter("json"));
 			
 			int idUser = -1;
+			
+			HttpSession session = request.getSession();
 			
 			try {
 				idUser = Integer.parseInt(idUserStr);
@@ -33,26 +36,28 @@ public class CreateMark implements Command {
 			}
 			
 			if (idUser != -1) {
-				Mark mark = new Mark();
-		        mark.setName(pName);
-
-		        MarkService cs = new MarkService();
-		        
-		        cs.create(mark);
-	        	mark = cs.find(mark.getId());
+				UserService us = new UserService();
+				MarkService ms = new MarkService();
+				
+				User user = us.find(idUser);
+				ArrayList<Mark> marks = ms.listByIdProvider(user.getProvider().getId());
 				
 				if (isJson) {
-					Json json = new Json(true, "Marca cadastrada com sucesso!", mark);
+					Json json = new Json(true, "", marks);
 					
 					response.setContentType("application/json");
 					response.getWriter().write(new Gson().toJson(json).toString());
 				} else {
-					response.sendRedirect("/PrettyStyle/App/pages/product-details/product-details.jsp");
+					session.setAttribute("marks", marks);
+					
+					response.sendRedirect("/PrettyStyle/App/pages/admin/list-marks/list-marks.jsp");
 				}
 			}
 		} catch (Exception e) {
-			throw new Exception(e.getMessage());
+			Json json = new Json(false, "Desculpe, ocorreu um erro ao listar suas marcas, tente novamente!", e);
+    		
+    		response.setContentType("application/json");
+    		response.getWriter().write(new Gson().toJson(json).toString());
 		}
 	}
-
 }

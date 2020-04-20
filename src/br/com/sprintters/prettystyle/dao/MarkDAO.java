@@ -1,13 +1,12 @@
 package br.com.sprintters.prettystyle.dao;
 
-import java.sql.ResultSet;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
 import br.com.sprintters.prettystyle.model.Mark;
-
-import java.sql.PreparedStatement;
 
 public class MarkDAO {
 	public int insert(Mark to) throws Exception {
@@ -100,6 +99,44 @@ public class MarkDAO {
 					);
 					marks.add(to);
 				}
+			} catch (SQLException ex) {
+				throw new Exception(ex.getMessage());
+			}
+		} catch (SQLException e) {
+			throw new Exception(e.getMessage());
+		}
+		
+		return marks;
+	}
+	
+	public ArrayList<Mark> listByIdProvider(int idProvider) throws Exception  {
+		ArrayList<Mark> marks = new ArrayList<Mark>();
+		String sqlSelect = "SELECT\r\n" + 
+				"	m.*\r\n" + 
+				"FROM\r\n" + 
+				"	product p\r\n" + 
+				"    INNER JOIN mark m ON p.id_mark = m.id\r\n" + 
+				"WHERE p.id_provider = ? AND m.deleted_at IS NULL";
+		
+		try (Connection conn = ConnectionFactory.createConnection();
+			 PreparedStatement stm = conn.prepareStatement(sqlSelect)) {
+			
+			stm.setInt(1, idProvider);
+			
+			try (ResultSet rs = stm.executeQuery()) {
+				while (rs.next()) {
+					Mark to = new Mark(
+						rs.getInt("id"),
+						rs.getString("name"),
+						rs.getTimestamp("created_at"),
+						rs.getTimestamp("updated_at"),
+						rs.getTimestamp("deleted_at")
+					);
+					
+					marks.add(to);
+				}
+				
+				conn.close();
 			} catch (SQLException ex) {
 				throw new Exception(ex.getMessage());
 			}

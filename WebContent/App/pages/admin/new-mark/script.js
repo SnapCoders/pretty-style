@@ -1,25 +1,12 @@
 $(document).ready(function () {
-	$.validator.addMethod("valueNotEquals", (value, element, arg) => arg !== value);
-	
-	$('form[name="add-product"]').validate({
+	$('form[name="add-mark"]').validate({
 		rules: {
 			name: 'required',
-			description: 'required',
-			idMark: {
-				valueNotEquals: '0',
-			},
-			price: 'required',
 		},
 		messages: {
 			name: 'Campo obrigatório.',
-			description: 'Campo obrigatório.',
-			idMark: {
-				valueNotEquals: 'Selecione uma marca',
-			},
-			price: 'Campo obrigatório.',
 		},
 		submitHandler: function (form) {
-			//form.submit();
 			handleAdd(form);
 		},
 	});
@@ -28,8 +15,11 @@ $(document).ready(function () {
 function handleAdd(form) {
 	var formSerialized = $(form).serialize();
 
+	let idUser = sessionStorage.getItem('id_user');
+	let userToken = sessionStorage.getItem('token');
+
 	$.ajax({
-    	type: 'POST', url: '/PrettyStyle/products', data: formSerialized,
+    	type: 'POST', url: '/PrettyStyle/controller.do?path=admin&command=CreateMark&json=true&id_user=' + idUser + '&token=' + userToken, data: formSerialized,
     	success: function(data) {
         	AlertaSucesso(data);
 		},

@@ -55,6 +55,24 @@ public class ServletController extends HttpServlet {
     	boolean isAuthorize = false;
     	
     	switch (commandCalled) {
+	    	case "admin.CreateCategory":
+	    		isAuthorize = true;
+	    		break;
+			case "admin.CreateMark":
+				isAuthorize = true;
+				break;
+    		case "admin.CreateProduct":
+				isAuthorize = true;
+				break;
+    		case "admin.ListCategories":
+				isAuthorize = true;
+				break;
+    		case "admin.ListMarks":
+				isAuthorize = true;
+				break;
+    		case "admin.ListProducts":
+				isAuthorize = true;
+				break;
     		case "cart.ListCart":
     			isAuthorize = true;
     			break;
@@ -79,17 +97,14 @@ public class ServletController extends HttpServlet {
     		case "productdetails.ViewProduct":
     			isAuthorize = false;
     			break;
-    		case "marks.CreateMark":
-    			isAuthorize = true;
-    			break;
-    		case "categories.CreateCategory":
-    			isAuthorize = true;
-    			break;
     		case "requests.ListRequests":
     			isAuthorize = true;
     			break;
     		case "signin.Login":
     			isAuthorize = false;
+    			break;
+    		case "signin.Logout":
+    			isAuthorize = true;
     			break;
     		default:
     			isAuthorize = false;
