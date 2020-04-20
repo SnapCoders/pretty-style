@@ -1,9 +1,6 @@
 package br.com.sprintters.prettystyle.service;
 
-import java.util.UUID;
 import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
 import java.time.ZoneId;
 import java.security.Key;
 import java.time.LocalDateTime;
