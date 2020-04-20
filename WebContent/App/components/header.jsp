@@ -57,7 +57,6 @@
 			<ul>
 				<li class="active">SALES</li>
 				<li onclick="window.location.href = '/PrettyStyle/App/pages/'">NOVIDADES</li>
-				<li onclick="window.location.href = '/PrettyStyle/App/pages/sign-in/sign-in.jsp'">LOGIN</li>
 				<li onclick="window.location.href = '/PrettyStyle/App/pages/edit-profile/edit-profile.jsp'">EDITAR PERFIL</li>
 				<li onclick="window.location.href = '/PrettyStyle/App/pages/save-address/save-address.jsp'">CRIAR ENDEREÇO</li>
 				<li onclick="window.location.href = '/PrettyStyle/App/pages/profile-address/profile-address.jsp'">MEUS ENDEREÇOS</li>
