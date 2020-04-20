@@ -185,8 +185,7 @@ public class AddressDAO {
 				"	 a.*" +
 				"FROM\r\n" + 
 				"	address a\r\n" + 
-				"    INNER JOIN user_address ua on a.id = ua.id_address\r\n" + 
-				"    INNER JOIN user u on ua.id_user = u.id\r\n" + 
+				"    INNER JOIN user u on a.id_user = u.id\r\n" + 
 				"WHERE u.id = ? AND a.deleted_at IS NULL;";
 		
 		try (Connection conn = ConnectionFactory.createConnection();
