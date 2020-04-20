@@ -41,12 +41,12 @@
 				</div>
 			</div>
 			<div class="favorite">
-				<div class="favorite-icon">
+				<div id="id-user" class="favorite-icon" onclick="window.location.href='/PrettyStyle/controller.do?path=favorites&command=ListFavorites'">
 					<img src="/PrettyStyle/App/assets/icons/heart.svg">
 				</div>
 			</div>
 			<div class="cart">
-				<div id="id-user" class="cart-icon" onclick="window.location.href = '/PrettyStyle/controller.do?path=cart&command=ListCart'">
+				<div id="id-user" class="cart-icon" onclick="window.location.href='/PrettyStyle/controller.do?path=cart&command=ListCart'">
 					<img src="/PrettyStyle/App/assets/icons/cart.svg">
 				</div>
 			</div>
@@ -56,13 +56,13 @@
 		<nav>
 			<ul>
 				<li class="active">SALES</li>
-				<li onclick="window.location.href = '/PrettyStyle/App/pages/'">NOVIDADES</li>
-				<li onclick="window.location.href = '/PrettyStyle/App/pages/edit-profile/edit-profile.jsp'">EDITAR PERFIL</li>
-				<li onclick="window.location.href = '/PrettyStyle/App/pages/save-address/save-address.jsp'">CRIAR ENDEREÇO</li>
-				<li onclick="window.location.href = '/PrettyStyle/App/pages/profile-address/profile-address.jsp'">MEUS ENDEREÇOS</li>
-				<li onclick="window.location.href = '/PrettyStyle/App/pages/requests/requests.jsp'">MEUS PEDIDOS</li>
-				<li onclick="window.location.href = '/PrettyStyle/App/pages/payment-steps/payment-steps.jsp'">ETAPAS DE PAGAMENTO</li>
-				<li onclick="window.location.href = '/PrettyStyle/App/pages/catalog/catalog.jsp'">CATÁLOGO</li>
+				<li onclick="window.location.href='/PrettyStyle/App/pages/'">NOVIDADES</li>
+				<li onclick="window.location.href='/PrettyStyle/App/pages/edit-profile/edit-profile.jsp'">EDITAR PERFIL</li>
+				<li onclick="window.location.href='/PrettyStyle/App/pages/save-address/save-address.jsp'">CRIAR ENDEREÇO</li>
+				<li onclick="window.location.href='/PrettyStyle/App/pages/profile-address/profile-address.jsp'">MEUS ENDEREÇOS</li>
+				<li onclick="window.location.href='/PrettyStyle/App/pages/requests/requests.jsp'">MEUS PEDIDOS</li>
+				<li onclick="window.location.href='/PrettyStyle/App/pages/payment-steps/payment-steps.jsp'">ETAPAS DE PAGAMENTO</li>
+				<li onclick="window.location.href='/PrettyStyle/App/pages/catalog/catalog.jsp'">CATÁLOGO</li>
 				<!-- <li>ACESSÓRIOS</li>
 		        <li>MASCULINO</li>
 		        <li>FEMININO</li>
