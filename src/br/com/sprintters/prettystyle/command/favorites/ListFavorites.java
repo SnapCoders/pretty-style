@@ -41,7 +41,7 @@ public class ListFavorites implements Command {
 				User user = us.find(idUser);
 				
 				ProductService ps = new ProductService();
-				ArrayList<ClientProductLike> productsLiked = ps.listFavoritesByIdClient(user.getClient().getId()); 
+				ArrayList<ClientProductLike> productsLiked = ps.listFavoritesByIdClient(user.getClient().getId());
 				
 				if (isJson) {
 					Json json = new Json(true, "", productsLiked);
