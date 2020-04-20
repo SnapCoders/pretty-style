@@ -24,23 +24,6 @@ $(document).ready(function () {
 // 			console.log('Deu bosta');
 // 		}
 // 	});
-// }
-
-function AlertaSucesso(data) {
-	swal({
-		title: 'Sucesso!',
-		text: data.message,
-		type: 'success',
-	});
-};
-
-function AlertaErro(data) {
-	swal({
-		title: 'Erro!',
-		text: data.message,
-		type: 'error',
-	});
-};
 
 function handleLogin(form) {
 	$.ajax({
