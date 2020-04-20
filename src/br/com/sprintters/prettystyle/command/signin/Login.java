@@ -6,6 +6,7 @@ import java.util.Base64;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.json.JSONObject;
 
@@ -41,6 +42,10 @@ public class Login implements Command {
 				String nameAndSurnameBase64 = Base64.getEncoder().encodeToString(nameAndSurname.getBytes());
 				
 				String token = jwt.signJWT(user, name, nameAndSurnameBase64);
+				
+				HttpSession session = request.getSession();
+				
+				session.setAttribute("token", token);
 				
 				JSONObject retorno = new JSONObject();
 				
