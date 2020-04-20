@@ -27,7 +27,6 @@ public class Pay implements Command {
 		try {
 			String idUserStr = request.getParameter("id_user");
 			String typePayment = request.getParameter("paymentType");
-			int numberParcels = Integer.parseInt(request.getParameter("cardParcels"));
 			boolean isJson = Boolean.parseBoolean(request.getParameter("json"));
 			
 			int idUser = -1;
@@ -70,6 +69,7 @@ public class Pay implements Command {
 	  			double totalPrice = 0.0;
 	  			
 	  			if (typePayment.equals("creditCard")) {
+	  				int numberParcels = Integer.parseInt(request.getParameter("cardParcels"));
 	  				if (numberParcels == 1) {
 	  					totalPrice = bankSlip;
 	  				}

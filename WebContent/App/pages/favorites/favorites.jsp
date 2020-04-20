@@ -10,15 +10,16 @@
     
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
 
-    <title>Pretty Style - Produtos desejáveis</title>
+    <title>Pretty Style - Favoritos</title>
     
-    <link rel="stylesheet" href="App/lib/bootstrap/4.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../lib/bootstrap/4.4.1/css/bootstrap.min.css">
+	<link rel="stylesheet" href="../../lib/sweetalert/sweetalert.css">
 
-    <link rel="stylesheet" href="App/styles/index.css">
-    <link rel="stylesheet" href="App/styles/header.css">
+    <link rel="stylesheet" href="../../styles/index.css">
+    <link rel="stylesheet" href="../../styles/header.css">
+    <link rel="stylesheet" href="../../styles/responsive.css">
     
-    <link rel="stylesheet" href="App/pages/favorites/styles.css">
-    <link rel="stylesheet" href="App/styles/responsive.css">
+    <link rel="stylesheet" href="styles.css">
   </head>
   <body>
   	<c:import url="../../components/header.jsp" />
@@ -37,81 +38,50 @@
 				</div>
 				<div class="jumbotron main">
 					<div class="col-md-12 content">
-						<div class="row">
-							<div class="col-md-11">
-								<div class="product-details-area">
-									<div class="product-photo-area">
-										<img src="App/assets/img/jbl.png" alt="JBL Flip 3 Portable">
-									</div>
-									<div class="product-info">
-										<label>JBL Flip 3 Portable</label>
-										<span>Uma caixa de som com 30 watts de potência.</span>
-										<div class="stars">
-											<span class="star yellow-star">&nbsp;</span>
-											<span class="star yellow-star">&nbsp;</span>
-											<span class="star yellow-star">&nbsp;</span>
-											<span class="star yellow-star">&nbsp;</span>
-											<span class="star gray-star">&nbsp;</span>
+						<c:forEach var="productLiked" items="${productsLiked}">
+							<div class="row">
+								<div class="col-md-11">
+									<div class="product-details-area">
+										<div class="product-photo-area">
+											<img src="../../assets/img/jbl.png" alt="${productLiked.product.name}">
 										</div>
-										<div class="content">
-											<span>Preço: </span>
-											<label>R$ 160,00</label>
+										<div class="product-info">
+											<label>${productLiked.product.name}</label>
+											<span>${productLiked.product.description}</span>
+											<div class="stars">
+												<span class="star yellow-star">&nbsp;</span>
+												<span class="star yellow-star">&nbsp;</span>
+												<span class="star yellow-star">&nbsp;</span>
+												<span class="star yellow-star">&nbsp;</span>
+												<span class="star gray-star">&nbsp;</span>
+											</div>
+											<div class="content">
+												<span>Preço: </span>
+												<label><fmt:formatNumber value="${productLiked.product.price}" type="currency" currencySymbol="R$"/></label>
+											</div>
 										</div>
 									</div>
 								</div>
-							</div>
-							<div class="col-md-1 like">
-								<div class="like-product">
-									<div class="favorite">
-								        <div class="favorite-icon">
-								        	<img src="App/assets/icons/white-heart.svg">
-							        	</div>
-									</div>
-								</div>
-							</div>
-						</div>
-						<hr />
-						<div class="row">
-							<div class="col-md-11">
-								<div class="product-details-area">
-									<div class="product-photo-area">
-										<img src="App/assets/img/jbl.png" alt="JBL Flip 3 Portable">
-									</div>
-									<div class="product-info">
-										<label>JBL Flip 3 Portable</label>
-										<span>Uma caixa de som com 30 watts de potência.</span>
-										<div class="stars">
-											<span class="star yellow-star">&nbsp;</span>
-											<span class="star yellow-star">&nbsp;</span>
-											<span class="star yellow-star">&nbsp;</span>
-											<span class="star yellow-star">&nbsp;</span>
-											<span class="star gray-star">&nbsp;</span>
-										</div>
-										<div class="content">
-											<span>Preço: </span>
-											<label>R$ 160,00</label>
+								<div class="col-md-1 like">
+									<div class="like-product">
+										<div class="favorite">
+									        <div class="favorite-icon" onclick="handleDeleteFavorite(${productLiked.id});">
+									        	<img src="../../assets/icons/white-heart.svg">
+								        	</div>
 										</div>
 									</div>
 								</div>
 							</div>
-							<div class="col-md-1 like">
-								<div class="like-product">
-									<div class="favorite">
-								        <div class="favorite-icon">
-								        	<img src="App/assets/icons/white-heart.svg">
-							        	</div>
-									</div>
-								</div>
-							</div>
-						</div>
+							<hr />
+						</c:forEach>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
 		
-	<script src="App/lib/jquery/1.9.1/jquery-1.9.1.min.js"></script>
-	<script src="App/js/general.js"></script>
-	<!-- <script src="App/pages/favorites/utils.js"></script> -->
+	<script src="../../lib/jquery/1.9.1/jquery-1.9.1.min.js"></script>
+	<script src="../../lib/sweetalert/sweetalert.min.js"></script>
+	<script src="script.js"></script>
 	</body>
 </html>

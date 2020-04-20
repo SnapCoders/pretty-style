@@ -1,13 +1,13 @@
 package br.com.sprintters.prettystyle.dao;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
+import br.com.sprintters.prettystyle.model.ClientProductLike;
 import br.com.sprintters.prettystyle.model.Product;
-
-import java.sql.Connection;
-import java.sql.SQLException;
-import java.sql.PreparedStatement;
 
 public class ProductDAO {
 	public int insert(Product to) throws Exception {
@@ -188,5 +188,72 @@ public class ProductDAO {
 		}
 		
 		return products;
+	}
+	
+	public ArrayList<ClientProductLike> listFavoritesByIdClient(int idClient) throws Exception  {
+		ArrayList<ClientProductLike> productsLiked = new ArrayList<ClientProductLike>();
+		String sqlSelect = "SELECT\r\n" + 
+				"	p.id\r\n" + 
+				"    , p.name\r\n" + 
+				"    , p.description\r\n" + 
+				"    , p.price\r\n" + 
+				"    , p.id_mark\r\n" +
+				"    , cpl.id as 'id_cpl'\r\n" +
+				"    , cpl.id_product\r\n" + 
+				"    , cpl.id_client\r\n" + 
+				"    , cpl.action\r\n" + 
+				"FROM\r\n" + 
+				"	client_product_like cpl\r\n" + 
+				"    INNER JOIN product p ON cpl.id_product = p.id\r\n" + 
+				"WHERE cpl.id_client = ? AND cpl.action = 1 AND p.deleted_at IS NULL;";
+		
+		try (Connection conn = ConnectionFactory.createConnection();
+			 PreparedStatement stm = conn.prepareStatement(sqlSelect)) {
+			
+			stm.setInt(1, idClient);
+			
+			try (ResultSet rs = stm.executeQuery()) {
+				while (rs.next()) {
+					Product to = new Product(
+						rs.getInt("id"),
+						rs.getString("name"),
+						rs.getString("description"),
+						rs.getDouble("price"),
+						rs.getInt("id_mark")
+					);
+					
+					ClientProductLike cpl = new ClientProductLike(
+						rs.getInt("id_cpl"),
+						rs.getInt("id_product"),
+						rs.getInt("id_client"),
+						rs.getInt("action")
+					);
+					
+					cpl.setProduct(to);
+					
+					productsLiked.add(cpl);
+				}
+				
+				conn.close();
+			} catch (SQLException ex) {
+				throw new Exception(ex.getMessage());
+			}
+		} catch (SQLException e) {
+			throw new Exception(e.getMessage());
+		}
+		
+		return productsLiked;
+	}
+	
+	public void deleteFavoriteById(int id) throws Exception {
+		String sqlDelete = "DELETE FROM client_product_like WHERE id = ?";
+		
+		try (Connection conn = ConnectionFactory.createConnection();
+			 PreparedStatement stm = conn.prepareStatement(sqlDelete)) {
+			stm.setInt(1, id);
+			stm.execute();
+		} catch (SQLException e) {
+			throw new Exception(e.getMessage());
+		}
 	}
 }

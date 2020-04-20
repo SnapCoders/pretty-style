@@ -1,9 +1,10 @@
 package br.com.sprintters.prettystyle.service;
 
-import br.com.sprintters.prettystyle.model.Product;
-import br.com.sprintters.prettystyle.dao.ProductDAO;
-
 import java.util.ArrayList;
+
+import br.com.sprintters.prettystyle.dao.ProductDAO;
+import br.com.sprintters.prettystyle.model.ClientProductLike;
+import br.com.sprintters.prettystyle.model.Product;
 
 public class ProductService{
     ProductDAO dao;
@@ -60,24 +61,25 @@ public class ProductService{
     	}
     }
     
-    public ArrayList<Product> listMore() {
-    	ArrayList<Product> lista = new ArrayList<Product>();
-
-    	lista.add(new Product("Teste 1", "Produto teste 1", 500.00, 2));
-		lista.add(new Product("Teste 2", "Produto teste 2", 550.00, 3));
-		lista.add(new Product("Teste 3", "Produto teste 3", 920.00, 4));
-		lista.add(new Product("Teste 4", "Produto teste 4", 159.00, 4));
-		lista.add(new Product("Teste 5", "Produto teste 5", 859.00, 4));
-		lista.add(new Product("Teste 6", "Produto teste 6", 959.00, 4));
-		lista.add(new Product("Teste 7", "Produto teste 7", 120.00, 4));
-		lista.add(new Product("Teste 8", "Produto teste 8", 500.00, 4));
-		
-		return lista;
-    }
-    
     public ArrayList<Product> listByIdProvider(int idProvider) throws Exception {
     	try {
     		return dao.listByIdProvider(idProvider);
+    	} catch (Exception e) {
+    		throw new Exception(e.getMessage());
+    	}
+    }
+    
+    public ArrayList<ClientProductLike> listFavoritesByIdClient(int idClient) throws Exception {
+    	try {
+    		return dao.listFavoritesByIdClient(idClient);
+    	} catch (Exception e) {
+    		throw new Exception(e.getMessage());
+    	}
+    }
+    
+    public void deleteFavoriteById(int id) throws Exception {
+    	try {
+    		dao.deleteFavoriteById(id);
     	} catch (Exception e) {
     		throw new Exception(e.getMessage());
     	}

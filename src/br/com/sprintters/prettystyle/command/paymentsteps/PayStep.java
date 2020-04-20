@@ -12,10 +12,12 @@ import com.google.gson.Gson;
 
 import br.com.sprintters.prettystyle.command.Command;
 import br.com.sprintters.prettystyle.model.Item;
+import br.com.sprintters.prettystyle.model.User;
 import br.com.sprintters.prettystyle.model.generic.Json;
 import br.com.sprintters.prettystyle.model.virtual.Cart;
 import br.com.sprintters.prettystyle.service.AddressService;
 import br.com.sprintters.prettystyle.service.ItemService;
+import br.com.sprintters.prettystyle.service.UserService;
 
 public class PayStep implements Command {
 	@Override
@@ -38,8 +40,10 @@ public class PayStep implements Command {
 			if (idUser != -1) {
 				AddressService as = new AddressService();
 				ItemService is = new ItemService();
+				UserService us = new UserService();
 						
 				Cart cart = is.listItemsInCartByIdClient(idUser);
+				User user = us.find(idUser);
 				
 				ArrayList<Item> lista = cart.getItems();
 				
@@ -74,6 +78,7 @@ public class PayStep implements Command {
 					session.setAttribute("frete", frete);
 					session.setAttribute("total", total);
 					session.setAttribute("bankSlip", bankSlip);
+					session.setAttribute("user", user);
 					
 					for (int i = 2; i <= 12; i++) {
 						session.setAttribute("parcela" + i, total / i);

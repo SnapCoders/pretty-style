@@ -70,7 +70,7 @@
 			  							<div class="location-header">Endereço de Entrega</div>
 			  							<div class="location-body">
 			  								<div class="location-body-content">
-			  									<label class="location-name">Bruno Amaral Futema</label>
+			  									<label class="location-name">${user.client.name} ${user.client.surname}</label>
 			  									<div>
 			  										<label>Endereço: </label><span>${address.place}, ${address.number}</span>
 			  									</div>
@@ -229,8 +229,8 @@
 			  									</form>
 			  								</div>
 			  								<div id="bank-slip" class="jumbotron bank-slip-method" style="display: none;">
-			  									<form action="/PrettyStyle/requests" method="POST" name="add-request-by-bank-slip">
-			  										<input type="hidden" value="bankSlip" name="paymentType ">
+			  									<form id="id-user" action="/PrettyStyle/controller.do?path=paymentsteps&command=Pay" method="POST" name="add-request-by-bank-slip">
+			  										<input type="hidden" value="bankSlip" name="paymentType">
 			  										<input id="total-price-with-discount-bank-slip" name="totalPriceWithDiscount" type="hidden" value="${bankSlip}" />
 				  									<div class="inputs">
 				  										<div class="row">
