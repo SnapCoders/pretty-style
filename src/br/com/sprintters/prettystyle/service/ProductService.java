@@ -74,4 +74,12 @@ public class ProductService{
 		
 		return lista;
     }
+    
+    public ArrayList<Product> listByIdProvider(int idProvider) throws Exception {
+    	try {
+    		return dao.listByIdProvider(idProvider);
+    	} catch (Exception e) {
+    		throw new Exception(e.getMessage());
+    	}
+    }
 }
