@@ -40,7 +40,6 @@ public class ServletController extends HttpServlet {
     			Command command = (Command)Class.forName("br.com.sprintters.prettystyle.command." + commandCalled).newInstance();
     			command.execute(request, response);
     		}
-    		
     	} catch (Exception e) {
     		e.printStackTrace();
     		

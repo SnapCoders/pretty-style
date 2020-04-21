@@ -15,12 +15,12 @@ public class ClientProductLikeDAO {
 		try (Connection conn = ConnectionFactory.createConnection();
 			 PreparedStatement stm = conn.prepareStatement(sqlInsert)) {
 			stm.setInt(1, to.getIdProduct());
-			stm.setInt(2, to.getIdClient());
+			stm.setInt(2, to.getIdUser());
 			stm.setInt(3, to.getAction());
 			stm.execute();
 			try (ResultSet rs = stm.executeQuery("SELECT LAST_INSERT_ID()")) {
 				if (rs.next()) {				
-					to.setIdClient(rs.getInt(1));
+					to.setIdUser(rs.getInt(1));
 					id = rs.getInt(1);					
 				}
 			} catch (SQLException ex) {
@@ -39,7 +39,7 @@ public class ClientProductLikeDAO {
 		try (Connection conn = ConnectionFactory.createConnection();
 			 PreparedStatement stm = conn.prepareStatement(sqlUpdate)) {
 			stm.setInt(1, to.getIdProduct());
-			stm.setInt(2, to.getIdClient());
+			stm.setInt(2, to.getIdUser());
 			stm.setInt(3, to.getAction());
 			stm.setInt(4, to.getId());
 			stm.execute();
@@ -70,7 +70,7 @@ public class ClientProductLikeDAO {
 			stm.setInt(2, idClient);
 			try (ResultSet rs = stm.executeQuery()) {
 				if (rs.next()) {
-					to.setIdClient(rs.getInt("id_product"));
+					to.setIdUser(rs.getInt("id_product"));
 					to.setIdProduct(rs.getInt("id_client"));
 					to.setAction(rs.getInt("action"));
 				}
