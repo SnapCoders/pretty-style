@@ -77,17 +77,17 @@ public class ProductService{
     	}
     }
     
-    public ArrayList<ClientProductLike> listFavoritesByIdClient(int idClient) throws Exception {
+    public ArrayList<ClientProductLike> listFavoritesByIdUser(int idUser) throws Exception {
     	try {
-    		return dao.listFavoritesByIdClient(idClient);
+    		return dao.listFavoritesByIdUser(idUser);
     	} catch (Exception e) {
     		throw new Exception(e.getMessage());
     	}
     }
     
-    public ClientProductLike listFavoriteByIdClientAndIdProduct(int idClient, int idProduct) throws Exception {
+    public ClientProductLike listFavoriteByIdUserAndIdProduct(int idUser, int idProduct) throws Exception {
     	try {
-    		return dao.listFavoriteByIdClientAndIdProduct(idClient, idProduct);
+    		return dao.listFavoriteByIdUserAndIdProduct(idUser, idProduct);
     	} catch (Exception e) {
     		throw new Exception(e.getMessage());
     	}

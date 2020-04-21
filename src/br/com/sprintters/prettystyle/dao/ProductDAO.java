@@ -208,11 +208,11 @@ public class ProductDAO {
 	
 	public int createFavorite(ClientProductLike to) throws Exception {
 		int id = 0;
-		String sqlInsert = "INSERT INTO client_product_like (id_client, id_product, action) VALUES (?, ?, ?)";
+		String sqlInsert = "INSERT INTO client_product_like (id_user, id_product, action) VALUES (?, ?, ?)";
 		
 		try (Connection conn = ConnectionFactory.createConnection();
 			 PreparedStatement stm = conn.prepareStatement(sqlInsert)) {
-			stm.setInt(1, to.getIdClient());
+			stm.setInt(1, to.getIdUser());
 			stm.setInt(2, to.getIdProduct());
 			stm.setInt(3, to.getAction());
 			
@@ -235,7 +235,7 @@ public class ProductDAO {
 		return id;
 	}
 	
-	public ArrayList<ClientProductLike> listFavoritesByIdClient(int idClient) throws Exception  {
+	public ArrayList<ClientProductLike> listFavoritesByIdUser(int idUser) throws Exception  {
 		ArrayList<ClientProductLike> productsLiked = new ArrayList<ClientProductLike>();
 		String sqlSelect = "SELECT\r\n" + 
 				"	p.id\r\n" + 
@@ -245,17 +245,17 @@ public class ProductDAO {
 				"    , p.id_mark\r\n" +
 				"    , cpl.id as 'id_cpl'\r\n" +
 				"    , cpl.id_product\r\n" + 
-				"    , cpl.id_client\r\n" + 
+				"    , cpl.id_user\r\n" + 
 				"    , cpl.action\r\n" + 
 				"FROM\r\n" + 
 				"	client_product_like cpl\r\n" + 
 				"    INNER JOIN product p ON cpl.id_product = p.id\r\n" + 
-				"WHERE cpl.id_client = ? AND cpl.action = 1 AND p.deleted_at IS NULL;";
+				"WHERE cpl.id_user = ? AND cpl.action = 1 AND p.deleted_at IS NULL;";
 		
 		try (Connection conn = ConnectionFactory.createConnection();
 			 PreparedStatement stm = conn.prepareStatement(sqlSelect)) {
 			
-			stm.setInt(1, idClient);
+			stm.setInt(1, idUser);
 			
 			try (ResultSet rs = stm.executeQuery()) {
 				while (rs.next()) {
@@ -270,7 +270,7 @@ public class ProductDAO {
 					ClientProductLike cpl = new ClientProductLike(
 						rs.getInt("id_cpl"),
 						rs.getInt("id_product"),
-						rs.getInt("id_client"),
+						rs.getInt("id_user"),
 						rs.getInt("action")
 					);
 					
@@ -290,19 +290,19 @@ public class ProductDAO {
 		return productsLiked;
 	}
 	
-	public ClientProductLike listFavoriteByIdClientAndIdProduct(int idClient, int idProduct) throws Exception {
+	public ClientProductLike listFavoriteByIdUserAndIdProduct(int idUser, int idProduct) throws Exception {
 		ClientProductLike to = new ClientProductLike();
-		String sqlSelect = "SELECT * FROM client_product_like WHERE id_client = ? AND id_product = ?";
+		String sqlSelect = "SELECT * FROM client_product_like WHERE id_user = ? AND id_product = ?";
 		
 		try (Connection conn = ConnectionFactory.createConnection();
 			 PreparedStatement stm = conn.prepareStatement(sqlSelect)) {
-			stm.setInt(1, idClient);
+			stm.setInt(1, idUser);
 			stm.setInt(2, idProduct);
 			
 			try (ResultSet rs = stm.executeQuery()) {
 				if (rs.next()) {
 					to.setId(rs.getInt("id"));
-					to.setIdClient(idClient);
+					to.setIdUser(idUser);
 					to.setIdProduct(idProduct);
 					to.setAction(rs.getInt("action"));
 				}

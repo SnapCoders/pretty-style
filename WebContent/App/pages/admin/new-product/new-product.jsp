@@ -88,9 +88,7 @@
 		<script src="../../../lib/jquery-validation/jquery.validate.min.js"></script>
 		<script src="../../../lib/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 		<script src="../../../lib/sweetalert/sweetalert.min.js"></script>
-		<script src="../../../js/general.js"></script>
 		
 		<script src="script.js"></script>
-		<script src="utils.js"></script>
 	</body>
 </html>

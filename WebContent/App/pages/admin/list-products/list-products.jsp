@@ -88,7 +88,6 @@
 		<script src="/PrettyStyle/App/lib/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 		<script src="/PrettyStyle/App/lib/datatables/datatables.min.js"></script>
 		<script src="/PrettyStyle/App/lib/sweetalert/sweetalert.min.js"></script>
-		<script src="/PrettyStyle/App/js/general.js"></script>
 		
 		<script src="/PrettyStyle/App/pages/admin/list-products/script.js"></script>
 	</body>

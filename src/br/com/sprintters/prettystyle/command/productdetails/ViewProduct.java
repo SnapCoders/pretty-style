@@ -43,7 +43,7 @@ public class ViewProduct implements Command {
 				User user = us.find(idUser);
 				Product product = ps.find(idProduct);
 				
-				ClientProductLike cpl = ps.listFavoriteByIdClientAndIdProduct(user.getClient().getId(), idProduct);
+				ClientProductLike cpl = ps.listFavoriteByIdUserAndIdProduct(user.getId(), idProduct);
 				
 				cpl.setProduct(product);
 				

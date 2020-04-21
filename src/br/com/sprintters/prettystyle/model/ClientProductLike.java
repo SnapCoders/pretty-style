@@ -7,21 +7,21 @@ public class ClientProductLike {
 	private int idProduct;
 	private Product product;
 	
-	private int idClient;
-	private Client client;
+	private int idUser;
+	private User user;
 
 	public ClientProductLike() { }
 
 	public ClientProductLike(int idClient, int idProduct, int action) {
 		this.idProduct = idProduct;
-		this.idClient = idClient;
+		this.idUser = idClient;
 		this.action = action;
 	}
 	
 	public ClientProductLike(int id, int idClient, int idProduct, int action) {
 		this.id = id;
 		this.idProduct = idProduct;
-		this.idClient = idClient;
+		this.idUser = idClient;
 		this.action = action;
 	}
 	
@@ -49,12 +49,12 @@ public class ClientProductLike {
 		this.product = product;
 	}
 	
-	public Client getClient() {
-		return client;
+	public User getUser() {
+		return user;
 	}
 
-	public void setClient(Client client) {
-		this.client = client;
+	public void setUser(User user) {
+		this.user = user;
 	}
 
 	public int getAction() {
@@ -65,16 +65,16 @@ public class ClientProductLike {
 		this.action = action;
 	}
 
-	public int getIdClient() {
-		return idClient;
+	public int getIdUser() {
+		return idUser;
 	}
 
-	public void setIdClient(int idClient) {
-		this.idClient = idClient;
+	public void setIdUser(int idUser) {
+		this.idUser = idUser;
 	}
 
 	@Override
 	public String toString() {
-		return "ClientProductLike [id=" + id + ", action=" + action + ", idProduct=" + idProduct + ", idClient=" + idClient + "]";
+		return "ClientProductLike [id=" + id + ", action=" + action + ", idProduct=" + idProduct + ", idClient=" + idUser + "]";
 	}
 }

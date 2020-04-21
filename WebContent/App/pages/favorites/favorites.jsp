@@ -82,6 +82,7 @@
 		
 	<script src="../../lib/jquery/1.9.1/jquery-1.9.1.min.js"></script>
 	<script src="../../lib/sweetalert/sweetalert.min.js"></script>
+	
 	<script src="script.js"></script>
 	</body>
 </html>

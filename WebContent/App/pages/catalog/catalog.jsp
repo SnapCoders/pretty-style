@@ -118,7 +118,5 @@
 	</div>
 		
 	<script src="../../lib/jquery/1.9.1/jquery-1.9.1.min.js"></script>
-	<script src="../../js/general.js"></script>
-	<!-- <script src="../../pages/catalog/utils.js"></script> -->
 	</body>
 </html>

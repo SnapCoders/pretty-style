@@ -4,12 +4,14 @@ use db_pretty_style;
 create table mark (
 	id			int auto_increment,
     name		varchar(100) not null,
+    id_provider int,
     
     created_at	timestamp not null default now(),
     updated_at	timestamp null,
     deleted_at	timestamp null,
     
-    constraint pk_id primary key (id)
+    constraint pk_id primary key (id),
+    constraint fk_mark__id_provider foreign key (id_provider) references provider (id)
 );
 
 -- select * from mark;
@@ -37,12 +39,14 @@ create table category (
 	id			int auto_increment,
     name		varchar(180) not null,
     color		varchar(7) not null,
+    id_provider int,
     
     created_at	timestamp not null default now(),
     updated_at	timestamp null,
     deleted_at	timestamp null,
     
-    constraint pk_id primary key (id)
+    constraint pk_id primary key (id),
+    constraint fk_mark__id_provider foreign key (id_provider) references provider (id)
 );
 
 -- select * from category;
@@ -223,12 +227,12 @@ create table user_address (
 create table client_product_like (
 	id			int auto_increment,
     id_product  int,
-    id_client	int,
+    id_user		int,
     action		int,
 
 	constraint pk_id primary key (id),
     constraint fk_client_product__id_product foreign key (id_product) references product (id),
-    constraint fk_client_product__id_client foreign key (id_client) references client (id)
+    constraint fk_client_product__id_user foreign key (id_user) references user (id)
 );
 
 -- select client_product_like;

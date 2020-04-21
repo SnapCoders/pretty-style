@@ -39,7 +39,7 @@ public class DeleteFavorite implements Command {
 				
 				User user = us.find(idUser);
 				
-				ClientProductLike cpl = ps.listFavoriteByIdClientAndIdProduct(user.getClient().getId(), idProduct);
+				ClientProductLike cpl = ps.listFavoriteByIdUserAndIdProduct(user.getId(), idProduct);
 				
 				ps.deleteFavoriteById(cpl.getId());
 				

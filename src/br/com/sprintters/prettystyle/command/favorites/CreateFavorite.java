@@ -43,7 +43,7 @@ public class CreateFavorite implements Command {
 				User user = us.find(idUser);
 				Product product = ps.find(idProduct);
 				
-				ClientProductLike cpl = new ClientProductLike(user.getClient().getId(), product.getId(), 1); 
+				ClientProductLike cpl = new ClientProductLike(user.getId(), product.getId(), 1); 
 				
 				ps.createFavorite(cpl);
 				
