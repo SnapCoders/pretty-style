@@ -59,9 +59,7 @@ function handleLogout() {
 				sessionStorage.removeItem('token');
 				sessionStorage.removeItem('id_user');
 
-				document.location.reload(true);
-
-				console.log('passei aqui');
+				window.location.href='/PrettyStyle/index.jsp';
 			},
 			error: function (json) {
 				AlertaErro(json);

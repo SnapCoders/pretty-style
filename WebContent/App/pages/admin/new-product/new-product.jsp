@@ -48,7 +48,7 @@
 			  		</div>
 			  		<div class="jumbotron main">
 			  			<div class="col-md-12 content">
-			  				<form action="/PrettyStyle/products" method="post" name="add-product">
+			  				<form id="id-user" action="/PrettyStyle/controller.do?path=admin&command=CreateProduct&json=true" method="post" name="add-product">
 				  				<div class="row">
 				  					<div class="col-md-6">
 					  					<label for="name">Nome do produto<span style="color: #ff0000; margin-left: 5px;">*</span></label>

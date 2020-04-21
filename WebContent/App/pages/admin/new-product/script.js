@@ -28,8 +28,11 @@ $(document).ready(function () {
 function handleAdd(form) {
 	var formSerialized = $(form).serialize();
 
+	let idUser = sessionStorage.getItem('id_user');
+	let userToken = sessionStorage.getItem('token');
+
 	$.ajax({
-    	type: 'POST', url: '/PrettyStyle/products', data: formSerialized,
+    	type: 'POST', url: '/PrettyStyle/controller.do?path=admin&command=CreateProduct&json=true&id_user=' + idUser + '&token=' + userToken, data: formSerialized,
     	success: function(data) {
         	AlertaSucesso(data);
 		},
