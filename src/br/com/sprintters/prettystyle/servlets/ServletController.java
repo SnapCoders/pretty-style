@@ -64,6 +64,15 @@ public class ServletController extends HttpServlet {
     		case "admin.CreateProduct":
 				isAuthorize = true;
 				break;
+    		case "admin.DeleteCategory":
+				isAuthorize = true;
+				break;
+    		case "admin.DeleteMark":
+				isAuthorize = true;
+				break;
+    		case "admin.DeleteProduct":
+				isAuthorize = true;
+				break;
     		case "admin.ListCategories":
 				isAuthorize = true;
 				break;

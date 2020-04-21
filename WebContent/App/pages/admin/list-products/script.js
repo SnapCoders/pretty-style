@@ -126,10 +126,13 @@ $(document).ready(function () {
 
 function handleDelete(id) {
 	var id = parseInt(id);
+
+	let idUser = sessionStorage.getItem('id_user');
+	let userToken = sessionStorage.getItem('token');
 	
 	var title = 'Atenção!';
 	var question = 'Deseja realmente excluir este registro?';
-	var url = '/PrettyStyle/products?'+id;
+	var url = '/PrettyStyle/controller.do?path=admin&command=DeleteProduct&json=true&id_user=' + idUser + '&token=' + userToken + '&id=' +id;
 	var type = 'warning';
 	var method = 'delete';
 

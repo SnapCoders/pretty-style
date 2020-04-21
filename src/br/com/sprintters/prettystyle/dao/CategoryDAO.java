@@ -115,13 +115,7 @@ public class CategoryDAO {
 	
 	public ArrayList<Category> listByIdProvider(int idProvider) throws Exception  {
 		ArrayList<Category> categories = new ArrayList<Category>();
-		String sqlSelect = "SELECT\r\n" + 
-				"	c.*\r\n" + 
-				"FROM\r\n" + 
-				"	product p\r\n" + 
-				"    INNER JOIN product_category pc ON p.id = pc.id_product\r\n" + 
-				"    INNER JOIN category c ON pc.id_category = c.id\r\n" + 
-				"WHERE p.id_provider = ? AND c.deleted_at IS NULL";
+		String sqlSelect = "SELECT * FROM category WHERE id_provider = ? AND deleted_at IS NULL";
 		
 		try (Connection conn = ConnectionFactory.createConnection();
 			 PreparedStatement stm = conn.prepareStatement(sqlSelect)) {

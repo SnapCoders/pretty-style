@@ -111,12 +111,7 @@ public class MarkDAO {
 	
 	public ArrayList<Mark> listByIdProvider(int idProvider) throws Exception  {
 		ArrayList<Mark> marks = new ArrayList<Mark>();
-		String sqlSelect = "SELECT\r\n" + 
-				"	m.*\r\n" + 
-				"FROM\r\n" + 
-				"	product p\r\n" + 
-				"    INNER JOIN mark m ON p.id_mark = m.id\r\n" + 
-				"WHERE p.id_provider = ? AND m.deleted_at IS NULL";
+		String sqlSelect = "SELECT * FROM mark WHERE id_provider = ? AND deleted_at IS NULL";
 		
 		try (Connection conn = ConnectionFactory.createConnection();
 			 PreparedStatement stm = conn.prepareStatement(sqlSelect)) {
