@@ -30,18 +30,7 @@
 	<body>
 		<c:import url="../../components/header.jsp" />
 		<div class="container">
-			<%
-				AddressService as = new AddressService();
-			
-				User user = as.findListByIdUser(1);
-				
-				ArrayList<Address> lista = user.getAddresses(); 
-				ArrayList<Address> listAddress1 = new ArrayList<Address>(lista.subList(0, (lista.size()/2)));
-				ArrayList<Address> listAddress2 = new ArrayList<Address>(lista.subList(lista.size()/2, lista.size()));
-				request.setAttribute("lista1", listAddress1);
-				request.setAttribute("lista2", listAddress2);
-				request.setAttribute("user", user);
-			%>
+
 			<div class="profile-address-container">
 				<div class="container">
 					<div class="col-md-12 header">

@@ -46,7 +46,7 @@ create table category (
     deleted_at	timestamp null,
     
     constraint pk_id primary key (id),
-    constraint fk_mark__id_provider foreign key (id_provider) references provider (id)
+    constraint fk_category__id_provider foreign key (id_provider) references provider (id)
 );
 
 -- select * from category;
