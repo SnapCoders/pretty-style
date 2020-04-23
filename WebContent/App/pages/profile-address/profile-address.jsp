@@ -52,7 +52,7 @@
 											<div class="header">
 												<label>Casa</label>
 												<div class="icons">
-													<button type="button" onclick="window.location.href = '../edit-address/edit-address.jsp'"> 
+													<button type="button" id="id-user" onclick="window.location.href='/PrettyStyle/controller.do?path=address&command=FindAddress&id_address=${address.id}'"> 
 														<img src="../../assets/icons/edit.svg" alt="Editar">
 													</button>
 													<button type="button" onclick="handleDelete(${address.id})">
@@ -82,7 +82,7 @@
 											<div class="header">
 												<label>Casa</label>
 												<div class="icons">
-													<button type="button"onclick="window.location.href = '../edit-address/edit-address.jsp'">
+													<button type="button" id="id-user" onclick="window.location.href='/PrettyStyle/controller.do?path=address&command=FindAddress&id_address=${address.id}'">
 														<img src="../../assets/icons/edit.svg" alt="Editar">
 													</button>
 													<button type="button" name="acao" onclick="handleDelete(${address.id})">
@@ -115,6 +115,7 @@
 		<script src="../../lib/jquery/1.9.1/jquery-1.9.1.min.js"></script>
 		<script src="../../lib/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 		<script src="../../lib/sweetalert/sweetalert.min.js"></script>
+		<script src="../../js/general.js"></script>
 		
 		<script src="script.js"></script>
 	</body>
