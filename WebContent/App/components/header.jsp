@@ -64,7 +64,7 @@
 				<li class="active">SALES</li>
 				<li onclick="window.location.href='/PrettyStyle/App/pages/'">NOVIDADES</li>
 				<li onclick="window.location.href='/PrettyStyle/App/pages/save-address/save-address.jsp'">CRIAR ENDEREÇO</li>
-				<li onclick="window.location.href='/PrettyStyle/controller.do?path=address&command=SaveAddress'">MEUS ENDEREÇOS</li>
+				<li id="id-user" onclick="window.location.href='/PrettyStyle/controller.do?path=address&command=ListAddress'">MEUS ENDEREÇOS</li>
 				<li onclick="window.location.href='/PrettyStyle/App/pages/catalog/catalog.jsp'">CATÁLOGO</li>
 				<!-- <li>ACESSÓRIOS</li>
 		        <li>MASCULINO</li>

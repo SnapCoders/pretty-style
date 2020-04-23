@@ -25,7 +25,6 @@ public class ListAddress implements Command {
 			throws ServletException, IOException, Exception {
 		try {
 			String idUserStr = request.getParameter("id_user");
-			int pIdUser = Integer.parseInt(idUserStr);
 			boolean isJson = Boolean.parseBoolean(request.getParameter("json"));
 
 			int idUser = -1;
@@ -52,7 +51,6 @@ public class ListAddress implements Command {
 					session.setAttribute("lista2", listAddress2);
 					session.setAttribute("user", user);
 					
-					response.sendRedirect("/PrettyStyle/App/pages/profile-address/profile-address.jsp");
 
 				
 				if (isJson) {
@@ -61,7 +59,6 @@ public class ListAddress implements Command {
 					response.setContentType("application/json");
 					response.getWriter().write(new Gson().toJson(json).toString());
 				} else {
-					
 					response.sendRedirect("/PrettyStyle/App/pages/profile-address/profile-address.jsp");
 				}
 			}
@@ -70,7 +67,7 @@ public class ListAddress implements Command {
 			JSONObject retorno = new JSONObject();
 
 			retorno.put("success", false);
-			retorno.put("message", "Erro ao salvar o Endereço!");
+			retorno.put("message", "Erro ao carregar o Endereço!");
 			retorno.put("stacktrace", e.getMessage());
 
 			response.setContentType("application/json");
