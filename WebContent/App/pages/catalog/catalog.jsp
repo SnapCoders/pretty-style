@@ -80,7 +80,7 @@
 											<c:forEach var="product" items="${products}">
 												<div class="col-md-3 col-product">
 													<div class="jumbotron product">
-														<div class="photo-product">
+														<div id="id-user" class="photo-product" onclick="window.location.href='/PrettyStyle/controller.do?path=productdetails&command=ViewProduct&id_product=${product.id}'">
 															<img src="../../assets/img/jbl.png" alt="${product.name}">
 														</div>
 														<label class="title-product">${product.name}</label>
@@ -118,5 +118,6 @@
 	</div>
 		
 	<script src="../../lib/jquery/1.9.1/jquery-1.9.1.min.js"></script>
+	<script src="../../general.js"></script>
 	</body>
 </html>
