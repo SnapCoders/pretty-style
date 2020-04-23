@@ -1,25 +1,38 @@
 package br.com.sprintters.prettystyle.command.admin;
 
+import java.io.File;
 import java.io.IOException;
-import com.google.gson.Gson;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import br.com.sprintters.prettystyle.model.Product;
+import com.google.gson.Gson;
+import com.oreilly.servlet.MultipartRequest;
+
 import br.com.sprintters.prettystyle.command.Command;
+import br.com.sprintters.prettystyle.model.Product;
 import br.com.sprintters.prettystyle.model.generic.Json;
 import br.com.sprintters.prettystyle.service.ProductService;
 
 public class CreateProduct implements Command {
+	private static final String SAVE_DIR = "WebContent\\Upload";
+	
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, Exception {
 		try {
-			String pName = request.getParameter("name");
-			String pDescription = request.getParameter("description");
-			Double pPrice = Double.parseDouble(request.getParameter("price"));
-			int idMark = Integer.parseInt(request.getParameter("idMark"));
+			String appPath = request.getServletContext().getRealPath("");
+			String savePath = appPath + File.separator + SAVE_DIR;
+			
+			MultipartRequest m = new MultipartRequest(request, savePath);
+			
+			m.getFile("file-0").renameTo(new File(savePath));
+			m.getFile("file-1").renameTo(new File(savePath));
+			
+			String pName = m.getParameter("name");
+			String pDescription = m.getParameter("description");
+			Double pPrice = Double.parseDouble(m.getParameter("price"));
+			int idMark = Integer.parseInt(m.getParameter("idMark"));
 			
 			Product product = new Product(pName, pDescription, pPrice, idMark);
 			

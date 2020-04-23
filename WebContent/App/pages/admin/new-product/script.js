@@ -26,15 +26,27 @@ $(document).ready(function () {
 });
 
 function handleAdd(form) {
-	var formSerialized = $(form).serialize();
-
 	let idUser = sessionStorage.getItem('id_user');
 	let userToken = sessionStorage.getItem('token');
+	let data = new FormData(form);
+
+	$.each($('input[name="photo"]')[0].files, function(i, file) {
+		data.append('file-'+i, file);
+	});
 
 	$.ajax({
-    	type: 'POST', url: '/PrettyStyle/controller.do?path=admin&command=CreateProduct&json=true&id_user=' + idUser + '&token=' + userToken, data: formSerialized,
+		type: 'POST',
+		url: '/PrettyStyle/controller.do?path=admin&command=CreateProduct&json=true&id_user=' + idUser + '&token=' + userToken,
+		data: data,
+		contentType: false,
+		processData: false,
+		cache: false,
     	success: function(data) {
-        	AlertaSucesso(data);
+			if (data.success) {
+				AlertaSucesso(data);
+			} else {
+				AlertaErro(data);
+			}
 		},
 		error: function (data) {
 			AlertaErro(data);
