@@ -144,7 +144,7 @@ public class RequestDAO {
 				"FROM\r\n" + 
 				"	product p\r\n" + 
 				"    INNER JOIN item i on p.id = i.id_product\r\n" + 
-				"    INNER JOIN request r on i.id_request = r.id\r\n" + 
+				"    INNER JOIN request r on i.id = r.id\r\n" + 
 				"WHERE r.id_client = ?;";
 		
 		try (Connection conn = ConnectionFactory.createConnection();
