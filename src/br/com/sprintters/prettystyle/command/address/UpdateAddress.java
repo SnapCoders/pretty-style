@@ -1,12 +1,10 @@
 package br.com.sprintters.prettystyle.command.address;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import org.json.JSONObject;
 
@@ -14,22 +12,22 @@ import com.google.gson.Gson;
 
 import br.com.sprintters.prettystyle.command.Command;
 import br.com.sprintters.prettystyle.model.Address;
-import br.com.sprintters.prettystyle.model.User;
 import br.com.sprintters.prettystyle.model.generic.Json;
 import br.com.sprintters.prettystyle.service.AddressService;
 
-public class ListAddress implements Command {
+public class UpdateAddress implements Command {
 
 	@Override
-	public void execute(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException, Exception {
+	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, Exception {
+		
 		try {
 			String idUserStr = request.getParameter("id_user");
+			String idAddressStr = request.getParameter("id_address");
+			
 			boolean isJson = Boolean.parseBoolean(request.getParameter("json"));
 
 			int idUser = -1;
-
-			HttpSession session = request.getSession();
+			int idAddress = Integer.parseInt(idAddressStr);
 
 			try {
 				idUser = Integer.parseInt(idUserStr);
@@ -39,23 +37,38 @@ public class ListAddress implements Command {
 			}
 
 			if (idUser != -1) {
-					AddressService as = new AddressService();
+				String pPlace = request.getParameter("place");
+				String pNumber = request.getParameter("number");
+				String pNeighborhood = request.getParameter("neighborhood");
+				String pCity = request.getParameter("city");
+				String pCountry = request.getParameter("country");
+				String pZip = request.getParameter("zip");
+				String pComplement = request.getParameter("complement");
+
+				Address address = new Address();
+				address.setId(idAddress);
+				address.setPlace(pPlace);
+				address.setNumber(pNumber);
+				address.setNeighborhood(pNeighborhood);
+				address.setCity(pCity);
+				address.setCountry(pCountry);
+				address.setZip(pZip);
+				address.setComplement(pComplement);
+				address.setIdUser(idUser);
+
+				AddressService cs = new AddressService();
+				
+				cs.update(address);
 					
-					User user = as.findListByIdUser(idUser);
-					ArrayList<Address> lista = user.getAddresses(); 
-					ArrayList<Address> listAddress1 = new ArrayList<Address>(lista.subList(0, (lista.size()/2)));
-					ArrayList<Address> listAddress2 = new ArrayList<Address>(lista.subList(lista.size()/2, lista.size()));
-					session.setAttribute("lista1", listAddress1);
-					session.setAttribute("lista2", listAddress2);
-					session.setAttribute("user", user);
-									
+				response.sendRedirect("/PrettyStyle/App/pages/profile-address/profile-address.jsp");
 				if (isJson) {
-					Json json = new Json(true, "", user);
+					Json json = new Json(true, "Endereço atualizado com sucesso!", address);
 					
 					response.setContentType("application/json");
 					response.getWriter().write(new Gson().toJson(json).toString());
+					
 				} else {
-					response.sendRedirect("/PrettyStyle/App/pages/profile-address/profile-address.jsp");
+					response.sendRedirect("/PrettyStyle/App/pages/edit-address/edit-address.jsp");
 				}
 			}
 
@@ -69,7 +82,7 @@ public class ListAddress implements Command {
 			response.setContentType("application/json");
 			response.getWriter().write(retorno.toString());
 		}
-
+		
 	}
 
 }

@@ -32,6 +32,13 @@ $(document).ready(function () {
 			var newUrl = oldUrl + '&id_user=' + idUser + '&token=' + userToken + "";
 			$(this).attr('action', newUrl);
 		});
+		$('li#id-user').each(function () {
+			var str = $(this).attr('onclick');
+			var oldUrl = str.substring(0, str.length-1);
+			var newUrl = oldUrl + '&id_user=' + idUser + '&token=' + userToken + "'";
+			$(this).attr('onclick', newUrl);
+		});
+		
 	}
 });
 
