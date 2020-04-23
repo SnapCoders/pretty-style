@@ -16,7 +16,7 @@
 <title>Pretty Style</title>
 
 <link rel="stylesheet" href="../../lib/bootstrap/4.4.1/css/bootstrap.min.css">
-<link rel="stylesheet" href="../../../lib/sweetalert/sweetalert.css">
+<link rel="stylesheet" href="../../lib/sweetalert/sweetalert.css">
 
 <link rel="stylesheet" href="../../styles/index.css">
 <link rel="stylesheet" href="../../styles/header.css">
@@ -41,60 +41,61 @@
 				</div>
 				<div class="jumbotron main">
 					<div class="col-md-12 content">
-						<form action="/PrettyStyle/addresses" method="POST" name="add-address">
+						<form action="/PrettyStyle/controller.do?path=address&command=UpdateAddress&json=true" method="POST" name="add-address">
+							<div style="display: none;"><input name="id_address" value="${address.id}"></div>
 							<div class="row">
 								<div class="col-md-6 destination-area">
 									<label for="name">Nome do destinatário<span
 										style="color: #ff0000; margin-left: 5px;">*</span></label> <input
 										class="form-control" id="name" name="name"
-										placeholder="Como você gostaria de ser chamado?" />
+										placeholder="Como você gostaria de ser chamado?" value="${user.username}"/>
 								</div>
 								<div class="col-md-6 cep-area">
 									<label for="cep"  >Cep<span
 										style="color: #ff0000; margin-left: 5px;">*</span></label> <input
-										class="form-control" id="cep" name="zip" placeholder="digite o cep" onblur="pesquisacep(this.value);" />
+										class="form-control" id="cep" name="zip" placeholder="digite o cep" value="${address.zip}" />
 								</div>
 							</div>
 							<div class="row">
 								<div class="col-md-4 name-area">
 									<label for="place">Logradouro<span
 										style="color: #ff0000; margin-left: 5px;">*</span></label> <input
-										class="form-control" id="place" name="place" placeholder="Ex.: Rua ..." />
+										class="form-control" id="place" name="place" placeholder="Ex.: Rua ..." value="${address.place}" />
 								</div>
 								<div class="col-md-2">
 									<label for="number">Número<span
 										style="color: #ff0000; margin-left: 5px;">*</span></label> <input
-										class="form-control" id="number" name="number" placeholder="Seu numero" />
+										class="form-control" id="number" name="number" placeholder="Seu numero" value="${address.number}"/>
 								</div>
 								<div class="col-md-6 neighborhood-area">
 									<label for="neighborhood">Bairro<span
 										style="color: #ff0000; margin-left: 5px;">*</span></label> <input
 										class="form-control" id="neighborhood" name="neighborhood"
-										placeholder="Seu bairro" />
+										placeholder="Seu bairro" value="${address.neighborhood}" />
 								</div>
 							</div>
 							<div class="row">
 								<div class="col-md-6 city-area">
 									<label for="city">Cidade<span
 										style="color: #ff0000; margin-left: 5px;">*</span></label> <input
-										class="form-control" id="city" name="city" placeholder="Sua cidade" />
+										class="form-control" id="city" name="city" placeholder="Sua cidade" value="${address.city}"/>
 								</div>
 								<div class="col-md-6 state-area">
 									<label for="state">Estado<span
 										style="color: #ff0000; margin-left: 5px;">*</span></label> <input
-										class="form-control" id="state" name="state" placeholder="Seu estado" />
+										class="form-control" id="state" name="state" placeholder="Seu estado" value="${address.city}"/>
 								</div>
 							</div>
 							<div class="row">
 								<div class="col-md-6 country-area">
 									<label for="country">País<span
 										style="color: #ff0000; margin-left: 5px;">*</span></label> <input
-										class="form-control" id="country" name="country" placeholder="Seu país" />
+										class="form-control" id="country" name="country" placeholder="Seu país" value="${address.country}" />
 								</div>
 								<div class="col-md-6 complement-area">
 									<label for="complement">Complemento</label> <input
 										class="form-control" id="complement" name="complement"
-										placeholder="Digite o complemento para facilitar a localização" />
+										placeholder="Digite o complemento para facilitar a localização" value="${address.complement}" />
 								</div>
 							</div>
 							<div class="row button-area">
@@ -110,6 +111,7 @@
 	<script src="../../lib/jquery-validation/jquery.validate.min.js"></script>
 	<script src="../../lib/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 	<script src="../../lib/sweetalert/sweetalert.min.js"></script>
+	<script src="../../js/general.js"></script>
 	
 	<script src="searchCep.js"></script>
 	<script src="script.js"></script>
