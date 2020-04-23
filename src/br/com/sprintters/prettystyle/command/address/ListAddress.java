@@ -39,8 +39,6 @@ public class ListAddress implements Command {
 			}
 
 			if (idUser != -1) {
-				
-
 					AddressService as = new AddressService();
 					
 					User user = as.findListByIdUser(idUser);
@@ -50,9 +48,7 @@ public class ListAddress implements Command {
 					session.setAttribute("lista1", listAddress1);
 					session.setAttribute("lista2", listAddress2);
 					session.setAttribute("user", user);
-					
-
-				
+									
 				if (isJson) {
 					Json json = new Json(true, "", user);
 					
