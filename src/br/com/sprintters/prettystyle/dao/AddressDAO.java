@@ -32,6 +32,8 @@ public class AddressDAO {
 					to.setId(rs.getInt(1));
 					id = rs.getInt(1);					
 				}
+				
+				conn.close();
 			} catch (SQLException ex) {
 				throw new Exception(ex.getMessage());
 			}
@@ -57,6 +59,8 @@ public class AddressDAO {
 			stm.setInt(8, to.getIdUser());
 			stm.setInt(9, to.getId());
 			stm.execute();
+			
+			conn.close();
 		} catch (SQLException e) {
 			throw new Exception(e.getMessage());
 		}
@@ -69,6 +73,8 @@ public class AddressDAO {
 			 PreparedStatement stm = conn.prepareStatement(sqlDelete)) {
 			stm.setInt(1, to.getId());
 			stm.execute();
+			
+			conn.close();
 		} catch (SQLException e) {
 			throw new Exception(e.getMessage());
 		}
@@ -96,6 +102,8 @@ public class AddressDAO {
 					to.setUpdatedAt(rs.getTimestamp("updated_at"));
 					to.setDeletedAt(rs.getTimestamp("deleted_at"));
 				}
+				
+				conn.close();
 			} catch (SQLException ex) {
 				throw new Exception(ex.getMessage());
 			}
@@ -130,6 +138,8 @@ public class AddressDAO {
 					);
 					addresses.add(to);
 				}
+				
+				conn.close();
 			} catch (SQLException ex) {
 				throw new Exception(ex.getMessage());
 			}
@@ -169,6 +179,8 @@ public class AddressDAO {
 					to.setUpdatedAt(rs.getTimestamp("updated_at"));
 					to.setDeletedAt(rs.getTimestamp("deleted_at"));
 				}
+				
+				conn.close();
 			} catch (SQLException ex) {
 				throw new Exception(ex.getMessage());
 			}
@@ -185,8 +197,7 @@ public class AddressDAO {
 				"	 a.*" +
 				"FROM\r\n" + 
 				"	address a\r\n" + 
-				"    INNER JOIN user_address ua on a.id = ua.id_address\r\n" + 
-				"    INNER JOIN user u on ua.id_user = u.id\r\n" + 
+				"    INNER JOIN user u on a.id_user = u.id\r\n" + 
 				"WHERE u.id = ? AND a.deleted_at IS NULL;";
 		
 		try (Connection conn = ConnectionFactory.createConnection();
@@ -211,6 +222,7 @@ public class AddressDAO {
 					
 					addresses.add(to);
 				}
+				
 				conn.close();
 			} catch (SQLException ex) {
 				throw new Exception(ex.getMessage());

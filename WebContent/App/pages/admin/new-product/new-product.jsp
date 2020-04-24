@@ -19,6 +19,8 @@
     
 		<link rel="stylesheet" href="../../../lib/bootstrap/4.4.1/css/bootstrap.min.css">
 		<link rel="stylesheet" href="../../../lib/sweetalert/sweetalert.css">
+		<link rel="stylesheet" href="../../../assets/fonts/css/all.css">
+		<link rel="stylesheet" href="../../../assets/fonts/css/fontawesome.min.css">
 
 		<link rel="stylesheet" href="../../../styles/index.css">
 		<link rel="stylesheet" href="../../../styles/header.css">
@@ -42,13 +44,13 @@
 				  			</div>
 				  			<div class="line">
 				  				<hr />
-				  				<a class="btn btn-sm btn-primary" href="../list-products/list-products.jsp">Voltar</a>
+				  				<a id="id-user" class="btn btn-sm btn-primary" href="/PrettyStyle/controller.do?path=admin&command=ListProducts">Voltar</a>
 				  			</div>
 			  			</div>
 			  		</div>
 			  		<div class="jumbotron main">
 			  			<div class="col-md-12 content">
-			  				<form action="/PrettyStyle/products" method="post" name="add-product">
+			  				<form id="id-user" action="/PrettyStyle/controller.do?path=admin&command=CreateProduct&json=true" method="post" enctype="multipart/form-data" name="add-product">
 				  				<div class="row">
 				  					<div class="col-md-6">
 					  					<label for="name">Nome do produto<span style="color: #ff0000; margin-left: 5px;">*</span></label>
@@ -74,6 +76,13 @@
 					  					<input class="form-control" id="price" name="price" placeholder="Preço do seu produto" />
 					  				</div>
 				  				</div>
+				  				<div class="row">
+				  					<div class="col-md-12">
+				  						<label for="photo">Incluir uma imagem</label>
+				  						<input class="form-control" type="file" id="photo" name="photo" placeholder="Arraste uma imagem aqui" multiple />
+				  						<div class="previews"></div>
+				  					</div>
+				  				</div>
 					  			<div class="row button-area">
 				  					<button type="submit">CADASTRAR</button>
 				  				</div>
@@ -88,9 +97,7 @@
 		<script src="../../../lib/jquery-validation/jquery.validate.min.js"></script>
 		<script src="../../../lib/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 		<script src="../../../lib/sweetalert/sweetalert.min.js"></script>
-		<script src="../../../js/general.js"></script>
 		
 		<script src="script.js"></script>
-		<script src="utils.js"></script>
 	</body>
 </html>

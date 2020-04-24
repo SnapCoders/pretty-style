@@ -1,6 +1,5 @@
 package br.com.sprintters.prettystyle.service;
 
-import java.util.UUID;
 import java.util.Date;
 import java.time.ZoneId;
 import java.security.Key;
@@ -28,9 +27,8 @@ public class JWTTokenService {
 			byte[] apiKeySecretBytes = DatatypeConverter.parseBase64Binary(SECRET_KEY);
 			Key signingKey = new SecretKeySpec(apiKeySecretBytes, signatureAlgorithm.getJcaName());
 			
-			UUID uuid = UUID.randomUUID();
-			
-			JwtBuilder builder = Jwts.builder().setId(uuid.toString())
+			JwtBuilder builder = Jwts.builder()
+					.setId(String.valueOf(user.getId()))
 					.setIssuedAt(now)
 					.setSubject(user.getEmail())
 					.setIssuer(name)

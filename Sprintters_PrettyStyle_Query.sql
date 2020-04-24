@@ -4,12 +4,14 @@ use db_pretty_style;
 create table mark (
 	id			int auto_increment,
     name		varchar(100) not null,
+    id_provider int,
     
     created_at	timestamp not null default now(),
     updated_at	timestamp null,
     deleted_at	timestamp null,
     
-    constraint pk_id primary key (id)
+    constraint pk_id primary key (id),
+    constraint fk_mark__id_provider foreign key (id_provider) references provider (id)
 );
 
 -- select * from mark;
@@ -20,13 +22,15 @@ create table product (
     description	varchar(300) not null,
     price		double not null,
     id_mark		int,
+    id_provider int,
     
     created_at	timestamp not null default now(),
     updated_at	timestamp null,
     deleted_at	timestamp null,
     
     constraint pk_id primary key (id),
-    constraint fk_product__id_mark foreign key (id_mark) references mark (id)
+    constraint fk_product__id_mark foreign key (id_mark) references mark (id),
+    constraint fk_product__id_provider foreign key (id_provider) references provider (id)
 );
 
 -- select * from product;
@@ -35,12 +39,14 @@ create table category (
 	id			int auto_increment,
     name		varchar(180) not null,
     color		varchar(7) not null,
+    id_provider int,
     
     created_at	timestamp not null default now(),
     updated_at	timestamp null,
     deleted_at	timestamp null,
     
-    constraint pk_id primary key (id)
+    constraint pk_id primary key (id),
+    constraint fk_category__id_provider foreign key (id_provider) references provider (id)
 );
 
 -- select * from category;
@@ -74,14 +80,15 @@ create table product_photo (
 -- select * from product_photo;
 
 create table user (
-	id			int auto_increment,
-    name		varchar(150) not null,
-    surname		varchar(150) not null,
-    email		varchar(150) not null,
+	id					int auto_increment,
+    username			varchar(50) not null,
+    email				varchar(150) not null,
+    email_confirmation 	varchar(150) not null,
+    password_hash		varchar(300) not null,
     
-    created_at	timestamp not null default now(),
-    updated_at	timestamp null,
-    deleted_at	timestamp null,
+    created_at			timestamp not null default now(),
+    updated_at			timestamp null,
+    deleted_at			timestamp null,
     
     constraint pk_id primary key (id)
 );
@@ -89,9 +96,12 @@ create table user (
 -- select * from user;
 
 create table provider (
-	id			int auto_increment,
-    cnpj		varchar(18) not null,
-    id_user		int,
+	id				int auto_increment,
+    cnpj			varchar(18) not null,
+    fantasy_name	varchar(150) not null,
+    social_reason	varchar(150) not null,
+    contact			varchar(150) not null,
+    id_user			int,
     
     created_at	timestamp not null default now(),
     updated_at	timestamp null,
@@ -105,7 +115,11 @@ create table provider (
 
 create table client (
 	id			int auto_increment,
+    name		varchar(150) not null,
+    surname		varchar(150) not null,
+    genre		varchar(1) not null,
     cpf			varchar(14) not null,
+    birthday	date not null,
     id_user		int,
     
     created_at	timestamp not null default now(),
@@ -156,13 +170,15 @@ create table phone_number (
 -- select * from phone_number;
 
 create table request (
-	id			int auto_increment,
-	total_price	double,
-    id_client	int,
+	id				int auto_increment,
+    number_request	varchar(40) not null,
+	total_price		double not null,
+    type_payment 	varchar(50) not null,
+    id_client		int,
     
-    created_at	timestamp not null default now(),
-    updated_at	timestamp null,
-    deleted_at	timestamp null,
+    created_at		timestamp not null default now(),
+    updated_at		timestamp null,
+    deleted_at		timestamp null,
     
     constraint pk_id primary key (id),
     constraint fk_request__id_client foreign key (id_client) references client (id)
@@ -170,13 +186,11 @@ create table request (
 
 -- select * from request;
 
-
-
 create table item (
 	id			int auto_increment,
     quantity	int not null,
     id_product	int,
-    id_request int,
+    id_client int,
     
     created_at	timestamp not null default now(),
     updated_at	timestamp null,
@@ -184,13 +198,10 @@ create table item (
     
     constraint pk_id primary key (id),
     constraint fk_item__id_product foreign key (id_product) references product (id),
-    constraint fk_item__id_request foreign key (id_request) references request (id)
+    constraint fk_item__id_client foreign key (id_client) references client (id)
 );
 
 -- select * from item;
-
-
--- NOVAS QUERYS
 
 create table item_request (
 	id_item		int,
@@ -199,3 +210,29 @@ create table item_request (
     constraint fk_item_request__id_item foreign key (id_item) references item (id),
     constraint fk_item_request__id_request foreign key (id_request) references request (id)
 );
+
+-- select ( from item_request;
+
+create table user_address (
+	id_user		int,
+    id_address	int,
+    
+    constraint uk_id_user unique key (id_user),
+    constraint fk_user_address__id_user foreign key (id_user) references user (id),
+    constraint fk_user_address__id_address foreign key (id_address) references address (id)
+);
+
+-- select * from user_address;
+
+create table client_product_like (
+	id			int auto_increment,
+    id_product  int,
+    id_user		int,
+    action		int,
+
+	constraint pk_id primary key (id),
+    constraint fk_client_product__id_product foreign key (id_product) references product (id),
+    constraint fk_client_product__id_user foreign key (id_user) references user (id)
+);
+
+-- select client_product_like;

@@ -10,7 +10,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     
-    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+    <link rel="shortcut icon" href="/PrettyStyle/favicon.ico" type="image/x-icon" />
 
     <title>Pretty Style - Carrinho</title>
     
@@ -24,11 +24,6 @@
   </head>
   <body>
   	<c:import url="../../components/header.jsp" />
-		<%
-		ItemService rs = new ItemService();
-		request.setAttribute("lista", rs.listPlusItem(1));
-		
-		%>
   	<div class="container">
 		<div class="cart-container">
 			<div class="container">
@@ -44,8 +39,8 @@
 				</div>
 				<div class="jumbotron main">
 					<div class="row">
-						<div class="col-md-7 content">
-						<c:forEach var="request" items="${lista}">
+						<div id="content" class="col-md-7 content">
+						<c:forEach var="item" items="${cart.items}">
 							<div class="row">
 								<div class="col-md-12">
 									<div class="product-details-area">
@@ -53,8 +48,8 @@
 											<img src="../../assets/img/jbl.png" alt="JBL Flip 3 Portable">
 										</div>
 										<div class="product-info">
-											<label>${request.product.name}</label>
-											<span>${request.product.description}</span>
+											<label>${item.product.name}</label>
+											<span>${item.product.description}</span>
 											<div class="stars">
 												<span class="star yellow-star">&nbsp;</span>
 												<span class="star yellow-star">&nbsp;</span>
@@ -64,36 +59,17 @@
 											</div>
 											<div class="content">
 												<span>Preço: </span>
-												<label>R$ ${request.product.price}</label>
+												<label><fmt:formatNumber value="${item.product.price}" type="currency" currencySymbol="R$"/></label>
 											</div>
 											<div class="quantity">
 												<span>Quantidade: </span>
-												<select class="form-control">
-													<option value="0">-</option>
-													<option value="1">1</option>
-													<option value="2">2</option>
-													<option value="3">3</option>
-													<option value="4">4</option>
-													<option value="5">5</option>
-													<option value="6">6</option>
-													<option value="7">7</option>
-													<option value="8">8</option>
-												</select>
+												<input class="form-control" style="margin-left: 5px; width: 60px; height: 22px;" maxlength="3" value="${item.quantity}" />
 											</div>
-										</div>
-									</div>
-								</div>
-								<div class="col-md-1 like">
-									<div class="like-product">
-										<div class="favorite">
-									        <div class="favorite-icon">
-									        	<img src="../../assets/icons/white-heart.svg">
-								        	</div>
 										</div>
 									</div>
 								</div>
 							</div>
-							<hr />
+							<hr id="linha" />
 							</c:forEach>
 						</div>
 						<div class="col-md-5">
@@ -102,12 +78,12 @@
 								<div class="resume-body">
 									<div class="resume-items">
 										<div class="labels">
-											<label>6 produtos</label>
+											<label>${quantity} produtos</label>
 											<label>Frete</label>
 										</div>
 										<div class="values">
-											<label>R$ 1.320,00</label>
-											<label>R$ 32,15</label>
+											<label><fmt:formatNumber value="${totalItems}" type="currency" currencySymbol="R$"/></label>
+	  										<label><fmt:formatNumber value="${frete}" type="currency" currencySymbol="R$"/></label>
 										</div>
 									</div>
 									<hr />
@@ -116,9 +92,9 @@
 											<label class="total-of-request">Total:</label>
 										</div>
 										<div class="values">
-											<label class="total-value-of-request">R$ 1.352,15</label>
+											<label class="total-value-of-request"><fmt:formatNumber value="${total}" type="currency" currencySymbol="R$"/></label>
 											<span class="total-installment">em até 12x sem juros</span>
-											<span class="total-with-discount">R$ 1.284,55 no boleto</span>
+											<span class="total-with-discount"><fmt:formatNumber value="${bankSlip}" type="currency" currencySymbol="R$"/> no boleto</span>
 										</div>
 									</div>
 									<hr />
@@ -132,12 +108,12 @@
 										</div>
 									</div>
 									<div class="resume-button">
-										<button type="button">CONTINUAR</button>
+										<button id="id-user" type="button" onclick="window.location.href='/PrettyStyle/controller.do?path=paymentsteps&command=PayStep'">CONTINUAR</button>
 									</div>
 									<hr />
 									<div class="resume-freight">
 										<label class="total-of-deadline">Calcular frete e prazo:</label>
-										<input class="form-control" maxlength="8" placeholder="digite o cep" />
+										<input class="form-control" maxlength="8" placeholder="digite o cep" value="${zip}" />
 										<button type="button">OK</button>
 									</div>
 								</div>
@@ -150,7 +126,7 @@
 	</div>
 		
 	<script src="../../lib/jquery/1.9.1/jquery-1.9.1.min.js"></script>
-	<script src="../../js/general.js"></script>
-	<!-- <script src="../../pages/cart/utils.js"></script> -->
+	
+	<script src="script.js"></script>
 	</body>
 </html>

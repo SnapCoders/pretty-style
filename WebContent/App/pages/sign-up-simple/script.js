@@ -67,7 +67,9 @@ function AlertaErro(data) {
 
 function handleAdd(form) {
 	$.ajax({
-		url: '/PrettyStyle/users', type: 'POST', data: $(form).serialize(),
+		url: '/PrettyStyle/controller.do?path=signup&command=CreateUser&json=true',
+		type: 'POST',
+		data: $(form).serialize(),
 		success: function (data) {
 			if (data.success) {
 				AlertaSucesso(data);

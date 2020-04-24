@@ -17,7 +17,9 @@ $(document).ready(function () {
 		} else {
 			$('#total-price').text('Total: ' + formatter.format($('#total-price-without-discount').val()));
 		}
-    });
+	});
+	
+	$('div#content hr:last-child').remove();
 	
 	/* $.validator.addMethod("valueNotEquals", (value, element, arg) => arg !== value);
 	   

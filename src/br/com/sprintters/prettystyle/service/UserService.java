@@ -100,9 +100,7 @@ public class UserService {
     		if (usernameOrEmail.contains("@")) user = userDAO.findByEmail(usernameOrEmail);
     		else user = userDAO.findByUsername(usernameOrEmail);
     		
-    		String passwordDecripted = decripto(user.getPasswordHash());
-    		
-    		if (password.equals(passwordDecripted)) {
+    		if (password.equals(decripto(user.getPasswordHash()))) {
     			user.setSigned(true);
     			
     			Client client = clientDAO.findByIdUser(user.getId());

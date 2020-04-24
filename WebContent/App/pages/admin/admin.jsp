@@ -7,11 +7,12 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		
-		<link rel="shortcut icon" href="<%=request.getContextPath()%>/favicon.ico" type="image/x-icon" />
+		<link rel="shortcut icon" href="/PrettyStyle/favicon.ico" type="image/x-icon" />
 
 		<title>Pretty Style - Gerenciar</title>
     
 		<link rel="stylesheet" href="../../lib/bootstrap/4.4.1/css/bootstrap.min.css">
+		<link rel="stylesheet" href="../../lib/sweetalert/sweetalert.css">
 
 		<link rel="stylesheet" href="../../styles/index.css">
 		<link rel="stylesheet" href="../../styles/header.css">
@@ -41,8 +42,28 @@
 						    		<div class="card">
 						      			<div class="card-body">
 						        			<h5 class="card-title">Gerenciar produtos cadastrados</h5>
-						        			<p class="card-text">Gerencie seus produtos podendo cadastrar, editar e listar para visualização.</p>
-						                	<a href="list-products/list-products.jsp" class="btn btn-primary">Gerenciar meus produtos</a>
+						        			<p class="card-text">Gerencie seus produtos.</p>
+						                	<a id="id-user" href="/PrettyStyle/controller.do?path=admin&command=ListProducts" class="btn btn-primary">Gerenciar meus produtos</a>
+						            	</div>
+						        	</div>
+						      	</div>
+						      	<div class="col-sm-6">
+						    		<div class="card">
+						      			<div class="card-body">
+						        			<h5 class="card-title">Gerenciar marcas cadastrados</h5>
+						        			<p class="card-text">Cadastre e gerencie as marcas de seus produtos.</p>
+						                	<a id="id-user" href="/PrettyStyle/controller.do?path=admin&command=ListMarks" class="btn btn-primary">Gerenciar minhas marcas</a>
+						            	</div>
+						        	</div>
+						      	</div>
+							</div>
+							<div class="row">
+								<div class="col-sm-6">
+						    		<div class="card">
+						      			<div class="card-body">
+						        			<h5 class="card-title">Gerenciar categorias cadastradas</h5>
+						        			<p class="card-text">Cadastre e gerencie as categorias de seus produtos.</p>
+						                	<a id="id-user" href="/PrettyStyle/controller.do?path=admin&command=ListCategories" class="btn btn-primary">Gerenciar categorias</a>
 						            	</div>
 						        	</div>
 						      	</div>
@@ -54,6 +75,7 @@
 		</div>
 		<script src="../../lib/jquery/1.9.1/jquery-1.9.1.min.js"></script>
 		<script src="../../lib/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+		<script src="../../lib/sweetalert/sweetalert.min.js"></script>
 		<script src="../../js/general.js"></script>
 	</body>
 </html>

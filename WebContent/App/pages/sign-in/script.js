@@ -24,33 +24,21 @@ $(document).ready(function () {
 // 			console.log('Deu bosta');
 // 		}
 // 	});
-// }
-
-function AlertaSucesso(data) {
-	swal({
-		title: 'Sucesso!',
-		text: data.message,
-		type: 'success',
-	});
-};
-
-function AlertaErro(data) {
-	swal({
-		title: 'Erro!',
-		text: data.message,
-		type: 'error',
-	});
-};
 
 function handleLogin(form) {
 	$.ajax({
-		url: '/PrettyStyle/sessions', type: 'POST', data: $(form).serialize(),
+		url: '/PrettyStyle/controller.do?path=signin&command=Login', type: 'POST', data: $(form).serialize(),
 		success: function (data) {
 			if (data.success) {
+				console.log(parseJwt(data.token));
+				sessionStorage.setItem('id_user', parseInt(parseJwt(data.token).jti));
 				sessionStorage.setItem('token', 'Bearer ' + data.token);
 				
 				AlertaSucesso(data);
+
+				setTimeout(function () { window.location.reload(true); }, 2000);
 			} else {
+				sessionStorage.setItem('id_user', null);
 				sessionStorage.setItem('token', null);
 				
 				AlertaErro(data);

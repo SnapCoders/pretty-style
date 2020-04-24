@@ -25,11 +25,7 @@
 <body>
 	<c:import url="../../components/header.jsp" />
 	<div class="container">
-		<%
-			RequestService rs = new RequestService();
-
-			request.setAttribute("lista", rs.listRequestsByIdClient(1));
-		%>
+		
 		<div class="requests-container">
 			<div class="container">
 				<div class="col-md-12 header">
@@ -101,6 +97,5 @@
 	</div>
 	<script src="../../lib/jquery/1.9.1/jquery-1.9.1.min.js"></script>
 	<script src="../../lib/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-	<script src="../../js/general.js"></script>
 </body>
 </html>

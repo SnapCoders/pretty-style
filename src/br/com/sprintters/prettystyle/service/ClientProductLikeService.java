@@ -1,7 +1,5 @@
 package br.com.sprintters.prettystyle.service;
 
-import java.util.ArrayList;
-
 import br.com.sprintters.prettystyle.dao.ClientProductLikeDAO;
 import br.com.sprintters.prettystyle.model.ClientProductLike;
 
@@ -44,11 +42,11 @@ public class ClientProductLikeService {
     	}
     }
     
-    public ArrayList<ClientProductLike> listProductLikeByIdClient(int idClient) throws Exception {
-    	try {
-    		return dao.listProductLikeByIdClient(idClient);
-    	} catch (Exception e) {
-    		throw new Exception(e.getMessage());
-    	}
-    }
+//    public ArrayList<ClientProductLike> listProductLikeByIdClient(int idClient) throws Exception {
+//    	try {
+//    		return dao.listProductLikeByIdClient(idClient);
+//    	} catch (Exception e) {
+//    		throw new Exception(e.getMessage());
+//    	}
+//    }
 }

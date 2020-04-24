@@ -30,18 +30,7 @@
 	<body>
 		<c:import url="../../components/header.jsp" />
 		<div class="container">
-			<%
-				AddressService as = new AddressService();
-			
-				User user = as.findListByIdUser(1);
-				
-				ArrayList<Address> lista = user.getAddresses(); 
-				ArrayList<Address> listAddress1 = new ArrayList<Address>(lista.subList(0, (lista.size()/2)));
-				ArrayList<Address> listAddress2 = new ArrayList<Address>(lista.subList(lista.size()/2, lista.size()));
-				request.setAttribute("lista1", listAddress1);
-				request.setAttribute("lista2", listAddress2);
-				request.setAttribute("user", user);
-			%>
+
 			<div class="profile-address-container">
 				<div class="container">
 					<div class="col-md-12 header">
@@ -63,10 +52,10 @@
 											<div class="header">
 												<label>Casa</label>
 												<div class="icons">
-													<button type="button" onclick="window.location.href = '../edit-address/edit-address.jsp'"> 
+													<button type="button" id="id-user" onclick="window.location.href='/PrettyStyle/controller.do?path=address&command=FindAddress&id_address=${address.id}'"> 
 														<img src="../../assets/icons/edit.svg" alt="Editar">
 													</button>
-													<button type="button" onclick="handleDelete(this)">
+													<button type="button" onclick="handleDelete(${address.id})">
 														<img src="../../assets/icons/bin.svg" alt="Lixeira">
 													</button>
 												</div>
@@ -93,10 +82,10 @@
 											<div class="header">
 												<label>Casa</label>
 												<div class="icons">
-													<button type="button"onclick="window.location.href = '../edit-address/edit-address.jsp'">
+													<button type="button" id="id-user" onclick="window.location.href='/PrettyStyle/controller.do?path=address&command=FindAddress&id_address=${address.id}'">
 														<img src="../../assets/icons/edit.svg" alt="Editar">
 													</button>
-													<button type="button" onclick="handleDelete(this)">
+													<button type="button" name="acao" onclick="handleDelete(${address.id})">
 														<img src="../../assets/icons/bin.svg" alt="Lixeira">
 													</button>
 												</div>
@@ -117,9 +106,6 @@
 										</div>
 									</c:forEach>
 								</div>
-							</div>
-							<div class="row button-area">
-								<button type="button">SALVAR</button>
 							</div>
 						</div>
 					</div>

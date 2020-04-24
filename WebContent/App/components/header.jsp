@@ -1,68 +1,79 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+
 <header id="main-header">
-  <div class="top-header">
-    <div class="logo-area" onclick="window.location.href='<%=request.getContextPath()%>/index.jsp';">
-      <img src="<%=request.getContextPath()%>/App/assets/logos/pretty-style-logo-light.svg" alt="Logo Pretty style">
-    </div>
-    <div class="search-area">
-      <input type="text" placeholder="O que vocÍ deseja pesquisar?">
-      <img src="<%=request.getContextPath()%>/App/assets/icons/search.svg">
-    </div>
-    <div class="search-area-responsive" style="display: none;">
-    </div>
-    <div class="client-area">
-      <div class="admin" onclick="window.location.href='<%=request.getContextPath()%>/App/pages/admin/admin.jsp';">
-        <div class="admin-icon">
-          <img src="<%=request.getContextPath()%>/App/assets/icons/framework.svg">
-        </div>
-        <strong>Gerenciar</strong>
-      </div>
-      <div class="account">
-        <div class="account-icon">
-          <img src="<%=request.getContextPath()%>/App/assets/icons/home.svg">
-        </div>
-        <strong onclick="handleShowModal();">Minha conta</strong>
-        <img src="<%=request.getContextPath()%>/App/assets/icons/arrow-down.svg">
-        <div id="login-modal" class="login-modal inactive">
-        	<div class="actions">
-        		<button type="button" class="login-button" onclick="window.location.href = '/PrettyStyle/App/pages/sign-in/sign-in.jsp'">ENTRAR</button>
-        		<button type="button" class="create-account-button" onclick="window.location.href = '/PrettyStyle/App/pages/sign-up-simple/sign-up-simple.jsp'">CRIAR CONTA</button>
-        	</div>
-        	<hr />
-        	<div class="pages">
-        		<button type="button" onclick="window.location.href = '/PrettyStyle/App/pages/profile/profile.jsp'">Minha conta</button>
-        		<button type="button" onclick="window.location.href = '/PrettyStyle/App/pages/requests/requests.jsp'">Meus Pedidos</button>
-        	</div>
-        </div>
-      </div>
-      <div class="favorite">
-        <div class="favorite-icon">
-          <img src="<%=request.getContextPath()%>/App/assets/icons/heart.svg">
-        </div>
-      </div>
-      <div class="cart">
-        <div class="cart-icon" onclick="window.location.href='<%=request.getContextPath()%>/App/pages/cart/cart.jsp';">
-          <img src="<%=request.getContextPath()%>/App/assets/icons/cart.svg">
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="bottom-header">
-    <nav>
-      <ul>
-        <li class="active">SALES</li>
-        <li onclick="window.location.href = '<%= request.getContextPath() %>/App/pages/'">NOVIDADES</li>
-        <li onclick="window.location.href = '<%= request.getContextPath() %>/App/pages/sign-in/sign-in.jsp'">LOGIN</li>
-        <li onclick="window.location.href = '<%= request.getContextPath() %>/App/pages/edit-profile/edit-profile.jsp'">EDITAR PERFIL</li>
-        <li onclick="window.location.href = '<%= request.getContextPath() %>/App/pages/save-address/save-address.jsp'">CRIAR ENDERE«O</li>
-        <li onclick="window.location.href = '<%= request.getContextPath() %>/App/pages/profile-address/profile-address.jsp'">MEUS ENDERE«OS</li>
-        <li onclick="window.location.href = '<%= request.getContextPath() %>/App/pages/requests/requests.jsp'">MEUS PEDIDOS</li>
-        <li onclick="window.location.href = '<%= request.getContextPath() %>/App/pages/payment-steps/payment-steps.jsp'">ETAPAS DE PAGAMENTO</li>
-        <li onclick="window.location.href = '<%= request.getContextPath() %>/App/pages/catalog/catalog.jsp'">CAT¡LOGO</li>
-        <!-- <li>ACESS”RIOS</li>
-        <li>MASCULINO</li>
-        <li>FEMININO</li>
-        <li>PETS</li> -->
-      </ul>
-    </nav>
-  </div>
+	<div class="top-header">
+		<div class="logo-area" onclick="window.location.href='/PrettyStyle/index.jsp';">
+			<img src="/PrettyStyle/App/assets/logos/pretty-style-logo-light.svg" alt="Logo Pretty style">
+		</div>
+		<div class="search-area">
+			<input type="text" placeholder="O que voc√™ deseja pesquisar?">
+			<img src="/PrettyStyle/App/assets/icons/search.svg">
+		</div>
+		<div class="search-area-responsive" style="display: none;"></div>
+		<div class="client-area">
+			<c:if test="${not empty isProvider}">
+				<div class="admin" onclick="window.location.href='/PrettyStyle/App/pages/admin/admin.jsp';">
+					<div class="admin-icon">
+						<img src="/PrettyStyle/App/assets/icons/framework.svg">
+					</div>
+					<strong>Gerenciar</strong>
+				</div>
+			</c:if>
+			<div class="account">
+				<div class="account-icon">
+					<img src="/PrettyStyle/App/assets/icons/home.svg">
+				</div>
+				<strong onclick="handleShowModal();">Minha conta</strong>
+				<img src="/PrettyStyle/App/assets/icons/arrow-down.svg">
+				<div id="login-modal" class="login-modal inactive">
+					<div class="actions">
+						<c:if test="${empty idUser}">
+							<button type="button" class="login-button" onclick="window.location.href='/PrettyStyle/App/pages/sign-in/sign-in.jsp'">ENTRAR</button>
+							<button type="button" class="create-account-button" onclick="window.location.href='/PrettyStyle/App/pages/sign-up-simple/sign-up-simple.jsp'">CRIAR CONTA</button>
+						</c:if>
+						<c:if test="${not empty idUser}">
+							<button type="button" class="logout-account-button" onclick="handleLogout();">SAIR</button>
+						</c:if>
+					</div>
+					<c:if test="${not empty idUser}">
+						<hr />
+						<div class="pages">
+							<button id="id-user" type="button" onclick="window.location.href='/PrettyStyle/App/pages/profile/profile.jsp'">Minha conta</button>
+							<button id="id-user" type="button" onclick="window.location.href='/PrettyStyle/controller.do?path=request&command=ListRequests'">Meus Pedidos</button>
+						</div>
+					</c:if>
+				</div>
+			</div>
+			<div class="favorite">
+				<div id="id-user" class="favorite-icon" onclick="window.location.href='/PrettyStyle/controller.do?path=favorites&command=ListFavorites'">
+					<img src="/PrettyStyle/App/assets/icons/heart.svg">
+				</div>
+			</div>
+			<div class="cart">
+				<div id="id-user" class="cart-icon" onclick="window.location.href='/PrettyStyle/controller.do?path=cart&command=ListCart'">
+					<img src="/PrettyStyle/App/assets/icons/cart.svg">
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="bottom-header">
+		<nav>
+			<ul>
+				<li class="active">SALES</li>
+				<li onclick="window.location.href='/PrettyStyle/App/pages/'">NOVIDADES</li>
+				<li onclick="window.location.href='/PrettyStyle/App/pages/save-address/save-address.jsp'">CRIAR ENDERE√áO</li>
+				<li id="id-user" onclick="window.location.href='/PrettyStyle/controller.do?path=address&command=ListAddress'">MEUS ENDERE√áOS</li>
+				<li onclick="window.location.href='/PrettyStyle/App/pages/catalog/catalog.jsp'">CAT√ÅLOGO</li>
+				<!-- <li>ACESS√ìRIOS</li>
+		        <li>MASCULINO</li>
+		        <li>FEMININO</li>
+		        <li>PETS</li> -->
+			</ul>
+		</nav>
+	</div>
 </header>
+<script src="/PrettyStyle/App/lib/jquery/1.9.1/jquery-1.9.1.min.js"></script>
+<script src="/PrettyStyle/App/lib/sweetalert/sweetalert.min.js"></script>
+<script src="/PrettyStyle/App/js/general.js"></script>

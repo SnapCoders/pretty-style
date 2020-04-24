@@ -1,6 +1,7 @@
 package br.com.sprintters.prettystyle.service;
 
 import br.com.sprintters.prettystyle.model.Item;
+import br.com.sprintters.prettystyle.model.virtual.Cart;
 import br.com.sprintters.prettystyle.dao.ItemDAO;
 
 import java.util.ArrayList;
@@ -51,17 +52,10 @@ public class ItemService {
     		throw new Exception(e.getMessage());
     	}
     }
-    public ArrayList<Item> listPlusItem(int idClient) throws Exception {
-        try {
-        	return dao.listRequestsByIdClient(idClient);
-    	} catch (Exception e) {
-    		throw new Exception(e.getMessage());
-    	}
-    }
     
-    public ArrayList<Item> listCartItemsByIdClient(int idClient) throws Exception {
+    public Cart listItemsInCartByIdClient(int idClient) throws Exception {
     	try {
-    		return dao.listCartItemsByIdClient(idClient);
+    		return dao.listItemsInCartByIdClient(idClient);
     	} catch (Exception e) {
     		throw new Exception(e.getMessage());
     	}

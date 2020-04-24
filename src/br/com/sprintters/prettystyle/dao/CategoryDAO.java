@@ -1,10 +1,10 @@
 package br.com.sprintters.prettystyle.dao;
 
-import java.sql.ResultSet;
-import java.util.ArrayList;
 import java.sql.Connection;
-import java.sql.SQLException;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
 
 import br.com.sprintters.prettystyle.model.Category;
 
@@ -103,6 +103,40 @@ public class CategoryDAO {
 					);
 					categories.add(to);
 				}
+			} catch (SQLException ex) {
+				throw new Exception(ex.getMessage());
+			}
+		} catch (SQLException e) {
+			throw new Exception(e.getMessage());
+		}
+		
+		return categories;
+	}
+	
+	public ArrayList<Category> listByIdProvider(int idProvider) throws Exception  {
+		ArrayList<Category> categories = new ArrayList<Category>();
+		String sqlSelect = "SELECT * FROM category WHERE id_provider = ? AND deleted_at IS NULL";
+		
+		try (Connection conn = ConnectionFactory.createConnection();
+			 PreparedStatement stm = conn.prepareStatement(sqlSelect)) {
+			
+			stm.setInt(1, idProvider);
+			
+			try (ResultSet rs = stm.executeQuery()) {
+				while (rs.next()) {
+					Category to = new Category(
+						rs.getInt("id"),
+						rs.getString("name"),
+						rs.getString("color"),
+						rs.getTimestamp("created_at"),
+						rs.getTimestamp("updated_at"),
+						rs.getTimestamp("deleted_at")
+					);
+					
+					categories.add(to);
+				}
+				
+				conn.close();
 			} catch (SQLException ex) {
 				throw new Exception(ex.getMessage());
 			}

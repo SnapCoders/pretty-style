@@ -137,9 +137,9 @@ public class User extends Entity {
 
 	public boolean isProvider() {
 		if (this.client == null && this.provider != null) {
-			this.isProvider = false;
-		} else if (this.client != null && this.provider == null) {
 			this.isProvider = true;
+		} else if (this.client != null && this.provider == null) {
+			this.isProvider = false;
 		}
 		
 		return isProvider;

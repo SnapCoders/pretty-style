@@ -67,6 +67,52 @@ div.new-product-container div.container div.jumbotron.main div.content div.sex-a
 	width: 100%;
 }
 
+div.new-product-container div.container div.jumbotron.main div.previews {
+	display: flex;
+	align-items: flex-start;
+	justify-content: flex-start;
+	flex-wrap: wrap;
+}
+
+div.new-product-container div.container div.jumbotron.main div.image-preview {
+	position: relative;
+	width: 150px;
+	height: 150px;
+	border: 2px solid #ddd;
+	margin-top: 15px;
+	margin-left: 5px;
+	margin-right: 5px;
+	font-weight: bold;
+	color: #ccc;
+
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+div.new-product-container div.container div.jumbotron.main div.image-preview:hover {
+	filter: brightness(90%);
+}
+
+div.new-product-container div.container div.jumbotron.main div.image-preview i {
+	position: absolute;
+	color: #0e9aef;
+	cursor: pointer;
+    font-size: 22px;
+    top: 7px;
+    right: 10px;
+}
+
+div.new-product-container div.container div.jumbotron.main div.image-preview i:hover {
+	filter: brightness(80%);
+}
+
+div.new-product-container div.container div.jumbotron.main img.image-preview__image {
+	display: none;
+	width: 100%;
+	height: 100%;
+}
+
 div.new-product-container div.container div.jumbotron.main div.content div.button-area {
 	display: flex;
 	align-items: center;

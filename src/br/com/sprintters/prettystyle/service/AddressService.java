@@ -67,6 +67,14 @@ public class AddressService {
     	}
     }
     
+    public Address findAllByUser(int idUser) throws Exception {
+    	try {
+    		return addressDAO.find(idUser);
+    	} catch (Exception e) {
+    		throw new Exception(e.getMessage());
+    	}
+    }
+    
     public User findListByIdUser(int idUser) throws Exception {
     	try {
     		User user = userDAO.find(idUser);

@@ -4,7 +4,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 
 import br.com.sprintters.prettystyle.model.ClientProductLike;
 
@@ -16,12 +15,12 @@ public class ClientProductLikeDAO {
 		try (Connection conn = ConnectionFactory.createConnection();
 			 PreparedStatement stm = conn.prepareStatement(sqlInsert)) {
 			stm.setInt(1, to.getIdProduct());
-			stm.setInt(2, to.getIdClient());
+			stm.setInt(2, to.getIdUser());
 			stm.setInt(3, to.getAction());
 			stm.execute();
 			try (ResultSet rs = stm.executeQuery("SELECT LAST_INSERT_ID()")) {
 				if (rs.next()) {				
-					to.setIdClient(rs.getInt(1));
+					to.setIdUser(rs.getInt(1));
 					id = rs.getInt(1);					
 				}
 			} catch (SQLException ex) {
@@ -40,7 +39,7 @@ public class ClientProductLikeDAO {
 		try (Connection conn = ConnectionFactory.createConnection();
 			 PreparedStatement stm = conn.prepareStatement(sqlUpdate)) {
 			stm.setInt(1, to.getIdProduct());
-			stm.setInt(2, to.getIdClient());
+			stm.setInt(2, to.getIdUser());
 			stm.setInt(3, to.getAction());
 			stm.setInt(4, to.getId());
 			stm.execute();
@@ -71,13 +70,12 @@ public class ClientProductLikeDAO {
 			stm.setInt(2, idClient);
 			try (ResultSet rs = stm.executeQuery()) {
 				if (rs.next()) {
-					to.setIdClient(rs.getInt("id_product"));
+					to.setIdUser(rs.getInt("id_product"));
 					to.setIdProduct(rs.getInt("id_client"));
 					to.setAction(rs.getInt("action"));
-					to.setCreatedAt(rs.getTimestamp("created_at"));
-					to.setUpdatedAt(rs.getTimestamp("updated_at"));
-					to.setDeletedAt(rs.getTimestamp("deleted_at"));
 				}
+				
+				conn.close();
 			} catch (SQLException ex) {
 				throw new Exception(ex.getMessage());
 			}
@@ -87,42 +85,42 @@ public class ClientProductLikeDAO {
 		
 		return to;
 	}
-	public ArrayList<ClientProductLike> listProductLikeByIdClient(int idClient) throws Exception {
-		ArrayList<ClientProductLike> clientProductLike = new ArrayList<ClientProductLike>();
-		String sqlSelect = "SELECT\r\n" + 
-				"	i.quantity\r\n" + 
-				"    , p.name\r\n" + 
-				"    , p.description\r\n" + 
-				"    , p.price\r\n" +
-				"    , q.action\r\n" +
-				"FROM\r\n" + 
-				"	item i\r\n" + 
-				"    INNER JOIN product p ON i.id_product = p.id\r\n" + 
-				"    INNER JOIN client_product_like" +
-				"WHERE id_client = ?;";
-		
-		try (Connection conn = ConnectionFactory.createConnection();
-			 PreparedStatement stm = conn.prepareStatement(sqlSelect)) {
-			stm.setInt(1, idClient);
-			
-			try (ResultSet rs = stm.executeQuery()) {
-				while (rs.next()) {
-					ClientProductLike to = new ClientProductLike(
-						rs.getString("name"),	
-						rs.getString("description"),
-						rs.getInt("price"),
-						rs.getInt("action")
-					);
-					clientProductLike.add(to);
-				}
-				conn.close();
-			} catch (SQLException ex) {
-				throw new Exception(ex.getMessage());
-			}
-		} catch (SQLException e) {
-			throw new Exception(e.getMessage());
-		}
-		
-		return clientProductLike;
-	}
+//	public ArrayList<ClientProductLike> listProductLikeByIdClient(int idClient) throws Exception {
+//		ArrayList<ClientProductLike> clientProductLike = new ArrayList<ClientProductLike>();
+//		String sqlSelect = "SELECT\r\n" + 
+//				"	i.quantity\r\n" + 
+//				"    , p.name\r\n" + 
+//				"    , p.description\r\n" + 
+//				"    , p.price\r\n" +
+//				"    , q.action\r\n" +
+//				"FROM\r\n" + 
+//				"	item i\r\n" + 
+//				"    INNER JOIN product p ON i.id_product = p.id\r\n" + 
+//				"    INNER JOIN client_product_like" +
+//				"WHERE id_client = ?;";
+//		
+//		try (Connection conn = ConnectionFactory.createConnection();
+//			 PreparedStatement stm = conn.prepareStatement(sqlSelect)) {
+//			stm.setInt(1, idClient);
+//			
+//			try (ResultSet rs = stm.executeQuery()) {
+//				while (rs.next()) {
+//					ClientProductLike to = new ClientProductLike(
+//						rs.getString("name"),	
+//						rs.getString("description"),
+//						rs.getInt("price"),
+//						rs.getInt("action")
+//					);
+//					clientProductLike.add(to);
+//				}
+//				conn.close();
+//			} catch (SQLException ex) {
+//				throw new Exception(ex.getMessage());
+//			}
+//		} catch (SQLException e) {
+//			throw new Exception(e.getMessage());
+//		}
+//		
+//		return clientProductLike;
+//	}
 }

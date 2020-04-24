@@ -21,8 +21,8 @@ div.sign-up-simple-container div.container div.jumbotron.main {
 	background: #ffffff;
 	padding: 15px;
 
-	position: absolute;
-	width: 71%;
+	position: relative;
+	width: 100%;
 }
 
 div.sign-up-simple-container div.container div.jumbotron.main div.navigation {

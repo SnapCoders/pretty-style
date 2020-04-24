@@ -29,9 +29,11 @@ $(document).ready(function () {
 
 function handleAdd(form) {
 	var formSerialized = $(form).serialize();
+	let idUser = sessionStorage.getItem('id_user');
+	console.log(formSerialized);
 	$.ajax({
 		type: "POST",
-		url: "/PrettyStyle/addresses",
+		url: "/PrettyStyle/controller.do?path=address&command=UpdateAddress&json=true&id_user="+idUser,
 		data: formSerialized,
 		success: function(data){
 			AlertaSucesso(data);	

@@ -13,11 +13,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     
-    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+    <link rel="shortcut icon" href="/PrettyStyle/favicon.ico" type="image/x-icon" />
 
     <title>Pretty Style</title>
     
     <link rel="stylesheet" href="App/lib/bootstrap/4.4.1/css/bootstrap.min.css">
+	<link rel="stylesheet" href="App/lib/sweetalert/sweetalert.css">
 
     <link rel="stylesheet" href="App/styles/index.css">
     <link rel="stylesheet" href="App/styles/header.css">
@@ -32,20 +33,14 @@
   			ProductService ps = new ProductService();
   		
   			ArrayList<Product> lista = ps.listBestSellers();
-  			ArrayList<Product> teste = ps.listMore();
   		
   			ArrayList<Product> bestSellers1 = new ArrayList<Product>(lista.subList(0, (lista.size()/2)));
   			ArrayList<Product> bestSellers2 = new ArrayList<Product>(lista.subList(lista.size()/2, lista.size()));
   			
-  			ArrayList<Product> teste1 = new ArrayList<Product>(teste.subList(0, (teste.size()/2)));
-  			ArrayList<Product> teste2 = new ArrayList<Product>(teste.subList(teste.size()/2, teste.size()));
-  			
   			request.setAttribute("bestSellersOne", bestSellers1);
   			request.setAttribute("bestSellersTwo", bestSellers2);
-  			request.setAttribute("teste1", teste1);
-  			request.setAttribute("teste2", teste2);
   		%>
-
+		
 	    <div class="home-container">
 		  	<div class="container">
 				<section class="banner-section">
@@ -97,7 +92,7 @@
 													<c:forEach var="product" items="${bestSellersOne}">
 														<div class="col-md-3">
 															<div class="jumbotron product">
-																<div class="photo-product" onclick="window.location.href='App/pages/product-details/product-details.jsp'">
+																<div id="id-user" class="photo-product" onclick="window.location.href='/PrettyStyle/controller.do?path=productdetails&command=ViewProduct&id_product=${product.id}'">
 																	<img src="App/assets/img/jbl.png" alt="${product.name}">
 																</div>
 																<label class="title-product">${product.name}</label>
@@ -121,7 +116,7 @@
 													<c:forEach var="product" items="${bestSellersTwo}">
 														<div class="col-md-3">
 															<div class="jumbotron product">
-																<div class="photo-product" onclick="window.location.href='App/pages/product-details/product-details.jsp'">
+																<div class="photo-product" onclick="window.location.href='/PrettyStyle/controller.do?path=productdetails&command=ViewProduct&id_product=${product.id}'">
 																	<img src="App/assets/img/jbl.png" alt="${product.name}">
 																</div>
 																<label class="title-product">${product.name}</label>
@@ -148,70 +143,6 @@
 											</a>
 										</div>
 									</div>
-									<!-- <div class="col-md-3">
-										<div class="jumbotron product" onclick="navigateToProductDetails()">
-											<div class="photo-product">
-												<img src="App/assets/img/jbl.png" alt="JBL Flip 3 Portable">
-											</div>
-											<label class="title-product">JBL Flip 3 Portable</label>
-											<div class="stars">
-												<span class="star yellow-star">&nbsp;</span>
-												<span class="star yellow-star">&nbsp;</span>
-												<span class="star yellow-star">&nbsp;</span>
-												<span class="star yellow-star">&nbsp;</span>
-												<span class="star gray-star">&nbsp;</span>
-											</div>
-											<label class="price-product">R$ 250,00</label>
-										</div>
-									</div>
-									<div class="col-md-3">
-										<div class="jumbotron product">
-											<div class="photo-product">
-												<img src="App/assets/img/jbl.png" alt="JBL Flip 3 Portable">
-											</div>
-											<label class="title-product">JBL Flip 3 Portable</label>
-											<div class="stars">
-												<span class="star yellow-star">&nbsp;</span>
-												<span class="star yellow-star">&nbsp;</span>
-												<span class="star yellow-star">&nbsp;</span>
-												<span class="star yellow-star">&nbsp;</span>
-												<span class="star gray-star">&nbsp;</span>
-											</div>
-											<label class="price-product">R$ 250,00</label>
-										</div>
-									</div>
-									<div class="col-md-3">
-										<div class="jumbotron product">
-											<div class="photo-product">
-												<img src="App/assets/img/jbl.png" alt="JBL Flip 3 Portable">
-											</div>
-											<label class="title-product">JBL Flip 3 Portable</label>
-											<div class="stars">
-												<span class="star yellow-star">&nbsp;</span>
-												<span class="star yellow-star">&nbsp;</span>
-												<span class="star yellow-star">&nbsp;</span>
-												<span class="star yellow-star">&nbsp;</span>
-												<span class="star gray-star">&nbsp;</span>
-											</div>
-											<label class="price-product">R$ 250,00</label>
-										</div>
-									</div>
-									<div class="col-md-3">
-										<div class="jumbotron product">
-											<div class="photo-product">
-												<img src="App/assets/img/jbl.png" alt="JBL Flip 3 Portable">
-											</div>
-											<label class="title-product">JBL Flip 3 Portable</label>
-											<div class="stars">
-												<span class="star yellow-star">&nbsp;</span>
-												<span class="star yellow-star">&nbsp;</span>
-												<span class="star yellow-star">&nbsp;</span>
-												<span class="star yellow-star">&nbsp;</span>
-												<span class="star gray-star">&nbsp;</span>
-											</div>
-											<label class="price-product">R$ 250,00</label>
-										</div>
-									</div> -->
 								</div>
 							</div>
 						</div>
@@ -239,70 +170,112 @@
 											</div>
 										</div>
 									</c:forEach>
-									<!-- <div class="col-md-3">
-										<div class="jumbotron product">
-											<div class="photo-product">
-												<img src="App/assets/img/jbl.png" alt="JBL Flip 3 Portable">
+								</div>
+							</div>
+							<img src="App/assets/icons/arrow-right.svg" alt="Arrow right" class="arrow-right">
+						</div>
+					</div>
+				</section>
+				<div class="col-md-12 header">
+		  			<div class="row content">
+			  			<div class="title">
+			  				<label>Mais vendidos</label>
+			  			</div>
+			  			<div class="line">
+			  				<hr />
+			  			</div>
+		  			</div>
+		  		</div>
+				<section class="best-sellers">
+					<div class="jumbotron">
+						<div class="col-md-12 content">
+							<div class="col-md-12" style="padding: 0;">
+								<div class="row">
+									<div id="myCarousel" class="carousel slide" data-ride="carousel">
+										<div class="carousel-inner">
+											<div class="carousel-item active">
+												<div class="row">
+													<c:forEach var="product" items="${bestSellersOne}">
+														<div class="col-md-3">
+															<div class="jumbotron product">
+																<div id="id-user" class="photo-product" onclick="window.location.href='/PrettyStyle/controller.do?path=productdetails&command=ViewProduct&id_product=${product.id}'">
+																	<img src="App/assets/img/jbl.png" alt="${product.name}">
+																</div>
+																<label class="title-product">${product.name}</label>
+																<div class="stars">
+																	<span class="star yellow-star">&nbsp;</span>
+																	<span class="star yellow-star">&nbsp;</span>
+																	<span class="star yellow-star">&nbsp;</span>
+																	<span class="star yellow-star">&nbsp;</span>
+																	<span class="star gray-star">&nbsp;</span>
+																</div>
+																<label class="price-product">
+																	<fmt:formatNumber value="${product.price}" type="currency" currencySymbol="R$"/>
+																</label>
+															</div>
+														</div>
+													</c:forEach>
+												</div>
 											</div>
-											<label class="title-product">JBL Flip 3 Portable</label>
-											<div class="stars">
-												<span class="star yellow-star">&nbsp;</span>
-												<span class="star yellow-star">&nbsp;</span>
-												<span class="star yellow-star">&nbsp;</span>
-												<span class="star yellow-star">&nbsp;</span>
-												<span class="star gray-star">&nbsp;</span>
+											<div class="carousel-item">
+												<div class="row">
+													<c:forEach var="product" items="${bestSellersTwo}">
+														<div class="col-md-3">
+															<div class="jumbotron product">
+																<div class="photo-product" onclick="window.location.href='/PrettyStyle/controller.do?path=productdetails&command=ViewProduct&id_product=${product.id}'">
+																	<img src="App/assets/img/jbl.png" alt="${product.name}">
+																</div>
+																<label class="title-product">${product.name}</label>
+																<div class="stars">
+																	<span class="star yellow-star">&nbsp;</span>
+																	<span class="star yellow-star">&nbsp;</span>
+																	<span class="star yellow-star">&nbsp;</span>
+																	<span class="star yellow-star">&nbsp;</span>
+																	<span class="star gray-star">&nbsp;</span>
+																</div>
+																<label class="price-product">
+																	<fmt:formatNumber value="${product.price}" type="currency" currencySymbol="R$"/>
+																</label>
+															</div>
+														</div>
+													</c:forEach>
+												</div>
 											</div>
-											<label class="price-product">R$ 250,00</label>
+											<a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">
+												<img src="App/assets/icons/arrow-left.svg" alt="Arrow left" class="arrow-left">
+											</a>
+											<a class="carousel-control-next" href="#myCarousel" role="button" data-slide="next">
+												<img src="App/assets/icons/arrow-right.svg" alt="Arrow right" class="arrow-right">
+											</a>
 										</div>
 									</div>
-									<div class="col-md-3">
-										<div class="jumbotron product">
-											<div class="photo-product">
-												<img src="App/assets/img/jbl.png" alt="JBL Flip 3 Portable">
+								</div>
+							</div>
+						</div>
+						<div style="display: none;" class="col-md-12 content">
+							<img src="App/assets/icons/arrow-left.svg" alt="Arrow left" class="arrow-left">
+							<div class="col-md-12">
+								<div class="row">
+									<c:forEach var="product" items="${testList}">
+										<div class="col-md-3">
+											<div class="jumbotron product">
+												<div class="photo-product" onclick="window.location.href='App/pages/product-details/product-details.jsp'">
+													<img src="App/assets/img/jbl.png" alt="${product.name}">
+												</div>
+												<label class="title-product">${product.name}</label>
+												<div class="stars">
+													<span class="star yellow-star">&nbsp;</span>
+													<span class="star yellow-star">&nbsp;</span>
+													<span class="star yellow-star">&nbsp;</span>
+													<span class="star yellow-star">&nbsp;</span>
+													<span class="star gray-star">&nbsp;</span>
+												</div>
+												<label class="price-product">
+													<fmt:formatNumber value="${product.price}" type="currency" currencySymbol="R$"/>
+												</label>
 											</div>
-											<label class="title-product">JBL Flip 3 Portable</label>
-											<div class="stars">
-												<span class="star yellow-star">&nbsp;</span>
-												<span class="star yellow-star">&nbsp;</span>
-												<span class="star yellow-star">&nbsp;</span>
-												<span class="star yellow-star">&nbsp;</span>
-												<span class="star gray-star">&nbsp;</span>
-											</div>
-											<label class="price-product">R$ 250,00</label>
 										</div>
-									</div>
-									<div class="col-md-3">
-										<div class="jumbotron product">
-											<div class="photo-product">
-												<img src="App/assets/img/jbl.png" alt="JBL Flip 3 Portable">
-											</div>
-											<label class="title-product">JBL Flip 3 Portable</label>
-											<div class="stars">
-												<span class="star yellow-star">&nbsp;</span>
-												<span class="star yellow-star">&nbsp;</span>
-												<span class="star yellow-star">&nbsp;</span>
-												<span class="star yellow-star">&nbsp;</span>
-												<span class="star gray-star">&nbsp;</span>
-											</div>
-											<label class="price-product">R$ 250,00</label>
-										</div>
-									</div>
-									<div class="col-md-3">
-										<div class="jumbotron product">
-											<div class="photo-product">
-												<img src="App/assets/img/jbl.png" alt="JBL Flip 3 Portable">
-											</div>
-											<label class="title-product">JBL Flip 3 Portable</label>
-											<div class="stars">
-												<span class="star yellow-star">&nbsp;</span>
-												<span class="star yellow-star">&nbsp;</span>
-												<span class="star yellow-star">&nbsp;</span>
-												<span class="star yellow-star">&nbsp;</span>
-												<span class="star gray-star">&nbsp;</span>
-											</div>
-											<label class="price-product">R$ 250,00</label>
-										</div>
-									</div> -->
+									</c:forEach>
 								</div>
 							</div>
 							<img src="App/assets/icons/arrow-right.svg" alt="Arrow right" class="arrow-right">

@@ -1,6 +1,7 @@
 package br.com.sprintters.prettystyle.model;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
 
 import br.com.sprintters.prettystyle.model.generic.Entity;
 
@@ -11,6 +12,8 @@ public class Product extends Entity {
 	
 	private int idMark;
 	private Mark mark;
+	
+	private ArrayList<ProductPhoto> photos;
 	
 	public Product() { }
 
@@ -101,6 +104,14 @@ public class Product extends Entity {
 	
 	public void setMark(Mark mark) {
 		this.mark = mark;
+	}
+
+	public ArrayList<ProductPhoto> getPhotos() {
+		return photos;
+	}
+
+	public void setPhotos(ArrayList<ProductPhoto> photos) {
+		this.photos = photos;
 	}
 
 	@Override

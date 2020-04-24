@@ -28,38 +28,6 @@
 		<link rel="stylesheet" href="styles.css">
 	</head>
 	<body>
-		<%
-  			AddressService as = new AddressService();
-			ItemService is = new ItemService();
-					
-			ArrayList<Item> lista = is.listCartItemsByIdClient(1);
-			
-			int quantity = 0;
-			double total = 0.0;
-			double totalItems = 0.0;
-			double frete = 0.0;
-			double bankSlip = 0.0;
-			
-			for (Item item : lista) {
-				quantity += item.getQuantity();
-				totalItems += item.getPrice() * item.getQuantity();
-				frete += item.getPrice() * 0.124;
-			}
-			
-			total = totalItems + frete;
-			bankSlip = total - (total * 0.05);
-  			
-  			request.setAttribute("address", as.findByIdUser(1));
-  			request.setAttribute("quantity", quantity);
-  			request.setAttribute("totalItems", totalItems);
-  			request.setAttribute("frete", frete);
-  			request.setAttribute("total", total);
-  			request.setAttribute("bankSlip", bankSlip);
-  			
-  			for (int i = 2; i <= 12; i++) {
-	  			request.setAttribute("parcela" + i, total / i);
-  			}
-  		%>
 		<c:import url="../../components/header.jsp" />
 		<div class="container">
 			<div class="payments-steps-container">
@@ -102,7 +70,7 @@
 			  							<div class="location-header">Endereço de Entrega</div>
 			  							<div class="location-body">
 			  								<div class="location-body-content">
-			  									<label class="location-name">Bruno Amaral Futema</label>
+			  									<label class="location-name">${user.client.name} ${user.client.surname}</label>
 			  									<div>
 			  										<label>Endereço: </label><span>${address.place}, ${address.number}</span>
 			  									</div>
@@ -192,7 +160,7 @@
 			  							<hr />
 			  							<div class="credit-or-bank">
 			  								<div id="credit-card" class="jumbotron credit-card-method">
-				  								<form action="/PrettyStyle/requests" method="POST" name="add-request-by-credit-card">
+				  								<form id="id-user" action="/PrettyStyle/controller.do?path=paymentsteps&command=Pay" method="POST" name="add-request-by-credit-card">
 				  									<input id="total-price-without-discount" name="totalPriceWithoutDiscount" type="hidden" value="${total}" />
 			  										<input id="total-price-with-discount" name="totalPriceWithDiscount" type="hidden" value="${bankSlip}" />
 				  									<input type="hidden" value="creditCard" name="paymentType">
@@ -255,14 +223,14 @@
 				  									</div>
 				  									<div class="pay-and-total">
 				  										<label style="color: #ffffff;"><fmt:formatNumber value="${total}" type="currency" currencySymbol="R$"/></label>
-				  										<button type="submit" >Pagar</button>
+				  										<button type="submit">Pagar</button>
 				  										<label id="total-price">Total: <fmt:formatNumber value="${total}" type="currency" currencySymbol="R$"/></label>
 				  									</div>
 			  									</form>
 			  								</div>
 			  								<div id="bank-slip" class="jumbotron bank-slip-method" style="display: none;">
-			  									<form action="/PrettyStyle/requests" method="POST" name="add-request-by-bank-slip">
-			  										<input type="hidden" value="bankSlip" name="paymentType ">
+			  									<form id="id-user" action="/PrettyStyle/controller.do?path=paymentsteps&command=Pay" method="POST" name="add-request-by-bank-slip">
+			  										<input type="hidden" value="bankSlip" name="paymentType">
 			  										<input id="total-price-with-discount-bank-slip" name="totalPriceWithDiscount" type="hidden" value="${bankSlip}" />
 				  									<div class="inputs">
 				  										<div class="row">
@@ -324,7 +292,6 @@
 		<script src="../../lib/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 		<script src="../../lib/sweetalert/sweetalert.min.js"></script>
 		<script src="../../lib/mask/jquery.mask.js"></script>
-		<script src="../../js/general.js"></script>
 		
 		<script src="script.js"></script>
 	</body>

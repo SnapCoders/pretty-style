@@ -148,6 +148,7 @@ public class UserDAO {
 					to.setDeletedAt(rs.getTimestamp("deleted_at"));
 					to.setPasswordHash(rs.getString("password_hash"));
 				}
+				conn.close();
 			} catch (SQLException ex) {
 				throw new Exception(ex.getMessage());
 			}

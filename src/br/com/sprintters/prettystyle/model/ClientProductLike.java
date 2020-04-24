@@ -1,44 +1,37 @@
 package br.com.sprintters.prettystyle.model;
 
-import java.sql.Timestamp;
-
-import br.com.sprintters.prettystyle.model.generic.Entity;
-
-public class ClientProductLike extends Entity {
+public class ClientProductLike {
+	private int id;
 	private int action;
-	private int idProduct;	
-	private int idClient;
-	private String name;
-	private String description;
-	private int price;
 	
+	private int idProduct;
+	private Product product;
 	
+	private int idUser;
+	private User user;
 
 	public ClientProductLike() { }
 
-	public ClientProductLike(int idClient, int idProduct, int action,
-			Timestamp createdAt, Timestamp updatedAt, Timestamp deletedAt) {
-		super(createdAt, updatedAt, deletedAt);
-		this.idProduct = idProduct;
-		this.idClient = idClient;
-		this.action = action;
-	}
-	
 	public ClientProductLike(int idClient, int idProduct, int action) {
-		
 		this.idProduct = idProduct;
-		this.idClient = idClient;
+		this.idUser = idClient;
 		this.action = action;
 	}
 	
-	public ClientProductLike(String name, String description, int price, int action) {
-		this.setName(name);
-		this.setDescription(description);
-		this.setPrice(price);
-		this.setPrice(action);
-
+	public ClientProductLike(int id, int idClient, int idProduct, int action) {
+		this.id = id;
+		this.idProduct = idProduct;
+		this.idUser = idClient;
+		this.action = action;
 	}
 	
+	public int getId() {
+		return id;
+	}
+	
+	public void setId(int id) {
+		this.id = id;
+	}
 	
 	public int getIdProduct() {
 		return idProduct;
@@ -47,10 +40,21 @@ public class ClientProductLike extends Entity {
 	public void setIdProduct(int idProduct) {
 		this.idProduct = idProduct;
 	}
+	
+	public Product getProduct() {
+		return product;
+	}
 
-	@Override
-	public String toString() {
-		return "ClientProductLike [idProduct=" + idProduct + "]";
+	public void setProduct(Product product) {
+		this.product = product;
+	}
+	
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
 	}
 
 	public int getAction() {
@@ -61,35 +65,16 @@ public class ClientProductLike extends Entity {
 		this.action = action;
 	}
 
-	public int getIdClient() {
-		return idClient;
+	public int getIdUser() {
+		return idUser;
 	}
 
-	public void setIdClient(int idClient) {
-		this.idClient = idClient;
+	public void setIdUser(int idUser) {
+		this.idUser = idUser;
 	}
 
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public String getDescription() {
-		return description;
-	}
-
-	public void setDescription(String description) {
-		this.description = description;
-	}
-
-	public int getPrice() {
-		return price;
-	}
-
-	public void setPrice(int price) {
-		this.price = price;
+	@Override
+	public String toString() {
+		return "ClientProductLike [id=" + id + ", action=" + action + ", idProduct=" + idProduct + ", idClient=" + idUser + "]";
 	}
 }

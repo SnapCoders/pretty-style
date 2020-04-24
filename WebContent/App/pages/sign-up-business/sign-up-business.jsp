@@ -97,7 +97,7 @@
 					  				</div>
 								</div>
 					  			<div class="row button-area">
-				  					<button type="submit">CRIE SEU CADASTRO</button>
+				  					<button type="submit" >CRIE SEU CADASTRO</button>
 				  				</div>
 			  				</form>
 			  			</div>
@@ -111,7 +111,6 @@
 		<script src="../../lib/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 		<script src="../../lib/sweetalert/sweetalert.min.js"></script>
 		<script src="../../lib/mask/jquery.mask.js"></script>
-		<script src="../../js/general.js"></script>
 		
 		<script src="script.js"></script>
 	</body>
