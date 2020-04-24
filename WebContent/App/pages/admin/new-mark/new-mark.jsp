@@ -37,7 +37,7 @@
 				  			</div>
 				  			<div class="line">
 				  				<hr />
-				  				<a class="btn btn-sm btn-primary" href="../list-marks/list-marks.jsp">Voltar</a>
+				  				<a class="btn btn-sm btn-primary" href="/PrettyStyle/controller.do?path=admin&command=ListMarks">Voltar</a>
 				  			</div>
 			  			</div>
 			  		</div>

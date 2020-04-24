@@ -19,6 +19,8 @@
     
 		<link rel="stylesheet" href="../../../lib/bootstrap/4.4.1/css/bootstrap.min.css">
 		<link rel="stylesheet" href="../../../lib/sweetalert/sweetalert.css">
+		<link rel="stylesheet" href="../../../assets/fonts/css/all.css">
+		<link rel="stylesheet" href="../../../assets/fonts/css/fontawesome.min.css">
 
 		<link rel="stylesheet" href="../../../styles/index.css">
 		<link rel="stylesheet" href="../../../styles/header.css">
@@ -42,7 +44,7 @@
 				  			</div>
 				  			<div class="line">
 				  				<hr />
-				  				<a class="btn btn-sm btn-primary" href="../list-products/list-products.jsp">Voltar</a>
+				  				<a id="id-user" class="btn btn-sm btn-primary" href="/PrettyStyle/controller.do?path=admin&command=ListProducts">Voltar</a>
 				  			</div>
 			  			</div>
 			  		</div>
@@ -78,6 +80,7 @@
 				  					<div class="col-md-12">
 				  						<label for="photo">Incluir uma imagem</label>
 				  						<input class="form-control" type="file" id="photo" name="photo" placeholder="Arraste uma imagem aqui" multiple />
+				  						<div class="previews"></div>
 				  					</div>
 				  				</div>
 					  			<div class="row button-area">

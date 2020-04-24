@@ -37,7 +37,7 @@
 				  			</div>
 				  			<div class="line">
 				  				<hr />
-				  				<a class="btn btn-sm btn-primary" href="../list-categories/list-categories.jsp">Voltar</a>
+				  				<a class="btn btn-sm btn-primary" href="/PrettyStyle/controller.do?path=admin&command=ListCategories">Voltar</a>
 				  			</div>
 			  			</div>
 			  		</div>

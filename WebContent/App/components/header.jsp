@@ -40,7 +40,7 @@
 					<c:if test="${not empty idUser}">
 						<hr />
 						<div class="pages">
-							<button id="id-user" type="button" onclick="window.location.href = '/PrettyStyle/App/pages/profile/profile.jsp'">Minha conta</button>
+							<button id="id-user" type="button" onclick="window.location.href='/PrettyStyle/App/pages/profile/profile.jsp'">Minha conta</button>
 							<button id="id-user" type="button" onclick="window.location.href='/PrettyStyle/controller.do?path=request&command=ListRequests'">Meus Pedidos</button>
 						</div>
 					</c:if>

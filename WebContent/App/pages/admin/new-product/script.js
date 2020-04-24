@@ -23,6 +23,53 @@ $(document).ready(function () {
 			handleAdd(form);
 		},
 	});
+
+	$('#photo').on('change', function () {
+		const element = 
+			'<div id="imagePreview" class="image-preview">'+
+				'<input name="index" type="hidden" value="" />' +
+				//'<i class="fas fa-times remove-image"></i>' +
+				'<img class="image-preview__image" src="" alt="Preview">' +
+				'<span class="image-preview__default-text">Preview</span>' +
+			'</div>';
+
+		const fileList = $(this)[0].files;
+
+		if (fileList.length > 0) {
+			for (i = 0; i < fileList.length; i++) {
+				const file = $(this)[0].files[i];
+				let imagePreview = $(element).clone();
+
+				$(imagePreview).find('input[name="index"]').val(i);
+		
+				if (file) {
+					const reader = new FileReader();
+					
+					$(reader).on('load', function () {
+						$(imagePreview).find('.image-preview__image').attr('src', this.result);
+						$('.previews').append(imagePreview);
+					});
+		
+					reader.readAsDataURL(file);
+				}
+			}
+
+			setTimeout(function () {
+				$('.image-preview__default-text').hide();
+				$('.image-preview__image').show();
+
+				// $('.remove-image').on('click', function () {
+				// 	let index = $(this).closest('#imagePreview').find('input[name="index"]').val();
+				// 	$(this).closest('#imagePreview').remove();
+				// 	console.log($('#photo')[0].files);
+				// });
+			}, 1000);
+		} else {
+			$('.previews').children().remove();
+
+			$('.previews').append(defaultPreview);
+		}
+	});
 });
 
 function handleAdd(form) {

@@ -24,10 +24,7 @@ public class CreateProduct implements Command {
 			String appPath = request.getServletContext().getRealPath("");
 			String savePath = appPath + File.separator + SAVE_DIR;
 			
-			MultipartRequest m = new MultipartRequest(request, savePath);
-			
-			m.getFile("file-0").renameTo(new File(savePath));
-			m.getFile("file-1").renameTo(new File(savePath));
+			MultipartRequest m = new MultipartRequest(request, savePath, 100100100);
 			
 			String pName = m.getParameter("name");
 			String pDescription = m.getParameter("description");
