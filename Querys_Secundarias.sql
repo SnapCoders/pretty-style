@@ -410,3 +410,43 @@ SELECT * FROM provider;
 SELECT * FROM request;
 SELECT * FROM user;
 SELECT * FROM user_address;
+
+
+
+
+
+-- --------------------------------------------------------------------------------------
+
+use db_pretty_style;
+
+-- select * from product_photo;
+
+-- SELECT * FROM product WHERE deleted_at IS NULL LIMIT 8;
+-- \WebContent\Upload\jbl.png
+
+-- SELECT * FROM product_photo;
+-- select * from product where deleted_at is null;
+
+-- update product set deleted_at = now() where id = 113;
+
+-- update product set description = 'Descrição de um produto 8' where id = 116;
+-- update product set id_provider = 2;
+
+-- update product_photo set url = '\\PrettyStyle\\WebContent\\Upload\\man1.png' where id = 11;
+-- update product_photo set url = '\\PrettyStyle\\WebContent\\Upload\\man2.png' where id = 12;
+
+SELECT
+	p.id
+    , p.name
+    , p.description
+    , p.price
+    , p.id_mark
+    , p.id_provider
+    , p.created_at
+    , pp.id as 'id_photo'
+    , pp.url
+    , pp.name as 'photo_name'
+FROM	
+	product p
+    INNER JOIN product_photo pp ON p.id = pp.id_product
+WHERE p.deleted_at IS NULL LIMIT 16;
