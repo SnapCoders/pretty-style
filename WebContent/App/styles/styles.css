@@ -1,100 +1,111 @@
 section.banner-section .mySlides {
-  display: none;
+	display: none;
 }
 
 section.banner-section img {
-  vertical-align: middle;
-  border-radius: 15px;
+	vertical-align: middle;
+	border-radius: 15px;
 }
 
 section.banner-section .slideshow-container {
-  max-width: 1080px;
-  position: relative;
-  margin: auto;
+	max-width: 1080px;
+	position: relative;
+	margin: auto;
 }
 
 section.banner-section .prev, section.banner-section .next {
-  cursor: pointer;
-  position: absolute;
-  top: 50%;
-  width: auto;
-  padding: 16px;
-  margin-top: -22px;
-  color: white;
-  font-weight: bold;
-  font-size: 18px;
-  transition: 0.6s ease;
-  border-radius: 0 3px 3px 0;
-  user-select: none;
+	cursor: pointer;
+	position: absolute;
+	top: 50%;
+	width: auto;
+	padding: 16px;
+	margin-top: -22px;
+	color: white;
+	font-weight: bold;
+	font-size: 18px;
+	transition: 0.6s ease;
+	border-radius: 0 3px 3px 0;
+	user-select: none;
 }
 
 section.banner-section .next {
-  right: 0;
-  border-radius: 3px 0 0 3px;
+	right: 0;
+	border-radius: 3px 0 0 3px;
 }
 
 section.banner-section .prev:hover, section.banner-section .next:hover {
-  background-color: rgba(0,0,0,0.8);
+	background-color: rgba(0, 0, 0, 0.8);
 }
 
 section.banner-section .text {
-  color: #222;
-  font-size: 16px;
-  padding: 8px 12px;
-  position: absolute;
-  bottom: 8px;
-  width: 100%;
-  text-align: center;
+	color: #222;
+	font-size: 16px;
+	padding: 8px 12px;
+	position: absolute;
+	bottom: 8px;
+	width: 100%;
+	text-align: center;
 }
 
 section.banner-section .numbertext {
-  color: #f2f2f2;
-  font-size: 12px;
-  padding: 8px 12px;
-  position: absolute;
-  top: 0;
+	color: #f2f2f2;
+	font-size: 12px;
+	padding: 8px 12px;
+	position: absolute;
+	top: 0;
 }
 
 section.banner-section .dot {
-  cursor: pointer;
-  height: 15px;
-  width: 15px;
-  margin: 0 2px;
-  background-color: #bbb;
-  border-radius: 50%;
-  display: inline-block;
-  transition: background-color 0.6s ease;
+	cursor: pointer;
+	height: 15px;
+	width: 15px;
+	margin: 0 2px;
+	background-color: #bbb;
+	border-radius: 50%;
+	display: inline-block;
+	transition: background-color 0.6s ease;
 }
 
-section.banner-section .active-slide{
-  background-color: #0E9AEF;
+section.banner-section .active-slide {
+	background-color: #0E9AEF;
 }
 
 section.banner-section .dot:hover {
-  filter: brightness(90%);
+	filter: brightness(90%);
 }
 
 section.banner-section .fade-slide {
-  -webkit-animation-name: fade;
-  -webkit-animation-duration: 1.5s;
-  animation-name: fade-slide;
-  animation-duration: 1.5s;
+	-webkit-animation-name: fade;
+	-webkit-animation-duration: 1.5s;
+	animation-name: fade-slide;
+	animation-duration: 1.5s;
 }
 
-@-webkit-keyframes fade-slide {
-  from {opacity: .4} 
-  to {opacity: 1}
+@
+-webkit-keyframes fade-slide {
+	from {opacity: .4
 }
 
-@keyframes fade-slide {
-  from {opacity: .4} 
-  to {opacity: 1}
+to {
+	opacity: 1
 }
 
+}
+@
+keyframes fade-slide {
+	from {opacity: .4
+}
+
+to {
+	opacity: 1
+}
+
+}
 @media only screen and (max-width: 300px) {
-  .prev, .next,.text {font-size: 11px}
+	.prev, .next, .text {
+		font-size: 11px
+	}
 }
-
 
 /* section.banner-section div.slideshow-container {
   border: 1px solid #222;
@@ -140,7 +151,6 @@ section.banner-section div.slideshow-container div.banner-circle-step.active {
 section.banner-section div.slideshow-container div.banner-circle-step:hover {
   filter: brightness(90%);
 } */
-
 div.home-container div.container div.header div.content {
 	display: flex;
 	align-items: center;
@@ -148,7 +158,8 @@ div.home-container div.container div.header div.content {
 	margin-bottom: 10px;
 }
 
-div.home-container div.container div.header div.content div.title label {
+div.home-container div.container div.header div.content div.title label
+	{
 	margin-bottom: 0;
 	color: #707070;
 	font-size: 20px;
@@ -167,112 +178,116 @@ section.best-sellers div.jumbotron {
 }
 
 section.best-sellers div.jumbotron div.content {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
 
 section.best-sellers div.jumbotron div.content div.carousel-item {
-  padding: 25px;
+	padding: 25px;
 }
 
 section.best-sellers div.jumbotron div.content a.carousel-control-prev {
-  width: 4%;
-  margin-left: -6px;
+	width: 4%;
+	margin-left: -6px;
 }
 
 section.best-sellers div.jumbotron div.content a.carousel-control-next {
-  width: 4%;
-  margin-right: -6px;
+	width: 4%;
+	margin-right: -6px;
 }
 
 section.best-sellers div.jumbotron img.arrow-left {
-  margin-left: -10px;
+	margin-left: -10px;
 }
 
 section.best-sellers div.jumbotron img.arrow-right {
-  margin-left: 10px;
+	margin-left: 10px;
 }
 
-section.best-sellers div.jumbotron img.arrow-left,
-section.best-sellers div.jumbotron img.arrow-right {
-  width: 30px;
-  height: 30px;
-  cursor: pointer;
-  z-index: 10;
+section.best-sellers div.jumbotron img.arrow-left, section.best-sellers div.jumbotron img.arrow-right
+	{
+	width: 30px;
+	height: 30px;
+	cursor: pointer;
+	z-index: 10;
 }
 
-section.best-sellers div.jumbotron img.arrow-left:hover,
-section.best-sellers div.jumbotron img.arrow-right:hover {
-  filter: brightness(90%);
+section.best-sellers div.jumbotron img.arrow-left:hover, section.best-sellers div.jumbotron img.arrow-right:hover
+	{
+	filter: brightness(90%);
 }
 
 section.best-sellers div.jumbotron.product {
-  margin: 10px 0 10px 0;
+	margin: 10px 0 10px 0;
 	border: 1px solid #707070;
 	border-radius: 10px;
 	background: #ffffff;
-  padding: 10px;
-  
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: center;
+	padding: 10px;
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	justify-content: center;
 }
 
 section.best-sellers div.jumbotron.product:hover {
-  border: 1px solid #0E9AEF;
+	border: 1px solid #0E9AEF;
+}
+
+section.best-sellers div.jumbotron.product div.photo-product {
+	height: 250px;
 }
 
 section.best-sellers div.jumbotron.product div.photo-product img {
-  width: 100%;
-  cursor: pointer;
+	width: 100%;
+	max-height: 223px;
+	cursor: pointer;
 }
 
 section.best-sellers div.jumbotron.product label {
-  color: #707070;
-  font-size: 18px;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  overflow: hidden;
-  width: 12em;
+	color: #707070;
+	font-size: 18px;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	overflow: hidden;
+	width: 12em;
 }
 
 section.best-sellers div.jumbotron.product label:last-child {
-  font-weight: bold;
+	font-weight: bold;
 }
 
 section.best-sellers div.jumbotron.product div.stars {
-  counter-reset: rateme 0;
-  font-size: 0rem;
-  font-weight: 900;
-  height: 25px;
-  margin: -10px 0 20px 0;
-  
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
+	counter-reset: rateme 0;
+	font-size: 0rem;
+	font-weight: 900;
+	height: 25px;
+	margin: -10px 0 20px 0;
+	display: flex;
+	align-items: center;
+	justify-content: flex-start;
 }
 
 section.best-sellers div.jumbotron.product div.stars span.star {
-  color: #EEFF00;
-  font-size: 2rem;
-  padding: -1px 1rem;
+	color: #EEFF00;
+	font-size: 2rem;
+	padding: -1px 1rem;
 }
 
 section.best-sellers div.jumbotron.product div.stars span.star::before {
-  content: '\2606';
-  cursor: pointer;
+	content: '\2606';
+	cursor: pointer;
 }
 
-section.best-sellers div.jumbotron.product div.stars span.star.rated::before {
-  content: '\2605';
+section.best-sellers div.jumbotron.product div.stars span.star.rated::before
+	{
+	content: '\2605';
 }
 
 section.best-sellers div.jumbotron.product div.stars span.star.rated {
-  counter-increment: rateme 1;
+	counter-increment: rateme 1;
 }
 
 section.best-sellers div.jumbotron.product div.stars::after {
-  content: counter(rateme) '/5';
+	content: counter(rateme) '/5';
 }

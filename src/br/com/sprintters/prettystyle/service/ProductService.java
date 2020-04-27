@@ -55,7 +55,9 @@ public class ProductService{
     
     public ArrayList<Product> listBestSellers() throws Exception {
     	try {
-    		return dao.listBestSellers();
+    		ArrayList<Product> products = dao.listBestSellers();
+    		
+     		return products;
     	} catch (Exception e) {
     		throw new Exception(e.getMessage());
     	}

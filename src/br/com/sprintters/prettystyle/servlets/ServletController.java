@@ -37,8 +37,10 @@ public class ServletController extends HttpServlet {
 	    			response.sendRedirect("App/pages/sign-in/sign-in.jsp");
 	    		}
     		} else {
+    			if (commandCalled.equals("null.null")) commandCalled = "home.index";
+    			
     			Command command = (Command)Class.forName("br.com.sprintters.prettystyle.command." + commandCalled).newInstance();
-    			command.execute(request, response);
+				command.execute(request, response);
     		}
     	} catch (Exception e) {
     		e.printStackTrace();
@@ -54,6 +56,9 @@ public class ServletController extends HttpServlet {
     	boolean isAuthorize = false;
     	
     	switch (commandCalled) {
+    		case "null.null":
+    			isAuthorize = false;
+    			break;
 	    	case "admin.CreateCategory":
 	    		isAuthorize = true;
 	    		break;

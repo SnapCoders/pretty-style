@@ -58,7 +58,7 @@
 			</div>
 		</div>
 	</div>
-	<div class="bottom-header">
+	<div id="bottom-header" class="bottom-header">
 		<nav>
 			<ul>
 				<li class="active">SALES</li>

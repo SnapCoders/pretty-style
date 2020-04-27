@@ -7,7 +7,9 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import br.com.sprintters.prettystyle.model.ClientProductLike;
+import br.com.sprintters.prettystyle.model.Mark;
 import br.com.sprintters.prettystyle.model.Product;
+import br.com.sprintters.prettystyle.model.ProductPhoto;
 
 public class ProductDAO {
 	public int insert(Product to) throws Exception {
@@ -138,24 +140,74 @@ public class ProductDAO {
 	
 	public ArrayList<Product> listBestSellers() throws Exception  {
 		ArrayList<Product> products = new ArrayList<Product>();
-		String sqlSelect = "SELECT * FROM product WHERE deleted_at IS NULL LIMIT 8";
+		String sqlSelect = "SELECT\r\n" + 
+				"	p.id\r\n" + 
+				"    , p.*\r\n" +
+				"    , m.id\r\n" +
+				"    , m.name as 'mark'\r\n" +
+				"    , pp.id as 'id_photo'\r\n" + 
+				"    , pp.url\r\n" + 
+				"    , pp.name as 'photo_name'\r\n" + 
+				"FROM\r\n" + 
+				"	product p\r\n" + 
+				"   INNER JOIN product_photo pp ON p.id = pp.id_product\r\n" +  
+				"    INNER JOIN mark m ON p.id_mark = m.id\r\n" + 
+				"WHERE p.deleted_at IS NULL LIMIT 16;";
 		
 		try (Connection conn = ConnectionFactory.createConnection();
 			 PreparedStatement stm = conn.prepareStatement(sqlSelect)) {
 			try (ResultSet rs = stm.executeQuery()) {
+				int prevIdProduct = 0;
+				
+				Product product = null;
+				ArrayList<ProductPhoto> photos = null;
+				
 				while (rs.next()) {
-					Product to = new Product(
-						rs.getInt("id"),
-						rs.getString("name"),
-						rs.getString("description"),
-						rs.getDouble("price"),
-						rs.getInt("id_mark"),
-						rs.getTimestamp("created_at"),
-						rs.getTimestamp("updated_at"),
-						rs.getTimestamp("deleted_at")
+					int idProduct = rs.getInt("id");
+					int idProductPhoto = rs.getInt("id_photo");
+					
+					if (idProduct != prevIdProduct) {
+						product = new Product(
+							rs.getInt("id"),
+							rs.getString("name"),
+							rs.getString("description"),
+							rs.getDouble("price"),
+							rs.getInt("id_mark"),
+							rs.getTimestamp("created_at"),
+							rs.getTimestamp("updated_at"),
+							rs.getTimestamp("deleted_at")
+						);
 						
-					);
-					products.add(to);
+						Mark mark = new Mark();
+						
+						mark.setId(rs.getInt("id_mark"));
+						mark.setName(rs.getString("mark"));
+						
+						product.setMark(mark);
+						
+						prevIdProduct = idProduct;
+						
+						photos = new ArrayList<ProductPhoto>();
+						
+						ProductPhoto photo = new ProductPhoto();
+						
+						photo.setId(idProductPhoto);
+						photo.setUrl(rs.getString("url"));
+						photo.setName(rs.getString("photo_name"));
+						
+						photos.add(photo);
+						
+						products.add(product);
+					} else {
+						ProductPhoto photo = new ProductPhoto();
+						
+						photo.setId(idProductPhoto);
+						photo.setUrl(rs.getString("url"));
+						
+						photos.add(photo);
+					}
+					
+					product.setPhotos(photos);
 				}
 				
 				conn.close();

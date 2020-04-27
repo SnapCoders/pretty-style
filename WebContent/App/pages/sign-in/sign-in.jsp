@@ -60,7 +60,7 @@
 				  				<div class="row button-area">
 				  					<button type="submit">ENTRAR</button>
 				  				</div>
-				 					<hr>
+			 					<hr>
 				  				<div class="row new-client-area">
 				  					<span style="margin-right: 10px;">Não é cliente?</span>
 				  					<a href="#">Torne-se um cliente</a>

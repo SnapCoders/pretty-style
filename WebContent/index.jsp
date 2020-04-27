@@ -1,3 +1,4 @@
+<%@page import="br.com.sprintters.prettystyle.model.ProductPhoto"%>
 <%@ page import="java.util.ArrayList"%>
 <%@ page import="br.com.sprintters.prettystyle.model.Product"%>
 <%@ page import="br.com.sprintters.prettystyle.service.ProductService"  %>
@@ -28,17 +29,17 @@
   </head>
   <body>
   	<c:import url="App/components/header.jsp" />
-  	<div class="container">
+  	<div id="main-content" class="container">
   		<%
-  			ProductService ps = new ProductService();
-  		
-  			ArrayList<Product> lista = ps.listBestSellers();
-  		
-  			ArrayList<Product> bestSellers1 = new ArrayList<Product>(lista.subList(0, (lista.size()/2)));
-  			ArrayList<Product> bestSellers2 = new ArrayList<Product>(lista.subList(lista.size()/2, lista.size()));
-  			
-  			request.setAttribute("bestSellersOne", bestSellers1);
-  			request.setAttribute("bestSellersTwo", bestSellers2);
+			ProductService ps = new ProductService();
+	  		
+			ArrayList<Product> lista = ps.listBestSellers();
+		
+			ArrayList<Product> bestSellers1 = new ArrayList<Product>(lista.subList(0, (lista.size()/2)));
+			ArrayList<Product> bestSellers2 = new ArrayList<Product>(lista.subList(lista.size()/2, lista.size()));
+			
+			request.setAttribute("bestSellersOne", bestSellers1);
+			request.setAttribute("bestSellersTwo", bestSellers2);
   		%>
 		
 	    <div class="home-container">
@@ -84,7 +85,7 @@
 					<div class="jumbotron">
 						<div class="col-md-12 content">
 							<div class="col-md-12" style="padding: 0;">
-								<div class="row">
+								<div class="">
 									<div id="myCarousel" class="carousel slide" data-ride="carousel">
 										<div class="carousel-inner">
 											<div class="carousel-item active">
@@ -93,7 +94,7 @@
 														<div class="col-md-3">
 															<div class="jumbotron product">
 																<div id="id-user" class="photo-product" onclick="window.location.href='/PrettyStyle/controller.do?path=productdetails&command=ViewProduct&id_product=${product.id}'">
-																	<img src="App/assets/img/jbl.png" alt="${product.name}">
+																	<img src="${product.photos[0].url}" alt="Imagem de ${product.name}">
 																</div>
 																<label class="title-product">${product.name}</label>
 																<div class="stars">
@@ -117,7 +118,7 @@
 														<div class="col-md-3">
 															<div class="jumbotron product">
 																<div class="photo-product" onclick="window.location.href='/PrettyStyle/controller.do?path=productdetails&command=ViewProduct&id_product=${product.id}'">
-																	<img src="App/assets/img/jbl.png" alt="${product.name}">
+																	<img src="${product.photos[0].url}" alt="Imagem de ${product.name}">
 																</div>
 																<label class="title-product">${product.name}</label>
 																<div class="stars">
@@ -287,7 +288,6 @@
   	</div>
     <script src="App/lib/jquery/1.9.1/jquery-1.9.1.min.js"></script>
     <script src="App/lib/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-    <script src="App/js/general.js"></script>
     <script src="App/js/index.js"></script>
   </body>
 </html>

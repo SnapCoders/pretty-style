@@ -2,6 +2,7 @@ package br.com.sprintters.prettystyle.command.admin;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Enumeration;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -12,17 +13,19 @@ import com.oreilly.servlet.MultipartRequest;
 
 import br.com.sprintters.prettystyle.command.Command;
 import br.com.sprintters.prettystyle.model.Product;
+import br.com.sprintters.prettystyle.model.ProductPhoto;
 import br.com.sprintters.prettystyle.model.generic.Json;
+import br.com.sprintters.prettystyle.service.ProductPhotoService;
 import br.com.sprintters.prettystyle.service.ProductService;
 
 public class CreateProduct implements Command {
-	private static final String SAVE_DIR = "WebContent\\Upload";
+	private static final String SAVE_DIR = File.separator + "WebContent\\Upload";
 	
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, Exception {
 		try {
 			String appPath = request.getServletContext().getRealPath("");
-			String savePath = appPath + File.separator + SAVE_DIR;
+			String savePath = appPath + SAVE_DIR;
 			
 			MultipartRequest m = new MultipartRequest(request, savePath, 100100100);
 			
@@ -34,8 +37,25 @@ public class CreateProduct implements Command {
 			Product product = new Product(pName, pDescription, pPrice, idMark);
 			
 			ProductService cs = new ProductService();
+			ProductPhotoService pps = new ProductPhotoService();
 			
-			cs.create(product);
+			int idProduct = cs.create(product);
+			
+			Enumeration<?> files = m.getFileNames();
+			
+			while (files.hasMoreElements()) {
+				String name = (String)files.nextElement();
+				
+				if (name.startsWith("file-")) {
+					String fileName = m.getFilesystemName(name);
+					
+					String url = File.separator + "PrettyStyle" + SAVE_DIR + File.separator + fileName;
+					
+					ProductPhoto productPhoto = new ProductPhoto(fileName, url, idProduct);
+					
+					pps.create(productPhoto);
+				}
+			}
 			
 			Json json = new Json(true, "Produto cadastrado com sucesso!", product);
     		

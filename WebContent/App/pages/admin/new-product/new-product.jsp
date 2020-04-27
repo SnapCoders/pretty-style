@@ -34,7 +34,7 @@
   			request.setAttribute("marks", ms.list());
   		%>
 		<c:import url="../../../components/header.jsp" />
-		<div class="container">
+		<div id="main-content" class="container">
 			<div class="new-product-container">
 			  	<div class="container">
 			  		<div class="col-md-12 header">

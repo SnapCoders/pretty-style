@@ -1,3 +1,13 @@
+window.onscroll = function () {
+	if (window.pageYOffset > 108) {
+		$('#bottom-header').addClass('sticky');
+		$('#main-content').addClass('sticky-content');
+	} else {
+		$('#bottom-header').removeClass('sticky');
+		$('#main-content').removeClass('sticky-content');
+	}
+};
+
 $(document).ready(function () {
 	let auth = sessionStorage.getItem('token');
 	
@@ -38,7 +48,6 @@ $(document).ready(function () {
 			var newUrl = oldUrl + '&id_user=' + idUser + '&token=' + userToken + "'";
 			$(this).attr('onclick', newUrl);
 		});
-		
 	}
 });
 

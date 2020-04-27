@@ -18,6 +18,6 @@ public class ConnectionFactory {
 		String user = "root";
 		String password = "9Km#47mK";
 		
-		return DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/" + database + "?allowPublicKeyRetrieval=true&useTimezone=true&serverTimezone=UTC&characterEncoding=utf-8&useSSL=false", user, password);
+		return DriverManager.getConnection("jdbc:mysql://localhost:3306/" + database + "?allowPublicKeyRetrieval=true&useTimezone=true&serverTimezone=UTC&characterEncoding=utf-8&useSSL=false", user, password);
 	}
 }
