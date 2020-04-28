@@ -26,7 +26,7 @@
 					<img src="/PrettyStyle/App/assets/icons/home.svg">
 				</div>
 				<strong onclick="handleShowModal();">Minha conta</strong>
-				<img src="/PrettyStyle/App/assets/icons/arrow-down.svg">
+				<img class="bottom-arrow" src="/PrettyStyle/App/assets/icons/arrow-down.svg">
 				<div id="login-modal" class="login-modal inactive">
 					<div class="actions">
 						<c:if test="${empty idUser}">
@@ -63,13 +63,13 @@
 			<ul>
 				<li class="active">SALES</li>
 				<li onclick="window.location.href='/PrettyStyle/App/pages/'">NOVIDADES</li>
-				<li onclick="window.location.href='/PrettyStyle/App/pages/save-address/save-address.jsp'">CRIAR ENDEREÇO</li>
+				<!-- <li onclick="window.location.href='/PrettyStyle/App/pages/save-address/save-address.jsp'">CRIAR ENDEREÇO</li>
 				<li id="id-user" onclick="window.location.href='/PrettyStyle/controller.do?path=address&command=ListAddress'">MEUS ENDEREÇOS</li>
-				<li onclick="window.location.href='/PrettyStyle/App/pages/catalog/catalog.jsp'">CATÁLOGO</li>
-				<!-- <li>ACESSÓRIOS</li>
+				<li onclick="window.location.href='/PrettyStyle/App/pages/catalog/catalog.jsp'">CATÁLOGO</li> -->
+				<li>ACESSÓRIOS</li>
 		        <li>MASCULINO</li>
 		        <li>FEMININO</li>
-		        <li>PETS</li> -->
+		        <li>PETS</li>
 			</ul>
 		</nav>
 	</div>

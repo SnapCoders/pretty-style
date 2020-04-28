@@ -7,6 +7,7 @@ import java.util.Enumeration;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.google.gson.Gson;
 import com.oreilly.servlet.MultipartRequest;
@@ -14,9 +15,11 @@ import com.oreilly.servlet.MultipartRequest;
 import br.com.sprintters.prettystyle.command.Command;
 import br.com.sprintters.prettystyle.model.Product;
 import br.com.sprintters.prettystyle.model.ProductPhoto;
+import br.com.sprintters.prettystyle.model.User;
 import br.com.sprintters.prettystyle.model.generic.Json;
 import br.com.sprintters.prettystyle.service.ProductPhotoService;
 import br.com.sprintters.prettystyle.service.ProductService;
+import br.com.sprintters.prettystyle.service.UserService;
 
 public class CreateProduct implements Command {
 	private static final String SAVE_DIR = File.separator + "WebContent\\Upload";
@@ -24,6 +27,9 @@ public class CreateProduct implements Command {
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, Exception {
 		try {
+			HttpSession session = request.getSession();
+			
+			int idUser = (int)session.getAttribute("idUser");
 			String appPath = request.getServletContext().getRealPath("");
 			String savePath = appPath + SAVE_DIR;
 			
@@ -34,7 +40,11 @@ public class CreateProduct implements Command {
 			Double pPrice = Double.parseDouble(m.getParameter("price"));
 			int idMark = Integer.parseInt(m.getParameter("idMark"));
 			
-			Product product = new Product(pName, pDescription, pPrice, idMark);
+			UserService us = new UserService();
+			
+			User user = us.find(idUser);
+			
+			Product product = new Product(pName, pDescription, pPrice, idMark, user.getProvider().getId());
 			
 			ProductService cs = new ProductService();
 			ProductPhotoService pps = new ProductPhotoService();

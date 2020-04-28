@@ -21,37 +21,26 @@ public class ListProducts implements Command {
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, Exception {
 		try {
-			String idUserStr = request.getParameter("id_user");
-			boolean isJson = Boolean.parseBoolean(request.getParameter("json"));
-			
-			int idUser = -1;
-			
 			HttpSession session = request.getSession();
 			
-			try {
-				idUser = Integer.parseInt(idUserStr);
-				
-			} catch (NumberFormatException e) {
-				response.sendRedirect("/PrettyStyle/App/pages/sign-in/sign-in.jsp");
-			}
+			int idUser = (int)session.getAttribute("idUser");
+			boolean isJson = Boolean.parseBoolean(request.getParameter("json"));
 			
-			if (idUser != -1) {
-				UserService us = new UserService();
-				ProductService ps = new ProductService();
+			UserService us = new UserService();
+			ProductService ps = new ProductService();
+			
+			User user = us.find(idUser);
+			ArrayList<Product> products = ps.listByIdProvider(user.getProvider().getId());
+			
+			if (isJson) {
+				Json json = new Json(true, "", products);
 				
-				User user = us.find(idUser);
-				ArrayList<Product> products = ps.listByIdProvider(user.getProvider().getId());
+				response.setContentType("application/json");
+				response.getWriter().write(new Gson().toJson(json).toString());
+			} else {
+				session.setAttribute("products", products);
 				
-				if (isJson) {
-					Json json = new Json(true, "", products);
-					
-					response.setContentType("application/json");
-					response.getWriter().write(new Gson().toJson(json).toString());
-				} else {
-					session.setAttribute("products", products);
-					
-					response.sendRedirect("/PrettyStyle/App/pages/admin/list-products/list-products.jsp");
-				}
+				response.sendRedirect("/PrettyStyle/App/pages/admin/list-products/list-products.jsp");
 			}
 		} catch (Exception e) {
 			Json json = new Json(false, "Desculpe, ocorreu um erro ao listar seus produtos, tente novamente!", e);

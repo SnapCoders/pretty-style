@@ -8,10 +8,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.json.JSONObject;
+import com.google.gson.Gson;
 
 import br.com.sprintters.prettystyle.command.Command;
 import br.com.sprintters.prettystyle.model.User;
+import br.com.sprintters.prettystyle.model.generic.Json;
 import br.com.sprintters.prettystyle.service.JWTTokenService;
 import br.com.sprintters.prettystyle.service.UserService;
 
@@ -21,6 +22,7 @@ public class Login implements Command {
 		try {
 			String username = request.getParameter("username");
 			String password = request.getParameter("password");
+			boolean isJson = Boolean.parseBoolean(request.getParameter("json"));
 			
 			UserService userService = new UserService();
 			
@@ -35,7 +37,7 @@ public class Login implements Command {
 				
 				String nameAndSurnameBase64 = Base64.getEncoder().encodeToString(nameAndSurname.getBytes());
 				
-				String token = jwt.signJWT(user, name, nameAndSurnameBase64);
+				String token = "Bearer " + jwt.signJWT(user, name, nameAndSurnameBase64);
 				
 				HttpSession session = request.getSession();
 				
@@ -49,31 +51,25 @@ public class Login implements Command {
 				session.setAttribute("token", token);
 				session.setAttribute("idUser", user.getId());
 				
-				JSONObject retorno = new JSONObject();
-				
-				retorno.put("success", true);
-				retorno.put("message", "Olá " + name + ", seja bem vindo!");
-				retorno.put("token", token);
-				
-				response.setContentType("application/json");
-				response.getWriter().write(retorno.toString());
+				if (isJson) {
+					Json json = new Json(true, "Olá " + name + ", seja bem vindo!", token);
+		    		
+		    		response.setContentType("application/json");
+		    		response.getWriter().write(new Gson().toJson(json).toString());
+				} else {
+					response.sendRedirect("/PrettyStyle/index.jsp");
+				}
 			} else {
-				JSONObject retorno = new JSONObject();
-				
-				retorno.put("success", false);
-				retorno.put("message", "Login ou senha inválidos, verifique seus dados e tente novamente!");
-				
-				response.setContentType("application/json");
-				response.getWriter().write(retorno.toString());
+				Json json = new Json(false, "Login ou senha inválidos, verifique seus dados e tente novamente!", null);
+	    		
+	    		response.setContentType("application/json");
+	    		response.getWriter().write(new Gson().toJson(json).toString());
 			}
 		} catch (Exception e) {
-			JSONObject retorno = new JSONObject();
-			
-			retorno.put("success", false);
-			retorno.put("message", "Desculpe houve uma falha na autenticação, estamos trabalhando para resolver este problema!");
+			Json json = new Json(false, "Desculpe houve uma falha na autenticação, estamos trabalhando para resolver este problema!", e);
 			
 			response.setContentType("application/json");
-			response.getWriter().write(retorno.toString());
+    		response.getWriter().write(new Gson().toJson(json).toString());
 		}
 	}
 }

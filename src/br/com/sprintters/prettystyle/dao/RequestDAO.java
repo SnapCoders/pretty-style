@@ -139,7 +139,8 @@ public class RequestDAO {
 				"	p.name\r\n" + 
 				"    , p.description\r\n" + 
 				"    , p.price\r\n" + 
-				"    , p.id_mark\r\n" + 
+				"    , p.id_mark\r\n" +
+				"    , p.id_product\r\n" +
 				"    , r.id_client\r\n" + 
 				"FROM\r\n" + 
 				"	product p\r\n" + 
@@ -156,7 +157,8 @@ public class RequestDAO {
 						rs.getString("name"),	
 						rs.getString("description"),
 						rs.getDouble("price"),
-						rs.getInt("id_mark")
+						rs.getInt("id_mark"),
+						rs.getInt("id_product")
 					);
 					Request to = new Request(p,rs.getInt("id_client"));
 					reqs.add(to);

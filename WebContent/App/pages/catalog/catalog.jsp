@@ -27,7 +27,7 @@
   </head>
   <body>
   	<c:import url="../../components/header.jsp" />
-  	<div class="container">
+  	<div id="main-content" class="container">
   		<%
 			CategoryService cs = new CategoryService();
 			ArrayList<Category> lista = cs.list(); 

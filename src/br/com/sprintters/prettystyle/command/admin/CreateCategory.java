@@ -17,39 +17,26 @@ public class CreateCategory implements Command {
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, Exception {
 		try {
-			String idUserStr = request.getParameter("id_user");
 			String pName = request.getParameter("name");
 	        String pColor = request.getParameter("color");
 			boolean isJson = Boolean.parseBoolean(request.getParameter("json"));
 			
-			int idUser = -1;
+			Category category = new Category();
+	        category.setName(pName);
+	        category.setColor(pColor);
+	
+	        CategoryService cs = new CategoryService();
+        
+        	cs.create(category);
+        	category = cs.find(category.getId());
 			
-			try {
-				idUser = Integer.parseInt(idUserStr);
+			if (isJson) {
+				Json json = new Json(true, "Categoria cadastrada com sucesso!", category);
 				
-			} catch (NumberFormatException e) {
-				response.sendRedirect("/PrettyStyle/App/pages/sign-in/sign-in.jsp");
-			}
-			
-			if (idUser != -1) {
-				Category category = new Category();
-		        category.setName(pName);
-		        category.setColor(pColor);
-		
-		        CategoryService cs = new CategoryService();
-	        
-	        
-	        	cs.create(category);
-	        	category = cs.find(category.getId());
-				
-				if (isJson) {
-					Json json = new Json(true, "Categoria cadastrada com sucesso!", category);
-					
-					response.setContentType("application/json");
-					response.getWriter().write(new Gson().toJson(json).toString());
-				} else {
-					response.sendRedirect("/PrettyStyle/App/pages/product-details/product-details.jsp");
-				}
+				response.setContentType("application/json");
+				response.getWriter().write(new Gson().toJson(json).toString());
+			} else {
+				response.sendRedirect("/PrettyStyle/App/pages/product-details/product-details.jsp");
 			}
 		} catch (Exception e) {
 			throw new Exception(e.getMessage());

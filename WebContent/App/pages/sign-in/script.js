@@ -9,7 +9,8 @@ $(document).ready(function () {
 			password: 'Digite sua senha de acesso.',
 		},
 		submitHandler: function (form) {
-			handleLogin(form);
+			//handleLogin(form);
+			form.submit();
 		},
 	});
 });
@@ -30,9 +31,8 @@ function handleLogin(form) {
 		url: '/PrettyStyle/controller.do?path=signin&command=Login', type: 'POST', data: $(form).serialize(),
 		success: function (data) {
 			if (data.success) {
-				console.log(parseJwt(data.token));
 				sessionStorage.setItem('id_user', parseInt(parseJwt(data.token).jti));
-				sessionStorage.setItem('token', 'Bearer ' + data.token);
+				sessionStorage.setItem('token', data.token);
 				
 				AlertaSucesso(data);
 

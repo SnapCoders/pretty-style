@@ -24,7 +24,7 @@
   </head>
   <body>
   	<c:import url="../../components/header.jsp" />
-  	<div class="container">
+  	<div id="main-content" class="container">
 		<div class="cart-container">
 			<div class="container">
 				<div class="col-md-12 header">

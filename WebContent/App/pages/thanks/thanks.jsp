@@ -23,7 +23,7 @@
 	</head>
 	<body>
 		<c:import url="../../components/header.jsp" />
-		<div class="container">
+		<div id="main-content" class="container">
 			<div class="thanks-container">
 				<div class="container">
 					<div class="col-sm-12 header">

@@ -27,7 +27,7 @@
 	</head>
 	<body>
 		<c:import url="../../components/header.jsp" />
-		<div class="container">
+		<div id="main-content" class="container">
 			<%
 				UserService us = new UserService();
 				

@@ -21,37 +21,26 @@ public class ListMarks implements Command {
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, Exception {
 		try {
-			String idUserStr = request.getParameter("id_user");
-			boolean isJson = Boolean.parseBoolean(request.getParameter("json"));
-			
-			int idUser = -1;
-			
 			HttpSession session = request.getSession();
 			
-			try {
-				idUser = Integer.parseInt(idUserStr);
-				
-			} catch (NumberFormatException e) {
-				response.sendRedirect("/PrettyStyle/App/pages/sign-in/sign-in.jsp");
-			}
+			int idUser = (int)session.getAttribute("idUser");
+			boolean isJson = Boolean.parseBoolean(request.getParameter("json"));
+
+			UserService us = new UserService();
+			MarkService ms = new MarkService();
 			
-			if (idUser != -1) {
-				UserService us = new UserService();
-				MarkService ms = new MarkService();
+			User user = us.find(idUser);
+			ArrayList<Mark> marks = ms.listByIdProvider(user.getProvider().getId());
+			
+			if (isJson) {
+				Json json = new Json(true, "", marks);
 				
-				User user = us.find(idUser);
-				ArrayList<Mark> marks = ms.listByIdProvider(user.getProvider().getId());
+				response.setContentType("application/json");
+				response.getWriter().write(new Gson().toJson(json).toString());
+			} else {
+				session.setAttribute("marks", marks);
 				
-				if (isJson) {
-					Json json = new Json(true, "", marks);
-					
-					response.setContentType("application/json");
-					response.getWriter().write(new Gson().toJson(json).toString());
-				} else {
-					session.setAttribute("marks", marks);
-					
-					response.sendRedirect("/PrettyStyle/App/pages/admin/list-marks/list-marks.jsp");
-				}
+				response.sendRedirect("/PrettyStyle/App/pages/admin/list-marks/list-marks.jsp");
 			}
 		} catch (Exception e) {
 			Json json = new Json(false, "Desculpe, ocorreu um erro ao listar suas marcas, tente novamente!", e);

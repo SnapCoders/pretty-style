@@ -16,21 +16,20 @@
 		
 		<link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
 		
-		<title>Pretty Style</title>
+		<title>Pretty Style - Meus Endereços</title>
 		
 		<link rel="stylesheet" href="../../lib/bootstrap/4.4.1/css/bootstrap.min.css">
 		<link rel="stylesheet" href="../../lib/sweetalert/sweetalert.css">
 		
 		<link rel="stylesheet" href="../../styles/index.css">
 		<link rel="stylesheet" href="../../styles/header.css">
+		<link rel="stylesheet" href="../../styles/responsive.css">
 		
 		<link rel="stylesheet" href="styles.css">
-		<link rel="stylesheet" href="../../styles/responsive.css">
 	</head>
 	<body>
 		<c:import url="../../components/header.jsp" />
-		<div class="container">
-
+		<div id="main-content" class="container">
 			<div class="profile-address-container">
 				<div class="container">
 					<div class="col-md-12 header">
@@ -115,7 +114,6 @@
 		<script src="../../lib/jquery/1.9.1/jquery-1.9.1.min.js"></script>
 		<script src="../../lib/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 		<script src="../../lib/sweetalert/sweetalert.min.js"></script>
-		<script src="../../js/general.js"></script>
 		
 		<script src="script.js"></script>
 	</body>

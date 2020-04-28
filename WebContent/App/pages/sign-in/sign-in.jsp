@@ -15,7 +15,7 @@
 		
 		<link rel="shortcut icon" href="<%=request.getContextPath()%>/favicon.ico" type="image/x-icon" />
 
-		<title>Pretty Style - Cadastrar Produto</title>
+		<title>Pretty Style - Entrar</title>
     
 		<link rel="stylesheet" href="../../lib/bootstrap/4.4.1/css/bootstrap.min.css">
 		<link rel="stylesheet" href="../../lib/sweetalert/sweetalert.css">
@@ -26,13 +26,8 @@
 		<link rel="stylesheet" href="styles.css">
 	</head>
 	<body>
-		<%
-  			MarkService ms = new MarkService();
-  			
-  			request.setAttribute("marks", ms.list());
-  		%>
 		<c:import url="../../components/header.jsp" />
-		<div class="container">
+		<div id="main-content" class="container">
 			<div class="login-container">
 			  	<div class="container">
 			  		<div class="col-md-12 header">
@@ -47,7 +42,7 @@
 			  		</div>
 			  		<div class="jumbotron main">
 			  			<div class="col-md-12 content">
-			  				<form action="/PrettyStyle/sessions" method="POST" name="login">
+			  				<form action="/PrettyStyle/controller.do?path=signin&command=Login" method="POST" name="login">
 				  				<div class="row username-area">
 				  					<label for="username">Username ou E-mail<span style="color: #ff0000; margin-left: 5px;">*</span></label>
 				  					<input class="form-control" id="username" name="username" placeholder="Seu usuário de acesso ou e-mail" />

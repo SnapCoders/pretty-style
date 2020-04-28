@@ -175,6 +175,11 @@ header#main-header div.bottom-header nav {
 	margin-top: -15px;
 }
 
+header#main-header div.bottom-header nav ul {
+	display: flex;
+	justify-content: center;
+}
+
 header#main-header div.bottom-header nav ul li {
 	display: inline-block;
 	padding: 15px 60px;

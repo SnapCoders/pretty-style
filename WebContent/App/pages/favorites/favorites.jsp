@@ -25,12 +25,8 @@
     <link rel="stylesheet" href="styles.css">
   </head>
   <body>
-  		<%
-  		ClientProductLikeService rs = new ClientProductLikeService();
-		request.setAttribute("lista", rs.listProductLikeByIdClient(1));
-		%>
   	<c:import url="../../components/header.jsp" />
-  	<div class="container">
+  	<div id="main-content" class="container">
 		<div class="favorites-container">
 			<div class="container">
 				<div class="col-md-12 header">

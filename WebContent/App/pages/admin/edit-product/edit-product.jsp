@@ -35,12 +35,12 @@
 			request.setAttribute("marks", ms.list());
 		%>
 		<div id="main-content" class="container">
-			<div class="new-product-container">
+			<div class="edit-product-container">
 			  	<div class="container">
 			  		<div class="col-md-12 header">
 			  			<div class="row content">
 				  			<div class="title">
-				  				<label>Cadastrar novo produto</label>
+				  				<label>Editar produto</label>
 				  			</div>
 				  			<div class="line">
 				  				<hr />
@@ -50,21 +50,21 @@
 			  		</div>
 			  		<div class="jumbotron main">
 			  			<div class="col-md-12 content">
-			  				<form id="id-user" action="/PrettyStyle/controller.do?path=admin&command=CreateProduct&json=true" method="post" enctype="multipart/form-data" name="add-product">
+			  				<form id="id-user" action="/PrettyStyle/controller.do?path=admin&command=EditProduct&json=true" method="post" enctype="multipart/form-data" name="add-product">
 				  				<div class="row">
 				  					<div class="col-md-6">
 					  					<label for="name">Nome do produto<span style="color: #ff0000; margin-left: 5px;">*</span></label>
-					  					<input class="form-control" id="name" name="name" placeholder="Nome do produto" />
+					  					<input class="form-control" id="name" name="name" placeholder="Nome do produto" value="${product.name}" />
 					  				</div>
 					  				<div class="col-md-6">
 					  					<label for="description">Descrição<span style="color: #ff0000; margin-left: 5px;">*</span></label>
-					  					<input class="form-control" id="description" name="description" placeholder="Breve descrição do produto" />
+					  					<input class="form-control" id="description" name="description" placeholder="Breve descrição do produto" value="${product.description}" />
 					  				</div>
 				  				</div>
 				  				<div class="row">
 				  					<div class="col-md-6">
 					  					<label for="mark">Selecione a marca do seu Produto<span style="color: #ff0000; margin-left: 5px;">*</span></label>
-					  					<select class="form-control" id="mark" name="idMark">
+					  					<select class="form-control" id="mark" name="idMark" >
 					  						<option value="0">--Selecione--</option>
 					  						<c:forEach var="mark" items="${marks}">
 					  							<option value="${mark.id}">${mark.name}</option>
@@ -73,7 +73,7 @@
 					  				</div>
 				  					<div class="col-md-6">
 					  					<label for="price">Preço<span style="color: #ff0000; margin-left: 5px;">*</span></label>
-					  					<input class="form-control" id="price" name="price" placeholder="Preço do seu produto" />
+					  					<input class="form-control" id="price" name="price" placeholder="Preço do seu produto" value="${product.price}" />
 					  				</div>
 				  				</div>
 				  				<div class="row">
@@ -84,7 +84,7 @@
 				  					</div>
 				  				</div>
 					  			<div class="row button-area">
-				  					<button type="submit">CADASTRAR</button>
+				  					<button type="submit">SALVAR</button>
 				  				</div>
 			  				</form>
 			  			</div>

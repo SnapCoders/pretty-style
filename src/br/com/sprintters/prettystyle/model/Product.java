@@ -13,15 +13,19 @@ public class Product extends Entity {
 	private int idMark;
 	private Mark mark;
 	
+	private int idProvider;
+	private Provider provider;
+	
 	private ArrayList<ProductPhoto> photos;
 	
 	public Product() { }
 
-	public Product(String name, String description, double price, int idMark) {
+	public Product(String name, String description, double price, int idMark, int idProvider) {
 		this.name = name;
 		this.description = description;
 		this.price = price;
 		this.idMark = idMark;
+		this.idProvider = idProvider;
 	}
 	
 	public Product(String name, String description, double price, Mark mark) {

@@ -5,6 +5,7 @@ import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import br.com.sprintters.prettystyle.model.User;
 import br.com.sprintters.prettystyle.service.UserService;
@@ -16,19 +17,20 @@ public class AuthMiddleware  {
 			
 			request.setCharacterEncoding("UTF-8");
 			
-			String idUserStr = request.getParameter("id_user");
-			String tokenStr = request.getParameter("token");
-			
+			HttpSession session = request.getSession();
+						
 			int idUser = -1;
+			String token = "";
 			
 			try {
-				idUser = Integer.parseInt(idUserStr);
+				idUser = (int)session.getAttribute("idUser");
+				token = (String)session.getAttribute("token");
 			} catch (NumberFormatException e) {
 				isAuth = false;
 			}
 			
-			if (idUserStr != null && tokenStr != null) {
-				String[] str = tokenStr.split(" ", 2);
+			if (idUser != -1 && token != null) {
+				String[] str = token.split(" ", 2);
 				
 				if (str[0].equals("Bearer")) { // acressentar no if a verificação do token
 					if (idUser != -1) {
