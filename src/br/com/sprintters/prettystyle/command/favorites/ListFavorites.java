@@ -21,39 +21,28 @@ public class ListFavorites implements Command {
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, Exception {
 		try {
-			String idUserStr = request.getParameter("id_user");
-			boolean isJson = Boolean.parseBoolean(request.getParameter("json"));
-			
-			int idUser = -1;
-			
 			HttpSession session = request.getSession();
 			
-			try {
-				idUser = Integer.parseInt(idUserStr);
-				
-			} catch (NumberFormatException e) {
-				response.sendRedirect("/PrettyStyle/App/pages/sign-in/sign-in.jsp");
-			}
+			int idUser = (int)session.getAttribute("idUser");
+			boolean isJson = Boolean.parseBoolean(request.getParameter("json"));
 			
-			if (idUser != -1) {
-				UserService us = new UserService();
+			UserService us = new UserService();
+			
+			User user = us.find(idUser);
+			
+			ProductService ps = new ProductService();
+			
+			ArrayList<ClientProductLike> productsLiked = ps.listFavoritesByIdUser(user.getId());
+			
+			if (isJson) {
+				Json json = new Json(true, "", productsLiked);
 				
-				User user = us.find(idUser);
+				response.setContentType("application/json");
+				response.getWriter().write(new Gson().toJson(json).toString());
+			} else {
+				session.setAttribute("productsLiked", productsLiked);
 				
-				ProductService ps = new ProductService();
-				
-				ArrayList<ClientProductLike> productsLiked = ps.listFavoritesByIdUser(user.getId());
-				
-				if (isJson) {
-					Json json = new Json(true, "", productsLiked);
-					
-					response.setContentType("application/json");
-					response.getWriter().write(new Gson().toJson(json).toString());
-				} else {
-					session.setAttribute("productsLiked", productsLiked);
-					
-					response.sendRedirect("/PrettyStyle/App/pages/favorites/favorites.jsp");
-				}
+				response.sendRedirect("/PrettyStyle/App/pages/favorites/favorites.jsp");
 			}
 		} catch (Exception e) {
 			throw new Exception(e.getMessage());

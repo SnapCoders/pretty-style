@@ -46,7 +46,7 @@
 			  		</div>
 			  		<div class="jumbotron main">
 			  			<div class="col-md-12 content">
-							<table id="tbProducts" class="table table-responsive table-bordered table-hover">
+							<table id="tbProducts" class="table table-bordered table-hover">
 								<thead class="thead-dark">
 									<tr>
 										<th scope="col" style="text-align: center; min-width: 15px;" class="details-control">Id</th>
@@ -63,7 +63,7 @@
 											<td>${product.name}<!-- <span class="badge badge-pill badge-primary" style="margin-left: 10px;">50% OFF</span> --></td>
 											<td>${product.description}</td>
 											<td><fmt:formatNumber value="${product.price}" type="currency" currencySymbol="R$"/></td>
-											<td style="text-align: center;">
+											<td style="text-align: center; display: flex; align-items: center; justify-content: space-around;">
 												<button class="btn btn-sm btn-outline-success">
 													<i class="far fa-eye"></i>
 												</button>

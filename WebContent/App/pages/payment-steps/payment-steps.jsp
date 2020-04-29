@@ -62,7 +62,6 @@
 						<hr />
 			  		</div>
 			  		<div class="jumbotron main">
-
 			  			<div class="col-md-12">
 			  				<div class="row">
 			  					<div class="col-md-7 column-location">
