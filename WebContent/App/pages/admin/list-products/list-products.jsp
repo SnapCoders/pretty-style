@@ -1,5 +1,3 @@
-<%@page import="br.com.sprintters.prettystyle.model.Product"%>
-<%@page import="java.util.ArrayList"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
@@ -16,16 +14,18 @@
 
 		<title>Pretty Style - Gerenciar Produtos</title>
     
-		<link rel="stylesheet" href="/PrettyStyle/App/lib/bootstrap/4.4.1/css/bootstrap.min.css">
-		<link rel="stylesheet" href="/PrettyStyle/App/lib/datatables/datatables.min.css">
-		<link rel="stylesheet" href="/PrettyStyle/App/lib/sweetalert/sweetalert.css">
-		<link rel="stylesheet" href="/PrettyStyle/App/assets/fonts/css/all.css">
-		<link rel="stylesheet" href="/PrettyStyle/App/assets/fonts/css/fontawesome.min.css">
+		<link rel="stylesheet" href="../../../lib/bootstrap/4.4.1/css/bootstrap.min.css">
+		<link rel="stylesheet" href="../../../lib/datatables/datatables.min.css">
+		<link rel="stylesheet" href="../../../lib/sweetalert/sweetalert.css">
+		<link rel="stylesheet" href="../../../assets/fonts/css/all.css">
+		<link rel="stylesheet" href="../../../assets/fonts/css/fontawesome.min.css">
 
-		<link rel="stylesheet" href="/PrettyStyle/App/styles/index.css">
-		<link rel="stylesheet" href="/PrettyStyle/App/styles/header.css">
+		<link rel="stylesheet" href="../../../styles/index.css">
+		<link rel="stylesheet" href="../../../styles/header.css">
+		<link rel="stylesheet" href="../../../styles/footer.css">
+		<link rel="stylesheet" href="../../../styles/responsive.css">
     
-		<link rel="stylesheet" href="/PrettyStyle/App/pages/admin/list-products/styles.css">
+		<link rel="stylesheet" href="styles.css">
 	</head>
 	<body>
 		<c:import url="../../../components/header.jsp" />
@@ -85,12 +85,13 @@
 			  	</div>
 			</div>
 		</div>
+		<c:import url="../../../components/footer.jsp" />
 		
-		<script src="/PrettyStyle/App/lib/jquery/1.9.1/jquery-1.9.1.min.js"></script>
-		<script src="/PrettyStyle/App/lib/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-		<script src="/PrettyStyle/App/lib/datatables/datatables.min.js"></script>
-		<script src="/PrettyStyle/App/lib/sweetalert/sweetalert.min.js"></script>
+		<script src="../../../lib/jquery/1.9.1/jquery-1.9.1.min.js"></script>
+		<script src="../../../lib/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+		<script src="../../../lib/datatables/datatables.min.js"></script>
+		<script src="../../../lib/sweetalert/sweetalert.min.js"></script>
 		
-		<script src="/PrettyStyle/App/pages/admin/list-products/script.js"></script>
+		<script src="script.js"></script>
 	</body>
 </html>

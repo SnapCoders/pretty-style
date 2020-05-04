@@ -25,23 +25,23 @@ public class ServletController extends HttpServlet {
     	try {
     		String commandCalled = request.getParameter("path") + "." + request.getParameter("command");
     		
-    		if (verifyRoute(commandCalled)) {
-				AuthMiddleware middleware = new AuthMiddleware();
+//    		if (verifyRoute(commandCalled)) {
+//				AuthMiddleware middleware = new AuthMiddleware();
     			
-	    		boolean isAuthenticated = middleware.auth(request, response);
+//	    		boolean isAuthenticated = middleware.auth(request, response);
 	    		
-	    		if (isAuthenticated) {
+//	    		if (isAuthenticated) {
 	    			Command command = (Command)Class.forName("br.com.sprintters.prettystyle.command." + commandCalled).newInstance();
 	    			command.execute(request, response);
-	    		} else {
-	    			response.sendRedirect("App/pages/sign-in/sign-in.jsp");
-	    		}
-    		} else {
-    			if (commandCalled.equals("null.null")) commandCalled = "home.index";
-    			
-    			Command command = (Command)Class.forName("br.com.sprintters.prettystyle.command." + commandCalled).newInstance();
-				command.execute(request, response);
-    		}
+//	    		} else {
+//	    			response.sendRedirect("App/pages/sign-in/sign-in.jsp");
+//	    		}
+//    		} else {
+//    			if (commandCalled.equals("null.null")) commandCalled = "home.index";
+//    			
+//    			Command command = (Command)Class.forName("br.com.sprintters.prettystyle.command." + commandCalled).newInstance();
+//				command.execute(request, response);
+//    		}
     	} catch (Exception e) {
     		e.printStackTrace();
     		
@@ -50,90 +50,6 @@ public class ServletController extends HttpServlet {
     		response.setContentType("application/json");
     		response.getWriter().write(new Gson().toJson(json).toString());
     	}
-    }
-    
-    private boolean verifyRoute(String commandCalled) {
-    	boolean isAuthorize = false;
-    	
-    	switch (commandCalled) {
-    		case "null.null":
-    			isAuthorize = false;
-    			break;
-	    	case "admin.CreateCategory":
-	    		isAuthorize = true;
-	    		break;
-			case "admin.CreateMark":
-				isAuthorize = true;
-				break;
-    		case "admin.CreateProduct":
-				isAuthorize = true;
-				break;
-    		case "admin.DeleteCategory":
-				isAuthorize = true;
-				break;
-    		case "admin.DeleteMark":
-				isAuthorize = true;
-				break;
-    		case "admin.DeleteProduct":
-				isAuthorize = true;
-				break;
-    		case "admin.EditCategory":
-    			isAuthorize = true;
-    			break;
-    		case "admin.EditMark":
-    			isAuthorize = true;
-    			break;
-    		case "admin.EditProduct":
-    			isAuthorize = true;
-    			break;
-    		case "admin.ListCategories":
-				isAuthorize = true;
-				break;
-    		case "admin.ListMarks":
-				isAuthorize = true;
-				break;
-    		case "admin.ListProducts":
-				isAuthorize = true;
-				break;
-    		case "cart.ListCart":
-    			isAuthorize = true;
-    			break;
-    		case "favorites.CreateFavorite":
-    			isAuthorize = true;
-    			break;
-    		case "favorites.ListFavorites":
-    			isAuthorize = true;
-    			break;
-    		case "favorites.DeleteFavorite":
-    			isAuthorize = true;
-    			break;
-    		case "paymentsteps.CreatePayStep":
-    			isAuthorize = true;
-    			break;
-    		case "paymentsteps.PayStep":
-    			isAuthorize = true;
-    			break;
-    		case "paymentsteps.Pay":
-    			isAuthorize = true;
-    			break;
-    		case "productdetails.ViewProduct":
-    			isAuthorize = false;
-    			break;
-    		case "requests.ListRequests":
-    			isAuthorize = true;
-    			break;
-    		case "signin.Login":
-    			isAuthorize = false;
-    			break;
-    		case "signin.Logout":
-    			isAuthorize = true;
-    			break;
-    		default:
-    			isAuthorize = false;
-    			break;
-    	}
-    	
-    	return isAuthorize;
     }
     
     @HttpMethodConstraint("GET")

@@ -176,3 +176,15 @@ div.requests-container div.container div.jumbotron.main div.content div.product-
   height: 80px;
   display: block;
 }
+
+div.empty-request {
+	width: 100%;
+	min-height: 400px;
+	text-align: center;
+}
+
+div.empty-request strong {
+	font-size: 28px;
+	color: #ddd;
+	line-height: 400px;
+}

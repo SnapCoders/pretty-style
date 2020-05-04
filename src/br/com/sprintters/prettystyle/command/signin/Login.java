@@ -40,7 +40,7 @@ public class Login implements Command {
 				String token = "Bearer " + jwt.signJWT(user, name, nameAndSurnameBase64);
 				
 				HttpSession session = request.getSession();
-				
+				System.out.println(token);
 				if (user.isProvider()) {
 					name = user.getProvider().getFantasyName();
 					session.setAttribute("isProvider", true);

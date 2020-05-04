@@ -140,7 +140,7 @@ public class RequestDAO {
 				"    , p.description\r\n" + 
 				"    , p.price\r\n" + 
 				"    , p.id_mark\r\n" +
-				"    , p.id_product\r\n" +
+				"    , i.id_product\r\n" +
 				"    , r.id_client\r\n" + 
 				"FROM\r\n" + 
 				"	product p\r\n" + 

@@ -21,42 +21,31 @@ public class ViewProduct implements Command {
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, Exception {
 		try {
-			String idUserStr = request.getParameter("id_user");
+			HttpSession session = request.getSession();
+			
+			int idUser = (int)session.getAttribute("idUser");
 			int idProduct = Integer.parseInt(request.getParameter("id_product"));
 			boolean isJson = Boolean.parseBoolean(request.getParameter("json"));
 			
-			int idUser = -1;
+			ProductService ps = new ProductService();
+			UserService us = new UserService();
 			
-			HttpSession session = request.getSession();
+			User user = us.find(idUser);
+			Product product = ps.find(idProduct);
 			
-			try {
-				idUser = Integer.parseInt(idUserStr);
-				
-			} catch (NumberFormatException e) {
-				response.sendRedirect("/PrettyStyle/App/pages/sign-in/sign-in.jsp");
-			}
+			ClientProductLike cpl = ps.listFavoriteByIdUserAndIdProduct(user.getId(), idProduct);
 			
-			if (idUser != -1) {
-				ProductService ps = new ProductService();
-				UserService us = new UserService();
+			cpl.setProduct(product);
+			
+			if (isJson) {
+				Json json = new Json(true, "", cpl);
 				
-				User user = us.find(idUser);
-				Product product = ps.find(idProduct);
+				response.setContentType("application/json");
+				response.getWriter().write(new Gson().toJson(json).toString());
+			} else {
+				session.setAttribute("productDetails", cpl);
 				
-				ClientProductLike cpl = ps.listFavoriteByIdUserAndIdProduct(user.getId(), idProduct);
-				
-				cpl.setProduct(product);
-				
-				if (isJson) {
-					Json json = new Json(true, "", cpl);
-					
-					response.setContentType("application/json");
-					response.getWriter().write(new Gson().toJson(json).toString());
-				} else {
-					session.setAttribute("productDetails", cpl);
-					
-					response.sendRedirect("/PrettyStyle/App/pages/product-details/product-details.jsp");
-				}
+				response.sendRedirect("/PrettyStyle/App/pages/product-details/product-details.jsp");
 			}
 		} catch (Exception e) {
 			throw new Exception(e.getMessage());

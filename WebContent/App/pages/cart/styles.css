@@ -15,6 +15,10 @@ div.cart-container div.container div.header div.content div.line {
 	width: 80%;
 }
 
+div.cart-container div.container hr#linha:last-child {
+	display: none;
+}
+
 div.cart-container div.container div.jumbotron.main {
 	border: 1px solid rgba(0, 0, 0, 0.3);
 	border-radius: 10px;
@@ -260,4 +264,16 @@ div.cart-container div.container div.jumbotron.main div.jumbotron.resume div.res
 
 div.cart-container div.container div.jumbotron.main div.jumbotron.resume div.resume-body div.resume-freight button:hover {
     filter: brightness(90%);
+}
+
+div.empty-cart {
+	width: 100%;
+	min-height: 400px;
+	text-align: center;
+}
+
+div.empty-cart strong {
+	font-size: 28px;
+	color: #ddd;
+	line-height: 400px;
 }

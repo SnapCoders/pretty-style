@@ -15,6 +15,10 @@ div.favorites-container div.container div.header div.content div.line {
 	width: 90%;
 }
 
+div.favorites-container div.container hr#linha:last-child {
+	display: none;
+}
+
 div.favorites-container div.container div.jumbotron.main {
 	border: 1px solid rgba(0, 0, 0, 0.3);
 	border-radius: 10px;
@@ -144,4 +148,16 @@ div.favorites-container div.container div.jumbotron.main div.content div.like-pr
 div.favorites-container div.container div.jumbotron.main div.content div.like-product div.favorite div.favorite-icon img {
     width: 20px;
     height: 20px;
+}
+
+div.empty-favorites {
+	width: 100%;
+	min-height: 400px;
+	text-align: center;
+}
+
+div.empty-favorites strong {
+	font-size: 28px;
+	color: #ddd;
+	line-height: 400px;
 }

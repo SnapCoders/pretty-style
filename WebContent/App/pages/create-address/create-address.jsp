@@ -1,10 +1,7 @@
-<%@page import="br.com.sprintters.prettystyle.model.Product"%>
-<%@page import="java.util.ArrayList"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
-<%@ page import="br.com.sprintters.prettystyle.service.ProductService"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 	<head>
@@ -21,6 +18,7 @@
 		
 		<link rel="stylesheet" href="../../styles/index.css">
 		<link rel="stylesheet" href="../../styles/header.css">
+		<link rel="stylesheet" href="../../styles/footer.css">
 		<link rel="stylesheet" href="../../styles/responsive.css">
 		
 		<link rel="stylesheet" href="styles.css">
@@ -107,6 +105,8 @@
 				</div>
 			</div>
 		</div>
+		<c:import url="../../components/footer.jsp" />
+		
 		<script src="../../lib/jquery/1.9.1/jquery-1.9.1.min.js"></script>
 		<script src="../../lib/jquery-validation/jquery.validate.min.js"></script>
 		<script src="../../lib/bootstrap/4.4.1/js/bootstrap.min.js"></script>

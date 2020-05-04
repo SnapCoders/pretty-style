@@ -23,6 +23,7 @@
 
     <link rel="stylesheet" href="App/styles/index.css">
     <link rel="stylesheet" href="App/styles/header.css">
+    <link rel="stylesheet" href="App/styles/footer.css">
     
     <link rel="stylesheet" href="App/styles/styles.css">
     <link rel="stylesheet" href="App/styles/responsive.css">
@@ -286,6 +287,7 @@
 			</div>
 		</div>
   	</div>
+  	<c:import url="App/components/footer.jsp" />
     <script src="App/lib/jquery/1.9.1/jquery-1.9.1.min.js"></script>
     <script src="App/lib/bootstrap/4.4.1/js/bootstrap.min.js"></script>
     <script src="App/js/index.js"></script>

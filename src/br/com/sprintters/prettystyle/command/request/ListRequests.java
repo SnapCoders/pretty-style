@@ -18,41 +18,26 @@ import br.com.sprintters.prettystyle.service.RequestService;
 public class ListRequests  implements Command {
 
 	@Override
-	public void execute(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException, Exception {
+	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, Exception {
 		try {
-    		String idUserStr = request.getParameter("id_user");
-			boolean isJson = Boolean.parseBoolean(request.getParameter("json"));
-			
-			int idUser = -1;
-			
 			HttpSession session = request.getSession();
 			
-			try {
-				idUser = Integer.parseInt(idUserStr);
-				
-			} catch (NumberFormatException e) {
-				response.sendRedirect("/PrettyStyle/App/pages/sign-in/sign-in.jsp");
-			}
+    		int idUser = (int)session.getAttribute("idUser");
+			boolean isJson = Boolean.parseBoolean(request.getParameter("json"));
 			
-			if (idUser != -1) {
+			RequestService rs = new RequestService();
+
+			session.setAttribute("lista", rs.listRequestsByIdClient(idUser));
     		
-				RequestService rs = new RequestService();
-
-				session.setAttribute("lista", rs.listRequestsByIdClient(idUser));
-	    		
-				response.sendRedirect("/PrettyStyle/App/pages/requests/requests.jsp");
-	    		if (isJson) {
-					Json json = new Json(true, "", rs);
-					
-					response.setContentType("application/json");
-					response.getWriter().write(new Gson().toJson(json).toString());
-				} else {
-					
-					response.sendRedirect("/PrettyStyle/App/pages/requests/requests.jsp");
-				}
-
+			response.sendRedirect("/PrettyStyle/App/pages/requests/requests.jsp");
+    		if (isJson) {
+				Json json = new Json(true, "", rs);
 				
+				response.setContentType("application/json");
+				response.getWriter().write(new Gson().toJson(json).toString());
+			} else {
+				
+				response.sendRedirect("/PrettyStyle/App/pages/requests/requests.jsp");
 			}
     	} catch (Exception e) {
 			JSONObject retorno = new JSONObject();

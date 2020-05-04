@@ -25,9 +25,17 @@
 				<div class="account-icon">
 					<img src="/PrettyStyle/App/assets/icons/home.svg">
 				</div>
-				<strong onclick="handleShowModal();">Minha conta</strong>
-				<img class="bottom-arrow" src="/PrettyStyle/App/assets/icons/arrow-down.svg">
-				<div id="login-modal" class="login-modal inactive">
+				<strong onmouseover="handleShowModal();">
+					<c:if test="${empty idUser}">
+						Entrar
+					</c:if>
+					<c:if test="${not empty idUser}">
+						Minha conta
+					</c:if>
+				</strong>
+				<!-- <strong onclick="handleShowModal();">Minha conta</strong> -->
+				<img style="display: none;" class="bottom-arrow" src="/PrettyStyle/App/assets/icons/arrow-down.svg">
+				<div id="login-modal" class="login-modal inactive" onmouseleave="handleShowModal();">
 					<div class="actions">
 						<c:if test="${empty idUser}">
 							<button type="button" class="login-button" onclick="window.location.href='/PrettyStyle/App/pages/sign-in/sign-in.jsp'">ENTRAR</button>
@@ -40,7 +48,7 @@
 					<c:if test="${not empty idUser}">
 						<hr />
 						<div class="pages">
-							<button id="id-user" type="button" onclick="window.location.href='/PrettyStyle/App/pages/profile/profile.jsp'">Minha conta</button>
+							<button id="id-user" type="button" onclick="window.location.href='/PrettyStyle/App/pages/edit-profile/edit-profile.jsp'">Minha conta</button>
 							<button id="id-user" type="button" onclick="window.location.href='/PrettyStyle/controller.do?path=request&command=ListRequests'">Meus Pedidos</button>
 						</div>
 					</c:if>

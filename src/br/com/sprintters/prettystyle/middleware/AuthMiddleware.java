@@ -25,7 +25,7 @@ public class AuthMiddleware  {
 			try {
 				idUser = (int)session.getAttribute("idUser");
 				token = (String)session.getAttribute("token");
-			} catch (NumberFormatException e) {
+			} catch (NumberFormatException | NullPointerException e) {
 				isAuth = false;
 			}
 			

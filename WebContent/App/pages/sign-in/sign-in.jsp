@@ -22,6 +22,8 @@
 
 		<link rel="stylesheet" href="../../styles/index.css">
 		<link rel="stylesheet" href="../../styles/header.css">
+		<link rel="stylesheet" href="../../styles/footer.css">
+		<link rel="stylesheet" href="../../styles/responsive.css">
     
 		<link rel="stylesheet" href="styles.css">
 	</head>
@@ -66,6 +68,7 @@
 			  	</div>
 			</div>
  		</div>
+ 		<c:import url="../../components/footer.jsp" />
 		
 		<script src="../../lib/jquery/1.9.1/jquery-1.9.1.min.js"></script>
 		<script src="../../lib/jquery-validation/jquery.validate.min.js"></script>

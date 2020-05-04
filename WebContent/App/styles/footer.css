@@ -1,0 +1,89 @@
+footer {
+	width: 100%;
+	margin-top: 60px;
+}
+
+footer div.footer-header {
+	width: 100%;
+	height: 60px;
+	background: #d2d2d2;
+	
+	display: none;
+}
+
+footer div.footer-body {
+	width: 100%;
+	height: 100px;
+	background: #c2c2c2;
+}
+
+footer div.footer-body div.footer-body-content {
+	max-width: 1080px;
+	margin: 0 auto;
+	height: 100%;
+	
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+footer div.footer-body .links {
+  text-align: center;
+}
+
+footer div.footer-body .links a {
+  color: #707070;
+  font-size: 22px;
+  line-height: 28px;
+  margin: 0 30px;
+  text-decoration: none;
+}
+
+footer div.footer-body .links a {
+	border-bottom: 1px solid #707070;
+}
+
+footer div.footer-body .links a.github:hover {
+  color: rgb(36, 41, 46);
+  transition: color 800ms;
+  border-bottom: 1px solid rgb(36, 41, 46);
+}
+
+footer div.footer-body .links a.tweet:hover {
+  color: #00aece;
+  transition: color 800ms;
+  border-bottom: 1px solid #00aece;
+}
+
+footer div.footer-body .links a.insta:hover {
+  color: #ed145b;
+  transition: color 800ms;
+  border-bottom: 1px solid #ed145b;
+}
+
+footer div.footer-body .links a.fb:hover {
+  color: #1877F2;
+  transition: color 800ms;
+  border-bottom: 1px solid #1877F2;
+}
+
+footer div.footer-contact {
+	width: 100%;
+	height: 40px;
+	background: #b2b2b2;
+}
+
+footer div.footer-contact-content {
+	max-width: 1080px;
+	margin: 0 auto;
+	
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+footer div.footer-contact-content strong {
+	color: #707070;
+	font-size: 12px;
+	line-height: 40px;
+}

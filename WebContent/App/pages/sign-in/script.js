@@ -9,8 +9,8 @@ $(document).ready(function () {
 			password: 'Digite sua senha de acesso.',
 		},
 		submitHandler: function (form) {
-			//handleLogin(form);
-			form.submit();
+			handleLogin(form);
+			//form.submit();
 		},
 	});
 });
@@ -28,19 +28,13 @@ $(document).ready(function () {
 
 function handleLogin(form) {
 	$.ajax({
-		url: '/PrettyStyle/controller.do?path=signin&command=Login', type: 'POST', data: $(form).serialize(),
+		url: '/PrettyStyle/controller.do?path=signin&command=Login&json=true', type: 'POST', data: $(form).serialize(),
 		success: function (data) {
 			if (data.success) {
-				sessionStorage.setItem('id_user', parseInt(parseJwt(data.token).jti));
-				sessionStorage.setItem('token', data.token);
-				
 				AlertaSucesso(data);
 
 				setTimeout(function () { window.location.reload(true); }, 2000);
 			} else {
-				sessionStorage.setItem('id_user', null);
-				sessionStorage.setItem('token', null);
-				
 				AlertaErro(data);
 			}
 		},
