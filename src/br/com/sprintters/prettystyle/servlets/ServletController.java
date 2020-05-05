@@ -12,7 +12,6 @@ import javax.servlet.http.HttpServletResponse;
 import com.google.gson.Gson;
 
 import br.com.sprintters.prettystyle.command.Command;
-import br.com.sprintters.prettystyle.middleware.AuthMiddleware;
 import br.com.sprintters.prettystyle.model.generic.Json;
 
 @WebServlet("/controller.do")
@@ -24,24 +23,9 @@ public class ServletController extends HttpServlet {
     protected void doExecute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     	try {
     		String commandCalled = request.getParameter("path") + "." + request.getParameter("command");
-    		
-//    		if (verifyRoute(commandCalled)) {
-//				AuthMiddleware middleware = new AuthMiddleware();
-    			
-//	    		boolean isAuthenticated = middleware.auth(request, response);
-	    		
-//	    		if (isAuthenticated) {
-	    			Command command = (Command)Class.forName("br.com.sprintters.prettystyle.command." + commandCalled).newInstance();
-	    			command.execute(request, response);
-//	    		} else {
-//	    			response.sendRedirect("App/pages/sign-in/sign-in.jsp");
-//	    		}
-//    		} else {
-//    			if (commandCalled.equals("null.null")) commandCalled = "home.index";
-//    			
-//    			Command command = (Command)Class.forName("br.com.sprintters.prettystyle.command." + commandCalled).newInstance();
-//				command.execute(request, response);
-//    		}
+
+			Command command = (Command)Class.forName("br.com.sprintters.prettystyle.command." + commandCalled).newInstance();
+			command.execute(request, response);
     	} catch (Exception e) {
     		e.printStackTrace();
     		

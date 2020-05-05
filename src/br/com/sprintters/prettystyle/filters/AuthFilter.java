@@ -1,7 +1,6 @@
 package br.com.sprintters.prettystyle.filters;
 
 import java.io.IOException;
-import java.util.Base64;
 
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
@@ -13,8 +12,6 @@ import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
-import com.google.gson.JsonObject;
 
 import br.com.sprintters.prettystyle.model.User;
 import br.com.sprintters.prettystyle.service.UserService;
@@ -36,22 +33,15 @@ public class AuthFilter implements Filter {
 		if (verifyRoute(commandCalled)) {
 			int idUser = -1;
 			
-			//String idUserStr = (String)session.getAttribute("idUser");
-			int idUserStr = (int)session.getAttribute("idUser");
+			String idUserStr = (String)session.getAttribute("idUser");
 			
-			if (idUserStr != -1) idUser = idUserStr;
+			if (idUserStr != null) idUser = Integer.parseInt(idUserStr);
 			String bearerToken = (String)session.getAttribute("token");
 			
 			if (idUser != -1 && bearerToken != null) {
 				String[] token = bearerToken.split(" ", 2);
 				
 				if (token[0].equals("Bearer")) { // acressentar no if a verificação do token
-					String tok = token[1].toString();
-					String[] arr = tok.split(".");
-					String base64Url = token[1].split(".")[1];
-					String base64 = base64Url.replaceAll("/-/g", "+").replaceAll("/_/g", "/");
-					String obj = new String(Base64.getDecoder().decode(base64));
-					
 					if (idUser != -1) {
 						UserService us = new UserService();
 						
