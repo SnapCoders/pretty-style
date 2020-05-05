@@ -21,12 +21,8 @@ function handleLogout() {
 		closeOnCancel: true
 	}, function (isConfirm) {
 		if (!isConfirm) return;
-
-		let idUser = sessionStorage.getItem('id_user');
-		let userToken = sessionStorage.getItem('token');
-
 		$.ajax({
-			url: '/PrettyStyle/controller.do?path=signin&command=Logout&id_user=' + idUser + '&token=' + userToken,
+			url: '/PrettyStyle/controller.do?path=signin&command=Logout',
 			method: 'POST',
 			success: function (_json) {
 				sessionStorage.removeItem('token');

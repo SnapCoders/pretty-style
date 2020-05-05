@@ -29,7 +29,7 @@ public class CreateProduct implements Command {
 		try {
 			HttpSession session = request.getSession();
 			
-			int idUser = (int)session.getAttribute("idUser");
+			int idUser = (int)request.getAttribute("idUser");
 			String appPath = request.getServletContext().getRealPath("");
 			String savePath = appPath + SAVE_DIR;
 			
@@ -39,6 +39,7 @@ public class CreateProduct implements Command {
 			String pDescription = m.getParameter("description");
 			Double pPrice = Double.parseDouble(m.getParameter("price"));
 			int idMark = Integer.parseInt(m.getParameter("idMark"));
+			int idCategory = Integer.parseInt(m.getParameter("idCategory"));
 			
 			UserService us = new UserService();
 			

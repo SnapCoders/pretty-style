@@ -175,6 +175,10 @@ header#main-header div.bottom-header nav {
 	margin-top: -15px;
 }
 
+header#main-header div.bottom-header nav ul::-webkit-scrollbar {
+	display: none;
+}
+
 header#main-header div.bottom-header nav ul {
 	display: flex;
 	justify-content: center;

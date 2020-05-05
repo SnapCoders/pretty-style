@@ -13,6 +13,8 @@ public class Product extends Entity {
 	private int idMark;
 	private Mark mark;
 	
+	private ArrayList<Category> categories;
+	
 	private int idProvider;
 	private Provider provider;
 	
@@ -110,12 +112,36 @@ public class Product extends Entity {
 		this.mark = mark;
 	}
 
+	public ArrayList<Category> getCategories() {
+		return categories;
+	}
+
+	public void setCategories(ArrayList<Category> categories) {
+		this.categories = categories;
+	}
+
+	public int getIdProvider() {
+		return idProvider;
+	}
+
+	public void setIdProvider(int idProvider) {
+		this.idProvider = idProvider;
+	}
+	
 	public ArrayList<ProductPhoto> getPhotos() {
 		return photos;
 	}
-
+	
 	public void setPhotos(ArrayList<ProductPhoto> photos) {
 		this.photos = photos;
+	}
+
+	public Provider getProvider() {
+		return provider;
+	}
+
+	public void setProvider(Provider provider) {
+		this.provider = provider;
 	}
 
 	@Override

@@ -140,3 +140,8 @@ div.new-product-container div.container div.jumbotron.main div.content div.butto
 div.new-product-container div.container div.jumbotron.main div.content div.button-area button:hover {
 	filter: brightness(90%);
 }
+
+div.new-product-container div.container div.jumbotron.main div.content span.select2-selection {
+    border: 1px solid #ced4da;
+    height: calc(1.5em + .75rem + 2px);
+}

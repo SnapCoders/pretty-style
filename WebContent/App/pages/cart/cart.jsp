@@ -51,8 +51,7 @@
 											<div class="col-md-12">
 												<div class="product-details-area">
 													<div class="product-photo-area">
-														<img src="../../assets/img/jbl.png"
-															alt="JBL Flip 3 Portable">
+														<img src="../../assets/img/jbl.png" alt="JBL Flip 3 Portable">
 													</div>
 													<div class="product-info">
 														<label>${item.product.name}</label> <span>${item.product.description}</span>
@@ -118,14 +117,12 @@
 												</div>
 											</div>
 											<div class="resume-button">
-												<button id="id-user" type="button"
-													onclick="window.location.href='/PrettyStyle/controller.do?path=paymentsteps&command=PayStep'">CONTINUAR</button>
+												<button id="id-user" type="button" onclick="window.location.href='/PrettyStyle/controller.do?path=paymentsteps&command=PayStep'">CONTINUAR</button>
 											</div>
 											<hr />
 											<div class="resume-freight">
-												<label class="total-of-deadline">Calcular frete e
-													prazo:</label> <input class="form-control" maxlength="8"
-													placeholder="digite o cep" value="${zip}" />
+												<label class="total-of-deadline">Calcular frete e prazo:</label>
+												<input class="form-control" maxlength="8" placeholder="digite o cep" value="${zip}" />
 												<button type="button">OK</button>
 											</div>
 										</div>

@@ -1,11 +1,18 @@
 $(document).ready(function () {
 	$.validator.addMethod("valueNotEquals", (value, element, arg) => arg !== value);
 	
+	$('#category').select2({
+	  theme: "classic"
+	});
+	
 	$('form[name="add-product"]').validate({
 		rules: {
 			name: 'required',
 			description: 'required',
 			idMark: {
+				valueNotEquals: '0',
+			},
+			idCategory: {
 				valueNotEquals: '0',
 			},
 			price: 'required',
@@ -15,6 +22,9 @@ $(document).ready(function () {
 			description: 'Campo obrigatório.',
 			idMark: {
 				valueNotEquals: 'Selecione uma marca',
+			},
+			idCategory: {
+				valueNotEquals: 'Selecione uma categoria',
 			},
 			price: 'Campo obrigatório.',
 		},

@@ -26,10 +26,10 @@
 					<img src="/PrettyStyle/App/assets/icons/home.svg">
 				</div>
 				<strong onmouseover="handleShowModal();">
-					<c:if test="${empty idUser}">
+					<c:if test="${empty token}">
 						Entrar
 					</c:if>
-					<c:if test="${not empty idUser}">
+					<c:if test="${not empty token}">
 						Minha conta
 					</c:if>
 				</strong>
@@ -37,15 +37,15 @@
 				<img style="display: none;" class="bottom-arrow" src="/PrettyStyle/App/assets/icons/arrow-down.svg">
 				<div id="login-modal" class="login-modal inactive" onmouseleave="handleShowModal();">
 					<div class="actions">
-						<c:if test="${empty idUser}">
+						<c:if test="${empty token}">
 							<button type="button" class="login-button" onclick="window.location.href='/PrettyStyle/App/pages/sign-in/sign-in.jsp'">ENTRAR</button>
 							<button type="button" class="create-account-button" onclick="window.location.href='/PrettyStyle/App/pages/sign-up-simple/sign-up-simple.jsp'">CRIAR CONTA</button>
 						</c:if>
-						<c:if test="${not empty idUser}">
+						<c:if test="${not empty token}">
 							<button type="button" class="logout-account-button" onclick="handleLogout();">SAIR</button>
 						</c:if>
 					</div>
-					<c:if test="${not empty idUser}">
+					<c:if test="${not empty token}">
 						<hr />
 						<div class="pages">
 							<button id="id-user" type="button" onclick="window.location.href='/PrettyStyle/App/pages/edit-profile/edit-profile.jsp'">Minha conta</button>
@@ -70,14 +70,14 @@
 		<nav>
 			<ul>
 				<li class="active">SALES</li>
-				<li onclick="window.location.href='/PrettyStyle/App/pages/'">NOVIDADES</li>
+				<li onclick="window.location.href='/PrettyStyle/controller.do?path=catalog&command=ListByCategory&filter='">NOVIDADES</li>
 				<!-- <li onclick="window.location.href='/PrettyStyle/App/pages/save-address/save-address.jsp'">CRIAR ENDEREÇO</li>
 				<li id="id-user" onclick="window.location.href='/PrettyStyle/controller.do?path=address&command=ListAddress'">MEUS ENDEREÇOS</li>
 				<li onclick="window.location.href='/PrettyStyle/App/pages/catalog/catalog.jsp'">CATÁLOGO</li> -->
-				<li>ACESSÓRIOS</li>
-		        <li>MASCULINO</li>
-		        <li>FEMININO</li>
-		        <li>PETS</li>
+				<li onclick="window.location.href='/PrettyStyle/controller.do?path=catalog&command=ListByCategory'">ACESSÓRIOS</li>
+		        <li onclick="window.location.href='/PrettyStyle/controller.do?path=catalog&command=ListByCategory'">MASCULINO</li>
+		        <li onclick="window.location.href='/PrettyStyle/controller.do?path=catalog&command=ListByCategory'">FEMININO</li>
+		        <li onclick="window.location.href='/PrettyStyle/controller.do?path=catalog&command=ListByCategory'">PETS</li>
 			</ul>
 		</nav>
 	</div>

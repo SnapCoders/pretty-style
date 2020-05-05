@@ -1,6 +1,8 @@
 package br.com.sprintters.prettystyle.service;
 
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 import java.time.ZoneId;
 import java.security.Key;
 import java.time.LocalDateTime;
@@ -9,6 +11,7 @@ import javax.crypto.spec.SecretKeySpec;
 import javax.xml.bind.DatatypeConverter;
 
 import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.JwtBuilder;
 import io.jsonwebtoken.SignatureAlgorithm;
 
@@ -27,7 +30,13 @@ public class JWTTokenService {
 			byte[] apiKeySecretBytes = DatatypeConverter.parseBase64Binary(SECRET_KEY);
 			Key signingKey = new SecretKeySpec(apiKeySecretBytes, signatureAlgorithm.getJcaName());
 			
+			Map<String, Object> claims = new HashMap<String, Object>();
+			
+			claims.put("idUser", user.getId());
+			claims.put("isProvider", user.isProvider());
+			
 			JwtBuilder builder = Jwts.builder()
+					.addClaims(claims)
 					.setId(String.valueOf(user.getId()))
 					.setIssuedAt(now)
 					.setSubject(user.getEmail())
@@ -51,5 +60,9 @@ public class JWTTokenService {
 		} catch (Exception e) {
 			throw new Exception(e.getMessage());
 		}
+	}
+	
+	public Claims decodeJWT(String jwt) {
+	    return Jwts.parser().setSigningKey(DatatypeConverter.parseBase64Binary(SECRET_KEY)).parseClaimsJws(jwt).getBody();
 	}
 }

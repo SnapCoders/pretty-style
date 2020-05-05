@@ -33,14 +33,8 @@ public class Login implements Command {
 				
 				String name = "";
 				
-				String nameAndSurname = name + user.getUsername();
-				
-				String nameAndSurnameBase64 = Base64.getEncoder().encodeToString(nameAndSurname.getBytes());
-				
-				String token = "Bearer " + jwt.signJWT(user, name, nameAndSurnameBase64);
-				
 				HttpSession session = request.getSession();
-				System.out.println(token);
+				
 				if (user.isProvider()) {
 					name = user.getProvider().getFantasyName();
 					session.setAttribute("isProvider", true);
@@ -48,11 +42,16 @@ public class Login implements Command {
 					name = user.getClient().getName();
 				}
 				
-				session.setAttribute("token", token);
-				session.setAttribute("idUser", user.getId());
+				String nameAndSurname = name + user.getUsername();
+				
+				String nameAndSurnameBase64 = Base64.getEncoder().encodeToString(nameAndSurname.getBytes());
+				
+				String bearerToken = "Bearer " + jwt.signJWT(user, name, nameAndSurnameBase64);
+				
+				session.setAttribute("token", bearerToken);
 				
 				if (isJson) {
-					Json json = new Json(true, "Olá " + name + ", seja bem vindo!", token);
+					Json json = new Json(true, "Olá " + name + ", seja bem vindo!", bearerToken);
 		    		
 		    		response.setContentType("application/json");
 		    		response.getWriter().write(new Gson().toJson(json).toString());

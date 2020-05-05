@@ -14,7 +14,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import br.com.sprintters.prettystyle.model.User;
+import br.com.sprintters.prettystyle.service.JWTTokenService;
 import br.com.sprintters.prettystyle.service.UserService;
+import io.jsonwebtoken.Claims;
 
 @WebFilter("/controller.do")
 public class AuthFilter implements Filter {
@@ -31,22 +33,24 @@ public class AuthFilter implements Filter {
 		String commandCalled = req.getParameter("path") + "." + req.getParameter("command");
 		
 		if (verifyRoute(commandCalled)) {
-			int idUser = -1;
-			
-			String idUserStr = (String)session.getAttribute("idUser");
-			
-			if (idUserStr != null) idUser = Integer.parseInt(idUserStr);
 			String bearerToken = (String)session.getAttribute("token");
 			
-			if (idUser != -1 && bearerToken != null) {
+			if (bearerToken != null) {
 				String[] token = bearerToken.split(" ", 2);
 				
-				if (token[0].equals("Bearer")) { // acressentar no if a verificação do token
+				if (token[0].equals("Bearer")) {
+					JWTTokenService jwt = new JWTTokenService();
+					
+					Claims claims = jwt.decodeJWT(token[1]);
+					
+					int idUser = claims.get("idUser", Integer.class);
+					
 					if (idUser != -1) {
 						UserService us = new UserService();
 						
 						try {
 							User user = us.find(idUser);
+							request.setAttribute("idUser", idUser);
 							if (user != null) chain.doFilter(request, response);
 						} catch (Exception e) {
 							e.printStackTrace();

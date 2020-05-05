@@ -14,7 +14,7 @@ import br.com.sprintters.prettystyle.model.ProductPhoto;
 public class ProductDAO {
 	public int insert(Product to) throws Exception {
 		int id = 0;
-		String sqlInsert = "INSERT INTO product (name, description, price, id_mark, created_at) VALUES (?, ?, ?, ?, NOW())";
+		String sqlInsert = "INSERT INTO product (name, description, price, id_mark, id_provider, created_at) VALUES (?, ?, ?, ?, ?, NOW())";
 		
 		try (Connection conn = ConnectionFactory.createConnection();
 			 PreparedStatement stm = conn.prepareStatement(sqlInsert)) {
@@ -22,7 +22,10 @@ public class ProductDAO {
 			stm.setString(2, to.getDescription());
 			stm.setDouble(3, to.getPrice());
 			stm.setInt(4, to.getIdMark());
+			stm.setInt(5, to.getIdProvider());
+			
 			stm.execute();
+			
 			try (ResultSet rs = stm.executeQuery("SELECT LAST_INSERT_ID()")) {
 				if (rs.next()) {				
 					id = rs.getInt(1);

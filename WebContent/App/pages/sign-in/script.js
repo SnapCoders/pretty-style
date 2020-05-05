@@ -33,7 +33,7 @@ function handleLogin(form) {
 			if (data.success) {
 				AlertaSucesso(data);
 
-				setTimeout(function () { window.location.reload(true); }, 2000);
+				setTimeout(function () { window.location.href='/PrettyStyle/index.jsp'; }, 2000);
 			} else {
 				AlertaErro(data);
 			}

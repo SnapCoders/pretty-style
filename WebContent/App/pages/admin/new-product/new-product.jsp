@@ -1,3 +1,4 @@
+<%@page import="br.com.sprintters.prettystyle.service.CategoryService"%>
 <%@ page import="java.util.ArrayList"%>
 <%@ page import="br.com.sprintters.prettystyle.model.Mark"%>
 <%@ page import="br.com.sprintters.prettystyle.service.MarkService"  %>
@@ -19,6 +20,7 @@
     
 		<link rel="stylesheet" href="../../../lib/bootstrap/4.4.1/css/bootstrap.min.css">
 		<link rel="stylesheet" href="../../../lib/sweetalert/sweetalert.css">
+		<link rel="stylesheet" href="../../../lib/select2/select2.min.css">
 		<link rel="stylesheet" href="../../../assets/fonts/css/all.css">
 		<link rel="stylesheet" href="../../../assets/fonts/css/fontawesome.min.css">
 
@@ -33,8 +35,10 @@
 		<c:import url="../../../components/header.jsp" />
 		<%
 			MarkService ms = new MarkService();
+			CategoryService cs = new CategoryService();
 			
 			request.setAttribute("marks", ms.list());
+			request.setAttribute("categories", cs.list());
 		%>
 		<div id="main-content" class="container">
 			<div class="new-product-container">
@@ -64,8 +68,8 @@
 					  				</div>
 				  				</div>
 				  				<div class="row">
-				  					<div class="col-md-6">
-					  					<label for="mark">Selecione a marca do seu Produto<span style="color: #ff0000; margin-left: 5px;">*</span></label>
+				  					<div class="col-md-3">
+					  					<label for="mark">Selecione a marca<span style="color: #ff0000; margin-left: 5px;">*</span></label>
 					  					<select class="form-control" id="mark" name="idMark">
 					  						<option value="0">--Selecione--</option>
 					  						<c:forEach var="mark" items="${marks}">
@@ -73,9 +77,18 @@
 					  						</c:forEach>
 					  					</select>
 					  				</div>
-				  					<div class="col-md-6">
+					  				<div class="col-md-7">
+					  					<label for="category">Selecione a categoria<span style="color: #ff0000; margin-left: 5px;">*</span></label>
+					  					<select class="form-control" id="category" name="idCategory" multiple="multiple">
+					  						<option value="0">--Selecione--</option>
+					  						<c:forEach var="category" items="${categories}">
+					  							<option value="${category.id}">${category.name}</option>
+					  						</c:forEach>
+					  					</select>
+					  				</div>
+				  					<div class="col-md-2">
 					  					<label for="price">Preço<span style="color: #ff0000; margin-left: 5px;">*</span></label>
-					  					<input class="form-control" id="price" name="price" placeholder="Preço do seu produto" />
+					  					<input class="form-control" id="price" name="price" placeholder="Preço" />
 					  				</div>
 				  				</div>
 				  				<div class="row">
@@ -100,6 +113,7 @@
 		<script src="../../../lib/jquery-validation/jquery.validate.min.js"></script>
 		<script src="../../../lib/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 		<script src="../../../lib/sweetalert/sweetalert.min.js"></script>
+		<script src="../../../lib/select2/select2.min.js"></script>
 		
 		<script src="script.js"></script>
 	</body>
