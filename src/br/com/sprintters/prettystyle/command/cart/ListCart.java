@@ -24,7 +24,7 @@ public class ListCart implements Command {
 		try {
 			HttpSession session = request.getSession();
 			
-			int idUser = (int)session.getAttribute("idUser");
+			int idUser = (int)request.getAttribute("idUser");
 			boolean isJson = Boolean.parseBoolean(request.getParameter("json"));
 			
 			AddressService as = new AddressService();
