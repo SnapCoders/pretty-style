@@ -69,81 +69,39 @@ public class AuthFilter implements Filter {
     	boolean isAuthorize = false;
     	
     	switch (commandCalled) {
-    		case "null.null":
-    			isAuthorize = false;
-    			break;
-	    	case "admin.CreateCategory":
-	    		isAuthorize = true;
-	    		break;
-			case "admin.CreateMark":
-				isAuthorize = true;
-				break;
-    		case "admin.CreateProduct":
-				isAuthorize = true;
-				break;
-    		case "admin.DeleteCategory":
-				isAuthorize = true;
-				break;
-    		case "admin.DeleteMark":
-				isAuthorize = true;
-				break;
-    		case "admin.DeleteProduct":
-				isAuthorize = true;
-				break;
-    		case "admin.EditCategory":
-    			isAuthorize = true;
-    			break;
-    		case "admin.EditMark":
-    			isAuthorize = true;
-    			break;
-    		case "admin.EditProduct":
-    			isAuthorize = true;
-    			break;
-    		case "admin.ListCategories":
-				isAuthorize = true;
-				break;
-    		case "admin.ListMarks":
-				isAuthorize = true;
-				break;
-    		case "admin.ListProducts":
-				isAuthorize = true;
-				break;
-    		case "cart.ListCart":
-    			isAuthorize = true;
-    			break;
-    		case "favorites.CreateFavorite":
-    			isAuthorize = true;
-    			break;
-    		case "favorites.ListFavorites":
-    			isAuthorize = true;
-    			break;
-    		case "favorites.DeleteFavorite":
-    			isAuthorize = true;
-    			break;
-    		case "paymentsteps.CreatePayStep":
-    			isAuthorize = true;
-    			break;
-    		case "paymentsteps.PayStep":
-    			isAuthorize = true;
-    			break;
-    		case "paymentsteps.Pay":
-    			isAuthorize = true;
-    			break;
-    		case "productdetails.ViewProduct":
-    			isAuthorize = false;
-    			break;
-    		case "request.ListRequests":
-    			isAuthorize = true;
-    			break;
-    		case "signin.Login":
-    			isAuthorize = false;
-    			break;
-    		case "signin.Logout":
-    			isAuthorize = true;
-    			break;
-    		default:
-    			isAuthorize = false;
-    			break;
+    		case "null.null"					: isAuthorize = false; 	break;
+    		case "address.ListAddress"			: isAuthorize = true; 	break;
+    		case "address.CreateAddress"		: isAuthorize = true; 	break;
+    		case "address.UpdateAddress"		: isAuthorize = true; 	break;
+    		case "address.DeleteAddress"		: isAuthorize = true; 	break;
+    		case "address.FindAddress"			: isAuthorize = true; 	break;
+	    	case "admin.CreateCategory"			: isAuthorize = true; 	break;
+			case "admin.CreateMark"				: isAuthorize = true; 	break;
+    		case "admin.CreateProduct"			: isAuthorize = true; 	break;
+    		case "admin.DeleteCategory"			: isAuthorize = true; 	break;
+    		case "admin.DeleteMark"				: isAuthorize = true;	break;
+    		case "admin.DeleteProduct"			: isAuthorize = true;	break;
+    		case "admin.EditCategory"			: isAuthorize = true;	break;
+    		case "admin.EditMark"				: isAuthorize = true;	break;
+    		case "admin.EditProduct"			: isAuthorize = true;	break;
+    		case "admin.ListCategories"			: isAuthorize = true;	break;
+    		case "admin.ListMarks"				: isAuthorize = true;	break;
+    		case "admin.ListProducts"			: isAuthorize = true;	break;
+    		case "cart.ListCart"				: isAuthorize = true;	break;
+    		case "favorites.CreateFavorite"		: isAuthorize = true;	break;
+    		case "favorites.ListFavorites"		: isAuthorize = true;	break;
+    		case "favorites.DeleteFavorite"		: isAuthorize = true;	break;
+    		case "paymentsteps.CreatePayStep" 	: isAuthorize = true;	break;
+    		case "paymentsteps.PayStep"			: isAuthorize = true;	break;
+    		case "paymentsteps.Pay"				: isAuthorize = true;	break;
+    		case "productdetails.ViewProduct"	: isAuthorize = false;	break;
+    		case "profile.EditProfile"			: isAuthorize = true;	break;
+    		case "profile.UpdateProfile"		: isAuthorize = true;	break;
+    		case "request.ListRequests"			: isAuthorize = true;	break;
+    		case "signin.Login"					: isAuthorize = false;	break;
+    		case "signin.Logout"				: isAuthorize = true;	break;
+    		case "signin.NavigateToLogin"		: isAuthorize = false;	break;
+    		default								: isAuthorize = false;	break;
     	}
     	
     	return isAuthorize;

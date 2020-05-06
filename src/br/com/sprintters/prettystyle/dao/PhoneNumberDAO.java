@@ -37,15 +37,15 @@ public class PhoneNumberDAO {
 	}
 	
 	public void update(PhoneNumber to) throws Exception {
-		String sqlUpdate = "UPDATE phone_number SET ddd = ?, number = ? ,id_user = ?, updated_at = NOW() WHERE id = ?";
+		String sqlUpdate = "UPDATE phone_number SET ddd = ?, number = ?, updated_at = NOW() WHERE id = ?";
 		
 		try (Connection conn = ConnectionFactory.createConnection();
 			 PreparedStatement stm = conn.prepareStatement(sqlUpdate)) {
 			stm.setInt(1, to.getDdd());
 			stm.setString(2, to.getNumber());
-			stm.setInt(3, to.getIdUser());
-			stm.setInt(4, to.getId());
+			stm.setInt(3, to.getId());
 			stm.execute();
+			conn.close();
 		} catch (SQLException e) {
 			throw new Exception(e.getMessage());
 		}
@@ -81,6 +81,8 @@ public class PhoneNumberDAO {
 					to.setUpdatedAt(rs.getTimestamp("updated_at"));
 					to.setDeletedAt(rs.getTimestamp("deleted_at"));
 				}
+				
+				conn.close();
 			} catch (SQLException ex) {
 				 throw new Exception(ex.getMessage());
 			}
@@ -90,7 +92,41 @@ public class PhoneNumberDAO {
 		
 		return to;
 	}
+	
+	public ArrayList<PhoneNumber> findByIdUser(int idUser) throws Exception  {
+		ArrayList<PhoneNumber> phones = new ArrayList<PhoneNumber>();
+		String sqlSelect = "SELECT * FROM phone_number WHERE id_user = ? AND deleted_at IS NULL";
 		
+		try (Connection conn = ConnectionFactory.createConnection();
+			 PreparedStatement stm = conn.prepareStatement(sqlSelect)) {
+			
+			stm.setInt(1, idUser);
+			
+			try (ResultSet rs = stm.executeQuery()) {
+				while (rs.next()) {
+					PhoneNumber to = new PhoneNumber(
+						rs.getInt("id"),
+						rs.getInt("ddd"),
+						rs.getString("number"),
+						rs.getInt("id_user"),
+						rs.getTimestamp("created_at"),
+						rs.getTimestamp("updated_at"),
+						rs.getTimestamp("deleted_at")
+					);
+					
+					phones.add(to);
+				}
+				
+				conn.close();
+			} catch (SQLException ex) {
+				throw new Exception(ex.getMessage());
+			}
+		} catch (SQLException e) {
+			throw new Exception(e.getMessage());
+		}
+		
+		return phones;
+	}
 	
 	public ArrayList<PhoneNumber> list() throws Exception  {
 		ArrayList<PhoneNumber> phones = new ArrayList<PhoneNumber>();

@@ -23,7 +23,7 @@ public class ServletController extends HttpServlet {
     protected void doExecute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     	try {
     		String commandCalled = request.getParameter("path") + "." + request.getParameter("command");
-
+    		
 			Command command = (Command)Class.forName("br.com.sprintters.prettystyle.command." + commandCalled).newInstance();
 			command.execute(request, response);
     	} catch (Exception e) {
