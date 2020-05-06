@@ -35,7 +35,9 @@ function handleLogin(form) {
 
 				setTimeout(function () { window.location.href='/PrettyStyle/index.jsp'; }, 2000);
 			} else {
-				AlertaErro(data);
+				console.log(data);
+				if (data.data == 'error') AlertaErro(data);
+				if (data.data == 'info') AlertaAviso(data);
 			}
 		},
 		error: function (data) {

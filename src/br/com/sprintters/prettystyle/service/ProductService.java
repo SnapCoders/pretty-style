@@ -2,20 +2,31 @@ package br.com.sprintters.prettystyle.service;
 
 import java.util.ArrayList;
 
+import br.com.sprintters.prettystyle.dao.ProductCategoryDAO;
 import br.com.sprintters.prettystyle.dao.ProductDAO;
 import br.com.sprintters.prettystyle.model.ClientProductLike;
 import br.com.sprintters.prettystyle.model.Product;
+import br.com.sprintters.prettystyle.model.ProductCategory;
 
 public class ProductService{
-    ProductDAO dao;
+    ProductDAO productDAO;
+    ProductCategoryDAO productCategoryDAO;
 
     public ProductService() {
-        dao = new ProductDAO();
+        productDAO = new ProductDAO();
+        productCategoryDAO = new ProductCategoryDAO();
     }
 
     public int create(Product product) throws Exception {
         try {
-        	return dao.insert(product);
+        	int idProduct = productDAO.insert(product);
+        	
+        	for (int i = 0; i < product.getCategories().size(); i++) {
+        		ProductCategory pc = new ProductCategory(idProduct, product.getCategories().get(i).getId());
+        		productCategoryDAO.insert(pc);
+        	}
+        	
+        	return idProduct;
     	} catch (Exception e) {
     		throw new Exception(e.getMessage());
     	}
@@ -23,7 +34,7 @@ public class ProductService{
 
     public void update(Product product) throws Exception {
         try {
-        	dao.update(product);
+        	productDAO.update(product);
     	} catch (Exception e) {
     		throw new Exception(e.getMessage());
     	}
@@ -31,7 +42,7 @@ public class ProductService{
 
     public void delete(Product product) throws Exception {
         try {
-        	dao.delete(product);
+        	productDAO.delete(product);
     	} catch (Exception e) {
     		throw new Exception(e.getMessage());
     	}
@@ -39,7 +50,7 @@ public class ProductService{
 
     public Product find(int id) throws Exception {
     	try {
-    		return dao.find(id);
+    		return productDAO.find(id);
     	} catch (Exception e) {
     		throw new Exception(e.getMessage());
     	}
@@ -47,7 +58,7 @@ public class ProductService{
 
     public ArrayList<Product> list() throws Exception {
     	try {
-    		return dao.list();
+    		return productDAO.list();
     	} catch (Exception e) {
     		throw new Exception(e.getMessage());
     	}
@@ -55,7 +66,7 @@ public class ProductService{
     
     public ArrayList<Product> listBestSellers() throws Exception {
     	try {
-    		ArrayList<Product> products = dao.listBestSellers();
+    		ArrayList<Product> products = productDAO.listBestSellers();
     		
      		return products;
     	} catch (Exception e) {
@@ -65,7 +76,7 @@ public class ProductService{
     
     public ArrayList<Product> listByIdProvider(int idProvider) throws Exception {
     	try {
-    		return dao.listByIdProvider(idProvider);
+    		return productDAO.listByIdProvider(idProvider);
     	} catch (Exception e) {
     		throw new Exception(e.getMessage());
     	}
@@ -73,7 +84,7 @@ public class ProductService{
     
     public int createFavorite(ClientProductLike cpl) throws Exception {
     	try {
-    		return dao.createFavorite(cpl);
+    		return productDAO.createFavorite(cpl);
     	} catch (Exception e) {
     		throw new Exception(e.getMessage());
     	}
@@ -81,7 +92,7 @@ public class ProductService{
     
     public ArrayList<ClientProductLike> listFavoritesByIdUser(int idUser) throws Exception {
     	try {
-    		return dao.listFavoritesByIdUser(idUser);
+    		return productDAO.listFavoritesByIdUser(idUser);
     	} catch (Exception e) {
     		throw new Exception(e.getMessage());
     	}
@@ -89,7 +100,7 @@ public class ProductService{
     
     public ClientProductLike listFavoriteByIdUserAndIdProduct(int idUser, int idProduct) throws Exception {
     	try {
-    		return dao.listFavoriteByIdUserAndIdProduct(idUser, idProduct);
+    		return productDAO.listFavoriteByIdUserAndIdProduct(idUser, idProduct);
     	} catch (Exception e) {
     		throw new Exception(e.getMessage());
     	}
@@ -97,7 +108,7 @@ public class ProductService{
     
     public void deleteFavoriteById(int id) throws Exception {
     	try {
-    		dao.deleteFavoriteById(id);
+    		productDAO.deleteFavoriteById(id);
     	} catch (Exception e) {
     		throw new Exception(e.getMessage());
     	}

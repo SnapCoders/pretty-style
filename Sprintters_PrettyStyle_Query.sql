@@ -1,6 +1,59 @@
 create database db_pretty_style;
 use db_pretty_style;
 
+create table user (
+	id					int auto_increment,
+    username			varchar(50) not null,
+    email				varchar(150) not null,
+    email_confirmation 	varchar(150) not null,
+    password_hash		varchar(300) not null,
+    
+    created_at			timestamp not null default now(),
+    updated_at			timestamp null,
+    deleted_at			timestamp null,
+    
+    constraint pk_id primary key (id)
+);
+
+-- select * from user;
+
+create table provider (
+	id				int auto_increment,
+    cnpj			varchar(18) not null,
+    fantasy_name	varchar(150) not null,
+    social_reason	varchar(150) not null,
+    contact			varchar(150) not null,
+    id_user			int,
+    
+    created_at	timestamp not null default now(),
+    updated_at	timestamp null,
+    deleted_at	timestamp null,
+    
+    constraint pk_id primary key (id),
+    constraint fk_provider__id_user foreign key (id_user) references user (id)
+);
+
+-- select * from provider;
+
+create table client (
+	id			int auto_increment,
+    name		varchar(150) not null,
+    surname		varchar(150) not null,
+    genre		varchar(1) not null,
+    cpf			varchar(14) not null,
+    birthday	date not null,
+    id_user		int,
+    
+    created_at	timestamp not null default now(),
+    updated_at	timestamp null,
+    deleted_at	timestamp null,
+    
+    constraint pk_id primary key (id),
+    constraint fk_client__id_user foreign key (id_user) references user (id)
+);
+
+-- select * from client;
+
 create table mark (
 	id			int auto_increment,
     name		varchar(100) not null,
@@ -79,59 +132,6 @@ create table product_photo (
 
 -- select * from product_photo;
 
-create table user (
-	id					int auto_increment,
-    username			varchar(50) not null,
-    email				varchar(150) not null,
-    email_confirmation 	varchar(150) not null,
-    password_hash		varchar(300) not null,
-    
-    created_at			timestamp not null default now(),
-    updated_at			timestamp null,
-    deleted_at			timestamp null,
-    
-    constraint pk_id primary key (id)
-);
-
--- select * from user;
-
-create table provider (
-	id				int auto_increment,
-    cnpj			varchar(18) not null,
-    fantasy_name	varchar(150) not null,
-    social_reason	varchar(150) not null,
-    contact			varchar(150) not null,
-    id_user			int,
-    
-    created_at	timestamp not null default now(),
-    updated_at	timestamp null,
-    deleted_at	timestamp null,
-    
-    constraint pk_id primary key (id),
-    constraint fk_provider__id_user foreign key (id_user) references user (id)
-);
-
--- select * from provider;
-
-create table client (
-	id			int auto_increment,
-    name		varchar(150) not null,
-    surname		varchar(150) not null,
-    genre		varchar(1) not null,
-    cpf			varchar(14) not null,
-    birthday	date not null,
-    id_user		int,
-    
-    created_at	timestamp not null default now(),
-    updated_at	timestamp null,
-    deleted_at	timestamp null,
-    
-    constraint pk_id primary key (id),
-    constraint fk_client__id_user foreign key (id_user) references user (id)
-);
-
--- select * from client;
-
 create table address (
 	id				int auto_increment,
     place			varchar(150) not null,
@@ -156,7 +156,7 @@ create table address (
 create table phone_number (
 	id				int auto_increment,
     ddd				smallint not null,
-    number			varchar(10) not null,
+    number			varchar(16) not null,
     id_user			int,
     
     created_at	timestamp not null default now(),

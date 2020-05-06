@@ -21,21 +21,21 @@
 					<strong>Gerenciar</strong>
 				</div>
 			</c:if>
-			<div class="account">
+			<div class="account" onmouseover="handleShowModal();" onmouseleave="handleHideModalTimeOut();">
 				<div class="account-icon">
 					<img src="/PrettyStyle/App/assets/icons/home.svg">
 				</div>
-				<strong onmouseover="handleShowModal();">
+				<strong>
 					<c:if test="${empty token}">
 						Entrar
 					</c:if>
 					<c:if test="${not empty token}">
-						Minha conta
+						${name}
 					</c:if>
 				</strong>
 				<!-- <strong onclick="handleShowModal();">Minha conta</strong> -->
 				<img style="display: none;" class="bottom-arrow" src="/PrettyStyle/App/assets/icons/arrow-down.svg">
-				<div id="login-modal" class="login-modal inactive" onmouseleave="handleShowModal();">
+				<div id="login-modal" class="login-modal inactive" onmouseleave="handleHideModal();" onmouseover="handleFocusModal();">
 					<div class="actions">
 						<c:if test="${empty token}">
 							<button type="button" class="login-button" onclick="window.location.href='/PrettyStyle/App/pages/sign-in/sign-in.jsp'">ENTRAR</button>
