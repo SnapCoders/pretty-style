@@ -35,10 +35,15 @@ public class UserService {
         	user.setPassword(null);
         	user.setPasswordHash(passwordHash);
         	
-        	// 2 - Cadastrar o usuï¿½rio
+        	// 2 - Cadastrar o usuário
         	idUser = userDAO.insert(user);
         	
-        	// 3 - Cadastrar os telefones
+        	user.getClient().setIdUser(idUser);
+        	
+        	// 3 - Cadastrar cliente
+        	clientDAO.insert(user.getClient());
+        	
+        	// 4 - Cadastrar os telefones
         	for (PhoneNumber to : user.getPhoneNumbers()) {
         		to.setIdUser(idUser);
         		phoneNumberDAO.insert(to);

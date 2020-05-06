@@ -72,113 +72,115 @@
 						<span class="dot" onclick="currentSlide(3)"></span>
 					</div>
 				</section>
-				<div class="col-md-12 header">
-		  			<div class="row content">
-			  			<div class="title">
-			  				<label>Mais vendidos</label>
+				<c:if test="${not empty bestSellersOne && not empty bestSellersTwo}">
+					<div class="col-md-12 header">
+			  			<div class="row content">
+				  			<div class="title">
+				  				<label>Mais vendidos</label>
+				  			</div>
+				  			<div class="line">
+				  				<hr />
+				  			</div>
 			  			</div>
-			  			<div class="line">
-			  				<hr />
-			  			</div>
-		  			</div>
-		  		</div>
-				<section class="best-sellers">
-					<div class="jumbotron">
-						<div class="col-md-12 content">
-							<div class="col-md-12" style="padding: 0;">
-								<div class="">
-									<div id="myCarousel" class="carousel slide" data-ride="carousel">
-										<div class="carousel-inner">
-											<div class="carousel-item active">
-												<div class="row">
-													<c:forEach var="product" items="${bestSellersOne}">
-														<div class="col-md-3">
-															<div class="jumbotron product">
-																<div id="id-user" class="photo-product" onclick="window.location.href='/PrettyStyle/controller.do?path=productdetails&command=ViewProduct&id_product=${product.id}'">
-																	<img src="${product.photos[0].url}" alt="Imagem de ${product.name}">
+			  		</div>
+					<section class="best-sellers">
+						<div class="jumbotron">
+							<div class="col-md-12 content">
+								<div class="col-md-12" style="padding: 0;">
+									<div class="">
+										<div id="myCarousel" class="carousel slide" data-ride="carousel">
+											<div class="carousel-inner">
+												<div class="carousel-item active">
+													<div class="row">
+														<c:forEach var="product" items="${bestSellersOne}">
+															<div class="col-md-3">
+																<div class="jumbotron product">
+																	<div id="id-user" class="photo-product" onclick="window.location.href='/PrettyStyle/controller.do?path=productdetails&command=ViewProduct&id_product=${product.id}'">
+																		<img src="${product.photos[0].url}" alt="Imagem de ${product.name}">
+																	</div>
+																	<label class="title-product">${product.name}</label>
+																	<div class="stars">
+																		<span class="star yellow-star">&nbsp;</span>
+																		<span class="star yellow-star">&nbsp;</span>
+																		<span class="star yellow-star">&nbsp;</span>
+																		<span class="star yellow-star">&nbsp;</span>
+																		<span class="star gray-star">&nbsp;</span>
+																	</div>
+																	<label class="price-product">
+																		<fmt:formatNumber value="${product.price}" type="currency" currencySymbol="R$"/>
+																	</label>
 																</div>
-																<label class="title-product">${product.name}</label>
-																<div class="stars">
-																	<span class="star yellow-star">&nbsp;</span>
-																	<span class="star yellow-star">&nbsp;</span>
-																	<span class="star yellow-star">&nbsp;</span>
-																	<span class="star yellow-star">&nbsp;</span>
-																	<span class="star gray-star">&nbsp;</span>
-																</div>
-																<label class="price-product">
-																	<fmt:formatNumber value="${product.price}" type="currency" currencySymbol="R$"/>
-																</label>
 															</div>
-														</div>
-													</c:forEach>
+														</c:forEach>
+													</div>
 												</div>
-											</div>
-											<div class="carousel-item">
-												<div class="row">
-													<c:forEach var="product" items="${bestSellersTwo}">
-														<div class="col-md-3">
-															<div class="jumbotron product">
-																<div class="photo-product" onclick="window.location.href='/PrettyStyle/controller.do?path=productdetails&command=ViewProduct&id_product=${product.id}'">
-																	<img src="${product.photos[0].url}" alt="Imagem de ${product.name}">
+												<div class="carousel-item">
+													<div class="row">
+														<c:forEach var="product" items="${bestSellersTwo}">
+															<div class="col-md-3">
+																<div class="jumbotron product">
+																	<div class="photo-product" onclick="window.location.href='/PrettyStyle/controller.do?path=productdetails&command=ViewProduct&id_product=${product.id}'">
+																		<img src="${product.photos[0].url}" alt="Imagem de ${product.name}">
+																	</div>
+																	<label class="title-product">${product.name}</label>
+																	<div class="stars">
+																		<span class="star yellow-star">&nbsp;</span>
+																		<span class="star yellow-star">&nbsp;</span>
+																		<span class="star yellow-star">&nbsp;</span>
+																		<span class="star yellow-star">&nbsp;</span>
+																		<span class="star gray-star">&nbsp;</span>
+																	</div>
+																	<label class="price-product">
+																		<fmt:formatNumber value="${product.price}" type="currency" currencySymbol="R$"/>
+																	</label>
 																</div>
-																<label class="title-product">${product.name}</label>
-																<div class="stars">
-																	<span class="star yellow-star">&nbsp;</span>
-																	<span class="star yellow-star">&nbsp;</span>
-																	<span class="star yellow-star">&nbsp;</span>
-																	<span class="star yellow-star">&nbsp;</span>
-																	<span class="star gray-star">&nbsp;</span>
-																</div>
-																<label class="price-product">
-																	<fmt:formatNumber value="${product.price}" type="currency" currencySymbol="R$"/>
-																</label>
 															</div>
-														</div>
-													</c:forEach>
+														</c:forEach>
+													</div>
 												</div>
+												<a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">
+													<img src="App/assets/icons/arrow-left.svg" alt="Arrow left" class="arrow-left">
+												</a>
+												<a class="carousel-control-next" href="#myCarousel" role="button" data-slide="next">
+													<img src="App/assets/icons/arrow-right.svg" alt="Arrow right" class="arrow-right">
+												</a>
 											</div>
-											<a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">
-												<img src="App/assets/icons/arrow-left.svg" alt="Arrow left" class="arrow-left">
-											</a>
-											<a class="carousel-control-next" href="#myCarousel" role="button" data-slide="next">
-												<img src="App/assets/icons/arrow-right.svg" alt="Arrow right" class="arrow-right">
-											</a>
 										</div>
 									</div>
 								</div>
 							</div>
-						</div>
-						<div style="display: none;" class="col-md-12 content">
-							<img src="App/assets/icons/arrow-left.svg" alt="Arrow left" class="arrow-left">
-							<div class="col-md-12">
-								<div class="row">
-									<c:forEach var="product" items="${testList}">
-										<div class="col-md-3">
-											<div class="jumbotron product">
-												<div class="photo-product" onclick="window.location.href='App/pages/product-details/product-details.jsp'">
-													<img src="App/assets/img/jbl.png" alt="${product.name}">
+							<div style="display: none;" class="col-md-12 content">
+								<img src="App/assets/icons/arrow-left.svg" alt="Arrow left" class="arrow-left">
+								<div class="col-md-12">
+									<div class="row">
+										<c:forEach var="product" items="${testList}">
+											<div class="col-md-3">
+												<div class="jumbotron product">
+													<div class="photo-product" onclick="window.location.href='App/pages/product-details/product-details.jsp'">
+														<img src="App/assets/img/jbl.png" alt="${product.name}">
+													</div>
+													<label class="title-product">${product.name}</label>
+													<div class="stars">
+														<span class="star yellow-star">&nbsp;</span>
+														<span class="star yellow-star">&nbsp;</span>
+														<span class="star yellow-star">&nbsp;</span>
+														<span class="star yellow-star">&nbsp;</span>
+														<span class="star gray-star">&nbsp;</span>
+													</div>
+													<label class="price-product">
+														<fmt:formatNumber value="${product.price}" type="currency" currencySymbol="R$"/>
+													</label>
 												</div>
-												<label class="title-product">${product.name}</label>
-												<div class="stars">
-													<span class="star yellow-star">&nbsp;</span>
-													<span class="star yellow-star">&nbsp;</span>
-													<span class="star yellow-star">&nbsp;</span>
-													<span class="star yellow-star">&nbsp;</span>
-													<span class="star gray-star">&nbsp;</span>
-												</div>
-												<label class="price-product">
-													<fmt:formatNumber value="${product.price}" type="currency" currencySymbol="R$"/>
-												</label>
 											</div>
-										</div>
-									</c:forEach>
+										</c:forEach>
+									</div>
 								</div>
+								<img src="App/assets/icons/arrow-right.svg" alt="Arrow right" class="arrow-right">
 							</div>
-							<img src="App/assets/icons/arrow-right.svg" alt="Arrow right" class="arrow-right">
 						</div>
-					</div>
-				</section>
-				<div class="col-md-12 header">
+					</section>
+				</c:if>
+				<div class="col-md-12 header" style="display: none;">
 		  			<div class="row content">
 			  			<div class="title">
 			  				<label>Mais vendidos</label>
@@ -188,7 +190,7 @@
 			  			</div>
 		  			</div>
 		  		</div>
-				<section class="best-sellers">
+				<section class="best-sellers" style="display: none;">
 					<div class="jumbotron">
 						<div class="col-md-12 content">
 							<div class="col-md-12" style="padding: 0;">

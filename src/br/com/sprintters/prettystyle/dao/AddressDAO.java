@@ -29,8 +29,8 @@ public class AddressDAO {
 			stm.execute();
 			try (ResultSet rs = stm.executeQuery("SELECT LAST_INSERT_ID()")) {
 				if (rs.next()) {				
-					to.setId(rs.getInt(1));
-					id = rs.getInt(1);					
+					id = rs.getInt(1);
+					to.setId(id);
 				}
 				
 				conn.close();

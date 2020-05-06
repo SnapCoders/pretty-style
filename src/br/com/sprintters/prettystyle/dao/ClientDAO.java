@@ -13,7 +13,7 @@ import br.com.sprintters.prettystyle.model.Client;
 public class ClientDAO {
 	public int insert(Client to) throws Exception {
 		int id = 0;
-		String sqlInsert = "INSERT INTO client (name, surname, cpf, birthday, sex, id_user, created_at) VALUES (?, ?, ?, ?, ?, ?, NOW())";
+		String sqlInsert = "INSERT INTO client (name, surname, cpf, birthday, genre, id_user, created_at) VALUES (?, ?, ?, ?, ?, ?, NOW())";
 		
 		try (Connection conn = ConnectionFactory.createConnection();
 			 PreparedStatement stm = conn.prepareStatement(sqlInsert)) {

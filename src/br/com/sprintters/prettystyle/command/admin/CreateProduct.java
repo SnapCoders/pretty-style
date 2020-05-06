@@ -2,17 +2,18 @@ package br.com.sprintters.prettystyle.command.admin;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Enumeration;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import com.google.gson.Gson;
 import com.oreilly.servlet.MultipartRequest;
 
 import br.com.sprintters.prettystyle.command.Command;
+import br.com.sprintters.prettystyle.model.Category;
 import br.com.sprintters.prettystyle.model.Product;
 import br.com.sprintters.prettystyle.model.ProductPhoto;
 import br.com.sprintters.prettystyle.model.User;
@@ -27,11 +28,15 @@ public class CreateProduct implements Command {
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, Exception {
 		try {
-			HttpSession session = request.getSession();
-			
 			int idUser = (int)request.getAttribute("idUser");
 			String appPath = request.getServletContext().getRealPath("");
 			String savePath = appPath + SAVE_DIR;
+			
+			File webContentPath = new File(appPath + "\\WebContent");
+			File uploadPath = new File(webContentPath + "\\Upload");
+			
+			if (!webContentPath.exists()) webContentPath.mkdir();
+			if (!uploadPath.exists()) uploadPath.mkdir();
 			
 			MultipartRequest m = new MultipartRequest(request, savePath, 100100100);
 			
@@ -39,13 +44,18 @@ public class CreateProduct implements Command {
 			String pDescription = m.getParameter("description");
 			Double pPrice = Double.parseDouble(m.getParameter("price"));
 			int idMark = Integer.parseInt(m.getParameter("idMark"));
-			int idCategory = Integer.parseInt(m.getParameter("idCategory"));
+			
+			String[] idsCategories = m.getParameterValues("idCategory");
+			
+			ArrayList<Category> categories = new ArrayList<Category>();
+			
+			for (String idCategory : idsCategories) categories.add(new Category(Integer.parseInt(idCategory)));
 			
 			UserService us = new UserService();
 			
 			User user = us.find(idUser);
 			
-			Product product = new Product(pName, pDescription, pPrice, idMark, user.getProvider().getId());
+			Product product = new Product(pName, pDescription, pPrice, idMark, user.getProvider().getId(), categories);
 			
 			ProductService cs = new ProductService();
 			ProductPhotoService pps = new ProductPhotoService();

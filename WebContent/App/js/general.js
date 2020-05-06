@@ -64,6 +64,14 @@ function AlertaErro(data) {
 	});
 };
 
+function AlertaAviso(data) {
+	swal({
+		title: 'Atenção!',
+		text: data.message,
+		type: 'info',
+	});
+};
+
 function navigateTo(path, command) {
 	$.ajax({
 		url: '/PrettyStyle/controller.do?path=' + path + '&command=' + command + '&json=false',
@@ -151,11 +159,27 @@ function AlertaAvisoConfirm(title, question, url, type, method) {
 }
 
 function handleShowModal() {
-	if ($('#login-modal').hasClass('inactive')) {
-		$('#login-modal').removeClass('inactive');
-		$('#login-modal').addClass('active');
-	} else {
-		$('#login-modal').removeClass('active');
-		$('#login-modal').addClass('inactive');
-	}
+	$('#login-modal').removeClass('inactive');
+	$('#login-modal').addClass('active');
+};
+
+function handleHideModalTimeOut() {
+	setTimeout(function () {
+		if (!$('#login-modal').hasClass('focus') && $('#login-modal').hasClass('active')) {
+			setTimeout(function () {
+				$('#login-modal').addClass('inactive');
+				$('#login-modal').removeClass('active');
+			}, 800);
+		}
+	}, 1200);
+};
+
+function handleFocusModal() {
+	$('#login-modal').addClass('focus');
+};
+
+function handleHideModal() {
+	$('#login-modal').removeClass('focus');
+	$('#login-modal').removeClass('active');
+	$('#login-modal').addClass('inactive');
 };
