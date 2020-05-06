@@ -1,6 +1,10 @@
 $(document).ready(function () {
 	$.validator.addMethod("valueNotEquals", (value, element, arg) => arg !== value);
 	
+	$('#category').select2({
+		  theme: "classic"
+		});
+	
 	$('form[name="add-product"]').validate({
 		rules: {
 			name: 'required',
