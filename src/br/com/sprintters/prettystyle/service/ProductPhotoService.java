@@ -50,4 +50,12 @@ public class ProductPhotoService {
     		throw new Exception(e.getMessage());
     	}
     }
+    
+    public ProductPhoto findByIdProduct(int idProduct) throws Exception {
+    	try {
+    		return dao.findByIdProduct(idProduct);
+    	} catch (Exception e) {
+    		throw new Exception(e.getMessage());
+    	}
+    }
 }

@@ -117,4 +117,33 @@ public class ProductPhotoDAO {
 		
 		return photos;
 	}
+	
+	public ProductPhoto findByIdProduct(int idProduct) throws Exception {
+		ProductPhoto to = new ProductPhoto();
+		String sqlSelect = "SELECT * FROM product_photo WHERE id_product = ?";
+		
+		try (Connection conn = ConnectionFactory.createConnection();
+			 PreparedStatement stm = conn.prepareStatement(sqlSelect)) {
+			stm.setInt(1, idProduct);
+			
+			try (ResultSet rs = stm.executeQuery()) {
+				if (rs.next()) {
+					to.setId(rs.getInt("id"));
+					to.setUrl(rs.getString("url"));
+					to.setName(rs.getString("name"));
+					to.setIdProduct(rs.getInt("id_product"));
+					to.setCreatedAt(rs.getTimestamp("created_at"));
+					to.setUpdatedAt(rs.getTimestamp("updated_at"));
+					to.setDeletedAt(rs.getTimestamp("deleted_at"));
+				}
+				conn.close();
+			} catch (SQLException ex) {
+				throw new Exception(ex.getMessage());
+			}
+		} catch (SQLException e) {
+			throw new Exception(e.getMessage());
+		}
+		
+		return to;
+	}
 }
