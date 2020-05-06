@@ -38,7 +38,7 @@
 				<div id="login-modal" class="login-modal inactive" onmouseleave="handleHideModal();" onmouseover="handleFocusModal();">
 					<div class="actions">
 						<c:if test="${empty token}">
-							<button type="button" class="login-button" onclick="window.location.href='/PrettyStyle/App/pages/sign-in/sign-in.jsp'">ENTRAR</button>
+							<button type="button" class="login-button" onclick="window.location.href='/PrettyStyle/controller.do?path=signin&command=NavigateToLogin'">ENTRAR</button>
 							<button type="button" class="create-account-button" onclick="window.location.href='/PrettyStyle/App/pages/sign-up-simple/sign-up-simple.jsp'">CRIAR CONTA</button>
 						</c:if>
 						<c:if test="${not empty token}">
@@ -48,8 +48,8 @@
 					<c:if test="${not empty token}">
 						<hr />
 						<div class="pages">
-							<button id="id-user" type="button" onclick="window.location.href='/PrettyStyle/App/pages/edit-profile/edit-profile.jsp'">Minha conta</button>
-							<button id="id-user" type="button" onclick="window.location.href='/PrettyStyle/controller.do?path=request&command=ListRequests'">Meus Pedidos</button>
+							<button type="button" onclick="window.location.href='/PrettyStyle/controller.do?path=profile&command=EditProfile'">Minha conta</button>
+							<button type="button" onclick="window.location.href='/PrettyStyle/controller.do?path=request&command=ListRequests'">Meus Pedidos</button>
 						</div>
 					</c:if>
 				</div>
