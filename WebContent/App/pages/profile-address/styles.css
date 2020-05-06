@@ -2,7 +2,7 @@ div.profile-address-container div.container div.header div.content {
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
-	margin-bottom: 10px;
+    margin-bottom: 10px;
 }
 
 div.profile-address-container div.container div.header div.content div.title label {
@@ -16,11 +16,45 @@ div.profile-address-container div.container div.header div.content div.line {
 }
 
 div.profile-address-container div.container div.jumbotron.main {
-	margin-top: 20px;
 	border: 1px solid rgba(0, 0, 0, 0.3);
 	border-radius: 10px;
 	background: #ffffff;
 	padding: 15px;
+	padding-top: 40px;
+	
+	position: relative;
+	width: 100%;
+}
+
+div.profile-address-container div.container div.jumbotron.main div.navigation {
+	width: 480px;
+	height: 30px;
+	border: 1px solid rgba(0, 0, 0, 0.3);
+	background: #ffffff;
+	position: absolute;
+	top: -16px;
+    right: 45px;
+	border-radius: 20px;
+	padding: 0 15px;
+	
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+div.profile-address-container div.container div.jumbotron.main div.navigation label {
+	margin-bottom: 0;
+	color: #707070;
+	cursor: pointer;
+}
+
+div.profile-address-container div.container div.jumbotron.main div.navigation label:hover {
+	filter: brightness(90%);
+}
+
+div.profile-address-container div.container div.jumbotron.main div.navigation label.active {
+	color: #0E9AEF;
+	font-weight: bold;
 }
 
 div.profile-address-container div.container div.jumbotron.main div.jumbotron.address {
@@ -125,4 +159,16 @@ div.profile-address-container div.container div.jumbotron.main div.content div.b
 
 div.profile-address-container div.container div.jumbotron.main div.content div.button-area button:hover {
 	filter: brightness(90%);
+}
+
+div.empty-cart {
+	width: 100%;
+	min-height: 400px;
+	text-align: center;
+}
+
+div.empty-cart strong {
+	font-size: 28px;
+	color: #ddd;
+	line-height: 400px;
 }

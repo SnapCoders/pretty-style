@@ -57,6 +57,14 @@ function AlertaSucesso(data) {
 	});
 };
 
+function AlertaAviso(data) {
+	swal({
+		title: 'Atenção!',
+		text: data.message,
+		type: 'info',
+	});
+};
+
 function AlertaErro(data) {
 	swal({
 		title: 'Erro!',
@@ -74,11 +82,12 @@ function handleAdd(form) {
 			if (data.success) {
 				AlertaSucesso(data);
 			} else {
-				AlertaErro(data);
+				AlertaAviso(data);
 			}
 		},
 		error: function (data) {
-			AlertaErro(data);
+			if (data.data == 'error') AlertaErro(data);
+			if (data.data == 'info') AlertaAviso(data);
 		}
 	});
-}
+};

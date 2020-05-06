@@ -102,11 +102,11 @@
 				  					<label for="sex">Sexo<span style="color: #ff0000; margin-left: 5px;">*</span></label>
 				  					<div class="sex-inputs">
 				  						<div class="radio-area">
-				  							<input type="radio" id="sex-male" name="sex" />
+				  							<input type="radio" id="sex-male" name="sex" value="M" />
 					  						<span style="margin-left: 10px;">Masculino</span>
 				  						</div>
 				  						<div class="radio-area">
-			  								<input type="radio" id="sex-female" name="sex" />
+			  								<input type="radio" id="sex-female" name="sex" value="F" />
 					  						<span style="margin-left: 10px;">Feminino</span>
 				  						</div>
 					  				</div>

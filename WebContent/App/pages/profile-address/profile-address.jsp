@@ -44,70 +44,54 @@
 						</div>
 					</div>
 					<div class="jumbotron main">
-						<div class="col-md-12 content">
-							<div class="row">
-								<div class="col-md-6">
-									<c:forEach var="address" items="${lista1}">
-										<div id="card-address" class="jumbotron address">
-											<div class="header">
-												<label>Casa</label>
-												<div class="icons">
-													<button type="button" id="id-user" onclick="window.location.href='/PrettyStyle/controller.do?path=address&command=FindAddress&id_address=${address.id}'"> 
-														<img src="../../assets/icons/edit.svg" alt="Editar">
-													</button>
-													<button type="button" onclick="handleDelete(${address.id})">
-														<img src="../../assets/icons/bin.svg" alt="Lixeira">
-													</button>
+						<div class="navigation">
+			  				<label class="" onclick="window.location.href='/PrettyStyle/controller.do?path=profile&command=EditProfile'">Minha conta</label>
+			  				<hr style="width: 20px;" />
+			  				<label class="active">Meus endereços</label>
+			  				<hr style="width: 20px;" />
+			  				<label class="" onclick="window.location.href='/PrettyStyle/controller.do?path=address&command=NavigateToCreateAddress'">Cadastrar endereço</label>
+			  			</div>
+			  			<c:if test="${empty lista}">
+							<div class="empty-cart">
+								<strong>Você não tem endereços cadastrados no momento.</strong>
+							</div>
+						</c:if>
+						<%-- <c:if test="${not empty lista1 && not empty lista2}"> --%>
+							<div class="col-md-12 content">
+								<div class="row">
+									<c:forEach var="address" items="${lista}">
+										<div class="col-md-6">
+											<div id="card-address" class="jumbotron address">
+												<div class="header">
+													<label>Casa</label>
+													<div class="icons">
+														<button type="button" id="id-user" onclick="window.location.href='/PrettyStyle/controller.do?path=address&command=FindAddress&id_address=${address.id}'"> 
+															<img src="../../assets/icons/edit.svg" alt="Editar">
+														</button>
+														<button type="button" onclick="handleDelete(${address.id})">
+															<img src="../../assets/icons/bin.svg" alt="Lixeira">
+														</button>
+													</div>
 												</div>
-											</div>
-											<hr />
-											<div class="body">
-												<label class="client-name">${user.client.name} ${user.client.surname}</label>
-												<label>Endereço: <span>${address.place}, ${address.number}</span></label>
-												<label>Bairro: <span>${address.neighborhood}</span></label>
-												<label>Cidade: <span>${address.city }</span></label>
-												<label>Complemento: <span>${address.complement }</span></label>
-												<label>CEP: <span>${address.zip }</span></label>
-											</div>
-											<hr />
-											<div class="selection-area">
-												<input type="radio" onclick="handleSelectDefault(this)" /> <label>Selecionar como principal</label>
-											</div>
-										</div>
-									</c:forEach>
-								</div>
-								<div class="col-md-6">
-									<c:forEach var="address" items="${lista2}">
-										<div class="jumbotron address">
-											<div class="header">
-												<label>Casa</label>
-												<div class="icons">
-													<button type="button" id="id-user" onclick="window.location.href='/PrettyStyle/controller.do?path=address&command=FindAddress&id_address=${address.id}'">
-														<img src="../../assets/icons/edit.svg" alt="Editar">
-													</button>
-													<button type="button" name="acao" onclick="handleDelete(${address.id})">
-														<img src="../../assets/icons/bin.svg" alt="Lixeira">
-													</button>
+												<hr />
+												<div class="body">
+													<label class="client-name">${user.client.name} ${user.client.surname}</label>
+													<label>Endereço: <span>${address.place}, ${address.number}</span></label>
+													<label>Bairro: <span>${address.neighborhood}</span></label>
+													<label>Cidade: <span>${address.city }</span></label>
+													<label>Complemento: <span>${address.complement }</span></label>
+													<label>CEP: <span>${address.zip }</span></label>
 												</div>
-											</div>
-											<hr />
-											<div class="body">
-												<label class="client-name">${user.client.name} ${user.client.surname}</label>
-												<label>Endereço: <span>${address.place}, ${address.number}</span></label>
-												<label>Bairro: <span>${address.neighborhood}</span></label>
-												<label>Cidade: <span>${address.city}</span></label>
-												<label>Complemento: <span>${address.complement}</span></label>
-												<label>CEP: <span>${address.zip}</span></label>
-											</div>
-											<hr />
-											<div class="selection-area">
-												<input type="radio" onclick="handleSelectDefault(this)" /><label>Selecionar como principal</label>
+												<hr />
+												<div class="selection-area">
+													<input name="defaultAddress" type="radio" onclick="handleSelectDefault(this)" /> <label>Selecionar como principal</label>
+												</div>
 											</div>
 										</div>
 									</c:forEach>
 								</div>
 							</div>
-						</div>
+						<%-- </c:if> --%>
 					</div>
 				</div>
 			</div>
