@@ -4,6 +4,9 @@ $(document).ready(function () {
 	$('#category').select2({
 		  theme: "classic"
 		});
+	
+	$('#mark').val($('#markId').val());
+
 
 	setTimeout(function (){
 		let ids = [];

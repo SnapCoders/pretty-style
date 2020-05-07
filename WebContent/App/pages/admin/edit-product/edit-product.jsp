@@ -57,9 +57,12 @@
 					  				</div>
 				  				</div>
 				  				<div class="row">
+				  					<input type="hidden" value="${mark.id}" id="markId">
+				  					<input type="hidden" value="${mark.name}" id="markName">
 				  					<div class="col-md-4">
 					  					<label for="mark">Selecione a marca<span style="color: #ff0000; margin-left: 5px;">*</span></label>
 					  					<select class="form-control" id="mark" name="idMark" >
+					  						
 					  						<option value="0">--Selecione--</option>
 					  						<c:forEach var="mark" items="${marks}">
 					  							<option value="${mark.id}">${mark.name}</option>
