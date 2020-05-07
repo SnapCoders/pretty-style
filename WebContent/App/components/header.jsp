@@ -69,7 +69,6 @@
 	<div id="bottom-header" class="bottom-header">
 		<nav>
 			<ul>
-				<li onclick="handleSelectMenu(this);" class="">SALES</li>
 				<li onclick="handleSelectMenu(this);" class="">NOVIDADES</li>
 				<li onclick="handleSelectMenu(this);" class="">ACESSÓRIOS</li>
 		        <li onclick="handleSelectMenu(this);" class="">MASCULINO</li>

@@ -31,7 +31,10 @@ public class ListRequests  implements Command {
 			
 			User user = us.find(idUser);
 			
-			ArrayList<Request> requests = rs.listRequestsByIdClient(user.getClient().getId());
+			ArrayList<Request> requests = new ArrayList<>();
+			
+			if (user.isProvider()) requests = rs.listRequestsByIdClient(user.getProvider().getId());
+			else requests = rs.listRequestsByIdClient(user.getClient().getId());
 
     		if (isJson) {
 				Json json = new Json(true, "", rs);
