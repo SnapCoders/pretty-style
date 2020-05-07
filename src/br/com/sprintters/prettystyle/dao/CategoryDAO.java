@@ -146,4 +146,33 @@ public class CategoryDAO {
 		
 		return categories;
 	}
+	
+	public ArrayList<Category> listByIdCategory(String id) throws Exception  {
+		ArrayList<Category> categories = new ArrayList<Category>();
+		String sqlSelect = "SELECT * FROM category WHERE id_product in ('"+id+"')";
+		
+		try (Connection conn = ConnectionFactory.createConnection();
+			 PreparedStatement stm = conn.prepareStatement(sqlSelect)) {
+			try (ResultSet rs = stm.executeQuery()) {
+				while (rs.next()) {
+					Category to = new Category(
+						rs.getInt("id"),
+						rs.getString("name"),
+						rs.getString("color"),
+						rs.getTimestamp("created_at"),
+						rs.getTimestamp("updated_at"),
+						rs.getTimestamp("deleted_at")
+					);
+					categories.add(to);
+				}
+				conn.close();
+			} catch (SQLException ex) {
+				throw new Exception(ex.getMessage());
+			}
+		} catch (SQLException e) {
+			throw new Exception(e.getMessage());
+		}
+		
+		return categories;
+	}
 }

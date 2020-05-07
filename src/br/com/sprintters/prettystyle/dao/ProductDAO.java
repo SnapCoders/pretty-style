@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import br.com.sprintters.prettystyle.model.Category;
 import br.com.sprintters.prettystyle.model.ClientProductLike;
 import br.com.sprintters.prettystyle.model.Mark;
 import br.com.sprintters.prettystyle.model.Product;
@@ -386,5 +387,49 @@ public class ProductDAO {
 		} catch (SQLException e) {
 			throw new Exception(e.getMessage());
 		}
+	}
+	
+	public Product findProductAndCategory(int id) throws Exception {
+		Product to = new Product();
+		ArrayList<Category> categories = new ArrayList<Category>();
+		String sqlSelect = "select p.id, p.name, p.description, p.price, p.id_mark,pc.id_category, c.name, c.color from product p "
+				+ "inner join category c "
+				+ "inner join product_category pc on pc.id_product = p.id and pc.id_category = c.id where p.id = ?;";
+		
+		try (Connection conn = ConnectionFactory.createConnection();
+			 PreparedStatement stm = conn.prepareStatement(sqlSelect)) {
+			stm.setInt(1, id);
+			
+			try (ResultSet rs = stm.executeQuery()) {
+				int prevIdProduct = 0;
+				
+				while (rs.next()) {
+					int idProduct = rs.getInt("id");
+					Category category = new Category();
+					
+					if (idProduct != prevIdProduct) {						
+						to.setId(idProduct);
+						to.setName(rs.getString("name"));
+						to.setDescription(rs.getString("description"));
+						to.setPrice(rs.getDouble("price"));
+						to.setIdMark(rs.getInt("id_mark"));
+						prevIdProduct = idProduct;
+					}
+					category.setId(rs.getInt("id_category"));
+					category.setName(rs.getString("c.name"));
+					category.setColor(rs.getString("color"));
+					categories.add(category);
+				}
+				to.setCategories(categories);
+				
+				conn.close();
+			} catch (SQLException ex) {
+				throw new Exception(ex.getMessage());
+			}
+		} catch (SQLException e) {
+			throw new Exception(e.getMessage());
+		}
+		
+		return to;
 	}
 }
