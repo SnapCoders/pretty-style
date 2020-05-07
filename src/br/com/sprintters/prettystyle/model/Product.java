@@ -81,6 +81,16 @@ public class Product extends Entity {
 		this.mark = mark;
 	}
 
+	public Product(int idProduct, String name, String description, Double price, int idMark, int idProvider, ArrayList<Category> categories) {
+		super(idProduct);
+		this.name = name;
+		this.description = description;
+		this.price = price;
+		this.idMark = idMark;
+		this.idProvider = idProvider;
+		this.categories = categories;
+	}
+
 	public String getName() {
 		return name;
 	}
