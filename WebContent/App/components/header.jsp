@@ -69,15 +69,12 @@
 	<div id="bottom-header" class="bottom-header">
 		<nav>
 			<ul>
-				<li class="active">SALES</li>
-				<li onclick="window.location.href='/PrettyStyle/controller.do?path=catalog&command=ListByCategory&filter='">NOVIDADES</li>
-				<!-- <li onclick="window.location.href='/PrettyStyle/App/pages/save-address/save-address.jsp'">CRIAR ENDEREÇO</li>
-				<li id="id-user" onclick="window.location.href='/PrettyStyle/controller.do?path=address&command=ListAddress'">MEUS ENDEREÇOS</li>
-				<li onclick="window.location.href='/PrettyStyle/App/pages/catalog/catalog.jsp'">CATÁLOGO</li> -->
-				<li onclick="window.location.href='/PrettyStyle/controller.do?path=catalog&command=ListByCategory'">ACESSÓRIOS</li>
-		        <li onclick="window.location.href='/PrettyStyle/controller.do?path=catalog&command=ListByCategory'">MASCULINO</li>
-		        <li onclick="window.location.href='/PrettyStyle/controller.do?path=catalog&command=ListByCategory'">FEMININO</li>
-		        <li onclick="window.location.href='/PrettyStyle/controller.do?path=catalog&command=ListByCategory'">PETS</li>
+				<li onclick="handleSelectMenu(this);" class="">SALES</li>
+				<li onclick="handleSelectMenu(this);" class="">NOVIDADES</li>
+				<li onclick="handleSelectMenu(this);" class="">ACESSÓRIOS</li>
+		        <li onclick="handleSelectMenu(this);" class="">MASCULINO</li>
+		        <li onclick="handleSelectMenu(this);" class="">FEMININO</li>
+		        <li onclick="handleSelectMenu(this);" class="">PETS</li>
 			</ul>
 		</nav>
 	</div>

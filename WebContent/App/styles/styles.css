@@ -171,9 +171,9 @@ div.home-container div.container div.header div.content div.line {
 
 section.best-sellers div.jumbotron {
 	margin: 10px 0 10px 0;
-	border: 1px solid rgba(0, 0, 0, 0.3);
+	border: 1px solid rgba(0,0,0,.1);
 	border-radius: 10px;
-	background: #ffffff;
+	background: rgba(255,255,255,0.5);
 	padding: 10px;
 }
 
@@ -220,7 +220,7 @@ section.best-sellers div.jumbotron img.arrow-left:hover, section.best-sellers di
 
 section.best-sellers div.jumbotron.product {
 	margin: 10px 0 10px 0;
-	border: 1px solid #707070;
+	border: 1px solid rgba(0,0,0,.1);
 	border-radius: 10px;
 	background: #ffffff;
 	padding: 10px;

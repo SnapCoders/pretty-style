@@ -66,11 +66,20 @@
 										<div class="product-details-area">
 											<div class="row product-title">
 												<div class="product-info">
-													<input type="hidden" name="id_product" value="${productDetails.product.id}" />
-													<input type="hidden" name="name" value="${productDetails.product.name}" />
-													<input type="hidden" name="description" value="${productDetails.product.description}" />
-													<label>${productDetails.product.name}</label>
-													<span class="product-description">${productDetails.product.description}</span>
+													<c:if test="${not empty productDetails}">
+														<input type="hidden" name="id_product" value="${productDetails.product.id}" />
+														<input type="hidden" name="name" value="${productDetails.product.name}" />
+														<input type="hidden" name="description" value="${productDetails.product.description}" />
+														<label>${productDetails.product.name}</label>
+														<span class="product-description">${productDetails.product.description}</span>
+													</c:if>
+													<c:if test="${empty productDetails}">
+														<input type="hidden" name="id_product" value="${product.id}" />
+														<input type="hidden" name="name" value="${product.name}" />
+														<input type="hidden" name="description" value="${product.description}" />
+														<label>${product.name}</label>
+														<span class="product-description">${product.description}</span>
+													</c:if>
 													<div class="stars">
 														<span class="star yellow-star">&nbsp;</span>
 														<span class="star yellow-star">&nbsp;</span>
@@ -81,6 +90,11 @@
 												</div>
 												<div class="like-product">
 													<div class="favorite">
+														<c:if test="${empty productDetails}">
+															<div id="like" class="favorite-icon like" onclick="handleLikeDislike(this, ${productDetails.product.id});">
+																<img src="../../assets/icons/heart.svg"/>
+															</div>
+														</c:if>
 														<c:if test="${productDetails.action == 0}">
 															<div id="like" class="favorite-icon like" onclick="handleLikeDislike(this, ${productDetails.product.id});">
 																<img src="../../assets/icons/heart.svg"/>
@@ -98,8 +112,14 @@
 												<div class="price">
 													<span>Preço: </span>
 													<label>
-														<fmt:formatNumber value="${productDetails.product.price}" type="currency" currencySymbol="R$"/>
-														<input type="hidden" name="price" value="${productDetails.product.price}" />
+														<c:if test="${not empty productDetails}">
+															<fmt:formatNumber value="${productDetails.product.price}" type="currency" currencySymbol="R$"/>
+															<input type="hidden" name="price" value="${productDetails.product.price}" />
+														</c:if>
+														<c:if test="${empty productDetails}">
+															<fmt:formatNumber value="${product.price}" type="currency" currencySymbol="R$"/>
+															<input type="hidden" name="price" value="${product.price}" />
+														</c:if>
 													</label>
 													<div class="quantity">
 														<span>Quantidade: </span>

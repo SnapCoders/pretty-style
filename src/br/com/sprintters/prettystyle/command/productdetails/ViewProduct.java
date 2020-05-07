@@ -23,19 +23,29 @@ public class ViewProduct implements Command {
 		try {
 			HttpSession session = request.getSession();
 			
-			int idUser = (int)request.getAttribute("idUser");
+			String idUserStr = (String)request.getAttribute("idUser");
+			
+			int idUser = -1;
+			
+			if (idUserStr != null) {
+				idUser = (int)request.getAttribute("idUser");
+			}
+			
 			int idProduct = Integer.parseInt(request.getParameter("id_product"));
 			boolean isJson = Boolean.parseBoolean(request.getParameter("json"));
 			
 			ProductService ps = new ProductService();
 			UserService us = new UserService();
 			
-			User user = us.find(idUser);
+			User user = null;
+			ClientProductLike cpl = null;
 			Product product = ps.find(idProduct);
 			
-			ClientProductLike cpl = ps.listFavoriteByIdUserAndIdProduct(user.getId(), idProduct);
-			
-			cpl.setProduct(product);
+			if (idUser != -1) {
+				user = us.find(idUser);
+				cpl = ps.listFavoriteByIdUserAndIdProduct(user.getId(), idProduct);
+				cpl.setProduct(product);
+			}			
 			
 			if (isJson) {
 				Json json = new Json(true, "", cpl);
@@ -43,7 +53,8 @@ public class ViewProduct implements Command {
 				response.setContentType("application/json");
 				response.getWriter().write(new Gson().toJson(json).toString());
 			} else {
-				session.setAttribute("productDetails", cpl);
+				if (cpl != null) session.setAttribute("productDetails", cpl);
+				session.setAttribute("product", product);
 				
 				response.sendRedirect("/PrettyStyle/App/pages/product-details/product-details.jsp");
 			}

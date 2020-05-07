@@ -44,6 +44,15 @@ function handleLogout() {
 	});
 };
 
+function handleSelectMenu(element) {
+	window.location.href='/PrettyStyle/controller.do?path=catalog&command=ListByCategory&filter='+$(element).text();
+	
+	$.each($('#bottom-header').find('ul').find('li'), (i, e) => $(e).removeClass('active'));
+	
+	$('#bottom-header').find('ul').find('li:contains('+$(element).text()+')').addClass('active');
+};
+
+
 //document.addEventListener('DOMContentLoaded', function() {
 //	let stars = document.querySelectorAll('.star');
 //	stars.forEach(function(star) {

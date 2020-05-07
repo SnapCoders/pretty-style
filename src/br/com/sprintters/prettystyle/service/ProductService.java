@@ -151,5 +151,19 @@ public class ProductService{
     	}
     }
     
+    public ArrayList<Product> findByName(String filter) throws Exception {
+    	try {
+    		return productDAO.findByName(filter);
+    	} catch (Exception e) {
+    		throw new Exception(e.getMessage());
+    	}
+    }
     
+    public ArrayList<Product> findByCategory(String filter) throws Exception {
+    	try {
+    		return productDAO.findByCategory(filter);
+    	} catch (Exception e) {
+    		throw new Exception(e.getMessage());
+    	}
+    }
 }
