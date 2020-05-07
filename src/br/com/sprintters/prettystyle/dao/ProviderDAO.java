@@ -11,15 +11,15 @@ import java.sql.PreparedStatement;
 public class ProviderDAO {
 	public int create(Provider to) throws Exception {
 		int id = 0;
-		String sqlInsert = "INSERT INTO provider (cnpj, fantasyName, socialReason, contact, id_user, created_at) VALUES (?, ?, ?, ?, ?, NOW())";
+		String sqlInsert = "INSERT INTO provider (cnpj, fantasy_name, social_reason, contact, id_user, created_at) VALUES (?, ?, ?, ?, ?, NOW())";
 		
 		try (Connection conn = ConnectionFactory.createConnection();
 			 PreparedStatement stm = conn.prepareStatement(sqlInsert)) {
 			stm.setString(1, to.getCnpj());
-			stm.setInt(2, to.getIdUser());
-			stm.setString(3, to.getFantasyName());
-			stm.setString(4, to.getSocialReason());
-			stm.setString(5, to.getContact());
+			stm.setString(2, to.getFantasyName());
+			stm.setString(3, to.getSocialReason());
+			stm.setString(4, to.getContact());
+			stm.setInt(5, to.getIdUser());
 			stm.execute();
 			try (ResultSet rs = stm.executeQuery("SELECT LAST_INSERT_ID()")) {
 				if (rs.next()) {				
@@ -36,7 +36,7 @@ public class ProviderDAO {
 	}
 	
 	public void update(Provider to) throws Exception {
-		String sqlUpdate = "UPDATE provider SET cnpj = ?, fantasyName = ?, socialReason = ?, contact = ?, id_user = ?, updated_at = NOW() WHERE id = ?";
+		String sqlUpdate = "UPDATE provider SET cnpj = ?, fantasy_name = ?, social_reason = ?, contact = ?, updated_at = NOW() WHERE id = ?";
 		
 		try (Connection conn = ConnectionFactory.createConnection();
 			 PreparedStatement stm = conn.prepareStatement(sqlUpdate)) {
@@ -44,8 +44,7 @@ public class ProviderDAO {
 			stm.setString(2, to.getFantasyName());
 			stm.setString(3, to.getSocialReason());
 			stm.setString(4, to.getContact());
-			stm.setInt(5, to.getIdUser());
-			stm.setInt(6, to.getId());
+			stm.setInt(5, to.getId());
 			stm.execute();
 		} catch (SQLException e) {
 			throw new Exception(e.getMessage());

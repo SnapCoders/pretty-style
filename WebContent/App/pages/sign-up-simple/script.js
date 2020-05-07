@@ -74,11 +74,12 @@ function handleAdd(form) {
 			if (data.success) {
 				AlertaSucesso(data);
 			} else {
-				AlertaErro(data);
+				AlertaAviso(data);
 			}
 		},
 		error: function (data) {
-			AlertaErro(data);
+			if (data.data == 'error') AlertaErro(data);
+			if (data.data == 'info') AlertaAviso(data);
 		}
 	});
 }

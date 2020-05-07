@@ -1,5 +1,5 @@
 $(document).ready(function () {
-	$('form[name="add-address"]').validate({
+	$('form[name="update-address"]').validate({
 		rules: {
 			name: 'required',
 			zip: 'required',
@@ -22,21 +22,24 @@ $(document).ready(function () {
 		},
 		submitHandler: function (form) {
 			// form.submit();
-			handleAdd(form);
+			handleUpdate(form);
 		},
 	});
 });
 
-function handleAdd(form) {
+function handleUpdate(form) {
 	var formSerialized = $(form).serialize();
-	let idUser = sessionStorage.getItem('id_user');
-	console.log(formSerialized);
+	
 	$.ajax({
 		type: "POST",
-		url: "/PrettyStyle/controller.do?path=address&command=UpdateAddress&json=true&id_user="+idUser,
+		url: "/PrettyStyle/controller.do?path=address&command=UpdateAddress&json=true",
 		data: formSerialized,
 		success: function(data){
-			AlertaSucesso(data);	
+			if (data.success) {
+				AlertaSucessoRedirect(data);
+			} else {
+				AlertaErro(data);
+			}
 		},
 		error: function(data){
 			AlertaErro(data);
@@ -44,8 +47,20 @@ function handleAdd(form) {
 	})
 }
 
-// QUANDO TIVER VALIDAÇÃO DE UM SELECT COM OPTIONS
-// $.validator.addMethod("valueNotEquals", (value, element, arg) => arg !== value);
+function AlertaSucessoRedirect(data) {
+	swal({
+		title: 'Sucesso',
+		text: data.message,
+		type: 'success',
+		confirmButtonText: "OK",
+		confirmButtonColor: "#3CB371",
+		closeOnConfirm: false,
+	}, function (isConfirm) {
+		console.log(isConfirm);
+		if (!isConfirm) return;
+		window.location.href='/PrettyStyle/controller.do?path=address&command=ListAddress';
+	});
+};
 
 function AlertaSucesso(data){
 	swal({

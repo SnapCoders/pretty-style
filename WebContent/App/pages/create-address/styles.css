@@ -20,6 +20,40 @@ div.address-container div.container div.jumbotron.main {
 	border-radius: 10px;
 	background: #ffffff;
 	padding: 15px;
+	
+	position: relative;
+	width: 100%;
+}
+
+div.address-container div.container div.jumbotron.main div.navigation {
+	width: 480px;
+	height: 30px;
+	border: 1px solid rgba(0, 0, 0, 0.3);
+	background: #ffffff;
+	position: absolute;
+	top: -16px;
+    right: 45px;
+	border-radius: 20px;
+	padding: 0 15px;
+	
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+div.address-container div.container div.jumbotron.main div.navigation label {
+	margin-bottom: 0;
+	color: #707070;
+	cursor: pointer;
+}
+
+div.address-container div.container div.jumbotron.main div.navigation label:hover {
+	filter: brightness(90%);
+}
+
+div.address-container div.container div.jumbotron.main div.navigation label.active {
+	color: #0E9AEF;
+	font-weight: bold;
 }
 
 div.address-container div.container div.jumbotron.main div.content label {

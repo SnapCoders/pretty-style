@@ -61,7 +61,7 @@
 				  				<div class="row">
 				  					<div class="col-md-6 name-area">
 					  					<label for="fantasyName">Nome fantasia<span style="color: #ff0000; margin-left: 5px;">*</span></label>
-					  					<input class="form-control" id="fantasyName" name="fantasyName" placeholder="Digite seu primeiro nome" />
+					  					<input type="text" class="form-control" id="fantasyName" name="fantasyName" placeholder="Digite seu primeiro nome" />
 					  				</div>
 					  				<div class="col-md-6 email-confirmation-area">
 					  					<label for="email-confirmation">Confirmação de e-mail<span style="color: #ff0000; margin-left: 5px;">*</span></label>
@@ -74,8 +74,8 @@
 					  					<input class="form-control" id="socialReason" name="socialReason" placeholder="Digite sua razão social" />
 					  				</div>
 					  				<div class="col-md-6 password-area">
-					  					<label for="password">Senha<span style="color: #ff0000; margin-left: 5px;">*</span></label>
-					  					<input class="form-control" id="password" name="password" placeholder="Digite sua senha" />
+					  					<label for="password">Senha</label>
+					  					<input type="password" class="form-control" id="password" name="password" placeholder="Digite sua senha" />
 					  				</div>
 				  				</div>
 								<div class="row">

@@ -49,7 +49,7 @@ public class ClientDAO {
 	}
 	
 	public void update(Client to) throws Exception {
-		String sqlUpdate = "UPDATE client SET name = ?, surname = ?, cpf = ?, birthday = ?, sex = ?, id_user = ?, updated_at = NOW() WHERE id = ?";
+		String sqlUpdate = "UPDATE client SET name = ?, surname = ?, cpf = ?, birthday = ?, genre = ?, updated_at = NOW() WHERE id = ?";
 		
 		try (Connection conn = ConnectionFactory.createConnection();
 			 PreparedStatement stm = conn.prepareStatement(sqlUpdate)) {
@@ -58,10 +58,11 @@ public class ClientDAO {
 			stm.setString(3, to.getCpf());
 			stm.setDate(4, new java.sql.Date(to.getBirthday().getTime()));
 			stm.setString(5, to.getSex());
-			stm.setInt(6, to.getIdUser());
-			stm.setInt(7, to.getId());
+			stm.setInt(6, to.getId());
 			
 			stm.execute();
+			
+			conn.close();
 			
 		} catch (SQLException e) {
 			throw new Exception(e.getMessage());
@@ -130,6 +131,8 @@ public class ClientDAO {
 					 * SimpleDateFormat("dd/MM/yyyy"); java.util.Date birthday =
 					 * sdf.parse(birthdayStr);
 					 */
+					to.setCpf(rs.getString("cpf"));
+					to.setSex(rs.getString("genre"));
 					to.setBirthday(new Date(2003));
 					to.setIdUser(rs.getInt("id_user"));
 					to.setCreatedAt(rs.getTimestamp("created_at"));

@@ -40,15 +40,14 @@ public class UserDAO {
 	}
 	
 	public void update(User to) throws Exception {
-		String sqlUpdate = "UPDATE user SET username = ?, email = ?, email_confirmation = ?, password_hash = ?, updated_at = NOW() WHERE id = ?";
+		String sqlUpdate = "UPDATE user SET username = ?, email = ?, email_confirmation = ?, updated_at = NOW() WHERE id = ?";
 		
 		try (Connection conn = ConnectionFactory.createConnection();
 			 PreparedStatement stm = conn.prepareStatement(sqlUpdate)) {
 			stm.setString(1, to.getUsername());
 			stm.setString(2, to.getEmail());
 			stm.setString(3, to.getEmailConfirmation());
-			stm.setString(4, to.getPasswordHash());
-			stm.setInt(5, to.getId());
+			stm.setInt(4, to.getId());
 			
 			stm.execute();
 			

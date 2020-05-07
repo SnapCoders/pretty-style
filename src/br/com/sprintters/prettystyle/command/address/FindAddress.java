@@ -23,43 +23,29 @@ public class FindAddress implements Command {
 	public void execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException, Exception {
 		try {
-			String idUserStr = request.getParameter("id_user");
-			String idAddressStr = request.getParameter("id_address");
+			int idUser = (int)request.getAttribute("idUser");
+			int idAddress = Integer.parseInt(request.getParameter("id_address"));
 			
 			boolean isJson = Boolean.parseBoolean(request.getParameter("json"));
 
-			int idUser = -1;
-			int idAddress = Integer.parseInt(idAddressStr);
-
 			HttpSession session = request.getSession();
 
-			try {
-				idUser = Integer.parseInt(idUserStr);
+			AddressService as = new AddressService();
+			Address address = as.find(idAddress);
 
-			} catch (NumberFormatException e) {
-				response.sendRedirect("/PrettyStyle/App/pages/sign-in/sign-in.jsp");
+			User user = as.findListByIdUser(idUser);
+			
+			session.setAttribute("user", user);
+			session.setAttribute("address", address);
+			
+			if (isJson) {
+				Json json = new Json(true, "", user);
+				
+				response.setContentType("application/json");
+				response.getWriter().write(new Gson().toJson(json).toString());
+			} else {
+				response.sendRedirect("/PrettyStyle/App/pages/edit-address/edit-address.jsp");
 			}
-
-			if (idUser != -1) {
-					AddressService as = new AddressService();
-					Address address = as.find(idAddress);
-
-					User user = as.findListByIdUser(idUser);
-					
-					session.setAttribute("user", user);
-					session.setAttribute("address", address);
-					
-									
-				if (isJson) {
-					Json json = new Json(true, "", user);
-					
-					response.setContentType("application/json");
-					response.getWriter().write(new Gson().toJson(json).toString());
-				} else {
-					response.sendRedirect("/PrettyStyle/App/pages/edit-address/edit-address.jsp");
-				}
-			}
-
 		} catch (Exception e) {
 			JSONObject retorno = new JSONObject();
 

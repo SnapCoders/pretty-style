@@ -1,50 +1,47 @@
 $(document).ready(function () {
-	$('#cnpj').mask('00.000.000/0000-00', {reverse: true});
 	$('#telephone').mask('(00) 0000-0000');
 	$('#cellphone').mask('(00) 0 0000-0000');
-
-	$('form[name="add-user-business"]').validate({
+	
+	$('form[name="update-profile"]').validate({
 		rules: {
 			username: 'required',
 			email: {
 				required: true,
 				email: true,
 			},
-			fantasyName: 'required',
+			name: 'required',
 			emailConfirmation: {
 				required: true,
 				email: true,
 			},
-			socialReason: 'required',
+			surname: 'required',
 			password: {
-				required: true,
+				required: false,
 				minlength: 8,
 				maxlength: 32,
 			},
-			cnpj: 'required',
-			contact: {
-				required: true,
-				email: true,
-			},
+			cpf: 'required',
+			birthday: 'required',
 			cellphone: 'required',
+			sex: 'required',
 		},
 		messages: {
 			username: 'O campo username é obrigatório.',
 			email: 'O campo e-mail é obrigatório.',
-			fantasyName: 'O campo nome fantasia é obrigatório.',
+			name: 'O campo nome é obrigatório.',
 			emailConfirmation: 'O campo de confirmação de e-mail é obrigatório.',
-			socialReason: 'O campo razão social é obrigatório.',
+			surname: 'O campo sobrenome é obrigatório.',
 			password: {
-				required: 'O campo de senha é obrigatório.',
 				minlength: 'O tamanho da senha deve conter no mínimo 8 caracteres.',
 				maxlength: 'O tamanho da senha deve conter no máximo 32 caracteres.',
 			},
-			cnpj: 'Informe seu CNPJ.',
-			contact: 'Informe seu e-mail principal para contato.',
+			cpf: 'Informe seu CPF.',
+			birthday: 'Informe sua data de nascimento.',
 			cellphone: 'Informe um número de celular.',
+			sex: 'Selecione o gênero',
 		},
 		submitHandler: function (form) {
-			handleAdd(form);
+			handleProfileEdition(form);
 		},
 	});
 });
@@ -57,14 +54,6 @@ function AlertaSucesso(data) {
 	});
 };
 
-function AlertaAviso(data) {
-	swal({
-		title: 'Atenção!',
-		text: data.message,
-		type: 'info',
-	});
-};
-
 function AlertaErro(data) {
 	swal({
 		title: 'Erro!',
@@ -73,21 +62,18 @@ function AlertaErro(data) {
 	});
 };
 
-function handleAdd(form) {
+function handleProfileEdition(form) {
 	$.ajax({
-		url: '/PrettyStyle/controller.do?path=signup&command=CreateUser&json=true',
-		type: 'POST',
-		data: $(form).serialize(),
+		url: '/PrettyStyle/controller.do?path=profile&command=UpdateProfile', type: 'PUT', data: $(form).serialize(),
 		success: function (data) {
 			if (data.success) {
 				AlertaSucesso(data);
 			} else {
-				AlertaAviso(data);
+				AlertaErro(data);
 			}
 		},
 		error: function (data) {
-			if (data.data == 'error') AlertaErro(data);
-			if (data.data == 'info') AlertaAviso(data);
+			AlertaErro(data);
 		}
 	});
-};
+}

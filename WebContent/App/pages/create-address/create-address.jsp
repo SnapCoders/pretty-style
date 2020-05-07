@@ -39,6 +39,13 @@
 						</div>
 					</div>
 					<div class="jumbotron main">
+						<div class="navigation">
+			  				<label class="" onclick="window.location.href='/PrettyStyle/controller.do?path=profile&command=EditProfile'">Minha conta</label>
+			  				<hr style="width: 20px;" />
+			  				<label class="" onclick="window.location.href='/PrettyStyle/controller.do?path=address&command=ListAddress'">Meus endereços</label>
+			  				<hr style="width: 20px;" />
+			  				<label class="active">Cadastrar endereço</label>
+			  			</div>
 						<div class="col-md-12 content">
 							<form action="/PrettyStyle/addresses" method="POST" name="add-address">
 								<div class="row">

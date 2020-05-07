@@ -35,18 +35,29 @@ public class UserService {
         	user.setPassword(null);
         	user.setPasswordHash(passwordHash);
         	
-        	// 2 - Cadastrar o usuário
-        	idUser = userDAO.insert(user);
+        	// 2 - Checar se já existe um usuário com esta e-mail cadastrado
+        	User userExists = userDAO.findByEmail(user.getEmail());
         	
-        	user.getClient().setIdUser(idUser);
-        	
-        	// 3 - Cadastrar cliente
-        	clientDAO.insert(user.getClient());
-        	
-        	// 4 - Cadastrar os telefones
-        	for (PhoneNumber to : user.getPhoneNumbers()) {
-        		to.setIdUser(idUser);
-        		phoneNumberDAO.insert(to);
+        	if (userExists.getId() == 0) {
+        		// 2 - Cadastrar o usuário
+            	idUser = userDAO.insert(user);
+            	
+            	// 3 - Cadastrar cliente ou provider
+            	if (user.isProvider()) {
+            		user.getProvider().setIdUser(idUser);
+            		providerDAO.create(user.getProvider());
+            	} else {
+            		user.getClient().setIdUser(idUser);
+            		clientDAO.insert(user.getClient());
+            	}
+            	
+            	// 4 - Cadastrar os telefones
+            	for (PhoneNumber to : user.getPhoneNumbers()) {
+            		to.setIdUser(idUser);
+            		phoneNumberDAO.insert(to);
+            	}
+        	} else {
+        		throw new Exception("Já existe um usuário com este e-mail cadastrado!");
         	}
         	
         	return idUser;
@@ -57,7 +68,30 @@ public class UserService {
 
     public void update(User user) throws Exception {
         try {
+        	// 1 - Atualizar o usuário
         	userDAO.update(user);
+        	
+        	// 2 - Atualizar o provider ou client
+        	if (user.isProvider()) {
+        		Provider providerExists = providerDAO.findByIdUser(user.getId());
+        		user.getProvider().setId(providerExists.getId());
+        		providerDAO.update(user.getProvider());
+        	} else {
+        		Client clientExists = clientDAO.findByIdUser(user.getId());
+        		user.getClient().setId(clientExists.getId());
+        		clientDAO.update(user.getClient());
+        	}
+        	
+        	ArrayList<PhoneNumber> phones = phoneNumberDAO.findByIdUser(user.getId());
+        	
+        	int c = 0;
+        	
+        	// 3 - Atualizar o telefones
+        	for (PhoneNumber pn : user.getPhoneNumbers()) {
+        		pn.setId(phones.get(c).getId());
+        		phoneNumberDAO.update(pn);
+        		c++;
+        	}
     	} catch (Exception e) {
     		throw new Exception(e.getMessage());
     	}
@@ -84,6 +118,11 @@ public class UserService {
 			} else {
 				user.setProvider(provider);
 			}
+			
+			ArrayList<PhoneNumber> phones = phoneNumberDAO.findByIdUser(user.getId());
+			
+			user.setPhoneNumbers(phones);
+			
     		return user;
     	} catch (Exception e) {
     		throw new Exception(e.getMessage());

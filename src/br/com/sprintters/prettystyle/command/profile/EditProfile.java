@@ -1,7 +1,6 @@
-package br.com.sprintters.prettystyle.command.address;
+package br.com.sprintters.prettystyle.command.profile;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -11,39 +10,36 @@ import javax.servlet.http.HttpSession;
 import com.google.gson.Gson;
 
 import br.com.sprintters.prettystyle.command.Command;
-import br.com.sprintters.prettystyle.model.Address;
 import br.com.sprintters.prettystyle.model.User;
 import br.com.sprintters.prettystyle.model.generic.Json;
-import br.com.sprintters.prettystyle.service.AddressService;
+import br.com.sprintters.prettystyle.service.UserService;
 
-public class ListAddress implements Command {
+public class EditProfile implements Command {
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, Exception {
 		try {
+			HttpSession session = request.getSession();
+			
 			int idUser = (int)request.getAttribute("idUser");
 			boolean isJson = Boolean.parseBoolean(request.getParameter("json"));
-
-			AddressService as = new AddressService();
 			
-			User user = as.findListByIdUser(idUser);
+			UserService us = new UserService();
 			
-			ArrayList<Address> lista = user.getAddresses();
-								
+			User user = us.find(idUser);
+			
 			if (isJson) {
 				Json json = new Json(true, "", user);
 				
 				response.setContentType("application/json");
 				response.getWriter().write(new Gson().toJson(json).toString());
 			} else {
-				HttpSession session = request.getSession();
-				
-				session.setAttribute("lista", lista);
 				session.setAttribute("user", user);
-				
-				response.sendRedirect("/PrettyStyle/App/pages/profile-address/profile-address.jsp");
+	    		
+				if (user.isProvider()) response.sendRedirect("/PrettyStyle/App/pages/edit-profile-business/edit-profile-business.jsp");
+				else response.sendRedirect("/PrettyStyle/App/pages/edit-profile-simple/edit-profile-simple.jsp");
 			}
 		} catch (Exception e) {
-			Json json = new Json(false, "Erro ao carregar os seus endereços!", e);
+			Json json = new Json(false, "Desculpe, não foi possível listar os seus pedidos", e);
 			
 			response.setContentType("application/json");
 			response.getWriter().write(new Gson().toJson(json).toString());
