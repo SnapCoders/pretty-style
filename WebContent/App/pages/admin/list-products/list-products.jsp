@@ -67,11 +67,11 @@
 												<button class="btn btn-sm btn-outline-success">
 													<i class="far fa-eye"></i>
 												</button>
-												<form action="/PrettyStyle/controller.do?path=admin&command=EditProduct">
+												
 													<button id="btn-edit" type="submit" class="btn btn-sm btn-outline-primary">
-														<i class="far fa-edit"></i>
+														<i class="far fa-edit" onclick="window.location.href = '/PrettyStyle/controller.do?path=admin&command=EditProduct&id_product=${product.id}'"></i>
 													</button>
-												</form>
+											
 												<button id="btn-remove" type="button" class="btn btn-sm btn-outline-danger" onclick="handleDelete(${product.id});">
 													<i class="fas fa-trash"></i>
 												</button>

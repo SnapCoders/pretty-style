@@ -8,6 +8,13 @@ window.onscroll = function () {
 	}
 };
 
+function handleDeleteImg(id){
+	let idSelecteds = $('#idPhotosDelete').val().split(',');
+	if(idSelecteds[0] == "") idSelecteds = [];
+	if(!idSelecteds.includes(id.toString())) idSelecteds.push(id);			
+	$('#idPhotosDelete').val(idSelecteds);
+}
+
 function handleLogout() {
 	swal({
 		title: 'Sair ?',

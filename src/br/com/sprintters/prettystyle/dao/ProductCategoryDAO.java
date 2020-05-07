@@ -85,4 +85,30 @@ public class ProductCategoryDAO {
 		
 		return prodsCat;
 	}
+	
+	public ArrayList<ProductCategory> listByIdProduct(int id) throws Exception  {
+		ArrayList<ProductCategory> prodsCat = new ArrayList<ProductCategory>();
+		String sqlSelect = "SELECT * FROM product_category where id_product = ?";
+		
+		try (Connection conn = ConnectionFactory.createConnection();
+			 PreparedStatement stm = conn.prepareStatement(sqlSelect)) {
+			stm.setInt(1, id);
+			try (ResultSet rs = stm.executeQuery()) {
+				while (rs.next()) {
+					ProductCategory to = new ProductCategory(
+						rs.getInt("id_product"),
+						rs.getInt("id_category"),
+						rs.getTimestamp("created_at")
+					);
+					prodsCat.add(to);
+				}
+			} catch (SQLException ex) {
+				throw new Exception(ex.getMessage());
+			}
+		} catch (SQLException e) {
+			throw new Exception(e.getMessage());
+		}
+		
+		return prodsCat;
+	}
 }

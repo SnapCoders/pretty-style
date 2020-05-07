@@ -50,4 +50,29 @@ public class ProductPhotoService {
     		throw new Exception(e.getMessage());
     	}
     }
+    
+    public ProductPhoto findByIdProduct(int idProduct) throws Exception {
+    	try {
+    		return dao.findByIdProduct(idProduct);
+    	} catch (Exception e) {
+    		throw new Exception(e.getMessage());
+    	}
+    }
+    
+    public ArrayList<ProductPhoto> findAllPhotosByIdProduct(int idProduct) throws Exception {
+    	try {
+    		return dao.findAllPhotosByIdProduct(idProduct);
+    	} catch (Exception e) {
+    		throw new Exception(e.getMessage());
+    	}
+    }
+    
+    public void deletePhotos(String ids) throws Exception {
+        try {
+        	dao.deletePhotos(ids);
+    	} catch (Exception e) {
+    		throw new Exception(e.getMessage());
+    	}
+    }
+    
 }

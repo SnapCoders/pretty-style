@@ -138,3 +138,19 @@ function handleDelete(id) {
 
 	AlertaAvisoConfirm(title, question, url, type, method);
 }
+
+function handleAdd(form) {
+	var formSerialized = $(form).serialize();
+	console.log(formSerialized);
+	$.ajax({
+		type: "POST",
+		url: "/PrettyStyle/controller.do?path=admin&command=EditProduct",
+		data: formSerialized,
+		success: function(data){
+			AlertaSucesso(data);	
+		},
+		error: function(data){
+			AlertaErro(data);
+		}
+	})
+}

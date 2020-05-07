@@ -1,4 +1,4 @@
-<%@page import="br.com.sprintters.prettystyle.model.ProductPhoto"%>
+<%@ page import="br.com.sprintters.prettystyle.model.ProductPhoto"%>
 <%@ page import="java.util.ArrayList"%>
 <%@ page import="br.com.sprintters.prettystyle.model.Product"%>
 <%@ page import="br.com.sprintters.prettystyle.service.ProductService"  %>
@@ -15,6 +15,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     
     <link rel="shortcut icon" href="/PrettyStyle/favicon.ico" type="image/x-icon" />
+    <link href="App/fonts/Allura-Regular.TTF" rel="stylesheet">
 
     <title>Pretty Style</title>
     

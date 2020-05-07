@@ -2,8 +2,10 @@ package br.com.sprintters.prettystyle.service;
 
 import java.util.ArrayList;
 
+import br.com.sprintters.prettystyle.dao.CategoryDAO;
 import br.com.sprintters.prettystyle.dao.ProductCategoryDAO;
 import br.com.sprintters.prettystyle.dao.ProductDAO;
+import br.com.sprintters.prettystyle.model.Category;
 import br.com.sprintters.prettystyle.model.ClientProductLike;
 import br.com.sprintters.prettystyle.model.Product;
 import br.com.sprintters.prettystyle.model.ProductCategory;
@@ -11,10 +13,13 @@ import br.com.sprintters.prettystyle.model.ProductCategory;
 public class ProductService{
     ProductDAO productDAO;
     ProductCategoryDAO productCategoryDAO;
+    CategoryDAO categoryDAO;
 
     public ProductService() {
         productDAO = new ProductDAO();
         productCategoryDAO = new ProductCategoryDAO();
+        categoryDAO = new CategoryDAO();
+        
     }
 
     public int create(Product product) throws Exception {
@@ -113,4 +118,38 @@ public class ProductService{
     		throw new Exception(e.getMessage());
     	}
     }
+    
+	public ArrayList<Category> listByIdProduct(int id) throws Exception{
+    	ArrayList<ProductCategory> listaID = productCategoryDAO.listByIdProduct(id);
+    	ArrayList<String> ids = new ArrayList<String>();
+    	
+    	for(ProductCategory pc: listaID) {
+    		ids.add(""+pc.getIdCategory());
+    	}
+    	
+    	String idsConcatenado = String.join("','", ids);
+    	
+    	ArrayList<Category> lista = categoryDAO.listByIdCategory(idsConcatenado);
+    
+    	try {
+    		return lista;
+    	} catch (Exception e) {
+    		throw new Exception(e.getMessage());
+    	}
+    }
+    
+    public Product findProductAndCategory(int id) throws Exception {
+    	Product to;
+    	try {
+    		to = productDAO.findProductAndCategory(id);
+    		if(to.getId() == 0) {
+    			return productDAO.find(id);
+    		}
+    		return to;
+    	} catch (Exception e) {
+    		throw new Exception(e.getMessage());
+    	}
+    }
+    
+    
 }

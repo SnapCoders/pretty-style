@@ -117,4 +117,78 @@ public class ProductPhotoDAO {
 		
 		return photos;
 	}
+	
+	public ProductPhoto findByIdProduct(int idProduct) throws Exception {
+		ProductPhoto to = new ProductPhoto();
+		String sqlSelect = "SELECT * FROM product_photo WHERE id_product = ?";
+		
+		try (Connection conn = ConnectionFactory.createConnection();
+			 PreparedStatement stm = conn.prepareStatement(sqlSelect)) {
+			stm.setInt(1, idProduct);
+			
+			try (ResultSet rs = stm.executeQuery()) {
+				if (rs.next()) {
+					to.setId(rs.getInt("id"));
+					to.setUrl(rs.getString("url"));
+					to.setName(rs.getString("name"));
+					to.setIdProduct(rs.getInt("id_product"));
+					to.setCreatedAt(rs.getTimestamp("created_at"));
+					to.setUpdatedAt(rs.getTimestamp("updated_at"));
+					to.setDeletedAt(rs.getTimestamp("deleted_at"));
+				}
+				conn.close();
+			} catch (SQLException ex) {
+				throw new Exception(ex.getMessage());
+			}
+		} catch (SQLException e) {
+			throw new Exception(e.getMessage());
+		}
+		
+		return to;
+	}
+	
+	public ArrayList<ProductPhoto> findAllPhotosByIdProduct(int idProduct) throws Exception {
+		ArrayList<ProductPhoto> photos = new ArrayList<ProductPhoto>();
+		//ProductPhoto to = new ProductPhoto();
+		String sqlSelect = "SELECT * FROM product_photo WHERE id_product = ? and deleted_at IS NULL";
+		
+		try (Connection conn = ConnectionFactory.createConnection();
+			 PreparedStatement stm = conn.prepareStatement(sqlSelect)) {
+			stm.setInt(1, idProduct);
+			
+			try (ResultSet rs = stm.executeQuery()) {
+				while (rs.next()) {
+					ProductPhoto to = new ProductPhoto(
+							rs.getInt("id"),
+							rs.getString("name"),
+							rs.getString("url"),
+							rs.getInt("id_product"),
+							rs.getTimestamp("created_at"),
+							rs.getTimestamp("updated_at"),
+							rs.getTimestamp("deleted_at")
+					);
+					photos.add(to);
+				}
+				conn.close();
+			} catch (SQLException ex) {
+				throw new Exception(ex.getMessage());
+			}
+		} catch (SQLException e) {
+			throw new Exception(e.getMessage());
+		}
+		
+		return photos;
+	}
+	
+	public void deletePhotos(String ids) throws Exception {
+		String sqlUpdate = "UPDATE product_photo SET deleted_at = NOW() WHERE id in ("+ids+")";
+		
+		try (Connection conn = ConnectionFactory.createConnection();
+			 PreparedStatement stm = conn.prepareStatement(sqlUpdate)) {
+			stm.execute();
+		} catch (SQLException e) {
+			throw new Exception(e.getMessage());
+		}
+	}
+	
 }
