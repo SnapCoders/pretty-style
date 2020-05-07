@@ -11,22 +11,25 @@ import br.com.sprintters.prettystyle.model.Address;
 public class AddressDAO {
 	public int insert(Address to) throws Exception {
 		int id = 0;
-		String sqlInsert = "INSERT INTO address (place, number, neighborhood, city, country, zip, complement , id_user"
+		String sqlInsert = "INSERT INTO address (recipient, place, number, neighborhood, city, country, zip, complement , id_user"
 								+ ", created_at, updated_at, deleted_at) "
-							+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?, "
+							+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, "
 								+ "NOW(), NULL, NULL)";
 		
 		try (Connection conn = ConnectionFactory.createConnection();
 			 PreparedStatement stm = conn.prepareStatement(sqlInsert)) {
-			stm.setString(1, to.getPlace());
-			stm.setString(2, to.getNumber());
-			stm.setString(3, to.getNeighborhood());
-			stm.setString(4, to.getCity());
-			stm.setString(5, to.getCountry());
-			stm.setString(6, to.getZip());
-			stm.setString(7, to.getComplement());
-			stm.setInt(8, to.getIdUser());
+			stm.setString(1, to.getRecipient());
+			stm.setString(2, to.getPlace());
+			stm.setString(3, to.getNumber());
+			stm.setString(4, to.getNeighborhood());
+			stm.setString(5, to.getCity());
+			stm.setString(6, to.getCountry());
+			stm.setString(7, to.getZip());
+			stm.setString(8, to.getComplement());
+			stm.setInt(9, to.getIdUser());
+			
 			stm.execute();
+			
 			try (ResultSet rs = stm.executeQuery("SELECT LAST_INSERT_ID()")) {
 				if (rs.next()) {				
 					id = rs.getInt(1);
@@ -45,19 +48,21 @@ public class AddressDAO {
 	}
 	
 	public void update(Address to) throws Exception {
-		String sqlUpdate = "UPDATE address SET place = ?, number = ?, neighborhood = ?, city = ?, country = ?, zip = ?, complement = ?, id_user = ?, updated_at = NOW() WHERE id = ?";
+		String sqlUpdate = "UPDATE address SET recipient = ?, place = ?, number = ?, neighborhood = ?, city = ?, country = ?, zip = ?, complement = ?, id_user = ?, updated_at = NOW() WHERE id = ?";
 		
 		try (Connection conn = ConnectionFactory.createConnection();
 			 PreparedStatement stm = conn.prepareStatement(sqlUpdate)) {
-			stm.setString(1, to.getPlace());
-			stm.setString(2, to.getNumber());
-			stm.setString(3, to.getNeighborhood());
-			stm.setString(4, to.getCity());
-			stm.setString(5, to.getCountry());
-			stm.setString(6, to.getZip());
-			stm.setString(7, to.getComplement());
-			stm.setInt(8, to.getIdUser());
-			stm.setInt(9, to.getId());
+			stm.setString(1, to.getRecipient());
+			stm.setString(2, to.getPlace());
+			stm.setString(3, to.getNumber());
+			stm.setString(4, to.getNeighborhood());
+			stm.setString(5, to.getCity());
+			stm.setString(6, to.getCountry());
+			stm.setString(7, to.getZip());
+			stm.setString(8, to.getComplement());
+			stm.setInt(9, to.getIdUser());
+			stm.setInt(10, to.getId());
+			
 			stm.execute();
 			
 			conn.close();
@@ -89,6 +94,7 @@ public class AddressDAO {
 			stm.setInt(1, id);
 			try (ResultSet rs = stm.executeQuery()) {
 				if (rs.next()) {
+					to.setRecipient(rs.getString("recipient"));
 					to.setId(rs.getInt("id"));
 					to.setPlace(rs.getString("place"));
 					to.setNumber(rs.getString("number"));
@@ -124,6 +130,7 @@ public class AddressDAO {
 				while (rs.next()) {
 					Address to = new Address(
 						rs.getInt("id"),
+						rs.getString("recipient"),
 						rs.getString("place"),
 						rs.getString("number"),
 						rs.getString("neighborhood"),
@@ -167,6 +174,7 @@ public class AddressDAO {
 			try (ResultSet rs = stm.executeQuery()) {
 				if (rs.next()) {
 					to.setId(rs.getInt("id"));
+					to.setRecipient(rs.getString("recipient"));
 					to.setPlace(rs.getString("place"));
 					to.setNumber(rs.getString("number"));
 					to.setNeighborhood(rs.getString("neighborhood"));
@@ -208,6 +216,7 @@ public class AddressDAO {
 				while (rs.next()) {
 					Address to = new Address();
 					to.setId(rs.getInt("id"));
+					to.setRecipient(rs.getString("recipient"));
 					to.setPlace(rs.getString("place"));
 					to.setNumber(rs.getString("number"));
 					to.setNeighborhood(rs.getString("neighborhood"));

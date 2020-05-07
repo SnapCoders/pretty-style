@@ -42,7 +42,7 @@
 			  		</div>
 			  		<div class="jumbotron main">
 			  			<div class="navigation">
-			  				<label onclick="window.location.href = '../sign-up-simple/sign-up-simple.jsp'">Simples</label>
+			  				<label onclick="window.location.href='/PrettyStyle/controller.do?path=signup&command=NavigateToNewUserSimple'">Simples</label>
 			  				<hr style="width: 30px;" />
 			  				<label class="active">Business</label>
 			  			</div>

@@ -44,7 +44,7 @@
 			  			<div class="navigation">
 			  				<label class="active">Simples</label>
 			  				<hr style="width: 30px;" />
-			  				<label onclick="window.location.href = '../sign-up-business/sign-up-business.jsp'">Business</label>
+			  				<label onclick="window.location.href='/PrettyStyle/controller.do?path=signup&command=NavigateToNewUserBusiness'">Business</label>
 			  			</div>
 			  			<div class="col-md-12 content">
 			  				<form action="/PrettyStyle/users" method="POST" name="add-user-simple">

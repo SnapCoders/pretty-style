@@ -134,6 +134,7 @@ create table product_photo (
 
 create table address (
 	id				int auto_increment,
+    recipient		varchar(150) not null,
     place			varchar(150) not null,
     number			varchar(12) not null,
     neighborhood	varchar(100) not null,

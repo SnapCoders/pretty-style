@@ -10,8 +10,10 @@ import com.google.gson.Gson;
 
 import br.com.sprintters.prettystyle.command.Command;
 import br.com.sprintters.prettystyle.model.Category;
+import br.com.sprintters.prettystyle.model.User;
 import br.com.sprintters.prettystyle.model.generic.Json;
 import br.com.sprintters.prettystyle.service.CategoryService;
+import br.com.sprintters.prettystyle.service.UserService;
 
 public class CreateCategory implements Command {
 	@Override
@@ -19,11 +21,18 @@ public class CreateCategory implements Command {
 		try {
 			String pName = request.getParameter("name");
 	        String pColor = request.getParameter("color");
+	        int idUser = (int)request.getAttribute("idUser");
 			boolean isJson = Boolean.parseBoolean(request.getParameter("json"));
 			
+			UserService us = new UserService();;
+			
+			User user = us.find(idUser);
+			
 			Category category = new Category();
+			
 	        category.setName(pName);
 	        category.setColor(pColor);
+	        category.setIdProvider(user.getProvider().getId());
 	
 	        CategoryService cs = new CategoryService();
         

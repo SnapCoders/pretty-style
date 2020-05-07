@@ -1,6 +1,10 @@
 @media screen and (max-width: 1440px) {
 	header#main-header div.top-header div.search-area input {
-		width: 350px;
+		width: 330px;
+	}
+	
+	header#main-header div.client-area {
+		margin: 0 !important;
 	}
 }
  

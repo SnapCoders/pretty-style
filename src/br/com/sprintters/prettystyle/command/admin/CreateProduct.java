@@ -2,6 +2,7 @@ package br.com.sprintters.prettystyle.command.admin;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.Enumeration;
 
@@ -24,6 +25,8 @@ import br.com.sprintters.prettystyle.service.UserService;
 
 public class CreateProduct implements Command {
 	private static final String SAVE_DIR = File.separator + "WebContent\\Upload";
+	public static final Charset ISO_8859_1 = Charset.forName("ISO-8859-1");
+    public static final Charset UTF_8 = Charset.forName("UTF-8");
 	
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, Exception {
@@ -40,8 +43,12 @@ public class CreateProduct implements Command {
 			
 			MultipartRequest m = new MultipartRequest(request, savePath, 100100100);
 			
-			String pName = m.getParameter("name");
-			String pDescription = m.getParameter("description");
+			byte[] pName = m.getParameter("name").getBytes(ISO_8859_1);
+			String name = new String(pName, UTF_8);
+			
+			byte[] pDescription = m.getParameter("description").getBytes(ISO_8859_1);
+			String description = new String(pDescription, UTF_8);
+			
 			Double pPrice = Double.parseDouble(m.getParameter("price"));
 			int idMark = Integer.parseInt(m.getParameter("idMark"));
 			
@@ -55,7 +62,7 @@ public class CreateProduct implements Command {
 			
 			User user = us.find(idUser);
 			
-			Product product = new Product(pName, pDescription, pPrice, idMark, user.getProvider().getId(), categories);
+			Product product = new Product(name, description, pPrice, idMark, user.getProvider().getId(), categories);
 			
 			ProductService cs = new ProductService();
 			ProductPhotoService pps = new ProductPhotoService();
@@ -65,10 +72,10 @@ public class CreateProduct implements Command {
 			Enumeration<?> files = m.getFileNames();
 			
 			while (files.hasMoreElements()) {
-				String name = (String)files.nextElement();
+				String fileNameProp = (String)files.nextElement();
 				
-				if (name.startsWith("file-")) {
-					String fileName = m.getFilesystemName(name);
+				if (fileNameProp.startsWith("file-")) {
+					String fileName = m.getFilesystemName(fileNameProp);
 					
 					String url = File.separator + "PrettyStyle" + SAVE_DIR + File.separator + fileName;
 					

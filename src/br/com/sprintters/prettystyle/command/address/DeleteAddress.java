@@ -29,7 +29,7 @@ public class DeleteAddress implements Command {
 			as.delete(obj);
 			
     		if (isJson) {
-				Json json = new Json(true, "", as);
+				Json json = new Json(true, "Endereço excluído com sucesso!", as);
 				
 				response.setContentType("application/json");
 				response.getWriter().write(new Gson().toJson(json).toString());

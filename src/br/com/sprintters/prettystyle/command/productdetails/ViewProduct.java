@@ -23,7 +23,7 @@ public class ViewProduct implements Command {
 		try {
 			HttpSession session = request.getSession();
 			
-			int idUser = (int)session.getAttribute("idUser");
+			int idUser = (int)request.getAttribute("idUser");
 			int idProduct = Integer.parseInt(request.getParameter("id_product"));
 			boolean isJson = Boolean.parseBoolean(request.getParameter("json"));
 			

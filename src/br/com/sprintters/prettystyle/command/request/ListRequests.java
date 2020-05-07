@@ -8,14 +8,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.json.JSONObject;
-
 import com.google.gson.Gson;
 
 import br.com.sprintters.prettystyle.command.Command;
 import br.com.sprintters.prettystyle.model.Request;
+import br.com.sprintters.prettystyle.model.User;
 import br.com.sprintters.prettystyle.model.generic.Json;
 import br.com.sprintters.prettystyle.service.RequestService;
+import br.com.sprintters.prettystyle.service.UserService;
 
 public class ListRequests  implements Command {
 	@Override
@@ -27,8 +27,11 @@ public class ListRequests  implements Command {
 			boolean isJson = Boolean.parseBoolean(request.getParameter("json"));
 			
 			RequestService rs = new RequestService();
+			UserService us = new UserService();
 			
-			ArrayList<Request> requests = rs.listRequestsByIdClient(idUser);
+			User user = us.find(idUser);
+			
+			ArrayList<Request> requests = rs.listRequestsByIdClient(user.getClient().getId());
 
     		if (isJson) {
 				Json json = new Json(true, "", rs);

@@ -65,6 +65,20 @@ function AlertaAviso(data) {
 	});
 };
 
+function AlertaSucessoRedirect(data) {
+	swal({
+		title: 'Sucesso',
+		text: data.message,
+		type: 'success',
+		confirmButtonText: "OK",
+		confirmButtonColor: "#3CB371",
+		closeOnConfirm: false,
+	}, function (isConfirm) {
+		if (!isConfirm) return;
+		window.location.href='/PrettyStyle/controller.do?path=signin&command=NavigateToLogin';
+	});
+};
+
 function AlertaErro(data) {
 	swal({
 		title: 'Erro!',
@@ -80,7 +94,7 @@ function handleAdd(form) {
 		data: $(form).serialize(),
 		success: function (data) {
 			if (data.success) {
-				AlertaSucesso(data);
+				AlertaSucessoRedirect(data);
 			} else {
 				AlertaAviso(data);
 			}

@@ -10,22 +10,31 @@ import com.google.gson.Gson;
 
 import br.com.sprintters.prettystyle.command.Command;
 import br.com.sprintters.prettystyle.model.Mark;
+import br.com.sprintters.prettystyle.model.User;
 import br.com.sprintters.prettystyle.model.generic.Json;
 import br.com.sprintters.prettystyle.service.MarkService;
+import br.com.sprintters.prettystyle.service.UserService;
 
 public class CreateMark implements Command {
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, Exception {
 		try {
 			String pName = request.getParameter("name");
+			int idUser = (int)request.getAttribute("idUser");
 			boolean isJson = Boolean.parseBoolean(request.getParameter("json"));
+
+			UserService us = new UserService();
+			
+			User user = us.find(idUser);
 			
 			Mark mark = new Mark();
 	        mark.setName(pName);
+	        mark.setIdProvider(user.getProvider().getId());
 
 	        MarkService cs = new MarkService();
 	        
 	        cs.create(mark);
+	        
         	mark = cs.find(mark.getId());
 			
 			if (isJson) {

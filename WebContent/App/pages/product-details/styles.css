@@ -128,12 +128,20 @@ div.product-details-container div.container div.jumbotron.main div.content div.p
 div.product-details-container div.container div.jumbotron.main div.content div.product-details-area div.product-title div.product-info label {
     color: #707070;
     font-size: 38px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    width: 12em;
 }
 
 div.product-details-container div.container div.jumbotron.main div.content div.product-details-area div.product-title div.product-info span.product-description {
     color: #707070;
     font-size: 16px;
     filter: brightness(90%);
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    width: 28em;
 }
 
 div.product-details-container div.container div.jumbotron.main div.content div.product-details-area div.product-title div.product-info div.stars {

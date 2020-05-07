@@ -1,11 +1,6 @@
-<%@page import="br.com.sprintters.prettystyle.model.User"%>
-<%@ page import="java.util.ArrayList"%>
-<%@ page import="br.com.sprintters.prettystyle.model.Address"%>
-<%@ page import="br.com.sprintters.prettystyle.service.AddressService"%>
-
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -56,42 +51,40 @@
 								<strong>Você não tem endereços cadastrados no momento.</strong>
 							</div>
 						</c:if>
-						<%-- <c:if test="${not empty lista1 && not empty lista2}"> --%>
-							<div class="col-md-12 content">
-								<div class="row">
-									<c:forEach var="address" items="${lista}">
-										<div class="col-md-6">
-											<div id="card-address" class="jumbotron address">
-												<div class="header">
-													<label>Casa</label>
-													<div class="icons">
-														<button type="button" id="id-user" onclick="window.location.href='/PrettyStyle/controller.do?path=address&command=FindAddress&id_address=${address.id}'"> 
-															<img src="../../assets/icons/edit.svg" alt="Editar">
-														</button>
-														<button type="button" onclick="handleDelete(${address.id})">
-															<img src="../../assets/icons/bin.svg" alt="Lixeira">
-														</button>
-													</div>
-												</div>
-												<hr />
-												<div class="body">
-													<label class="client-name">${user.client.name} ${user.client.surname}</label>
-													<label>Endereço: <span>${address.place}, ${address.number}</span></label>
-													<label>Bairro: <span>${address.neighborhood}</span></label>
-													<label>Cidade: <span>${address.city }</span></label>
-													<label>Complemento: <span>${address.complement }</span></label>
-													<label>CEP: <span>${address.zip }</span></label>
-												</div>
-												<hr />
-												<div class="selection-area">
-													<input name="defaultAddress" type="radio" onclick="handleSelectDefault(this)" /> <label>Selecionar como principal</label>
+						<div class="col-md-12 content">
+							<div class="row">
+								<c:forEach var="address" items="${lista}">
+									<div class="col-md-6">
+										<div id="card-address" class="jumbotron address">
+											<div class="header">
+												<label>Casa</label>
+												<div class="icons">
+													<button type="button" id="id-user" onclick="window.location.href='/PrettyStyle/controller.do?path=address&command=FindAddress&id_address=${address.id}'"> 
+														<img src="../../assets/icons/edit.svg" alt="Editar">
+													</button>
+													<button type="button" onclick="handleDelete(${address.id})">
+														<img src="../../assets/icons/bin.svg" alt="Lixeira">
+													</button>
 												</div>
 											</div>
+											<hr />
+											<div class="body">
+												<label class="client-name">${address.recipient}</label>
+												<label>Endereço: <span>${address.place}, ${address.number}</span></label>
+												<label>Bairro: <span>${address.neighborhood}</span></label>
+												<label>Cidade: <span>${address.city}</span></label>
+												<label>Complemento: <span>${address.complement}</span></label>
+												<label>CEP: <span>${address.zip}</span></label>
+											</div>
+											<hr />
+											<div class="selection-area">
+												<input name="defaultAddress" type="radio" onclick="handleSelectDefault(this)" /> <label>Selecionar como principal</label>
+											</div>
 										</div>
-									</c:forEach>
-								</div>
+									</div>
+								</c:forEach>
 							</div>
-						<%-- </c:if> --%>
+						</div>
 					</div>
 				</div>
 			</div>

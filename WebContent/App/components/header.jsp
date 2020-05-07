@@ -14,7 +14,7 @@
 		<div class="search-area-responsive" style="display: none;"></div>
 		<div class="client-area">
 			<c:if test="${not empty isProvider}">
-				<div class="admin" onclick="window.location.href='/PrettyStyle/App/pages/admin/admin.jsp';">
+				<div class="admin" onclick="window.location.href='/PrettyStyle/controller.do?path=admin&command=NavigateToAdmin';">
 					<div class="admin-icon">
 						<img src="/PrettyStyle/App/assets/icons/framework.svg">
 					</div>
@@ -39,7 +39,7 @@
 					<div class="actions">
 						<c:if test="${empty token}">
 							<button type="button" class="login-button" onclick="window.location.href='/PrettyStyle/controller.do?path=signin&command=NavigateToLogin'">ENTRAR</button>
-							<button type="button" class="create-account-button" onclick="window.location.href='/PrettyStyle/App/pages/sign-up-simple/sign-up-simple.jsp'">CRIAR CONTA</button>
+							<button type="button" class="create-account-button" onclick="window.location.href='/PrettyStyle/controller.do?path=signup&command=NavigateToNewUserSimple'">CRIAR CONTA</button>
 						</c:if>
 						<c:if test="${not empty token}">
 							<button type="button" class="logout-account-button" onclick="handleLogout();">SAIR</button>

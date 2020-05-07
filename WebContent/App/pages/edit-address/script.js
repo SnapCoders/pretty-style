@@ -56,7 +56,6 @@ function AlertaSucessoRedirect(data) {
 		confirmButtonColor: "#3CB371",
 		closeOnConfirm: false,
 	}, function (isConfirm) {
-		console.log(isConfirm);
 		if (!isConfirm) return;
 		window.location.href='/PrettyStyle/controller.do?path=address&command=ListAddress';
 	});

@@ -137,15 +137,16 @@ public class RequestDAO {
 		ArrayList<Request> reqs = new ArrayList<Request>();
 		String sqlSelect = "SELECT\r\n" + 
 				"	p.name\r\n" + 
-				"    , p.description\r\n" + 
-				"    , p.price\r\n" + 
-				"    , p.id_mark\r\n" +
-				"    , i.id_product\r\n" +
-				"    , r.id_client\r\n" + 
+				"	, p.description\r\n" + 
+				"	, p.price\r\n" + 
+				"	, p.id_mark\r\n" + 
+				"	, i.id_product\r\n" + 
+				"	, r.id_client\r\n" + 
 				"FROM\r\n" + 
 				"	product p\r\n" + 
-				"    INNER JOIN item i on p.id = i.id_product\r\n" + 
-				"    INNER JOIN request r on i.id = r.id\r\n" + 
+				"	INNER JOIN item i on p.id = i.id_product\r\n" + 
+				"   INNER JOIN item_request ir on i.id = ir.id_item\r\n" + 
+				"	INNER JOIN request r on r.id = ir.id_request\r\n" + 
 				"WHERE r.id_client = ?;";
 		
 		try (Connection conn = ConnectionFactory.createConnection();

@@ -23,69 +23,59 @@ public class PayStep implements Command {
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, Exception {
 		try {
-			String idUserStr = request.getParameter("id_user");
+			int idUser = (int)request.getAttribute("idUser");
 			boolean isJson = Boolean.parseBoolean(request.getParameter("json"));
 			
-			int idUser = -1;
+			AddressService as = new AddressService();
+			ItemService is = new ItemService();
+			UserService us = new UserService();
 			
-			HttpSession session = request.getSession();
+			User user = us.find(idUser);
+					
+			Cart cart = is.listItemsInCartByIdClient(user.getClient().getId());
 			
-			try {
-				idUser = Integer.parseInt(idUserStr);
-				
-			} catch (NumberFormatException e) {
-				response.sendRedirect("/PrettyStyle/App/pages/sign-in/sign-in.jsp");
+			ArrayList<Item> lista = cart.getItems();
+			
+			int quantity = 0;
+			double total = 0.0;
+			double totalItems = 0.0;
+			double frete = 0.0;
+			double bankSlip = 0.0;
+			
+			for (Item item : lista) {
+				quantity += item.getQuantity();
+				totalItems += item.getProduct().getPrice() * item.getQuantity();
+				if (item.getProduct().getPrice() > 400) {
+					frete += item.getProduct().getPrice() * 0.02;
+				} else {
+					frete += item.getProduct().getPrice() * 0.082;
+				}
 			}
 			
-			if (idUser != -1) {
-				AddressService as = new AddressService();
-				ItemService is = new ItemService();
-				UserService us = new UserService();
-						
-				Cart cart = is.listItemsInCartByIdClient(idUser);
-				User user = us.find(idUser);
+			total = totalItems + frete;
+			bankSlip = total - (total * 0.05);
+			
+			if (isJson) {
+				Json json = new Json(true, "", lista);
 				
-				ArrayList<Item> lista = cart.getItems();
+				response.setContentType("application/json");
+				response.getWriter().write(new Gson().toJson(json).toString());
+			} else {
+				HttpSession session = request.getSession();
 				
-				int quantity = 0;
-				double total = 0.0;
-				double totalItems = 0.0;
-				double frete = 0.0;
-				double bankSlip = 0.0;
+				session.setAttribute("address", as.findByIdUser(user.getId()));
+				session.setAttribute("quantity", quantity);
+				session.setAttribute("totalItems", totalItems);
+				session.setAttribute("frete", frete);
+				session.setAttribute("total", total);
+				session.setAttribute("bankSlip", bankSlip);
+				session.setAttribute("user", user);
 				
-				for (Item item : lista) {
-					quantity += item.getQuantity();
-					totalItems += item.getProduct().getPrice() * item.getQuantity();
-					if (item.getProduct().getPrice() > 400) {
-						frete += item.getProduct().getPrice() * 0.02;
-					} else {
-						frete += item.getProduct().getPrice() * 0.082;
-					}
-				}
+				for (int i = 2; i <= 12; i++) {
+					session.setAttribute("parcela" + i, total / i);
+	  			}
 				
-				total = totalItems + frete;
-				bankSlip = total - (total * 0.05);
-				
-				if (isJson) {
-					Json json = new Json(true, "", lista);
-					
-					response.setContentType("application/json");
-					response.getWriter().write(new Gson().toJson(json).toString());
-				} else {
-					session.setAttribute("address", as.findByIdUser(1));
-					session.setAttribute("quantity", quantity);
-					session.setAttribute("totalItems", totalItems);
-					session.setAttribute("frete", frete);
-					session.setAttribute("total", total);
-					session.setAttribute("bankSlip", bankSlip);
-					session.setAttribute("user", user);
-					
-					for (int i = 2; i <= 12; i++) {
-						session.setAttribute("parcela" + i, total / i);
-		  			}
-					
-					response.sendRedirect("/PrettyStyle/App/pages/payment-steps/payment-steps.jsp");
-				}
+				response.sendRedirect("/PrettyStyle/App/pages/payment-steps/payment-steps.jsp");
 			}
 		} catch (Exception e) {
 			throw new Exception(e.getMessage());

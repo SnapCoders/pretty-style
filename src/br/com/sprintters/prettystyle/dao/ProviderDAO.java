@@ -101,6 +101,7 @@ public class ProviderDAO {
 			try (ResultSet rs = stm.executeQuery()) {
 				if (rs.next()) {
 					to.setId(rs.getInt("id"));
+					to.setCnpj(rs.getString("cnpj"));
 					to.setFantasyName(rs.getString("fantasy_name"));
 					to.setSocialReason(rs.getString("social_reason"));
 					to.setContact(rs.getString("contact"));

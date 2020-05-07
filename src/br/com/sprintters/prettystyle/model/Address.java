@@ -5,6 +5,7 @@ import java.sql.Timestamp;
 import br.com.sprintters.prettystyle.model.generic.Entity;
 
 public class Address extends Entity {
+	private String recipient;
 	private String place;
 	private String number;
 	private String neighborhood;
@@ -20,7 +21,8 @@ public class Address extends Entity {
 	
 	public Address() { }
 	
-	public Address(String place, String number, String neighborhood, String city, String country, String zip, String complement, int idUser) {
+	public Address(String recipient, String place, String number, String neighborhood, String city, String country, String zip, String complement, int idUser) {
+		this.recipient = recipient;
 		this.place = place;
 		this.number = number;
 		this.neighborhood = neighborhood;
@@ -31,7 +33,8 @@ public class Address extends Entity {
 		this.idUser = idUser;
 	}
 	
-	public Address(String place, String number, String neighborhood, String city, String country, String zip, String complement, User user) {
+	public Address(String recipient, String place, String number, String neighborhood, String city, String country, String zip, String complement, User user) {
+		this.recipient = recipient;
 		this.place = place;
 		this.number = number;
 		this.neighborhood = neighborhood;
@@ -43,8 +46,9 @@ public class Address extends Entity {
 		this.user = user;
 	}
 	
-	public Address(int id, String place, String number, String neighborhood, String city, String country, String zip, String complement, int idUser) {
+	public Address(int id, String recipient, String place, String number, String neighborhood, String city, String country, String zip, String complement, int idUser) {
 		super(id);
+		this.recipient = recipient;
 		this.place = place;
 		this.number = number;
 		this.neighborhood = neighborhood;
@@ -55,8 +59,9 @@ public class Address extends Entity {
 		this.idUser = idUser;
 	}
 	
-	public Address(int id, String place, String number, String neighborhood, String city, String country, String zip, String complement, User user) {
+	public Address(int id, String recipient, String place, String number, String neighborhood, String city, String country, String zip, String complement, User user) {
 		super(id);
+		this.recipient = recipient;
 		this.place = place;
 		this.number = number;
 		this.neighborhood = neighborhood;
@@ -68,8 +73,9 @@ public class Address extends Entity {
 		this.user = user;
 	}
 	
-	public Address(int id, String place, String number, String neighborhood, String city, String country, String zip, String complement, int idUser, Timestamp createdAt, Timestamp updatedAt, Timestamp deletedAt) {
+	public Address(int id, String recipient, String place, String number, String neighborhood, String city, String country, String zip, String complement, int idUser, Timestamp createdAt, Timestamp updatedAt, Timestamp deletedAt) {
 		super(id, createdAt, updatedAt, deletedAt);
+		this.recipient = recipient;
 		this.place = place;
 		this.number = number;
 		this.neighborhood = neighborhood;
@@ -80,8 +86,9 @@ public class Address extends Entity {
 		this.idUser = idUser;
 	}
 	
-	public Address(int id, String place, String number, String neighborhood, String city, String country, String zip, String complement, User user, Timestamp createdAt, Timestamp updatedAt, Timestamp deletedAt) {
+	public Address(int id, String recipient, String place, String number, String neighborhood, String city, String country, String zip, String complement, User user, Timestamp createdAt, Timestamp updatedAt, Timestamp deletedAt) {
 		super(id, createdAt, updatedAt, deletedAt);
+		this.recipient = recipient;
 		this.place = place;
 		this.number = number;
 		this.neighborhood = neighborhood;
@@ -93,6 +100,13 @@ public class Address extends Entity {
 		this.user = user;
 	}
 	
+	public String getRecipient() {
+		return recipient;
+	}
+	
+	public void setRecipient(String recipient) {
+		this.recipient = recipient;
+	}
 
 	public String getPlace() {
 		return place;

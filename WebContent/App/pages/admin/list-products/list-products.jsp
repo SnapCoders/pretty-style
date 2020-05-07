@@ -39,8 +39,8 @@
 				  			</div>
 				  			<div class="line">
 				  				<hr />
-				  				<a class="btn btn-sm btn-primary" href="../new-product/new-product.jsp">Cadastrar</a>
-				  				<a class="btn btn-sm btn-outline-primary" href="../admin.jsp">Voltar</a>
+				  				<a class="btn btn-sm btn-primary" href="/PrettyStyle/controller.do?path=admin&command=NavigateToNewProduct">Cadastrar</a>
+				  				<a class="btn btn-sm btn-outline-primary" href="/PrettyStyle/controller.do?path=admin&command=NavigateToAdmin">Voltar</a>
 				  			</div>
 			  			</div>
 			  		</div>

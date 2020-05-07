@@ -11,17 +11,23 @@ import br.com.sprintters.prettystyle.model.Category;
 public class CategoryDAO {
 	public int insert(Category to) throws Exception {
 		int id = 0;
-		String sqlInsert = "INSERT INTO category (name, color) VALUES (?, ?)";
+		String sqlInsert = "INSERT INTO category (name, color, id_provider) VALUES (?, ?, ?)";
 		
 		try (Connection conn = ConnectionFactory.createConnection();
 			 PreparedStatement stm = conn.prepareStatement(sqlInsert)) {
 			stm.setString(1, to.getName());
 			stm.setString(2, to.getColor());
+			stm.setInt(3, to.getIdProvider());
+			
 			stm.execute();
+			
 			try (ResultSet rs = stm.executeQuery("SELECT LAST_INSERT_ID()")) {
 				if (rs.next()) {				
 					id = rs.getInt(1);
+					to.setId(id);
 				}
+				
+				conn.close();
 			} catch (SQLException ex) {
 				throw new Exception(ex.getMessage());
 			}

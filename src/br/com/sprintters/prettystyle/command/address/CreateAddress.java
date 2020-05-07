@@ -20,6 +20,7 @@ public class CreateAddress implements Command {
 			int idUser = (int)request.getAttribute("idUser");
 			boolean isJson = Boolean.parseBoolean(request.getParameter("json"));
 			
+			String recipient = request.getParameter("name");
 			String pPlace = request.getParameter("place");
 			String pNumber = request.getParameter("number");
 			String pNeighborhood = request.getParameter("neighborhood");
@@ -29,6 +30,8 @@ public class CreateAddress implements Command {
 			String pComplement = request.getParameter("complement");
 
 			Address address = new Address();
+			
+			address.setRecipient(recipient);
 			address.setPlace(pPlace);
 			address.setNumber(pNumber);
 			address.setNeighborhood(pNeighborhood);

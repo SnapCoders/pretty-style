@@ -11,16 +11,22 @@ import br.com.sprintters.prettystyle.model.Mark;
 public class MarkDAO {
 	public int insert(Mark to) throws Exception {
 		int id = 0;
-		String sqlInsert = "INSERT INTO mark (name, created_at) VALUES (?, NOW())";
+		String sqlInsert = "INSERT INTO mark (name, id_provider, created_at) VALUES (?, ?, NOW())";
 		
 		try (Connection conn = ConnectionFactory.createConnection();
 			 PreparedStatement stm = conn.prepareStatement(sqlInsert)) {
 			stm.setString(1, to.getName());
+			stm.setInt(2, to.getIdProvider());
+			
 			stm.execute();
+			
 			try (ResultSet rs = stm.executeQuery("SELECT LAST_INSERT_ID()")) {
 				if (rs.next()) {				
 					id = rs.getInt(1);
+					to.setId(id);
 				}
+				
+				conn.close();
 			} catch (SQLException ex) {
 				throw new Exception(ex.getMessage());
 			}
