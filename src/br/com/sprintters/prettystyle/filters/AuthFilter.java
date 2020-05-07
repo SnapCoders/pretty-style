@@ -141,6 +141,9 @@ public class AuthFilter implements Filter {
     		case "signin.Logout":
     			isAuthorize = true;
     			break;
+    		case "admin.UpdateProduct":
+    			isAuthorize = true;
+    			break;
     		default:
     			isAuthorize = false;
     			break;
