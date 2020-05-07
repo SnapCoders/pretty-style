@@ -4,8 +4,25 @@ $(document).ready(function () {
 	$('#category').select2({
 		  theme: "classic"
 		});
+
+	setTimeout(function (){
+		let ids = [];
+		let idsCategoriesByUser = $('#idsCategoriesByUser').val();
+		let valores = idsCategoriesByUser.split(',');
+
+		for (let id of valores){
+			if(id != ""){
+				ids.push(parseInt(id));
+			}
+		}
+		$('#category').val(ids);
+		
+		$('#category').select2({
+			  theme: "classic"
+			});
+	}, 1000);
 	
-	$('form[name="add-product"]').validate({
+	$('form[name="update-product"]').validate({
 		rules: {
 			name: 'required',
 			description: 'required',
@@ -24,7 +41,7 @@ $(document).ready(function () {
 		},
 		submitHandler: function (form) {
 			//form.submit();
-			handleAdd(form);
+			handleUpdate(form);
 		},
 	});
 
@@ -76,18 +93,17 @@ $(document).ready(function () {
 	});
 });
 
-function handleAdd(form) {
-	let idUser = sessionStorage.getItem('id_user');
-	let userToken = sessionStorage.getItem('token');
+function handleUpdate(form) {
 	let data = new FormData(form);
 
 	$.each($('input[name="photo"]')[0].files, function(i, file) {
+		console.log(file);
 		data.append('file-'+i, file);
 	});
 
 	$.ajax({
 		type: 'POST',
-		url: '/PrettyStyle/controller.do?path=admin&command=CreateProduct&json=true&id_user=' + idUser + '&token=' + userToken,
+		url: '/PrettyStyle/controller.do?path=admin&command=UpdateProduct&json=true',
 		data: data,
 		contentType: false,
 		processData: false,
