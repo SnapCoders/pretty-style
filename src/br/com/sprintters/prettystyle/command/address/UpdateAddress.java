@@ -21,6 +21,7 @@ public class UpdateAddress implements Command {
 			int idAddress = Integer.parseInt(request.getParameter("id_address"));
 			boolean isJson = Boolean.parseBoolean(request.getParameter("json"));
 
+			String pRecipient = request.getParameter("name");
 			String pPlace = request.getParameter("place");
 			String pNumber = request.getParameter("number");
 			String pNeighborhood = request.getParameter("neighborhood");
@@ -30,6 +31,7 @@ public class UpdateAddress implements Command {
 			String pComplement = request.getParameter("complement");
 
 			Address address = new Address();
+			address.setRecipient(pRecipient);
 			address.setId(idAddress);
 			address.setPlace(pPlace);
 			address.setNumber(pNumber);

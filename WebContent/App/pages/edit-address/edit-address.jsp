@@ -52,7 +52,7 @@
 											id="name"
 											name="name"
 											placeholder="Como você gostaria de ser chamado?"
-											value="${user.username}"
+											value="${address.recipient}"
 										/>
 									</div>
 									<div class="col-md-6 cep-area">
