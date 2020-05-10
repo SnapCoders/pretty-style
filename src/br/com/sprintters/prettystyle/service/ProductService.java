@@ -5,37 +5,43 @@ import java.util.ArrayList;
 import br.com.sprintters.prettystyle.dao.CategoryDAO;
 import br.com.sprintters.prettystyle.dao.ProductCategoryDAO;
 import br.com.sprintters.prettystyle.dao.ProductDAO;
+import br.com.sprintters.prettystyle.dao.StockDAO;
 import br.com.sprintters.prettystyle.model.Category;
 import br.com.sprintters.prettystyle.model.ClientProductLike;
 import br.com.sprintters.prettystyle.model.Product;
 import br.com.sprintters.prettystyle.model.ProductCategory;
+import br.com.sprintters.prettystyle.model.Stock;
 
 public class ProductService{
     ProductDAO productDAO;
     ProductCategoryDAO productCategoryDAO;
     CategoryDAO categoryDAO;
+    StockDAO stockDAO;
 
     public ProductService() {
         productDAO = new ProductDAO();
         productCategoryDAO = new ProductCategoryDAO();
         categoryDAO = new CategoryDAO();
+        stockDAO = new StockDAO();
         
     }
 
-    public int create(Product product) throws Exception {
+    public int create(Product product, Stock stock) throws Exception {
         try {
+        	int idStock = stockDAO.insert(stock);
+        	product.setIdStock(idStock);
         	int idProduct = productDAO.insert(product);
         	
         	for (int i = 0; i < product.getCategories().size(); i++) {
         		ProductCategory pc = new ProductCategory(idProduct, product.getCategories().get(i).getId());
         		productCategoryDAO.insert(pc);
         	}
-        	
         	return idProduct;
     	} catch (Exception e) {
     		throw new Exception(e.getMessage());
     	}
     }
+
 
     public void update(Product product) throws Exception {
         try {
@@ -162,6 +168,22 @@ public class ProductService{
     public ArrayList<Product> findByCategory(String filter) throws Exception {
     	try {
     		return productDAO.findByCategory(filter);
+    	} catch (Exception e) {
+    		throw new Exception(e.getMessage());
+    	}
+    }
+    
+    //Metodos da classe Stock
+    
+    public void updateQuantity(int idProduct, int quantity) throws Exception {
+    	try {
+    		Product product = productDAO.find(idProduct);
+    		Stock stock = stockDAO.find(product.getIdStock());
+    		int newQuantity = stock.getQuantity()+ quantity;
+    		stock.setQuantity(newQuantity);
+    		
+    		stockDAO.update(stock);
+    		
     	} catch (Exception e) {
     		throw new Exception(e.getMessage());
     	}

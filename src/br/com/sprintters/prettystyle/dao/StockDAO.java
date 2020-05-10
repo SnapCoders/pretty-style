@@ -36,7 +36,7 @@ public class StockDAO {
 	
 	public Stock find(int id) throws Exception {
 		Stock to = new Stock();
-		String sqlSelect = "SELECT * FROM item WHERE id = ?";
+		String sqlSelect = "SELECT * FROM stock WHERE id = ?";
 		
 		try (Connection conn = ConnectionFactory.createConnection();
 			 PreparedStatement stm = conn.prepareStatement(sqlSelect)) {
@@ -60,5 +60,21 @@ public class StockDAO {
 		}
 		
 		return to;
+	}
+	
+	public void update(Stock to) throws Exception {
+		String sqlUpdate = "UPDATE stock SET quantity = ?, updated_at = NOW() WHERE id = ?";
+		
+		try (Connection conn = ConnectionFactory.createConnection();
+			 PreparedStatement stm = conn.prepareStatement(sqlUpdate)) {
+			stm.setInt(1, to.getQuantity());
+			stm.setInt(2, to.getId());
+			
+			stm.execute();
+			
+			conn.close();
+		} catch (SQLException e) {
+			throw new Exception(e.getMessage());
+		}
 	}
 }
