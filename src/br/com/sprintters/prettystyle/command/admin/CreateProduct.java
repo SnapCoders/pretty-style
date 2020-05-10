@@ -17,6 +17,7 @@ import br.com.sprintters.prettystyle.command.Command;
 import br.com.sprintters.prettystyle.model.Category;
 import br.com.sprintters.prettystyle.model.Product;
 import br.com.sprintters.prettystyle.model.ProductPhoto;
+import br.com.sprintters.prettystyle.model.Stock;
 import br.com.sprintters.prettystyle.model.User;
 import br.com.sprintters.prettystyle.model.generic.Json;
 import br.com.sprintters.prettystyle.service.ProductPhotoService;
@@ -51,6 +52,7 @@ public class CreateProduct implements Command {
 			
 			Double pPrice = Double.parseDouble(m.getParameter("price"));
 			int idMark = Integer.parseInt(m.getParameter("idMark"));
+			int quantity = Integer.parseInt(m.getParameter("quantity"));
 			
 			String[] idsCategories = m.getParameterValues("idCategory");
 			
@@ -62,12 +64,14 @@ public class CreateProduct implements Command {
 			
 			User user = us.find(idUser);
 			
+			Stock stock = new Stock(quantity);
+			
 			Product product = new Product(name, description, pPrice, idMark, user.getProvider().getId(), categories);
 			
 			ProductService cs = new ProductService();
 			ProductPhotoService pps = new ProductPhotoService();
 			
-			int idProduct = cs.create(product);
+			int idProduct = cs.create(product, stock);
 			
 			Enumeration<?> files = m.getFileNames();
 			

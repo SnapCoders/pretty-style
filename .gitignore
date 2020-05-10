@@ -1,5 +1,7 @@
 /build/
 
+/src/br/com/sprintters/prettystyle/dao/ConnectionFactory.java
+
 # Created by https://www.gitignore.io/api/java
 # Edit at https://www.gitignore.io/?templates=java
 

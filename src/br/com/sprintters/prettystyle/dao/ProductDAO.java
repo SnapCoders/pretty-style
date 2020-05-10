@@ -11,11 +11,12 @@ import br.com.sprintters.prettystyle.model.ClientProductLike;
 import br.com.sprintters.prettystyle.model.Mark;
 import br.com.sprintters.prettystyle.model.Product;
 import br.com.sprintters.prettystyle.model.ProductPhoto;
+import br.com.sprintters.prettystyle.model.Stock;
 
 public class ProductDAO {
 	public int insert(Product to) throws Exception {
 		int id = 0;
-		String sqlInsert = "INSERT INTO product (name, description, price, id_mark, id_provider, created_at) VALUES (?, ?, ?, ?, ?, NOW())";
+		String sqlInsert = "INSERT INTO product (name, description, price, id_mark, id_provider,id_stock, created_at) VALUES (?, ?, ?, ?, ?, ?, NOW())";
 		
 		try (Connection conn = ConnectionFactory.createConnection();
 			 PreparedStatement stm = conn.prepareStatement(sqlInsert)) {
@@ -24,6 +25,7 @@ public class ProductDAO {
 			stm.setDouble(3, to.getPrice());
 			stm.setInt(4, to.getIdMark());
 			stm.setInt(5, to.getIdProvider());
+			stm.setInt(6, to.getIdStock());
 			
 			stm.execute();
 			
@@ -93,6 +95,7 @@ public class ProductDAO {
 					to.setDescription(rs.getString("description"));
 					to.setPrice(rs.getDouble("price"));
 					to.setIdMark(rs.getInt("id_mark"));
+					to.setIdStock(rs.getInt("id_stock"));
 					to.setCreatedAt(rs.getTimestamp("created_at"));
 					to.setUpdatedAt(rs.getTimestamp("updated_at"));
 					to.setDeletedAt(rs.getTimestamp("deleted_at"));
@@ -227,7 +230,8 @@ public class ProductDAO {
 	
 	public ArrayList<Product> listByIdProvider(int idProvider) throws Exception  {
 		ArrayList<Product> products = new ArrayList<Product>();
-		String sqlSelect = "SELECT * FROM product WHERE id_provider = ? AND deleted_at IS NULL";
+		String sqlSelect = "SELECT p.id, p.name, p.description, p.price, p.id_mark, p.id_stock, p.created_at, p.updated_at, p.deleted_at, s.quantity "
+				+ "FROM product p inner join stock s on p.id_stock = s.id WHERE id_provider = ? AND p.deleted_at IS NULL";
 		
 		try (Connection conn = ConnectionFactory.createConnection();
 			 PreparedStatement stm = conn.prepareStatement(sqlSelect)) {
@@ -242,11 +246,13 @@ public class ProductDAO {
 						rs.getString("description"),
 						rs.getDouble("price"),
 						rs.getInt("id_mark"),
+						rs.getInt("id_stock"),
 						rs.getTimestamp("created_at"),
 						rs.getTimestamp("updated_at"),
 						rs.getTimestamp("deleted_at")
-						
 					);
+					Stock stock = new Stock(rs.getInt("quantity"));
+					to.setStock(stock);
 					
 					products.add(to);
 				}

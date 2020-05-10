@@ -88,6 +88,8 @@ public class AuthFilter implements Filter {
     		case "admin.ListCategories"			: isAuthorize = true;	break;
     		case "admin.ListMarks"				: isAuthorize = true;	break;
     		case "admin.ListProducts"			: isAuthorize = true;	break;
+    		case "admin.EditProductQuantity"	: isAuthorize = true;	break;
+    		case "admin.LaunchNewQuantity"  	: isAuthorize = true;	break;
     		case "cart.ListCart"				: isAuthorize = true;	break;
     		case "favorites.CreateFavorite"		: isAuthorize = true;	break;
     		case "favorites.ListFavorites"		: isAuthorize = true;	break;

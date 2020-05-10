@@ -18,6 +18,9 @@ public class Product extends Entity {
 	private int idProvider;
 	private Provider provider;
 	
+	private int idStock;
+	private Stock stock;
+	
 	private ArrayList<ProductPhoto> photos;
 	
 	public Product() { }
@@ -37,6 +40,25 @@ public class Product extends Entity {
 		this.idMark = idMark;
 		this.idProvider = idProvider;
 		this.categories = categories;
+	}
+	
+	public Product(String name, String description, double price, int idMark, int idProvider, ArrayList<Category> categories, int idStock) {
+		this.name = name;
+		this.description = description;
+		this.price = price;
+		this.idMark = idMark;
+		this.idProvider = idProvider;
+		this.categories = categories;
+		this.idStock = idStock;
+	}
+	
+	public Product(int id,String name, String description, double price, int idMark, int idStock, Timestamp createdAt, Timestamp updatedAt, Timestamp deletedAt) {
+		super(id, createdAt,updatedAt, deletedAt);
+		this.name = name;
+		this.description = description;
+		this.price = price;
+		this.idMark = idMark;
+		this.idStock = idStock;
 	}
 	
 	public Product(String name, String description, double price, Mark mark) {
@@ -147,6 +169,14 @@ public class Product extends Entity {
 		this.idProvider = idProvider;
 	}
 	
+	public int getIdStock() {
+		return idStock;
+	}
+
+	public void setIdStock(int idStock) {
+		this.idStock = idStock;
+	}
+	
 	public ArrayList<ProductPhoto> getPhotos() {
 		return photos;
 	}
@@ -163,8 +193,16 @@ public class Product extends Entity {
 		this.provider = provider;
 	}
 
+	public Stock getStock() {
+		return stock;
+	}
+
+	public void setStock(Stock stock) {
+		this.stock = stock;
+	}
+
 	@Override
 	public String toString() {
-		return "Product [name=" + name + ", description=" + description + ", price=" + price + ", idMark=" + idMark + "]";
+		return super.getId()+ "," + name + "," + description + "," + price + "," + idMark + ","+ getStock().getQuantity();
 	}
 }
