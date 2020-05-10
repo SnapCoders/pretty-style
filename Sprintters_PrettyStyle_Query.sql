@@ -69,6 +69,17 @@ create table mark (
 
 -- select * from mark;
 
+create table stock (
+	id			int primary key auto_increment,
+    quantity	int,
+    
+    created_at	timestamp not null default now(),
+    updated_at	timestamp null,
+    deleted_at	timestamp null
+);
+
+-- select stock;
+
 create table product (
 	id			int auto_increment,
     name		varchar(180) not null,
@@ -83,7 +94,8 @@ create table product (
     
     constraint pk_id primary key (id),
     constraint fk_product__id_mark foreign key (id_mark) references mark (id),
-    constraint fk_product__id_provider foreign key (id_provider) references provider (id)
+    constraint fk_product__id_provider foreign key (id_provider) references provider (id),
+    constraint fk_product__id_stock foreign key (id_stock) references stock (id)
 );
 
 -- select * from product;
