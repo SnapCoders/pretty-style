@@ -199,3 +199,8 @@ function handleHideModal() {
 	$('#login-modal').removeClass('active');
 	$('#login-modal').addClass('inactive');
 };
+
+function handleSearchProduct() {
+	window.location.href='/PrettyStyle/controller.do?path=catalog&command=ListByProductName&search='+$('#searchId').val();
+};
+

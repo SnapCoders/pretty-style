@@ -8,8 +8,8 @@
 			<img src="/PrettyStyle/App/assets/logos/pretty-style-logo-light.svg" alt="Logo Pretty style">
 		</div>
 		<div class="search-area">
-			<input type="text" placeholder="O que você deseja pesquisar?">
-			<img src="/PrettyStyle/App/assets/icons/search.svg">
+			<input type="text" name="search" id="searchId" placeholder="O que você deseja pesquisar?">
+			<a onclick="handleSearchProduct()"><img src="/PrettyStyle/App/assets/icons/search.svg"></a>
 		</div>
 		<div class="search-area-responsive" style="display: none;"></div>
 		<div class="client-area">
