@@ -75,4 +75,13 @@ public class ProductPhotoService {
     	}
     }
     
+    public ArrayList<ProductPhoto> findPhotosByFilter(String filterIds) throws Exception {
+    	try {
+    		return dao.findPhotosByFilter(filterIds);    			
+    	} catch (Exception e) {
+    		throw new Exception(e.getMessage());
+    	}
+    }
+    
+    
 }

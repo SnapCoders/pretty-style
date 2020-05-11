@@ -165,6 +165,7 @@ public class ProductService{
     	}
     }
     
+    
     public ArrayList<Product> findByCategory(String filter) throws Exception {
     	try {
     		return productDAO.findByCategory(filter);
