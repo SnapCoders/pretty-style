@@ -204,6 +204,7 @@ header#main-header div.bottom-header nav ul li:hover {
 	border-bottom: 5px solid #3EAEF2;
 }
 
+
 /* ==== TOP FIXED ==== */
 div#bottom-header.sticky {
 	position: fixed;
