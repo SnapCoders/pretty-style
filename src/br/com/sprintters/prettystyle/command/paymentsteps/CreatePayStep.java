@@ -28,12 +28,18 @@ public class CreatePayStep implements Command {
 			UserService us = new UserService();
 			
 			User user = us.find(idUser);
-			Item item = new Item(quantity, idProduct, user.getClient().getId());
+			if(user.isProvider()) {
+				Item item = new Item(quantity, idProduct, user.getProvider().getId());				
+				is.create(item);
+			}
+			else {
+				Item item = new Item(quantity, idProduct, user.getClient().getId());				
+				is.create(item);
+			}
 			
-			is.create(item);
 			
 			if (isJson) {
-				Json json = new Json(true, "Este produto foi adicionado aos seus favoritos!", null);
+				Json json = new Json(true, "", null);
 				
 				response.setContentType("application/json");
 				response.getWriter().write(new Gson().toJson(json).toString());

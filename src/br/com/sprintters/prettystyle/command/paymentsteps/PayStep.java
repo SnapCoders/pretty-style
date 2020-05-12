@@ -31,8 +31,14 @@ public class PayStep implements Command {
 			UserService us = new UserService();
 			
 			User user = us.find(idUser);
+			Cart cart = null;
+			if(user.isProvider()) {
+				cart = is.listItemsInCartByIdClient(user.getProvider().getId());
+			}
+			else {
+				cart = is.listItemsInCartByIdClient(user.getClient().getId());
+			}
 					
-			Cart cart = is.listItemsInCartByIdClient(user.getClient().getId());
 			
 			ArrayList<Item> lista = cart.getItems();
 			

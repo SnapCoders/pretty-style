@@ -13,6 +13,7 @@ import com.google.gson.Gson;
 
 import br.com.sprintters.prettystyle.command.Command;
 import br.com.sprintters.prettystyle.model.Item;
+import br.com.sprintters.prettystyle.model.ItemRequest;
 import br.com.sprintters.prettystyle.model.Request;
 import br.com.sprintters.prettystyle.model.User;
 import br.com.sprintters.prettystyle.model.generic.Json;
@@ -34,7 +35,10 @@ public class Pay implements Command {
 			UserService us = new UserService();
 			
 			User user = us.find(idUser);
-			Cart cart = is.listItemsInCartByIdClient(user.getClient().getId());
+			Cart cart = null;
+			
+			if(user.isProvider()) cart = is.listItemsInCartByIdClient(user.getProvider().getId());
+			else cart = is.listItemsInCartByIdClient(user.getClient().getId());				
 			
 			ArrayList<Item> lista = cart.getItems();
 			
@@ -71,13 +75,41 @@ public class Pay implements Command {
   			
   			UUID uuidRandom = UUID.randomUUID();
   			
-  			String idClientPadded = String.format("%03d" , user.getClient().getId());
+  			String idClientPadded = "";
+  			
+  			if(user.isProvider()) idClientPadded = String.format("%03d" , user.getProvider().getId());
+  			else idClientPadded = String.format("%03d" , user.getClient().getId());
+  			
   			
   			String numberRequest = idClientPadded + "-" + uuidRandom.toString();
   			
-  			Request req = new Request(user.getClient().getId(), totalPrice, numberRequest.toString(), typePayment);
-  			
-  			rs.create(req);
+  			Request req = null;
+  			if(user.isProvider()) {
+  				req = new Request(user.getProvider().getId(), totalPrice, numberRequest.toString(), typePayment);  				
+  				int idRequest = rs.create(req);
+  				
+  				for (Item item : lista) {
+  					ItemRequest ir = new ItemRequest();
+  					ir.setIdRequest(idRequest);
+  					ir.setIdItem(item.getId());
+  					rs.createItemRequest(ir);
+  					if(user.isProvider()) item.setIdClient(user.getProvider().getId());
+  					else item.setIdClient(user.getClient().getId());
+  					is.setItemPaid(item);
+  				}
+  			}
+  			else {
+  				req = new Request(user.getClient().getId(), totalPrice, numberRequest.toString(), typePayment);  				
+  				int idRequest = rs.create(req);
+  				
+  				for (Item item : lista) {
+  					ItemRequest ir = new ItemRequest();
+  					ir.setIdRequest(idRequest);
+  					ir.setIdItem(item.getId());
+  					rs.createItemRequest(ir);
+  				}
+  				
+  			}
 			
 			if (isJson) {
 				Json json = new Json(true, "", lista);
@@ -88,9 +120,15 @@ public class Pay implements Command {
 				HttpSession session = request.getSession();
 				
 				session.setAttribute("numberRequest", numberRequest);
-				session.setAttribute("numberClient", user.getClient().getId());
-				session.setAttribute("clientName", user.getClient().getName());
-				session.setAttribute("clientSurname", user.getClient().getSurname());
+				if(user.isProvider()) {
+					session.setAttribute("numberClient", user.getProvider().getId());
+					session.setAttribute("clientName", user.getProvider().getFantasyName());
+				}
+				else {
+					session.setAttribute("numberClient", user.getClient().getId());
+					session.setAttribute("clientName", user.getClient().getName());
+					session.setAttribute("clientSurname", user.getClient().getSurname());					
+				}
 				
 				response.sendRedirect("/PrettyStyle/App/pages/thanks/thanks.jsp");
 			}
