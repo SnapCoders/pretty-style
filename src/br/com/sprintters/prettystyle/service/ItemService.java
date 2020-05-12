@@ -60,4 +60,12 @@ public class ItemService {
     		throw new Exception(e.getMessage());
     	}
     }
+    
+    public void setItemPaid(Item item) throws Exception {
+    	try {
+    		dao.setItemPaid(item);
+    	} catch (Exception e) {
+    		throw new Exception(e.getMessage());
+    	}
+    }
 }
