@@ -19,38 +19,27 @@ public class DeleteFavorite implements Command {
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, Exception {
 		try {
-			String idUserStr = request.getParameter("id_user");
-			String idProductStr = request.getParameter("id_product");
+			
+			int idUser = (int)request.getAttribute("idUser");
+			int idProduct = Integer.parseInt(request.getParameter("id_product"));
 			boolean isJson = Boolean.parseBoolean(request.getParameter("json"));
-			
-			int idUser = -1;
-			int idProduct = -1;
-			
-			try {
-				idUser = Integer.parseInt(idUserStr);
-				idProduct = Integer.parseInt(idProductStr);
-			} catch (NumberFormatException e) {
-				response.sendRedirect("/PrettyStyle/App/pages/sign-in/sign-in.jsp");
-			}
-			
-			if (idUser != -1) {
-				ProductService ps = new ProductService();
-				UserService us = new UserService();
-				
-				User user = us.find(idUser);
-				
-				ClientProductLike cpl = ps.listFavoriteByIdUserAndIdProduct(user.getId(), idProduct);
-				
-				ps.deleteFavoriteById(cpl.getId());
-				
-				if (isJson) {
-					Json json = new Json(true, "Produto removido com sucesso!", null);
-					
-					response.setContentType("application/json");
-					response.getWriter().write(new Gson().toJson(json).toString());
-				} else {
-					response.sendRedirect("/PrettyStyle/App/pages/favorites/favorites.jsp");
-				}
+
+			ProductService ps = new ProductService();
+			UserService us = new UserService();
+
+			User user = us.find(idUser);
+
+			ClientProductLike cpl = ps.listFavoriteByIdUserAndIdProduct(user.getId(), idProduct);
+
+			ps.deleteFavoriteById(cpl.getId());
+
+			if (isJson) {
+				Json json = new Json(true, "Produto removido com sucesso!", null);
+
+				response.setContentType("application/json");
+				response.getWriter().write(new Gson().toJson(json).toString());
+			} else {
+				response.sendRedirect("/PrettyStyle/App/pages/favorites/favorites.jsp");
 			}
 		} catch (Exception e) {
 			throw new Exception(e.getMessage());
