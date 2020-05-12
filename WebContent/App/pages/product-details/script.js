@@ -15,12 +15,10 @@ function AlertaErro(data) {
 };
 
 function handleLikeDislike(div, id) {
-	let idUser = sessionStorage.getItem('id_user');
-	let userToken = sessionStorage.getItem('token');
-
 	if ($(div).hasClass('like')) {
+		
 		$.ajax({
-			url: '/PrettyStyle/controller.do?path=favorites&command=CreateFavorite&json=true&id_user=' + idUser + '&token=' + userToken + '&id_product=' + id, type: 'POST',
+			url: '/PrettyStyle/controller.do?path=favorites&command=CreateFavorite&json=true'+'&id_product=' + id, type: 'POST',
 			success: function (data) {
 				if (data.success) {
 					AlertaSucesso(data);

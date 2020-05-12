@@ -67,14 +67,14 @@
 											<div class="row product-title">
 												<div class="product-info">
 													<c:if test="${not empty productDetails}">
-														<input type="hidden" name="id_product" value="${productDetails.product.id}" />
+														<input type="hidden" name="id_product" id="productId" value="${productDetails.product.id}" />
 														<input type="hidden" name="name" value="${productDetails.product.name}" />
 														<input type="hidden" name="description" value="${productDetails.product.description}" />
 														<label>${productDetails.product.name}</label>
 														<span class="product-description">${productDetails.product.description}</span>
 													</c:if>
 													<c:if test="${empty productDetails}">
-														<input type="hidden" name="id_product" value="${product.id}" />
+														<input type="hidden" name="id_product" id="productId" value="${product.id}" />
 														<input type="hidden" name="name" value="${product.name}" />
 														<input type="hidden" name="description" value="${product.description}" />
 														<label>${product.name}</label>
@@ -91,17 +91,17 @@
 												<div class="like-product">
 													<div class="favorite">
 														<c:if test="${empty productDetails}">
-															<div id="like" class="favorite-icon like" onclick="handleLikeDislike(this, ${productDetails.product.id});">
+															<div id="like" class="favorite-icon like" onclick="handleLikeDislike(this, ${product.id});">
 																<img src="../../assets/icons/heart.svg"/>
 															</div>
 														</c:if>
 														<c:if test="${productDetails.action == 0}">
-															<div id="like" class="favorite-icon like" onclick="handleLikeDislike(this, ${productDetails.product.id});">
+															<div id="like" class="favorite-icon like" onclick="handleLikeDislike(this, ${product.id});">
 																<img src="../../assets/icons/heart.svg"/>
 															</div>
 														</c:if>
 														<c:if test="${productDetails.action == 1}">
-															<div id="dislike" class="favorite-icon dislike" onclick="handleLikeDislike(this, ${productDetails.product.id});">
+															<div id="dislike" class="favorite-icon dislike" onclick="handleLikeDislike(this, ${product.id});">
 																<img src="../../assets/icons/white-heart.svg"/>
 															</div>
 														</c:if>
@@ -137,7 +137,7 @@
 											<hr style="margin-top: 25px; margin-bottom: 25px;" />
 											<div class="row product-info-more">
 												<span>Mais informações</span>
-												<span>Este produto é svendido e entregue por
+												<span>Este produto é vendido e entregue por
 													<a href="../../../index.jsp" style="color: #0E9AEF; font-weight: bold;">Pretty Style</a>
 												</span>
 											</div>
