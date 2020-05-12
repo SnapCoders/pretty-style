@@ -75,14 +75,14 @@
 									<div class="col-md-1 like">
 										<div class="like-product">
 											<div class="favorite">
-												<div class="favorite-icon" onclick="handleDeleteFavorite(${productLiked.id});">
+												<div class="favorite-icon" onclick="handleDeleteFavorite(${productLiked.id}, ${productLiked.product.id});">
 													<img src="../../assets/icons/white-heart.svg">
 												</div>
 											</div>
 										</div>
 									</div>
 								</div>
-								<hr />
+								<hr id="linha" />
 							</c:forEach>
 						</div>
 					</div>
