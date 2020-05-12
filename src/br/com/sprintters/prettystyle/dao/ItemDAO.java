@@ -139,24 +139,14 @@ public class ItemDAO {
 	public Cart listItemsInCartByIdClient(int idClient) throws Exception {
 		Cart cart = new Cart();
 		
-		String sqlSelect = "SELECT\r\n" + 
-				"	p.id\r\n" + 
-				"    , p.name\r\n" + 
-				"    , p.description\r\n" + 
-				"    , p.price\r\n" + 
-				"    , p.created_at\r\n" + 
-				"    , p.id_mark\r\n" + 
-				"    , m.name as 'mark'\r\n" + 
-				"    , pp.id as 'id_photo'\r\n" + 
-				"    , pp.url\r\n" + 
-				"    , i.id as 'id_item'\r\n" + 
-				"    , i.quantity\r\n" + 
-				"FROM\r\n" + 
-				"	product p\r\n" + 
-				"    LEFT JOIN product_photo pp ON p.id = pp.id_product\r\n" + 
-				"    INNER JOIN mark m ON p.id_mark = m.id\r\n" + 
-				"    INNER JOIN item i ON p.id = i.id_product\r\n" + 
-				"WHERE i.id_client = ?;";
+		String sqlSelect = "SELECT p.id, p.name, p.description, p.price, p.created_at, p.id_mark, m.name as 'mark', pp.id as 'id_photo'\r\n" + 
+				", pp.url, i.id as 'id_item', i.quantity	\r\n" + 
+				"FROM product p \r\n" + 
+				"LEFT JOIN product_photo pp ON p.id = pp.id_product\r\n" + 
+				"INNER JOIN mark m ON p.id_mark = m.id \r\n" + 
+				"INNER JOIN item i ON p.id = i.id_product \r\n" + 
+				"INNER JOIN request r ON i.id_client = r.id_client\r\n" + 
+				"WHERE i.id_client = ? and i.paid = 0";
 		
 		try (Connection conn = ConnectionFactory.createConnection();
 			 PreparedStatement stm = conn.prepareStatement(sqlSelect)) {
@@ -227,5 +217,21 @@ public class ItemDAO {
 		}
 		
 		return cart;
+	}
+	
+	public void setItemPaid(Item to) throws Exception {
+		String sqlDelete = "UPDATE item SET paid = 1 WHERE id = ? and id_client = ?";
+		
+		try (Connection conn = ConnectionFactory.createConnection();
+			 PreparedStatement stm = conn.prepareStatement(sqlDelete)) {
+			stm.setInt(1, to.getId());
+			stm.setInt(2, to.getIdClient());
+			
+			stm.execute();
+			
+			conn.close();
+		} catch (SQLException e) {
+			throw new Exception(e.getMessage());
+		}
 	}
 }
