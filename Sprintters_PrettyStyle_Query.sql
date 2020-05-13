@@ -199,6 +199,7 @@ create table request (
 
 -- select * from request;
 
+
 create table item (
 	id			int auto_increment,
     quantity	int not null,
