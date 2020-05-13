@@ -83,10 +83,11 @@ create table stock (
 create table product (
 	id			int auto_increment,
     name		varchar(180) not null,
-    description	varchar(300) not null,
+    description	text not null,
     price		double not null,
     id_mark		int,
     id_provider int,
+    id_stock int,
     
     created_at	timestamp not null default now(),
     updated_at	timestamp null,
@@ -131,7 +132,7 @@ create table product_category (
 create table product_photo (
 	id			int auto_increment,
     url			varchar(300) not null,
-    name		varchar(100) not null,
+    name		text not null,
     id_product	int,
     
     created_at	timestamp not null default now(),
