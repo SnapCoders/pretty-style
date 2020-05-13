@@ -27,13 +27,12 @@ public class ProductService{
         productCategoryDAO = new ProductCategoryDAO();
         categoryDAO = new CategoryDAO();
         stockDAO = new StockDAO();
-        
     }
 
-    public int create(Product product, Stock stock) throws Exception {
+    public int create(Product product) throws Exception {
         try {
-        	int idStock = stockDAO.insert(stock);
-        	product.setIdStock(idStock);
+        	product.setIdStock(stockDAO.insert(product.getStock()));
+        	
         	int idProduct = productDAO.insert(product);
         	
         	for (int i = 0; i < product.getCategories().size(); i++) {
@@ -45,7 +44,6 @@ public class ProductService{
     		throw new Exception(e.getMessage());
     	}
     }
-
 
     public void update(Product product) throws Exception {
         try {
@@ -199,8 +197,6 @@ public class ProductService{
     		throw new Exception(e.getMessage());
     	}
     }
-    
-    //Metodos da classe Stock
     
     public void updateQuantity(int idProduct, int quantity) throws Exception {
     	try {

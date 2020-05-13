@@ -9,6 +9,7 @@ import java.util.Enumeration;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.google.gson.Gson;
 import com.oreilly.servlet.MultipartRequest;
@@ -25,32 +26,40 @@ import br.com.sprintters.prettystyle.service.ProductService;
 import br.com.sprintters.prettystyle.service.UserService;
 
 public class CreateProduct implements Command {
-	private static final String SAVE_DIR = File.separator + "WebContent\\Upload";
-	public static final Charset ISO_8859_1 = Charset.forName("ISO-8859-1");
-    public static final Charset UTF_8 = Charset.forName("UTF-8");
+	private static final String SAVE_DIR = "PrettyStyle\\Uploads";
+	private static final Charset ISO_8859_1 = Charset.forName("ISO-8859-1");
+	private static final Charset UTF_8 = Charset.forName("UTF-8");
 	
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, Exception {
+		boolean isJson = false;
+		
 		try {
+			HttpSession session = request.getSession();
+			
+			isJson = Boolean.parseBoolean(request.getParameter("json"));
+			
 			int idUser = (int)request.getAttribute("idUser");
+			
 			String appPath = request.getServletContext().getRealPath("");
-			String savePath = appPath + SAVE_DIR;
+			String savePath = "";
 			
-			File webContentPath = new File(appPath + "\\WebContent");
-			File uploadPath = new File(webContentPath + "\\Upload");
+			for (int i = 0; i < appPath.length(); i++) {
+				if (!String.valueOf(appPath.charAt(i)).equals(".")) {
+					savePath += appPath.charAt(i);
+				}
+				else break;
+			}
 			
-			if (!webContentPath.exists()) webContentPath.mkdir();
-			if (!uploadPath.exists()) uploadPath.mkdir();
+			savePath += SAVE_DIR;
+					
+			checkIfDirectoryExists(savePath);
 			
 			MultipartRequest m = new MultipartRequest(request, savePath, 100100100);
 			
-			byte[] pName = m.getParameter("name").getBytes(ISO_8859_1);
-			String name = new String(pName, UTF_8);
-			
-			byte[] pDescription = m.getParameter("description").getBytes(ISO_8859_1);
-			String description = new String(pDescription, UTF_8);
-			
-			Double pPrice = Double.parseDouble(m.getParameter("price"));
+			String name = toUTF(m, "name");
+			String description = toUTF(m, "description");
+			Double price = Double.parseDouble(m.getParameter("price"));
 			int idMark = Integer.parseInt(m.getParameter("idMark"));
 			int quantity = Integer.parseInt(m.getParameter("quantity"));
 			
@@ -64,14 +73,20 @@ public class CreateProduct implements Command {
 			
 			User user = us.find(idUser);
 			
-			Stock stock = new Stock(quantity);
-			
-			Product product = new Product(name, description, pPrice, idMark, user.getProvider().getId(), categories);
-			
 			ProductService cs = new ProductService();
 			ProductPhotoService pps = new ProductPhotoService();
 			
-			int idProduct = cs.create(product, stock);
+			Product product = new Product(
+				name,
+				description,
+				price,
+				idMark,
+				user.getProvider().getId(),
+				categories,
+				new Stock(quantity)
+			);
+			
+			int idProduct = cs.create(product);
 			
 			Enumeration<?> files = m.getFileNames();
 			
@@ -88,16 +103,37 @@ public class CreateProduct implements Command {
 					pps.create(productPhoto);
 				}
 			}
-			
-			Json json = new Json(true, "Produto cadastrado com sucesso!", product);
     		
-    		response.setContentType("application/json");
-    		response.getWriter().write(new Gson().toJson(json).toString());
+    		if (isJson) {
+    			Json json = new Json(true, "Produto cadastrado com sucesso!", product);
+        		
+        		response.setContentType("application/json");
+        		response.getWriter().write(new Gson().toJson(json).toString());
+			} else {
+				session.setAttribute("product", product);
+				
+				response.sendRedirect("/PrettyStyle/App/pages/catalog/catalog.jsp");
+			}
 		} catch (Exception e) {
-			Json json = new Json(false, "Desculpe, houve um erro ao cadastrar o produto, verifique os dados e tente novamente!", e);
-    		
-    		response.setContentType("application/json");
-    		response.getWriter().write(new Gson().toJson(json).toString());
+    		if (isJson) {
+    			Json json = new Json(false, "Desculpe, houve um erro ao cadastrar o produto, verifique os dados e tente novamente!", e);
+        		
+        		response.setContentType("application/json");
+        		response.getWriter().write(new Gson().toJson(json).toString());
+			} else {
+				response.sendRedirect("/PrettyStyle/App/pages/error/500.jsp");
+			}
 		}
+	}
+	
+	static String toUTF(MultipartRequest m, String prop) {
+		byte[] propConverted = m.getParameter(prop).getBytes(ISO_8859_1);
+		return new String(propConverted, UTF_8);
+	}
+	
+	static void checkIfDirectoryExists(String appPath) {
+		File uploadPath = new File(appPath);
+		
+		if (!uploadPath.exists()) uploadPath.mkdir();
 	}
 }

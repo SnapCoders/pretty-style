@@ -82,6 +82,31 @@ $(document).ready(function () {
 	});
 });
 
+function handleModifyMarkInput() {
+	if ($('#mark').hasClass('active')) {
+		$('#mark-error').remove();
+		$('#mark').hide();
+		$('#newMark').show();
+		$('#mark').removeClass('active');
+	} else {
+		$('#mark').show();
+		$('#newMark').hide();
+		$('#mark').addClass('active');
+	}
+};
+
+function handleModifyCategoryInput() {
+	if ($('#category').hasClass('active')) {
+		$('.select2-container').hide();
+		$('#newCategory').show();
+		$('#category').removeClass('active');
+	} else {
+		$('.select2-container').show();
+		$('#newCategory').hide();
+		$('#category').addClass('active');
+	}
+};
+
 function handleAdd(form) {
 	let idUser = sessionStorage.getItem('id_user');
 	let userToken = sessionStorage.getItem('token');

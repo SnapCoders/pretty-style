@@ -58,27 +58,30 @@
 			  			<div class="col-md-12 content">
 			  				<form id="id-user" action="/PrettyStyle/controller.do?path=admin&command=CreateProduct&json=true" method="post" enctype="multipart/form-data" name="add-product">
 				  				<div class="row">
-				  					<div class="col-md-6">
+				  					<div class="col-md-12">
 					  					<label for="name">Nome do produto<span style="color: #ff0000; margin-left: 5px;">*</span></label>
 					  					<input class="form-control" id="name" name="name" placeholder="Nome do produto" />
 					  				</div>
-					  				<div class="col-md-6">
+				  				</div>
+				  				<div class="row">
+				  					<div class="col-md-12">
 					  					<label for="description">Descrição<span style="color: #ff0000; margin-left: 5px;">*</span></label>
-					  					<input class="form-control" id="description" name="description" placeholder="Breve descrição do produto" />
+					  					<textarea style="resize: none; height: 120px;" class="form-control" id="description" name="description" placeholder="Breve descrição do produto"></textarea>
 					  				</div>
 				  				</div>
 				  				<div class="row">
 				  					<div class="col-md-4">
-					  					<label for="mark">Selecione a marca<span style="color: #ff0000; margin-left: 5px;">*</span></label>
-					  					<select class="form-control" id="mark" name="idMark">
+					  					<label for="mark">Selecione ou </label><span class="span-modify" onclick="handleModifyMarkInput();"> cadastre uma nova marca</span><span style="color: #ff0000; margin-left: 5px;">*</span>
+					  					<select class="form-control active" id="mark" name="idMark">
 					  						<option value="0">--Selecione--</option>
 					  						<c:forEach var="mark" items="${marks}">
 					  							<option value="${mark.id}">${mark.name}</option>
 					  						</c:forEach>
 					  					</select>
+					  					<input style="display: none;" class="form-control" id="newMark" name="newMark" />
 					  				</div>
 					  				<div class="col-md-4">
-					  					<label for="quantity">Selecione a quantidade<span style="color: #ff0000; margin-left: 5px;">*</span></label>
+					  					<label for="quantity">Informe a quantidade<span style="color: #ff0000; margin-left: 5px;">*</span></label>
 					  					<input class="form-control" id="quantity" name="quantity" placeholder="Digite a quantidade" />
 					  				</div>
 				  					<div class="col-md-4">
@@ -88,13 +91,14 @@
 				  				</div>
 				  				<div class="row">
 				  					<div class="col-md-12">
-					  					<label for="category">Selecione a categoria<span style="color: #ff0000; margin-left: 5px;">*</span></label>
-					  					<select class="form-control" id="category" name="idCategory" multiple="multiple">
+					  					<label for="category">Selecione ou </label><span class="span-modify" onclick="handleModifyCategoryInput();"> cadastre uma nova categoria</span><span style="color: #ff0000; margin-left: 5px;">*</span>
+					  					<select class="form-control active" id="category" name="idCategory" multiple="multiple">
 					  						<option value="0">--Selecione--</option>
 					  						<c:forEach var="category" items="${categories}">
 					  							<option value="${category.id}">${category.name}</option>
 					  						</c:forEach>
 					  					</select>
+					  					<input style="display: none;" class="form-control" id="newCategory" name="newCategory" placeholder="Digite uma nova categoria e ela será cadastrada automaticamente" />
 					  				</div>
 				  				</div>
 				  				<div class="row">

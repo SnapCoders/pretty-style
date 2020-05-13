@@ -216,3 +216,12 @@ div#bottom-header.sticky {
 div.sticky-content {
     margin-top: 66px;
 }
+
+.span-modify {
+	color: #3EAEF2;
+	cursor: pointer;
+}
+
+.span-modify:hover {
+	filter: brightness(90%);
+}

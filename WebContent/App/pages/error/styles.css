@@ -1,0 +1,171 @@
+div.error-container div.container div.header div.content {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	margin-bottom: 10px;
+}
+
+div.error-container div.container div.header div.content div.title label {
+	margin-bottom: 0;
+	color: #707070;
+	font-size: 20px;
+}
+
+div.error-container div.container div.header div.content div.line {
+	width: 90%;
+}
+
+div.error-container div.container hr#linha:last-child {
+	display: none;
+}
+
+div.error-container div.container div.jumbotron.main {
+	border: 1px solid rgba(0, 0, 0, 0.3);
+	border-radius: 10px;
+	background: #ffffff;
+	padding: 15px;
+}
+
+div.error-container div.container div.jumbotron.main div.content div.product-details-area {
+    display: flex;
+    align-items: center;
+	justify-content: flex-start;
+	height: 250px;
+    padding: 30px 0;
+}
+
+div.error-container div.container div.jumbotron.main div.content div.product-details-area div.product-photo-area {
+	cursor: pointer;
+}
+
+div.error-container div.container div.jumbotron.main div.content div.product-details-area div.product-photo-area img {
+	width: 200px;
+	height: 200px;
+	border: 1px solid rgba(0, 0, 0, 0.3);
+	border-radius: 16px;
+}
+
+div.error-container div.container div.jumbotron.main div.content div.product-details-area div.product-photo-area img:hover {
+	border: 1px solid #0E9AEF;
+}
+
+div.error-container div.container div.jumbotron.main div.content div.product-details-area div.product-info {
+	margin: 0 15px;
+	height: 100%;
+	
+	display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+}
+
+div.error-container div.container div.jumbotron.main div.content div.product-details-area div.product-info label {
+	margin-bottom: 0;
+	color: #707070;
+	font-size: 38px;
+}
+
+div.error-container div.container div.jumbotron.main div.content div.product-details-area div.product-info span {
+	color: #707070;
+	font-size: 14px;
+}
+
+div.error-container div.container div.jumbotron.main div.content div.product-details-area div.product-info div.content label {
+	margin-bottom: 0;
+	color: #707070;
+	font-size: 22px;
+	font-weight: bold;
+}
+
+div.error-container div.container div.jumbotron.main div.content div.product-details-area div.product-info div.stars {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+div.error-container div.container div.jumbotron.main div.content div.product-details-area div.product-info div.stars span.star {
+    color: #EEFF00;
+    font-size: 2rem;
+    padding: -1px 1rem;
+}
+
+div.error-container div.container div.jumbotron.main div.content div.product-details-area div.product-info div.stars span.star::before {
+    content: '\2606';
+    cursor: pointer;
+}
+
+div.error-container div.container div.jumbotron.main div.content div.product-details-area div.product-info div.stars span.star.rated::before {
+    content: '\2605';
+}
+
+div.error-container div.container div.jumbotron.main div.content div.product-details-area div.product-info div.stars {
+    counter-reset: rateme 0;
+    font-size: 0rem;
+    font-weight: 900;
+}
+
+div.error-container div.container div.jumbotron.main div.content div.product-details-area div.product-info div.stars span.star.rated {
+    counter-increment: rateme 1;
+}
+
+div.error-container div.container div.jumbotron.main div.content div.product-details-area div.product-info div.stars::after {
+    content: counter(rateme) '/5';
+}
+
+div.error-container div.container div.jumbotron.main div.content div.like {
+	display: flex;
+    justify-content: flex-end;
+}
+
+div.error-container div.container div.jumbotron.main div.content div.like-product {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-end;
+    width: 30%;
+    height: 100%;
+}
+
+div.error-container div.container div.jumbotron.main div.content div.like-product div.favorite {
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+div.error-container div.container div.jumbotron.main div.content div.like-product div.favorite:hover {
+    filter: brightness(90%);
+}
+
+div.error-container div.container div.jumbotron.main div.content div.like-product div.favorite div.favorite-icon {
+    width: 40px;
+    height: 40px;
+    background-color: #0B7BBF;
+    border-radius: 50%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+div.error-container div.container div.jumbotron.main div.content div.like-product div.favorite div.favorite-icon img {
+    width: 20px;
+    height: 20px;
+}
+
+div.empty-error {
+	width: 100%;
+	min-height: 500px;
+	text-align: center;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
+
+div.empty-error strong:first-child {
+	font-size: 80px;
+	color: #ddd;
+}
+
+div.empty-error strong:last-child {
+	font-size: 28px;
+	color: #ddd;
+}

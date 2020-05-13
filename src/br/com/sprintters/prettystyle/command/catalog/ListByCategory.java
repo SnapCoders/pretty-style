@@ -20,22 +20,19 @@ import br.com.sprintters.prettystyle.service.ProductService;
 public class ListByCategory implements Command {
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, Exception {
+		boolean isJson = false;
+		
 		try {
 			HttpSession session = request.getSession();
 			
 			String filter = request.getParameter("filter");
-			boolean isJson = Boolean.parseBoolean(request.getParameter("json"));
+			isJson = Boolean.parseBoolean(request.getParameter("json"));
 			
 			ProductService ps = new ProductService();
 			CategoryService cs = new CategoryService();
 			
 			ArrayList<Category> categories = cs.list();
 			ArrayList<Product> products = ps.findByCategory(filter);
-	  		
-			ArrayList<Product> lista = ps.listBestSellers();
-		
-			ArrayList<Product> bestSellers1 = new ArrayList<Product>(lista.subList(0, (lista.size()/2)));
-			ArrayList<Product> bestSellers2 = new ArrayList<Product>(lista.subList(lista.size()/2, lista.size()));
 			
 			if (isJson) {
 				Json json = new Json(true, "", products);
@@ -46,13 +43,18 @@ public class ListByCategory implements Command {
 				session.setAttribute("products", products);
 				session.setAttribute("categories", categories);
 				session.setAttribute("filter", filter);
-				session.setAttribute("bestSellersOne", bestSellers1);
-				session.setAttribute("bestSellersTwo", bestSellers2);
 				
 				response.sendRedirect("/PrettyStyle/App/pages/catalog/catalog.jsp");
 			}
 		} catch (Exception e) {
-			throw new Exception(e.getMessage());
+			if (isJson) {
+				Json json = new Json(false, "Desculpe, houve um erro ao listar os produtos pela categoria, estamos trabalhando para corrigir esse problema!", e);
+	    		
+	    		response.setContentType("application/json");
+	    		response.getWriter().write(new Gson().toJson(json).toString());
+			} else {
+				response.sendRedirect("/PrettyStyle/App/pages/error/500.jsp");
+			}
 		}
 	}
 }
