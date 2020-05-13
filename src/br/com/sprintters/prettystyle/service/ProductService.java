@@ -113,7 +113,13 @@ public class ProductService{
     
     public ArrayList<ClientProductLike> listFavoritesByIdUser(int idUser) throws Exception {
     	try {
-    		return productDAO.listFavoritesByIdUser(idUser);
+    		ArrayList<ClientProductLike> likes = productDAO.listFavoritesByIdUser(idUser);
+    		for (ClientProductLike like : likes) {
+    			Product product = like.getProduct();
+    			ArrayList<ProductPhoto> photos = productPhotoDAO.findAllPhotosByIdProduct(product.getId());
+    			product.setPhotos(photos);
+    		}
+    		return likes;
     	} catch (Exception e) {
     		throw new Exception(e.getMessage());
     	}

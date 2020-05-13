@@ -331,8 +331,8 @@ public class ProductDAO {
 					
 					ClientProductLike cpl = new ClientProductLike(
 						rs.getInt("id_cpl"),
-						rs.getInt("id_product"),
 						rs.getInt("id_user"),
+						rs.getInt("id_product"),
 						rs.getInt("action")
 					);
 					
