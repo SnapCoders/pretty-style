@@ -50,8 +50,8 @@
 								<div class="row">
 									<div class="col-md-11">
 										<div class="product-details-area">
-											<div class="product-photo-area">
-												<img src="../../assets/img/jbl.png" alt="${productLiked.product.name}">
+											<div class="product-photo-area"  onclick="window.location.href='/PrettyStyle/controller.do?path=productdetails&command=ViewProduct&id_product=${productLiked.product.id}'">
+												<img src="${productLiked.product.photos[0].url}" alt="${productLiked.product.name}">
 											</div>
 											<div class="product-info">
 												<label>${productLiked.product.name}</label>
