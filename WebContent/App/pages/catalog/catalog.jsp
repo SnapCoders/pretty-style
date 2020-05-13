@@ -75,7 +75,7 @@
 																<img src="${product.photos[0].url}" alt="${product.name}">
 															</div>
 															<label class="title-product">${product.name}</label>
-															<p>${product.description}</p>
+															<%-- <p>${product.description}</p> --%>
 															<div class="stars">
 																<span class="star yellow-star">&nbsp;</span>
 																<span class="star yellow-star">&nbsp;</span>

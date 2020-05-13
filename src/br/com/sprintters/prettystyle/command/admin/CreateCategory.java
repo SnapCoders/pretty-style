@@ -20,7 +20,6 @@ public class CreateCategory implements Command {
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, Exception {
 		try {
 			String pName = request.getParameter("name");
-	        String pColor = request.getParameter("color");
 	        int idUser = (int)request.getAttribute("idUser");
 			boolean isJson = Boolean.parseBoolean(request.getParameter("json"));
 			
@@ -31,7 +30,6 @@ public class CreateCategory implements Command {
 			Category category = new Category();
 			
 	        category.setName(pName);
-	        category.setColor(pColor);
 	        category.setIdProvider(user.getProvider().getId());
 	
 	        CategoryService cs = new CategoryService();

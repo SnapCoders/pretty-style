@@ -11,13 +11,12 @@ import br.com.sprintters.prettystyle.model.Category;
 public class CategoryDAO {
 	public int insert(Category to) throws Exception {
 		int id = 0;
-		String sqlInsert = "INSERT INTO category (name, color, id_provider) VALUES (?, ?, ?)";
+		String sqlInsert = "INSERT INTO category (name, id_provider) VALUES (?, ?)";
 		
 		try (Connection conn = ConnectionFactory.createConnection();
 			 PreparedStatement stm = conn.prepareStatement(sqlInsert)) {
 			stm.setString(1, to.getName());
-			stm.setString(2, to.getColor());
-			stm.setInt(3, to.getIdProvider());
+			stm.setInt(2, to.getIdProvider());
 			
 			stm.execute();
 			
@@ -39,14 +38,16 @@ public class CategoryDAO {
 	}
 	
 	public void update(Category to) throws Exception {
-		String sqlUpdate = "UPDATE category SET name = ?, color = ?, updated_at = NOW() WHERE id = ?";
+		String sqlUpdate = "UPDATE category SET name = ?, updated_at = NOW() WHERE id = ?";
 		
 		try (Connection conn = ConnectionFactory.createConnection();
 			 PreparedStatement stm = conn.prepareStatement(sqlUpdate)) {
 			stm.setString(1, to.getName());
-			stm.setString(2, to.getColor());
-			stm.setInt(3, to.getId());
+			stm.setInt(2, to.getId());
+			
 			stm.execute();
+			
+			conn.close();
 		} catch (SQLException e) {
 			throw new Exception(e.getMessage());
 		}
@@ -76,7 +77,6 @@ public class CategoryDAO {
 				if (rs.next()) {
 					to.setId(rs.getInt("id"));
 					to.setName(rs.getString("name"));
-					to.setColor(rs.getString("color"));
 					to.setCreatedAt(rs.getTimestamp("created_at"));
 					to.setUpdatedAt(rs.getTimestamp("updated_at"));
 					to.setDeletedAt(rs.getTimestamp("deleted_at"));
@@ -102,7 +102,6 @@ public class CategoryDAO {
 					Category to = new Category(
 						rs.getInt("id"),
 						rs.getString("name"),
-						rs.getString("color"),
 						rs.getTimestamp("created_at"),
 						rs.getTimestamp("updated_at"),
 						rs.getTimestamp("deleted_at")
@@ -133,7 +132,6 @@ public class CategoryDAO {
 					Category to = new Category(
 						rs.getInt("id"),
 						rs.getString("name"),
-						rs.getString("color"),
 						rs.getTimestamp("created_at"),
 						rs.getTimestamp("updated_at"),
 						rs.getTimestamp("deleted_at")
@@ -164,7 +162,6 @@ public class CategoryDAO {
 					Category to = new Category(
 						rs.getInt("id"),
 						rs.getString("name"),
-						rs.getString("color"),
 						rs.getTimestamp("created_at"),
 						rs.getTimestamp("updated_at"),
 						rs.getTimestamp("deleted_at")

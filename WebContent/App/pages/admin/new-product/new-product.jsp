@@ -66,7 +66,7 @@
 				  				<div class="row">
 				  					<div class="col-md-12">
 					  					<label for="description">Descrição<span style="color: #ff0000; margin-left: 5px;">*</span></label>
-					  					<textarea style="resize: none; height: 120px;" class="form-control" id="description" name="description" placeholder="Breve descrição do produto"></textarea>
+					  					<textarea style="min-height: 120px; max-height: 280px;" class="form-control" id="description" name="description" placeholder="Breve descrição do produto"></textarea>
 					  				</div>
 				  				</div>
 				  				<div class="row">
@@ -98,7 +98,7 @@
 					  							<option value="${category.id}">${category.name}</option>
 					  						</c:forEach>
 					  					</select>
-					  					<input style="display: none;" class="form-control" id="newCategory" name="newCategory" placeholder="Digite uma nova categoria e ela será cadastrada automaticamente" />
+					  					<input style="display: none;" class="form-control" id="newCategory" name="newCategory" placeholder="Separe as categorias por vírgula e elas serão cadastradas automaticamente" />
 					  				</div>
 				  				</div>
 				  				<div class="row">

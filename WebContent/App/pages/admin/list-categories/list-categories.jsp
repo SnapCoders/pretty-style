@@ -51,7 +51,6 @@
 									<tr>
 										<th scope="col" style="text-align: center; min-width: 15px;" class="details-control">Id</th>
 										<th scope="col" style="text-align: center; min-width: 205px;">Nome</th>
-										<th scope="col" style="text-align: center; min-width: 360px;">Cor</th>
 										<th scope="col" style="text-align: center; min-width: 100px;">Ações</th>
 									</tr>
 								</thead>
@@ -60,7 +59,6 @@
 										<tr>
 											<th id="product-id" scope="row" class="details-control">${category.id}</th>
 											<td>${category.name}<!-- <span class="badge badge-pill badge-primary" style="margin-left: 10px;">50% OFF</span> --></td>
-											<td>${category.color}</td>
 											<td style="text-align: center;">
 												<button class="btn btn-sm btn-outline-success">
 													<i class="far fa-eye"></i>

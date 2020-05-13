@@ -466,7 +466,7 @@ public class ProductDAO {
 	public Product findProductAndCategory(int id) throws Exception {
 		Product to = new Product();
 		ArrayList<Category> categories = new ArrayList<Category>();
-		String sqlSelect = "select p.id, p.name, p.description, p.price, p.id_mark,pc.id_category, c.name, c.color from product p "
+		String sqlSelect = "select p.id, p.name, p.description, p.price, p.id_mark,pc.id_category, c.name from product p "
 				+ "inner join category c "
 				+ "inner join product_category pc on pc.id_product = p.id and pc.id_category = c.id where p.id = ?;";
 		
@@ -491,7 +491,6 @@ public class ProductDAO {
 					}
 					category.setId(rs.getInt("id_category"));
 					category.setName(rs.getString("c.name"));
-					category.setColor(rs.getString("color"));
 					categories.add(category);
 				}
 				to.setCategories(categories);

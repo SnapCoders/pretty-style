@@ -50,11 +50,10 @@
 								<thead class="thead-dark">
 									<tr>
 										<th scope="col" style="text-align: center; min-width: 15px;" class="details-control">Id</th>
-										<th scope="col" style="text-align: center; min-width: 185px;">Nome</th>
-										<th scope="col" style="text-align: center; min-width: 280px;">Descrição</th>
-										<th scope="col" style="text-align: center; min-width: 70px;">Preço</th>
-										<th scope="col" style="text-align: center; min-width: 60px;">Quantidade</th>
-										<th scope="col" style="text-align: center; min-width: 100px;">Ações</th>
+										<th scope="col" style="text-align: center; min-width: 350px;">Nome</th>
+										<th scope="col" style="text-align: center; max-width: 10px;">Preço</th>
+										<th scope="col" style="text-align: center; max-width: 60px;">Quantidade</th>
+										<th scope="col" style="text-align: center; min-width: 10px; max-width: 20px;">Ações</th>
 									</tr>
 								</thead>
 								<tbody>
@@ -62,7 +61,6 @@
 										<tr>
 											<th id="product-id" scope="row" class="details-control">${product.id}</th>
 											<td>${product.name}<!-- <span class="badge badge-pill badge-primary" style="margin-left: 10px;">50% OFF</span> --></td>
-											<td>${product.description}</td>
 											<td><fmt:formatNumber value="${product.price}" type="currency" currencySymbol="R$"/></td>
 											<td style=" text-align: center">${product.stock.quantity}</td>
 											<td style="text-align: center; display: flex; align-items: center; justify-content: space-around;">

@@ -47,13 +47,9 @@
 			  			<div class="col-md-12 content">
 			  				<form id="id-user" action="/PrettyStyle/controller.do?path=admin&command=CreateCategory" method="post" name="add-category">
 				  				<div class="row">
-				  					<div class="col-md-6">
+				  					<div class="col-md-12">
 					  					<label for="name">Nome da categoria<span style="color: #ff0000; margin-left: 5px;">*</span></label>
 					  					<input class="form-control" id="name" name="name" placeholder="Nome da categoria" />
-					  				</div>
-					  				<div class="col-md-6">
-					  					<label for="color">Cor<span style="color: #ff0000; margin-left: 5px;">*</span></label>
-					  					<input class="form-control" id="color" name="color" placeholder="Cor em Hexadecimal" />
 					  				</div>
 				  				</div>
 					  			<div class="row button-area">

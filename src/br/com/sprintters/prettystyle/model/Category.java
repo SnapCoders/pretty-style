@@ -6,10 +6,38 @@ import br.com.sprintters.prettystyle.model.generic.Entity;
 
 public class Category extends Entity {
 	private String name;
-	private String color;
 	
 	private int idProvider;
 	private Provider provider;
+
+	public Category() { }
+	
+	public Category(int id) {
+		super(id);
+	}
+
+	public Category(String name, int idProvider) {
+		this.name = name;
+		this.idProvider = idProvider;
+	}
+	
+	public Category(int id, String name) {
+		super(id);
+		this.name = name;
+	}
+	
+	public Category(int id, String name, Timestamp createdAt, Timestamp updatedAt, Timestamp deletedAt) {
+		super(id, createdAt, updatedAt, deletedAt);
+		this.name = name;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
 	
 	public int getIdProvider() {
 		return idProvider;
@@ -27,47 +55,8 @@ public class Category extends Entity {
 		this.provider = provider;
 	}
 
-	public Category() { }
-	
-	public Category(int id) {
-		super(id);
-	}
-
-	public Category(String name, String color) {
-		this.name = name;
-		this.color = color;
-	}
-	
-	public Category(int id, String name, String color) {
-		super(id);
-		this.name = name;
-		this.color = color;
-	}
-	
-	public Category(int id, String name, String color, Timestamp createdAt, Timestamp updatedAt, Timestamp deletedAt) {
-		super(id, createdAt, updatedAt, deletedAt);
-		this.name = name;
-		this.color = color;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public String getColor() {
-		return color;
-	}
-
-	public void setColor(String color) {
-		this.color = color;
-	}
-
 	@Override
 	public String toString() {
-		return "Category [name=" + name + ", color=" + color + "]";
+		return "Category [name=" + name + "]";
 	}
 }

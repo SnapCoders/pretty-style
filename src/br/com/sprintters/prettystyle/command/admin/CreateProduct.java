@@ -3,6 +3,8 @@ package br.com.sprintters.prettystyle.command.admin;
 import java.io.File;
 import java.io.IOException;
 import java.nio.charset.Charset;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Enumeration;
 
@@ -16,17 +18,20 @@ import com.oreilly.servlet.MultipartRequest;
 
 import br.com.sprintters.prettystyle.command.Command;
 import br.com.sprintters.prettystyle.model.Category;
+import br.com.sprintters.prettystyle.model.Mark;
 import br.com.sprintters.prettystyle.model.Product;
 import br.com.sprintters.prettystyle.model.ProductPhoto;
 import br.com.sprintters.prettystyle.model.Stock;
 import br.com.sprintters.prettystyle.model.User;
 import br.com.sprintters.prettystyle.model.generic.Json;
+import br.com.sprintters.prettystyle.service.CategoryService;
+import br.com.sprintters.prettystyle.service.MarkService;
 import br.com.sprintters.prettystyle.service.ProductPhotoService;
 import br.com.sprintters.prettystyle.service.ProductService;
 import br.com.sprintters.prettystyle.service.UserService;
 
 public class CreateProduct implements Command {
-	private static final String SAVE_DIR = "PrettyStyle\\Uploads";
+	private static final String SAVE_DIR = "pretty-style\\Uploads";
 	private static final Charset ISO_8859_1 = Charset.forName("ISO-8859-1");
 	private static final Charset UTF_8 = Charset.forName("UTF-8");
 	
@@ -38,7 +43,6 @@ public class CreateProduct implements Command {
 			HttpSession session = request.getSession();
 			
 			isJson = Boolean.parseBoolean(request.getParameter("json"));
-			
 			int idUser = (int)request.getAttribute("idUser");
 			
 			String appPath = request.getServletContext().getRealPath("");
@@ -52,8 +56,10 @@ public class CreateProduct implements Command {
 			}
 			
 			savePath += SAVE_DIR;
-					
+			appPath += "\\Uploads";
+			
 			checkIfDirectoryExists(savePath);
+			checkIfDirectoryExists(appPath);
 			
 			MultipartRequest m = new MultipartRequest(request, savePath, 100100100);
 			
@@ -62,19 +68,43 @@ public class CreateProduct implements Command {
 			Double price = Double.parseDouble(m.getParameter("price"));
 			int idMark = Integer.parseInt(m.getParameter("idMark"));
 			int quantity = Integer.parseInt(m.getParameter("quantity"));
-			
 			String[] idsCategories = m.getParameterValues("idCategory");
-			
-			ArrayList<Category> categories = new ArrayList<Category>();
-			
-			for (String idCategory : idsCategories) categories.add(new Category(Integer.parseInt(idCategory)));
 			
 			UserService us = new UserService();
 			
 			User user = us.find(idUser);
 			
-			ProductService cs = new ProductService();
+			ProductService ps = new ProductService();
 			ProductPhotoService pps = new ProductPhotoService();
+			CategoryService cs = new CategoryService();
+			MarkService ms = new MarkService();
+			
+			ArrayList<Category> categories = new ArrayList<Category>();
+			
+			if (idsCategories != null) {
+				for (String idCategory : idsCategories) categories.add(new Category(Integer.parseInt(idCategory)));
+			} else {
+				String categoriesByComma = toUTF(m, "newCategory");
+				
+				if (!categoriesByComma.contains(",")) {
+					Category category = new Category(categoriesByComma, user.getProvider().getId());
+					cs.create(category);
+					categories.add(category);
+				} else {
+					String[] categoriesSplit = categoriesByComma.split(",");
+					
+					for (String cat : categoriesSplit) {
+						Category category = new Category(cat.trim(), user.getProvider().getId());
+						cs.create(category);
+						categories.add(category);
+					}
+				}
+			}
+			
+			if (idMark == 0) {
+				Mark mark = new Mark(toUTF(m, "newMark"), user.getProvider().getId());
+				idMark = ms.create(mark);
+			}
 			
 			Product product = new Product(
 				name,
@@ -86,7 +116,7 @@ public class CreateProduct implements Command {
 				new Stock(quantity)
 			);
 			
-			int idProduct = cs.create(product);
+			int idProduct = ps.create(product);
 			
 			Enumeration<?> files = m.getFileNames();
 			
@@ -96,7 +126,11 @@ public class CreateProduct implements Command {
 				if (fileNameProp.startsWith("file-")) {
 					String fileName = m.getFilesystemName(fileNameProp);
 					
-					String url = File.separator + "PrettyStyle" + SAVE_DIR + File.separator + fileName;
+					Files.copy(Paths.get(savePath + "\\" + fileName), Paths.get(appPath + "\\" + fileName));
+					
+					String url = "/" + SAVE_DIR + File.separator + fileName;
+					
+					url = url.replace("pretty-style", "PrettyStyle");
 					
 					ProductPhoto productPhoto = new ProductPhoto(fileName, url, idProduct);
 					

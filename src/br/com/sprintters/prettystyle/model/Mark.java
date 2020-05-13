@@ -28,8 +28,9 @@ public class Mark extends Entity {
 
 	public Mark() { }
 
-	public Mark(String name) {
+	public Mark(String name, int idProvider) {
 		this.name = name;
+		this.idProvider = idProvider;
 	}
 	
 	public Mark(int id, String name) {
