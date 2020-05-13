@@ -135,12 +135,12 @@ public class RequestDAO {
 	
 	public ArrayList<Request> listRequestsByIdClient(int idClient) throws Exception  {
 		ArrayList<Request> reqs = new ArrayList<Request>();
-		String sqlSelect = "SELECT\r\n" + 
-				"	p.name\r\n" + 
+		String sqlSelect = "SELECT\r\n" +
+				"	p.id as 'idProduct'\r\n" + 
+				"	, p.name\r\n" + 
 				"	, p.description\r\n" + 
 				"	, p.price\r\n" + 
-				"	, p.id_mark\r\n" + 
-				"	, i.id_product\r\n" + 
+				"	, p.id_mark\r\n" +
 				"	, r.id_client\r\n" + 
 				"FROM\r\n" + 
 				"	product p\r\n" + 
@@ -155,12 +155,13 @@ public class RequestDAO {
 			try (ResultSet rs = stm.executeQuery()) {
 				while (rs.next()) {
 					Product p = new Product(
+						rs.getInt("idProduct"),
 						rs.getString("name"),	
 						rs.getString("description"),
 						rs.getDouble("price"),
-						rs.getInt("id_mark"),
-						rs.getInt("id_product")
+						rs.getInt("id_mark")
 					);
+					
 					Request to = new Request(p,rs.getInt("id_client"));
 					reqs.add(to);
 				}

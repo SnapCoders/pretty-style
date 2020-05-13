@@ -52,7 +52,7 @@
 										<div class="product-photo-area">
 											<img src="../../assets/icons/arrow-left.svg" alt="Arrow left" class="arrow-left">
 											<div class="jumbotron product-photo">
-												<img src="../../assets/img/jbl.png" alt="${productDetails.product.name}">
+												<img src="${product.photos[0].url}" alt="${productDetails.product.name}">
 												<div class="next-circles">
 													<div class="circle-next active"></div>
 													<div class="circle-next"></div>

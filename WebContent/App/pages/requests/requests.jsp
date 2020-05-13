@@ -47,7 +47,7 @@
 							<c:forEach var="request" items="${lista}">
 								<div class="row">
 									<div class="col-md-3 product-photo">
-										<img src="../../assets/img/jbl.png" alt="JBL Flip 3 Portable">
+										<img src="${request.product.photos[0].url}" alt="${request.product.photos[0].name}">
 									</div>
 									<div class="col-md-9 product-info">
 										<div class="col-md-12 product-details-area">

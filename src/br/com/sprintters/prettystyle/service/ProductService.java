@@ -5,21 +5,25 @@ import java.util.ArrayList;
 import br.com.sprintters.prettystyle.dao.CategoryDAO;
 import br.com.sprintters.prettystyle.dao.ProductCategoryDAO;
 import br.com.sprintters.prettystyle.dao.ProductDAO;
+import br.com.sprintters.prettystyle.dao.ProductPhotoDAO;
 import br.com.sprintters.prettystyle.dao.StockDAO;
 import br.com.sprintters.prettystyle.model.Category;
 import br.com.sprintters.prettystyle.model.ClientProductLike;
 import br.com.sprintters.prettystyle.model.Product;
 import br.com.sprintters.prettystyle.model.ProductCategory;
+import br.com.sprintters.prettystyle.model.ProductPhoto;
 import br.com.sprintters.prettystyle.model.Stock;
 
 public class ProductService{
     ProductDAO productDAO;
+    ProductPhotoDAO productPhotoDAO;
     ProductCategoryDAO productCategoryDAO;
     CategoryDAO categoryDAO;
     StockDAO stockDAO;
 
     public ProductService() {
         productDAO = new ProductDAO();
+        productPhotoDAO = new ProductPhotoDAO();
         productCategoryDAO = new ProductCategoryDAO();
         categoryDAO = new CategoryDAO();
         stockDAO = new StockDAO();
@@ -61,7 +65,13 @@ public class ProductService{
 
     public Product find(int id) throws Exception {
     	try {
-    		return productDAO.find(id);
+    		Product product = productDAO.find(id);
+    		
+    		ArrayList<ProductPhoto> photos = productPhotoDAO.findAllPhotosByIdProduct(product.getId());
+    		
+    		product.setPhotos(photos);
+    		
+    		return product;
     	} catch (Exception e) {
     		throw new Exception(e.getMessage());
     	}
@@ -159,7 +169,15 @@ public class ProductService{
     
     public ArrayList<Product> findByName(String filter) throws Exception {
     	try {
-    		return productDAO.findByName(filter);
+    		ArrayList<Product> products = productDAO.findByName(filter);
+    		
+    		for (Product product : products) {
+    			ArrayList<ProductPhoto> photos = productPhotoDAO.findAllPhotosByIdProduct(product.getId());
+    			
+    			product.setPhotos(photos);
+    		}
+    		
+    		return products;
     	} catch (Exception e) {
     		throw new Exception(e.getMessage());
     	}
@@ -168,7 +186,15 @@ public class ProductService{
     
     public ArrayList<Product> findByCategory(String filter) throws Exception {
     	try {
-    		return productDAO.findByCategory(filter);
+    		ArrayList<Product> products = productDAO.findByCategory(filter);
+    		
+    		for (Product product : products) {
+    			ArrayList<ProductPhoto> photos = productPhotoDAO.findAllPhotosByIdProduct(product.getId());
+    			
+    			product.setPhotos(photos);
+    		}
+    		
+    		return products;
     	} catch (Exception e) {
     		throw new Exception(e.getMessage());
     	}

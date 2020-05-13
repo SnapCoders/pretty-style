@@ -72,8 +72,7 @@
 													<div class="col-md-3 col-product">
 														<div class="jumbotron product">
 															<div id="id-user" class="photo-product" onclick="window.location.href='/PrettyStyle/controller.do?path=productdetails&command=ViewProduct&id_product=${product.id}'">
-																<img src="../../assets/img/jbl.png" alt="${product.name}">
-																
+																<img src="${product.photos[0].url}" alt="${product.name}">
 															</div>
 															<label class="title-product">${product.name}</label>
 															<p>${product.description}</p>

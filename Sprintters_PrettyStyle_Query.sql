@@ -204,8 +204,8 @@ create table item (
 	id			int auto_increment,
     quantity	int not null,
     id_product	int,
-    id_client int,
-    paid bit default false,
+    id_client 	int,
+    paid 		bit default false,
     
     created_at	timestamp not null default now(),
     updated_at	timestamp null,

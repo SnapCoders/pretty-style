@@ -3,22 +3,27 @@ package br.com.sprintters.prettystyle.service;
 import java.util.ArrayList;
 
 import br.com.sprintters.prettystyle.dao.ItemRequestDAO;
+import br.com.sprintters.prettystyle.dao.ProductPhotoDAO;
 import br.com.sprintters.prettystyle.dao.RequestDAO;
 import br.com.sprintters.prettystyle.model.ItemRequest;
+import br.com.sprintters.prettystyle.model.Product;
+import br.com.sprintters.prettystyle.model.ProductPhoto;
 import br.com.sprintters.prettystyle.model.Request;
 
 public class RequestService {
-    RequestDAO dao;
+    RequestDAO requestDAO;
+    ProductPhotoDAO productPhotoDAO;
     ItemRequestDAO itemRequestDAO;
 
     public RequestService() {
-        dao = new RequestDAO();
+        requestDAO = new RequestDAO();
+        productPhotoDAO = new ProductPhotoDAO();
         itemRequestDAO = new ItemRequestDAO();
     }
 
     public int create(Request request) throws Exception {
         try {
-        	return dao.insert(request);
+        	return requestDAO.insert(request);
     	} catch (Exception e) {
     		throw new Exception(e.getMessage());
     	}
@@ -26,7 +31,7 @@ public class RequestService {
 
     public void update(Request request) throws Exception {
         try {
-        	dao.update(request);
+        	requestDAO.update(request);
     	} catch (Exception e) {
     		throw new Exception(e.getMessage());
     	}
@@ -34,7 +39,7 @@ public class RequestService {
 
     public void delete(Request request) throws Exception {
         try {
-        	dao.delete(request);
+        	requestDAO.delete(request);
     	} catch (Exception e) {
     		throw new Exception(e.getMessage());
     	}
@@ -42,7 +47,7 @@ public class RequestService {
 
     public Request find(int id) throws Exception {
     	try {
-    		return dao.find(id);
+    		return requestDAO.find(id);
     	} catch (Exception e) {
     		throw new Exception(e.getMessage());
     	}
@@ -50,7 +55,7 @@ public class RequestService {
 
     public ArrayList<Request> list() throws Exception {
     	try {
-    		return dao.list();
+    		return requestDAO.list();
     	} catch (Exception e) {
     		throw new Exception(e.getMessage());
     	}
@@ -58,7 +63,17 @@ public class RequestService {
     
     public ArrayList<Request> listRequestsByIdClient(int idClient) throws Exception {
     	try {
-    		return dao.listRequestsByIdClient(idClient);
+    		ArrayList<Request> requests = requestDAO.listRequestsByIdClient(idClient);
+    		
+    		for (Request request : requests) {
+    			Product product = request.getProduct();
+    			
+    			ArrayList<ProductPhoto> photos = productPhotoDAO.findAllPhotosByIdProduct(product.getId());
+    			
+    			product.setPhotos(photos);
+    		}
+    		
+    		return requests;
     	} catch (Exception e) {
     		throw new Exception(e.getMessage());
     	}
