@@ -17,7 +17,7 @@ public class DeleteCategory implements Command {
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, Exception {
 		try {
-			int id = Integer.parseInt(request.getQueryString());
+			int id = Integer.parseInt(request.getParameter("id"));
 			
 			CategoryService ms = new CategoryService();
 		
