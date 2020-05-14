@@ -138,3 +138,41 @@ function handleDelete(id) {
 
 	AlertaAvisoConfirm(title, question, url, type, method);
 }
+
+
+$("#management-mark").on('show.bs.modal', function(event) {
+	var button = $(event.relatedTarget);
+	var category = button.data('mark');
+	var categorytArray = category.split(",");
+	let id = categorytArray[0];
+	let name = categorytArray[1];
+	
+	$(".markId").text(id);
+	$("#markName").text(name)
+	$("#markId").val(id)
+	
+});
+
+function handleUpdate(){
+	console.log($('#markId').val());
+	$.ajax({
+		type: 'POST',
+		url: '/PrettyStyle/controller.do?path=admin&command=EditMark&json=true',
+		data: {
+			idMark: $('#markId').val(),
+			name: $('#newMark').val(),
+		},
+		success: function (json) {
+			if(json.success){
+				AlertaSucesso(json);
+				window.location.reload(true);
+			}
+			else{
+				AlertaErro(json);
+			}
+		},
+		error: function (json) {
+			AlertaErro(json)
+		}
+	})
+}

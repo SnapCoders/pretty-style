@@ -53,6 +53,6 @@ public class Mark extends Entity {
 
 	@Override
 	public String toString() {
-		return "Mark [name=" + name + "]";
+		return super.getId() + "," + name;
 	}
 }
