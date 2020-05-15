@@ -59,19 +59,27 @@
 								<tbody>
 									<c:forEach var="product" items="${products}">
 										<tr>
-											<th id="product-id" scope="row" class="details-control">${product.id}</th>
+											<td id="product-id" scope="row" class="details-control">
+												${product.id}
+												<input id="product-id-hidden-${product.id}" type="hidden" value="${product.id}">
+												<input id="product-name-hidden-${product.id}" type="hidden" value="${product.name}">
+												<input id="product-description-hidden-${product.id}" type="hidden" value="${product.description}">
+												<input id="product-price-hidden-${product.id}" type="hidden" value="${product.price}">
+												<input id="product-quantity-hidden-${product.id}" type="hidden" value="${product.stock.quantity}">
+												<c:forEach var="photo" items="${product.photos}">
+													<input class="product-photo-hidden-${product.id}" type="hidden" value="${photo.url}">
+												</c:forEach>
+											</td>
 											<td>${product.name}<!-- <span class="badge badge-pill badge-primary" style="margin-left: 10px;">50% OFF</span> --></td>
 											<td><fmt:formatNumber value="${product.price}" type="currency" currencySymbol="R$"/></td>
 											<td style=" text-align: center">${product.stock.quantity}</td>
 											<td style="text-align: center; display: flex; align-items: center; justify-content: space-around;">
-												<button class="btn btn-sm btn-outline-success">
+												<button class="btn btn-sm btn-outline-success" data-toggle="modal" data-target="#view-product" data-product="${product.id}">
 													<i class="far fa-eye"></i>
 												</button>
-												
-													<button id="btn-edit" type="submit" class="btn btn-sm btn-outline-primary">
-														<i class="far fa-edit" onclick="window.location.href = '/PrettyStyle/controller.do?path=admin&command=EditProduct&id_product=${product.id}'"></i>
-													</button>
-											
+												<button id="btn-edit" type="submit" class="btn btn-sm btn-outline-primary">
+													<i class="far fa-edit" onclick="window.location.href='/PrettyStyle/controller.do?path=admin&command=EditProduct&id_product=${product.id}'"></i>
+												</button>
 												<button id="btn-remove" type="button" class="btn btn-sm btn-outline-danger" onclick="handleDelete(${product.id});">
 													<i class="fas fa-trash"></i>
 												</button>
@@ -83,6 +91,55 @@
 			  			</div>
 			  		</div>
 			  	</div>
+			</div>
+		</div>
+		<div class="modal fade" id="view-product" tabindex="-1" role="dialog" aria-labelledby="modalLabel">
+			<div class="modal-dialog modal-lg" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h4 class="modal-title" id="modalLabel">Produto: <label class="lblProductName"></label></h4>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						<div class="row">
+							<div class= col-md-6>
+								<div class="form-group">
+									<strong>Id:</strong>
+									<label id="lblProductId"></label>
+								</div>
+								<div class="form-group">
+									<strong>Nome:</strong>
+									<label class="lblProductName"></label>
+								</div>
+								<div class="form-group">
+									<strong>Descrição:</strong>
+									<p id="lblProductDescription" style="white-space: break-spaces;"></p>
+								</div>
+								<div class="form-group">
+									<strong>Preço:</strong>
+									<label id="lblProductPrice"></label>
+								</div>
+								<div class="form-group">
+									<strong>Quantidade Atual:</strong>
+									<label id="lblProductQuantity"></label>
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div id="dProductPhotos" class="product-photos-slideshow-container"></div>
+								<div id="dProductPhotosDots" style="text-align:center"></div>
+							</div>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<div style="display: flex; justify-content: space-between; align-items: center;">
+							<div>
+								<button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+							</div>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
 		<c:import url="../../../components/footer.jsp" />

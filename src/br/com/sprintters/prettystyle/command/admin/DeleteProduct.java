@@ -21,6 +21,7 @@ public class DeleteProduct implements Command {
 			ProductService ps = new ProductService();
 		
 			Product obj = ps.find(id);
+			
 			ps.delete(obj);
 			
 			Json json = new Json(true, "Produto excluído com sucesso!", null);

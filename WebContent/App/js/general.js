@@ -8,12 +8,47 @@ window.onscroll = function () {
 	}
 };
 
+var slideIndex = 1;
+
+function productPhotoSlides(n) {
+  showSlides(slideIndex += n);
+};
+
+function currentProductPhotoSlide(n) {
+  showSlides(slideIndex = n);
+};
+
+function showSlides(n) {
+	var i;
+	var slides = document.getElementsByClassName("productSlides");
+	var dots = document.getElementsByClassName("dot");
+	
+	if (n > slides.length) {
+		slideIndex = 1
+	}
+	
+	if (n < 1) {
+		slideIndex = slides.length
+	}
+	
+	for (i = 0; i < slides.length; i++) {
+	    slides[i].style.display = "none";
+	}
+	
+	for (i = 0; i < dots.length; i++) {
+	    dots[i].className = dots[i].className.replace(" active", "");
+	}
+	
+	slides[slideIndex-1].style.display = "block";
+	dots[slideIndex-1].className += " active";
+};
+
 function handleDeleteImg(id){
 	let idSelecteds = $('#idPhotosDelete').val().split(',');
 	if(idSelecteds[0] == "") idSelecteds = [];
 	if(!idSelecteds.includes(id.toString())) idSelecteds.push(id);			
 	$('#idPhotosDelete').val(idSelecteds);
-}
+};
 
 function handleLogout() {
 	swal({
@@ -51,7 +86,6 @@ function handleSelectMenu(element) {
 	
 	$('#bottom-header').find('ul').find('li:contains('+$(element).text()+')').addClass('active');
 };
-
 
 //document.addEventListener('DOMContentLoaded', function() {
 //	let stars = document.querySelectorAll('.star');
@@ -106,7 +140,7 @@ function navigateTo(path, command) {
 			AlertaErro(data);
 		}
 	});
-}
+};
 
 function parseJwt(token) {
 	var base64Url = token.split('.')[1];
@@ -136,7 +170,7 @@ function setRating(ev) {
 		}
 	});
 	document.querySelector('.stars').setAttribute('data-rating', num);
-}
+};
 
 function AlertaAvisoConfirm(title, question, url, type, method) {
 	swal({
@@ -172,7 +206,7 @@ function AlertaAvisoConfirm(title, question, url, type, method) {
 			}
 		});
 	});
-}
+};
 
 function handleShowModal() {
 	$('#login-modal').removeClass('inactive');
@@ -203,4 +237,3 @@ function handleHideModal() {
 function handleSearchProduct() {
 	window.location.href='/PrettyStyle/controller.do?path=catalog&command=ListByProductName&search='+$('#searchId').val();
 };
-

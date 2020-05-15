@@ -95,7 +95,14 @@ public class ProductService{
     
     public ArrayList<Product> listByIdProvider(int idProvider) throws Exception {
     	try {
-    		return productDAO.listByIdProvider(idProvider);
+    		ArrayList<Product> products = productDAO.listByIdProvider(idProvider);
+    		
+    		for (Product product : products) {
+    			ArrayList<ProductPhoto> photos = productPhotoDAO.findAllPhotosByIdProduct(product.getId());
+    			product.setPhotos(photos);
+    		}
+    		
+    		return products;
     	} catch (Exception e) {
     		throw new Exception(e.getMessage());
     	}
