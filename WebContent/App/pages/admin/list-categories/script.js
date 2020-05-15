@@ -124,15 +124,48 @@ $(document).ready(function () {
     }); */
 });
 
+$("#management-category").on('show.bs.modal', function(event) {
+	var button = $(event.relatedTarget);
+	var category = button.data('category');
+	var categorytArray = category.split(",");
+	let id = categorytArray[0];
+	let name = categorytArray[1];
+	
+	$(".categoryId").text(id);
+	$("#categoryName").text(name)
+	$("#categoryId").val(id)
+	
+});
+
+function handleUpdate(){
+	console.log($('#categoryId').val());
+	$.ajax({
+		type: 'POST',
+		url: '/PrettyStyle/controller.do?path=admin&command=EditCategory&json=true',
+		data: {
+			idCategory: $('#categoryId').val(),
+			name: $('#newName').val(),
+		},
+		success: function (json) {
+			if(json.success){
+				AlertaSucesso(json);
+			}
+			else{
+				AlertaErro(json);
+			}
+		},
+		error: function (json) {
+			AlertaErro(json)
+		}
+	})
+}
+
 function handleDelete(id) {
 	var id = parseInt(id);
-
-	let idUser = sessionStorage.getItem('id_user');
-	let userToken = sessionStorage.getItem('token');
 	
 	var title = 'Atenção!';
 	var question = 'Deseja realmente excluir este registro?';
-	var url = '/PrettyStyle/controller.do?path=admin&command=DeleteCategory&json=true&id_user=' + idUser + '&token=' + userToken + '&id=' +id;
+	var url = '/PrettyStyle/controller.do?path=admin&command=DeleteCategory&json=true&id=' +id;
 	var type = 'warning';
 	var method = 'delete';
 

@@ -57,13 +57,13 @@
 								<tbody>
 									<c:forEach var="category" items="${categories}">
 										<tr>
-											<th id="product-id" scope="row" class="details-control">${category.id}</th>
-											<td>${category.name}<!-- <span class="badge badge-pill badge-primary" style="margin-left: 10px;">50% OFF</span> --></td>
+											<td id="category-id" scope="row" class="details-control">${category.id}</td>
+											<td id="category-name">${category.name}<!-- <span class="badge badge-pill badge-primary" style="margin-left: 10px;">50% OFF</span> --></td>
 											<td style="text-align: center;">
 												<button class="btn btn-sm btn-outline-success">
 													<i class="far fa-eye"></i>
 												</button>
-												<button class="btn btn-sm btn-outline-primary">
+												<button class="btn btn-sm btn-outline-primary" type="button" data-toggle="modal" data-target="#management-category" data-category="${category}">
 													<i class="far fa-edit"></i>
 												</button>
 												<button id="btn-remove" type="button" class="btn btn-sm btn-outline-danger" onclick="handleDelete(${category.id});">
@@ -77,6 +77,48 @@
 			  			</div>
 			  		</div>
 			  	</div>
+			</div>
+		</div>
+		
+		<div class="modal fade" id="management-category" tabindex="-1" role="dialog"
+			aria-labelledby="modalLabel">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h4 class="modal-title" id="modalLabel">Gerenciar Categoria</h4>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						<div class="row">
+							<div class= col-md-12>
+								<div class="form-group">
+									<strong>ID:</strong>
+									<label class="categoryId"></label>
+								</div>
+								<div class="form-group">
+									<strong>Nome antigo:</strong>
+									<label id="categoryName"></label>
+								</div>							
+							</div>
+						</div>
+					
+					</div>
+					<div class="modal-footer">
+						<div style="display: flex; justify-content: space-between; align-items: center;width: 100%">
+							<div style="display: flex; align-itens: center;">
+								<strong>Novo nome:</strong>
+								<input id="newName" style="padding: 5px; height: 30px; width: 150px; margin-left: 5px; background-color: white; border-radius: 6px; border: 1px solid #6c757d75;">
+								<input type="hidden" id="categoryId">
+								</div>
+							<div>
+								<button type="button" onclick="handleUpdate();" class="btn btn-primary">Salvar</button>
+								<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+							</div>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
 		<c:import url="../../../components/footer.jsp" />
