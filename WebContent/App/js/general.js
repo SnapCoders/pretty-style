@@ -172,7 +172,7 @@ function setRating(ev) {
 	document.querySelector('.stars').setAttribute('data-rating', num);
 };
 
-function AlertaAvisoConfirm(title, question, url, type, method) {
+function AlertaAvisoConfirm(title, question, url, type, method, redirect) {
 	swal({
 		title: title,
 		text: question,
@@ -192,8 +192,7 @@ function AlertaAvisoConfirm(title, question, url, type, method) {
 					swal({
 						title: 'Sucesso!', text: data.message, type: "success"
 					}, function () {
-						//Load();
-						document.location.reload(true);
+						window.location.href=redirect;
 					});
 				} else {
 					swal({

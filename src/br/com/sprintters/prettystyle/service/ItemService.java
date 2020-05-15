@@ -15,7 +15,21 @@ public class ItemService {
 
     public int create(Item item) throws Exception {
         try {
-        	return dao.insert(item);
+        	int id = 0;
+        	
+        	Item itemExists = dao.findByIdProductAndIdClientNotPaid(item.getIdProduct(), item.getIdClient());
+        	
+        	if (itemExists.getId() == 0) id = dao.insert(item);  
+        	else {
+        		int newQuantity = itemExists.getQuantity() + item.getQuantity();
+        		
+        		item.setId(itemExists.getId());
+        		item.setQuantity(newQuantity);
+        		
+        		dao.updateQuantityById(item);
+        	}
+        	
+        	return id;
     	} catch (Exception e) {
     		throw new Exception(e.getMessage());
     	}
@@ -55,7 +69,36 @@ public class ItemService {
     
     public Cart listItemsInCartByIdClient(int idClient) throws Exception {
     	try {
-    		return dao.listItemsInCartByIdClient(idClient);
+    		Cart cart = dao.listItemsInCartByIdClient(idClient);
+    		
+    		ArrayList<Item> items = cart.getItems();
+    		
+    		int quantity = 0;
+    		double totalItems = 0.0;
+    		double frete = 0.0;
+    		double total = 0.0;
+    		double bankSlip = 0.0;
+    		
+    		for (Item item : items) {
+				quantity += item.getQuantity();
+				totalItems += item.getProduct().getPrice() * item.getQuantity();
+				if (item.getProduct().getPrice() > 400) {
+					frete += item.getProduct().getPrice() * 0.02;
+				} else {
+					frete += item.getProduct().getPrice() * 0.082;
+				}
+			}
+			
+			total = totalItems + frete;
+			bankSlip = total - (total * 0.05);
+			
+			cart.setQuantity(quantity);
+			cart.setTotalItems(totalItems);
+			cart.setFrete(frete);
+			cart.setTotal(total);
+			cart.setBankSlip(bankSlip);
+			
+    		return cart;
     	} catch (Exception e) {
     		throw new Exception(e.getMessage());
     	}

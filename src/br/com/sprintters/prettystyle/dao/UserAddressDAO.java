@@ -55,19 +55,21 @@ public class UserAddressDAO {
 		}
 	}
 	
-	public UserAddress find(int id) throws Exception {
+	public UserAddress find(int idUser) throws Exception {
 		UserAddress to = new UserAddress();
-		String sqlSelect = "SELECT * FROM UserAddress WHERE id_user = ?";
+		String sqlSelect = "SELECT * FROM user_address WHERE id_user = ?";
 		
 		try (Connection conn = ConnectionFactory.createConnection();
 			 PreparedStatement stm = conn.prepareStatement(sqlSelect)) {
-			stm.setInt(1, id);
+			stm.setInt(1, idUser);
 			
 			try (ResultSet rs = stm.executeQuery()) {
 				if (rs.next()) {
 					to.setIdUser(rs.getInt("id_user"));
 					to.setIdAddress(rs.getInt("id_address"));
 				}
+				
+				conn.close();
 			} catch (SQLException ex) {
 				throw new Exception(ex.getMessage());
 			}

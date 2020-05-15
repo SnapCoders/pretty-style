@@ -38,7 +38,7 @@ function handleLikeDislike(div, id) {
 		});
 	} else {
 		$.ajax({
-			url: '/PrettyStyle/controller.do?path=favorites&command=DeleteFavorite&json=true&id_user=' + idUser + '&token=' + userToken + '&id_product=' + id, type: 'POST',
+			url: '/PrettyStyle/controller.do?path=favorites&command=DeleteFavorite&json=true&id_product=' + id, type: 'POST',
 			success: function (data) {
 				if (data.success) {
 					AlertaSucesso(data);

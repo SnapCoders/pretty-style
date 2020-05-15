@@ -47,6 +47,22 @@ public class AddressDAO {
 		return id;
 	}
 	
+	public void insertDefault(int idUser, int idAddress) throws Exception {
+		String sqlInsert = "INSERT INTO user_address (id_user, id_address) VALUES (?, ?)";
+		
+		try (Connection conn = ConnectionFactory.createConnection();
+			 PreparedStatement stm = conn.prepareStatement(sqlInsert)) {
+			stm.setInt(1, idUser);
+			stm.setInt(2, idAddress);
+			
+			stm.execute();
+			
+			conn.close();
+		} catch (SQLException e) {
+			throw new Exception(e.getMessage());
+		}
+	}
+	
 	public void update(Address to) throws Exception {
 		String sqlUpdate = "UPDATE address SET recipient = ?, place = ?, number = ?, neighborhood = ?, city = ?, country = ?, zip = ?, complement = ?, id_user = ?, updated_at = NOW() WHERE id = ?";
 		

@@ -54,23 +54,23 @@
 														<img src="../../assets/img/jbl.png" alt="JBL Flip 3 Portable">
 													</div>
 													<div class="product-info">
-														<label>${item.product.name}</label> <span>${item.product.description}</span>
+														<label>${item.product.name}</label>
 														<div class="stars">
-															<span class="star yellow-star">&nbsp;</span> <span
-																class="star yellow-star">&nbsp;</span> <span
-																class="star yellow-star">&nbsp;</span> <span
-																class="star yellow-star">&nbsp;</span> <span
-																class="star gray-star">&nbsp;</span>
+															<span class="star yellow-star">&nbsp;</span>
+															<span class="star yellow-star">&nbsp;</span>
+															<span class="star yellow-star">&nbsp;</span>
+															<span class="star yellow-star">&nbsp;</span>
+															<span class="star gray-star">&nbsp;</span>
 														</div>
 														<div class="content">
-															<span>Preço: </span> <label><fmt:formatNumber
-																	value="${item.product.price}" type="currency"
-																	currencySymbol="R$" /></label>
+															<span>Preço: </span>
+															<label>
+																<fmt:formatNumber value="${item.product.price}" type="currency" currencySymbol="R$" />
+															</label>
 														</div>
 														<div class="quantity">
-															<span>Quantidade: </span> <input class="form-control"
-																style="margin-left: 5px; width: 60px; height: 22px;"
-																maxlength="3" value="${item.quantity}" />
+															<span>Quantidade: </span>
+															<input class="form-control" style="margin-left: 5px; width: 60px; height: 22px;" maxlength="3" value="${item.quantity}" />
 														</div>
 													</div>
 												</div>
@@ -88,9 +88,12 @@
 													<label>${quantity} produtos</label> <label>Frete</label>
 												</div>
 												<div class="values">
-													<label><fmt:formatNumber value="${totalItems}"
-															type="currency" currencySymbol="R$" /></label> <label><fmt:formatNumber
-															value="${frete}" type="currency" currencySymbol="R$" /></label>
+													<label>
+														<fmt:formatNumber value="${totalItems}" type="currency" currencySymbol="R$" />
+													</label>
+													<label>
+														<fmt:formatNumber value="${frete}" type="currency" currencySymbol="R$" />
+													</label>
 												</div>
 											</div>
 											<hr />

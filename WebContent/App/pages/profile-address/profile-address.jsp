@@ -55,7 +55,7 @@
 							<div class="row">
 								<c:forEach var="address" items="${lista}">
 									<div class="col-md-6">
-										<div id="card-address" class="jumbotron address">
+										<div id="card-address" class="jumbotron address ${not empty address.userAddress ? 'active' : ''}">
 											<div class="header">
 												<label>Casa</label>
 												<div class="icons">
@@ -78,7 +78,13 @@
 											</div>
 											<hr />
 											<div class="selection-area">
-												<input name="defaultAddress" type="radio" onclick="handleSelectDefault(this)" /> <label>Selecionar como principal</label>
+												<c:if test="${empty address.userAddress}">
+													<input name="defaultAddress" type="radio" onclick="handleSelectDefault(this)" />
+												</c:if>
+												<c:if test="${not empty address.userAddress}">
+													<input name="defaultAddress" type="radio" onclick="handleSelectDefault(this)" checked />
+												</c:if>
+												<label>Selecionar como principal</label>
 											</div>
 										</div>
 									</div>

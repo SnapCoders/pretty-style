@@ -1,27 +1,41 @@
 package br.com.sprintters.prettystyle.service;
 
-import br.com.sprintters.prettystyle.model.Address;
-import br.com.sprintters.prettystyle.model.User;
-import br.com.sprintters.prettystyle.dao.AddressDAO;
-import br.com.sprintters.prettystyle.dao.ClientDAO;
-import br.com.sprintters.prettystyle.dao.UserDAO;
-
 import java.util.ArrayList;
 
+import br.com.sprintters.prettystyle.dao.AddressDAO;
+import br.com.sprintters.prettystyle.dao.ClientDAO;
+import br.com.sprintters.prettystyle.dao.UserAddressDAO;
+import br.com.sprintters.prettystyle.dao.UserDAO;
+import br.com.sprintters.prettystyle.model.Address;
+import br.com.sprintters.prettystyle.model.User;
+import br.com.sprintters.prettystyle.model.UserAddress;
+
 public class AddressService {
-    AddressDAO addressDAO;
+	AddressDAO addressDAO;
+    UserAddressDAO userAddressDAO;
     UserDAO userDAO;
     ClientDAO clientDAO;
 
     public AddressService() {
     	addressDAO = new AddressDAO();
+    	userAddressDAO = new UserAddressDAO();
     	userDAO = new UserDAO();
     	clientDAO = new ClientDAO();
     }
 
     public int create(Address address) throws Exception {
     	try {
-    		return addressDAO.insert(address);
+    		int id = 0;
+    		Address addressExists = addressDAO.findByIdUser(address.getIdUser());
+    		
+    		if (addressExists.getId() == 0) {
+    			id = addressDAO.insert(address);
+    			addressDAO.insertDefault(address.getIdUser(), id);
+    		} else {
+    			id = addressDAO.insert(address);
+    		}
+    		
+    		return id; 
     	} catch (Exception e) {
     		throw new Exception(e.getMessage());
     	}
@@ -80,10 +94,15 @@ public class AddressService {
     		User user = userDAO.find(idUser);
     		
     		user.setClient(clientDAO.find(idUser));
+    		user.setAddresses(addressDAO.findListByIdUser(idUser));
     		
-    		ArrayList<Address> addresses = addressDAO.findListByIdUser(idUser);
+    		UserAddress userAddress = userAddressDAO.find(idUser);
     		
-    		user.setAddresses(addresses);
+    		for (Address address : user.getAddresses()) {
+    			if (address.getId() == userAddress.getIdAddress()) {
+    				address.setUserAddress(userAddress);
+    			}
+    		}
     		
     		return user;
     	} catch (Exception e) {

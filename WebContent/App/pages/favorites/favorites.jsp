@@ -55,7 +55,6 @@
 											</div>
 											<div class="product-info">
 												<label>${productLiked.product.name}</label>
-												<span>${productLiked.product.description}</span>
 												<div class="stars">
 													<span class="star yellow-star">&nbsp;</span>
 													<span class="star yellow-star">&nbsp;</span>
