@@ -48,6 +48,14 @@ public class AddressService {
     		throw new Exception(e.getMessage());
     	}
     }
+    
+    public void updateDefaultAddress(UserAddress userAddress) throws Exception {
+    	try {
+    		userAddressDAO.update(userAddress);
+    	} catch (Exception e) {
+    		throw new Exception(e.getMessage());
+    	}
+    }
 
     public void delete(Address address) throws Exception {
         try {

@@ -80,6 +80,7 @@ public class AuthFilter implements Filter {
     		case "address.ListAddress"			: isAuthorize = true; 	break;
     		case "address.CreateAddress"		: isAuthorize = true; 	break;
     		case "address.UpdateAddress"		: isAuthorize = true; 	break;
+    		case "address.UpdateDefaultAddress"	: isAuthorize = true; 	break;
     		case "address.DeleteAddress"		: isAuthorize = true; 	break;
     		case "address.FindAddress"			: isAuthorize = true; 	break;
 	    	case "admin.CreateCategory"			: isAuthorize = true; 	break;

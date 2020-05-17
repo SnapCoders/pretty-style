@@ -217,6 +217,12 @@ div.thanks-container div.container div.jumbotron.main div.content div.thanks-msg
 div.thanks-container div.container div.jumbotron.main div.content div.thanks-received {
 	display: flex;
 	align-items: center;
+	justify-content: space-between;
+}
+
+div.thanks-container div.container div.jumbotron.main div.content div.thanks-received div {
+	display: flex;
+	align-items: center;
 	justify-content: flex-start;
 }
 
@@ -321,7 +327,7 @@ div.thanks-container div.container div.jumbotron.main div.content div.thanks-ste
 }
 
 div.thanks-container div.container div.jumbotron.main div.content div.thanks-steps div.request-steps div.step.checked img {
-	width: 80px !important;
+	/* width: 80px !important; */
 	height: 80px !important;
 	display: block;
 }

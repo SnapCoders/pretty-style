@@ -182,8 +182,8 @@ div.requests-container div.container div.jumbotron.main div.content div.product-
 }
 
 div.requests-container div.container div.jumbotron.main div.content div.product-info div.request-steps div.step.checked img {
-  width: 80px;
-  height: 80px;
+  /* width: 80px; */
+  height: 67px;
   display: block;
 }
 

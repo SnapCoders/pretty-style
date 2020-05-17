@@ -7,6 +7,13 @@ public class UserAddress {
 	private int idAddress;
 	private Address address;
 	
+	public UserAddress() { }
+	
+	public UserAddress(int idUser, int idAdress) {
+		this.idUser = idUser;
+		this.idAddress = idAdress;
+	}
+	
 	public int getIdUser() {
 		return idUser;
 	}
