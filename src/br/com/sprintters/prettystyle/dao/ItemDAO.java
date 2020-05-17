@@ -144,8 +144,7 @@ public class ItemDAO {
 				"FROM product p \r\n" + 
 				"LEFT JOIN product_photo pp ON p.id = pp.id_product\r\n" + 
 				"INNER JOIN mark m ON p.id_mark = m.id \r\n" + 
-				"INNER JOIN item i ON p.id = i.id_product \r\n" + 
-				"INNER JOIN request r ON i.id_client = r.id_client\r\n" + 
+				"INNER JOIN item i ON p.id = i.id_product \r\n" +
 				"WHERE i.id_client = ? and i.paid = 0";
 		
 		try (Connection conn = ConnectionFactory.createConnection();
@@ -217,6 +216,52 @@ public class ItemDAO {
 		}
 		
 		return cart;
+	}
+	
+	public Item findByIdProductAndIdClientNotPaid(int idProduct, int idClient) throws Exception {
+		Item to = new Item();
+		String sqlSelect = "SELECT * FROM item WHERE id_product = ? AND id_client = ? AND paid = 0";
+		
+		try (Connection conn = ConnectionFactory.createConnection();
+			 PreparedStatement stm = conn.prepareStatement(sqlSelect)) {
+			stm.setInt(1, idProduct);
+			stm.setInt(2, idClient);
+			
+			try (ResultSet rs = stm.executeQuery()) {
+				if (rs.next()) {
+					to.setId(rs.getInt("id"));
+					to.setQuantity(rs.getInt("quantity"));
+					to.setIdProduct(rs.getInt("id_product"));
+					to.setCreatedAt(rs.getTimestamp("created_at"));
+					to.setUpdatedAt(rs.getTimestamp("updated_at"));
+					to.setDeletedAt(rs.getTimestamp("deleted_at"));
+				}
+				
+				conn.close();
+			} catch (SQLException ex) {
+				throw new Exception(ex.getMessage());
+			}
+		} catch (SQLException e) {
+			throw new Exception(e.getMessage());
+		}
+		
+		return to;
+	}
+	
+	public void updateQuantityById(Item to) throws Exception {
+		String sqlUpdate = "UPDATE item SET quantity = ?, updated_at = NOW() WHERE id = ?";
+		
+		try (Connection conn = ConnectionFactory.createConnection();
+			 PreparedStatement stm = conn.prepareStatement(sqlUpdate)) {
+			stm.setInt(1, to.getQuantity());
+			stm.setInt(2, to.getId());
+			
+			stm.execute();
+			
+			conn.close();
+		} catch (SQLException e) {
+			throw new Exception(e.getMessage());
+		}
 	}
 	
 	public void setItemPaid(Item to) throws Exception {

@@ -1,12 +1,6 @@
-<%@ page import="java.util.ArrayList"%>
-<%@ page import="br.com.sprintters.prettystyle.model.Address"%>
-<%@ page import="br.com.sprintters.prettystyle.model.Item"%>
-<%@page import="br.com.sprintters.prettystyle.service.ItemService"%>
-<%@page import="br.com.sprintters.prettystyle.service.AddressService"%>
-
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -71,29 +65,30 @@
 			  							<div class="location-header">Endereço de Entrega</div>
 			  							<div class="location-body">
 			  								<div class="location-body-content">
-			  									<label class="location-name">${user.client.name} ${user.client.surname}</label>
+			  									<label class="location-name" id="addressRecipient">${address.recipient}</label>
 			  									<div>
-			  										<label>Endereço: </label><span>${address.place}, ${address.number}</span>
+			  										<label>Endereço: </label><span id="addressPlace">${address.place}, ${address.number}</span>
 			  									</div>
 			  									<div>
-			  										<label>Bairro: </label><span>${address.neighborhood}</span>
+			  										<label>Bairro: </label><span id="addressNeighborhood">${address.neighborhood}</span>
 			  									</div>
 			  									<div>
-			  										<label>Cidade: </label><span>${address.city}</span>
+			  										<label>Cidade: </label><span id="addressCity">${address.city}</span>
 			  									</div>
 			  									<div>
-			  										<label>Complemento: </label><span>${address.complement}</span>
+			  										<label>Complemento: </label><span id="addressComplement">${address.complement}</span>
 			  									</div>
 			  									<div>
-			  										<label>CEP: </label><span>${address.zip}</span>
+			  										<label>CEP: </label><span id="addressZip">${address.zip}</span>
 			  									</div>
 			  								</div>
 			  								<div class="location-body-actions">
-			  									<button type="button">Alterar endereço de entrega</button>
+			  									<input id="addressOlder" type="hidden" value="${address.id}">
+			  									<button type="button" data-toggle="modal" data-target="#update-address">Alterar endereço de entrega</button>
 			  								</div>
 			  							</div>
 			  							<hr />
-			 								<label>Opções de entrega: </label>
+		 								<label>Opções de entrega: </label>
 			  						</div>
 			  					</div>
 			  					<div class="col-md-5 column-resume">
@@ -102,12 +97,12 @@
 			  							<div class="resume-body">
 			  								<div class="resume-items">
 			  									<div class="labels">
-			  										<label>${quantity} produtos</label>
+			  										<label>${cart.quantity} produtos</label>
 			  										<label>Frete</label>
 			  									</div>
 			  									<div class="values">
-			  										<label><fmt:formatNumber value="${totalItems}" type="currency" currencySymbol="R$"/></label>
-			  										<label><fmt:formatNumber value="${frete}" type="currency" currencySymbol="R$"/></label>
+			  										<label><fmt:formatNumber value="${cart.totalItems}" type="currency" currencySymbol="R$"/></label>
+			  										<label><fmt:formatNumber value="${cart.frete}" type="currency" currencySymbol="R$"/></label>
 			  									</div>
 			  								</div>
 			  								<hr />
@@ -116,9 +111,9 @@
 			  										<label class="total-of-request">Total:</label>
 			  									</div>
 			  									<div class="values">
-			  										<label class="total-value-of-request"><fmt:formatNumber value="${total}" type="currency" currencySymbol="R$"/></label>
+			  										<label class="total-value-of-request"><fmt:formatNumber value="${cart.total}" type="currency" currencySymbol="R$"/></label>
 			  										<span class="total-installment">em até 12x sem juros</span>
-			  										<span class="total-with-discount"><fmt:formatNumber value="${bankSlip}" type="currency" currencySymbol="R$"/> à vista no boleto</span>
+			  										<span class="total-with-discount"><fmt:formatNumber value="${cart.bankSlip}" type="currency" currencySymbol="R$"/> à vista no boleto</span>
 			  									</div>
 			  								</div>
 			  								<hr />
@@ -161,9 +156,9 @@
 			  							<hr />
 			  							<div class="credit-or-bank">
 			  								<div id="credit-card" class="jumbotron credit-card-method">
-				  								<form id="id-user" action="/PrettyStyle/controller.do?path=paymentsteps&command=Pay" method="POST" name="add-request-by-credit-card">
-				  									<input id="total-price-without-discount" name="totalPriceWithoutDiscount" type="hidden" value="${total}" />
-			  										<input id="total-price-with-discount" name="totalPriceWithDiscount" type="hidden" value="${bankSlip}" />
+				  								<form action="/PrettyStyle/controller.do?path=paymentsteps&command=Pay" method="POST" name="add-request-by-credit-card">
+				  									<input id="total-price-without-discount" name="totalPriceWithoutDiscount" type="hidden" value="${cart.total}" />
+			  										<input id="total-price-with-discount" name="totalPriceWithDiscount" type="hidden" value="${cart.bankSlip}" />
 				  									<input type="hidden" value="creditCard" name="paymentType">
 				  									<div class="inputs">
 				  										<div class="row">
@@ -200,7 +195,7 @@
 				  											<div class="col-md-4">
 				  												<select class="form-control" id="number-parcels" name="cardParcels">
 				  													<option value="0">N° de parcelas</option>
-				  													<option value="1">1 (<fmt:formatNumber value="${bankSlip}" type="currency" currencySymbol="R$"/>)</option>
+				  													<option value="1">1 (<fmt:formatNumber value="${cart.bankSlip}" type="currency" currencySymbol="R$"/>)</option>
 				  													<option value="2">2 (<fmt:formatNumber value="${parcela2}" type="currency" currencySymbol="R$"/>)</option>
 				  													<option value="3">3 (<fmt:formatNumber value="${parcela3}" type="currency" currencySymbol="R$"/>)</option>
 				  													<option value="4">4 (<fmt:formatNumber value="${parcela4}" type="currency" currencySymbol="R$"/>)</option>
@@ -223,16 +218,16 @@
 				  										</div>
 				  									</div>
 				  									<div class="pay-and-total">
-				  										<label style="color: #ffffff;"><fmt:formatNumber value="${total}" type="currency" currencySymbol="R$"/></label>
+				  										<label style="color: #ffffff;"><fmt:formatNumber value="${cart.total}" type="currency" currencySymbol="R$"/></label>
 				  										<button type="submit">Pagar</button>
-				  										<label id="total-price">Total: <fmt:formatNumber value="${total}" type="currency" currencySymbol="R$"/></label>
+				  										<label id="total-price">Total: <fmt:formatNumber value="${cart.total}" type="currency" currencySymbol="R$"/></label>
 				  									</div>
 			  									</form>
 			  								</div>
 			  								<div id="bank-slip" class="jumbotron bank-slip-method" style="display: none;">
-			  									<form id="id-user" action="/PrettyStyle/controller.do?path=paymentsteps&command=Pay" method="POST" name="add-request-by-bank-slip">
+			  									<form action="/PrettyStyle/controller.do?path=paymentsteps&command=Pay" method="POST" name="add-request-by-bank-slip">
 			  										<input type="hidden" value="bankSlip" name="paymentType">
-			  										<input id="total-price-with-discount-bank-slip" name="totalPriceWithDiscount" type="hidden" value="${bankSlip}" />
+			  										<input id="total-price-with-discount-bank-slip" name="totalPriceWithDiscount" type="hidden" value="${cart.bankSlip}" />
 				  									<div class="inputs">
 				  										<div class="row">
 					  										<div class="col-md-1">
@@ -272,9 +267,9 @@
 					  									</div>
 				  									</div>
 				  									<div class="pay-and-total">
-				  										<label style="color: #ffffff;"><fmt:formatNumber value="${total}" type="currency" currencySymbol="R$"/></label>
+				  										<label style="color: #ffffff;"><fmt:formatNumber value="${cart.total}" type="currency" currencySymbol="R$"/></label>
 				  										<button type="submit">Pagar</button>
-				  										<label>Total: <fmt:formatNumber value="${total}" type="currency" currencySymbol="R$"/></label>
+				  										<label>Total: <fmt:formatNumber value="${cart.total}" type="currency" currencySymbol="R$"/></label>
 				  									</div>
 			  									</form>
 			  								</div>
@@ -287,6 +282,47 @@
 			  	</div>
 			</div>
  		</div>
+ 		<div class="modal fade" id="update-address" tabindex="-1" role="dialog" aria-labelledby="modalLabel">
+			<div class="modal-dialog modal-lg" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h4 class="modal-title" id="modalLabel">Alterar endereço principal<label class="lblProductName"></label></h4>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						<div class="row">
+							<div class= col-md-12>
+								<div class="form-group">
+									<strong>Selecione o endereço a ser entregue:</strong>
+								</div>
+								<table class="table table-stripped">
+									<thead>
+										<tr>
+											<th></th>
+											<th>Destinatário</th>
+											<th>Endereço</th>
+											<th>CEP</th>
+										</tr>
+									</thead>
+									<tbody id="modal-addresses-content"></tbody>
+								</table>
+								<input id="addressUpdate" type="hidden" value="">
+							</div>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<div style="display: flex; justify-content: space-between; align-items: center;">
+							<div>
+								<button type="submit" class="btn btn-primary" onclick="handleUpdateDefaultAddress();">Alterar</button>
+								<button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
  		<c:import url="../../components/footer.jsp" />
 		
 		<script src="../../lib/jquery/1.9.1/jquery-1.9.1.min.js"></script>

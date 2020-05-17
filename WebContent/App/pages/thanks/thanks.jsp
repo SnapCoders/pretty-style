@@ -63,8 +63,13 @@
 								<h3>Obrigado por efetuar sua compra na PrettyStyle!</h3>
 							</div>
 							<div class="row thanks-received">
-								<img src="../../assets/icons/large-check.svg" alt="Check">
-								<label>Recebemos seu pedido.</label>
+								<div>
+									<img src="../../assets/icons/large-check.svg" alt="Check">
+									<label>Recebemos seu pedido.</label>
+								</div>
+								<c:if test="${not empty boletoPDF}">
+									<button class="btn btn-sm btn-outline-primary" type="button" data-toggle="modal" data-target="#bank-slip">Visualizar boleto</button>
+								</c:if>
 							</div>
 							<div class="row thanks-client">
 								<label>Olá, ${clientName} ${clientSurname}.</label>
@@ -110,6 +115,33 @@
 				</div>
 			</div>
  		</div>
+ 		<div class="modal fade" id="bank-slip" tabindex="-1" role="dialog" aria-labelledby="modalLabel">
+			<div class="modal-dialog modal-lg" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h4 class="modal-title" id="modalLabel">Visualização do Boleto<label class="lblProductName"></label></h4>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						<div class="row">
+							<div class= col-md-12>
+								<img style="width: 100%;" src="${boletoPNG}" alt="Imagem de Boleto">
+							</div>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<div style="display: flex; justify-content: space-between; align-items: center;">
+							<div>
+								<a class="btn btn-primary" target="_blank" data-content-type="application/pdf" data-type="downloadTenPointDocument" href="${boletoPDF}">Imprimir</a>
+								<button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
  		<c:import url="../../components/footer.jsp" />
 		
 		<script src="../../lib/jquery/1.9.1/jquery-1.9.1.min.js"></script>
@@ -117,5 +149,7 @@
 		<script src="../../lib/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 		<script src="../../lib/sweetalert/sweetalert.min.js"></script>
 		<script src="../../lib/mask/jquery.mask.js"></script>
+		
+		<script src="scripts.js"></script>
 	</body>
 </html>

@@ -124,33 +124,107 @@ $(document).ready(function () {
     }); */
 });
 
+var slideIndex = 1;
+
+function productPhotoSlides(n) {
+  showSlides(slideIndex += n);
+}
+
+function currentProductPhotoSlide(n) {
+  showSlides(slideIndex = n);
+}
+
+function showSlides(n) {
+	var i;
+	var slides = document.getElementsByClassName("productSlides");
+	var dots = document.getElementsByClassName("dot");
+	
+	if (n > slides.length) {
+		slideIndex = 1
+	}
+	
+	if (n < 1) {
+		slideIndex = slides.length
+	}
+	
+	for (i = 0; i < slides.length; i++) {
+	    slides[i].style.display = "none";
+	}
+	
+	for (i = 0; i < dots.length; i++) {
+	    dots[i].className = dots[i].className.replace(" active", "");
+	}
+	
+	slides[slideIndex-1].style.display = "block";
+	dots[slideIndex-1].className += " active";
+}
+
+$("#view-product").on('show.bs.modal', function(event) {
+	let button = $(event.relatedTarget);
+	let productId = button.data('product');
+	
+	$('#lblProductId').text($('#product-id-hidden-'+productId+'').val());
+	$('.lblProductName').text($('#product-name-hidden-'+productId+'').val());
+	$('#lblProductDescription').text($('#product-description-hidden-'+productId+'').val());
+	$('#lblProductPrice').text($('#product-price-hidden-'+productId+'').val());
+	$('#lblProductQuantity').text($('#product-quantity-hidden-'+productId+'').val());
+	
+	let productPhotosContainersSlides = '';
+	let productPhotosConteinersDots = '';
+	
+	$.each($('.product-photo-hidden-'+productId+''),
+		function (index, value) {
+			productPhotosContainersSlides +=
+				'<div class="productSlides fade-product-photo-slide">'+
+					'<div class="numbertext">1 / 3</div>'+
+					'<img src="'+$(value).val()+'" alt="" style="width: 100%;">'+
+				'</div>';
+			
+			productPhotosConteinersDots += '<span class="dot" onclick="currentProductPhotoSlide('+(index+1)+')"></span>';
+		}
+	);
+	
+	productPhotosContainersSlides +=
+		'<a class="prev-product-photo" onclick="productPhotoSlides(-1)">&#10094;</a>'+
+		'<a class="next-product-photo" onclick="productPhotoSlides(1)">&#10095;</a>';
+	
+	$('#dProductPhotos').empty();
+	$('#dProductPhotos').append(productPhotosContainersSlides);
+	
+	$('#dProductPhotosDots').empty();
+	$('#dProductPhotosDots').append(productPhotosConteinersDots);
+	
+	showSlides(slideIndex);
+});
+
 function handleDelete(id) {
 	var id = parseInt(id);
-
-	let idUser = sessionStorage.getItem('id_user');
-	let userToken = sessionStorage.getItem('token');
 	
 	var title = 'Atenção!';
 	var question = 'Deseja realmente excluir este registro?';
-	var url = '/PrettyStyle/controller.do?path=admin&command=DeleteProduct&json=true&id_user=' + idUser + '&token=' + userToken + '&id=' +id;
+	var url = '/PrettyStyle/controller.do?path=admin&command=DeleteProduct&json=true&id=' +id;
 	var type = 'warning';
 	var method = 'delete';
 
 	AlertaAvisoConfirm(title, question, url, type, method);
-}
+};
 
 function handleAdd(form) {
 	var formSerialized = $(form).serialize();
-	console.log(formSerialized);
+	
 	$.ajax({
 		type: "POST",
 		url: "/PrettyStyle/controller.do?path=admin&command=EditProduct",
 		data: formSerialized,
 		success: function(data){
-			AlertaSucesso(data);	
+			if (data.success) {
+				AlertaSucesso(data);	
+			} else {
+				AlertaErro(data);	
+			}
 		},
 		error: function(data){
 			AlertaErro(data);
 		}
-	})
-}
+	});
+};

@@ -9,7 +9,7 @@ import br.com.sprintters.prettystyle.model.UserAddress;
 
 public class UserAddressDAO {
 	public void insert(UserAddress to) throws Exception {
-		String sqlInsert = "INSERT INTO UserAddress (id_user, id_address) VALUES (?, ?)";
+		String sqlInsert = "INSERT INTO user_address (id_user, id_address) VALUES (?, ?)";
 		
 		try (Connection conn = ConnectionFactory.createConnection();
 			 PreparedStatement stm = conn.prepareStatement(sqlInsert)) {
@@ -25,7 +25,7 @@ public class UserAddressDAO {
 	}
 	
 	public void update(UserAddress to) throws Exception {
-		String sqlUpdate = "UPDATE UserAddress SET id_user = ?, id_address = ? WHERE id_user = ?";
+		String sqlUpdate = "UPDATE user_address SET id_user = ?, id_address = ? WHERE id_user = ?";
 		
 		try (Connection conn = ConnectionFactory.createConnection();
 			 PreparedStatement stm = conn.prepareStatement(sqlUpdate)) {
@@ -42,7 +42,7 @@ public class UserAddressDAO {
 	}
 	
 	public void delete(UserAddress to) throws Exception {
-		String sqlDelete = "DELETE FROM UserAddress WHERE id_user = ?";
+		String sqlDelete = "DELETE FROM user_address WHERE id_user = ?";
 		
 		try (Connection conn = ConnectionFactory.createConnection();
 			 PreparedStatement stm = conn.prepareStatement(sqlDelete)) {
@@ -55,19 +55,21 @@ public class UserAddressDAO {
 		}
 	}
 	
-	public UserAddress find(int id) throws Exception {
+	public UserAddress find(int idUser) throws Exception {
 		UserAddress to = new UserAddress();
-		String sqlSelect = "SELECT * FROM UserAddress WHERE id_user = ?";
+		String sqlSelect = "SELECT * FROM user_address WHERE id_user = ?";
 		
 		try (Connection conn = ConnectionFactory.createConnection();
 			 PreparedStatement stm = conn.prepareStatement(sqlSelect)) {
-			stm.setInt(1, id);
+			stm.setInt(1, idUser);
 			
 			try (ResultSet rs = stm.executeQuery()) {
 				if (rs.next()) {
 					to.setIdUser(rs.getInt("id_user"));
 					to.setIdAddress(rs.getInt("id_address"));
 				}
+				
+				conn.close();
 			} catch (SQLException ex) {
 				throw new Exception(ex.getMessage());
 			}

@@ -28,39 +28,46 @@ public class AuthFilter implements Filter {
 		response.setCharacterEncoding("UTF-8");
 		
 		HttpServletRequest req = (HttpServletRequest)request;
-		HttpSession session = req.getSession();
 		
 		String commandCalled = req.getParameter("path") + "." + req.getParameter("command");
 		
-		if (verifyRoute(commandCalled)) {
-			String bearerToken = (String)session.getAttribute("token");
-			
-			if (bearerToken != null) {
-				String[] token = bearerToken.split(" ", 2);
+		if (verifyRoute(commandCalled)) checkAuth(request, response, chain, req);
+		else {
+			if (commandCalled.equals("productdetails.ViewProduct")) {
+				checkAuth(request, response, chain, req);
 				
-				if (token[0].equals("Bearer")) {
-					JWTTokenService jwt = new JWTTokenService();
+			} else chain.doFilter(request, response);
+		}
+	}
+	
+	protected void checkAuth(ServletRequest request, ServletResponse response, FilterChain chain, HttpServletRequest req) throws IOException {
+		HttpSession session = req.getSession();
+		
+		String bearerToken = (String)session.getAttribute("token");
+		
+		if (bearerToken != null) {
+			String[] token = bearerToken.split(" ", 2);
+			
+			if (token[0].equals("Bearer")) {
+				JWTTokenService jwt = new JWTTokenService();
+				
+				Claims claims = jwt.decodeJWT(token[1]);
+				
+				int idUser = claims.get("idUser", Integer.class);
+				
+				if (idUser != -1) {
+					UserService us = new UserService();
 					
-					Claims claims = jwt.decodeJWT(token[1]);
-					
-					int idUser = claims.get("idUser", Integer.class);
-					
-					if (idUser != -1) {
-						UserService us = new UserService();
-						
-						try {
-							User user = us.find(idUser);
-							request.setAttribute("idUser", idUser);
-							if (user != null) chain.doFilter(request, response);
-						} catch (Exception e) {
-							e.printStackTrace();
-						}
+					try {
+						User user = us.find(idUser);
+						request.setAttribute("idUser", idUser);
+						if (user != null) chain.doFilter(request, response);
+					} catch (Exception e) {
+						e.printStackTrace();
 					}
 				}
-			} else ((HttpServletResponse) response).sendRedirect("/PrettyStyle/App/pages/sign-in/sign-in.jsp");
-		} else {
-			chain.doFilter(request, response);
-		}
+			}
+		} else ((HttpServletResponse) response).sendRedirect("/PrettyStyle/App/pages/sign-in/sign-in.jsp");
 	}
 	
 	public void init(FilterConfig fConfig) throws ServletException { }
@@ -73,6 +80,7 @@ public class AuthFilter implements Filter {
     		case "address.ListAddress"			: isAuthorize = true; 	break;
     		case "address.CreateAddress"		: isAuthorize = true; 	break;
     		case "address.UpdateAddress"		: isAuthorize = true; 	break;
+    		case "address.UpdateDefaultAddress"	: isAuthorize = true; 	break;
     		case "address.DeleteAddress"		: isAuthorize = true; 	break;
     		case "address.FindAddress"			: isAuthorize = true; 	break;
 	    	case "admin.CreateCategory"			: isAuthorize = true; 	break;

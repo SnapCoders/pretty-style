@@ -50,16 +50,26 @@
 								<div class="row">
 									<div class="col-md-5">
 										<div class="product-photo-area">
-											<img src="../../assets/icons/arrow-left.svg" alt="Arrow left" class="arrow-left">
 											<div class="jumbotron product-photo">
-												<img src="${product.photos[0].url}" alt="${productDetails.product.name}">
-												<div class="next-circles">
-													<div class="circle-next active"></div>
-													<div class="circle-next"></div>
-													<div class="circle-next"></div>
+												<div id="dProductPhotos" class="product-photos-slideshow-container">
+													<c:forEach var="photo" items="${product.photos}">
+														<div class="productSlides fade-product-photo-slide">
+															<img src="${photo.url}" alt="" style="width: 100%;">
+														</div>
+													</c:forEach>
+													<a class="prev-product-photo" onclick="productPhotoSlides(-1)">
+														<img src="../../assets/icons/arrow-left.svg" alt="Arrow left" class="arrow-left">
+													</a>
+													<a class="next-product-photo" onclick="productPhotoSlides(1)">
+														<img src="../../assets/icons/arrow-right.svg" alt="Arrow right" class="arrow-right">
+													</a>
+												</div>
+												<div id="dProductPhotosDots" style="text-align:center">
+													<span class="dot" onclick="currentProductPhotoSlide(1)"></span>
+													<span class="dot" onclick="currentProductPhotoSlide(2)"></span>
+													<span class="dot" onclick="currentProductPhotoSlide(3)"></span>
 												</div>
 											</div>
-											<img src="../../assets/icons/arrow-right.svg" alt="Arrow right" class="arrow-right">
 										</div>
 									</div>
 									<div class="col-md-7">

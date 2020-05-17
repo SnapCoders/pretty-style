@@ -18,10 +18,12 @@ import br.com.sprintters.prettystyle.service.UserService;
 public class CreateMark implements Command {
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, Exception {
+		boolean isJson = false;
+		
 		try {
 			String pName = request.getParameter("name");
 			int idUser = (int)request.getAttribute("idUser");
-			boolean isJson = Boolean.parseBoolean(request.getParameter("json"));
+			isJson = Boolean.parseBoolean(request.getParameter("json"));
 
 			UserService us = new UserService();
 			
@@ -46,7 +48,14 @@ public class CreateMark implements Command {
 				response.sendRedirect("/PrettyStyle/App/pages/product-details/product-details.jsp");
 			}
 		} catch (Exception e) {
-			throw new Exception(e.getMessage());
+			if (isJson) {
+    			Json json = new Json(false, "Desculpe, houve um erro ao cadastrar o produto, verifique os dados e tente novamente!", e);
+        		
+        		response.setContentType("application/json");
+        		response.getWriter().write(new Gson().toJson(json).toString());
+			} else {
+				response.sendRedirect("/PrettyStyle/App/pages/error/500.jsp");
+			}
 		}
 	}
 }

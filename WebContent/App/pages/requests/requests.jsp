@@ -54,7 +54,6 @@
 											<div class="row">
 												<div class="col-md-6 product-details">
 													<label>${request.product.name}</label>
-													<span>${request.product.description}</span>
 												</div>
 												<div class="col-md-3 product-stars">
 													<div class="stars">

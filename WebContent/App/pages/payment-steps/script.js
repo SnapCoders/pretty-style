@@ -50,6 +50,81 @@ $(document).ready(function () {
 	}); */
 });
 
+$("#update-address").on('show.bs.modal', function(event) {
+	let button = $(event.relatedTarget);
+	$('#addressUpdate').val($('#addressOlder').val());
+	
+	$.ajax({
+		url: '/PrettyStyle/controller.do?path=address&command=ListAddress&json=true', 
+		type: 'GET',
+		success: function (data) {
+			if (data.success) {
+				let tableHtml = '';
+				
+				$.each(data.data[0].addresses, function (index, value) {
+					tableHtml += '<tr>';
+					
+					if (value.id == $('#addressUpdate').val())
+						tableHtml += ` <td><input type="radio" name="addressId" value="${value.id}" checked ></td>`;
+					else
+						tableHtml += ` <td><input type="radio" name="addressId" value="${value.id}" ></td>`;
+					tableHtml += ` <td>${value.recipient}</td>`;
+					tableHtml += ` <td>${value.place}, ${value.number} - ${value.neighborhood} / ${value.city}</td>`;
+					tableHtml += '<td>';
+					tableHtml += ` ${value.zip}`;
+					tableHtml += ` <input id="recipientHidden" type="hidden" value="${value.recipient}">`;
+					tableHtml += ` <input id="addressHidden" type="hidden" value="${value.place}, ${value.number}"`;
+					tableHtml += ` <input id="neighborhoodHidden" type="hidden" value="${value.neighborhood}">`;
+					tableHtml += ` <input id="cityHidden" type="hidden" value="${value.city}">`;
+					tableHtml += ` <input id="complementHidden" type="hidden" value="${value.complement}">`;
+					tableHtml += ` <input id="zipHidden" type="hidden" value="${value.zip}">`;
+					tableHtml += '</td>';
+					
+					tableHtml += '</tr>';
+				});
+				
+				$('#modal-addresses-content').html(tableHtml);
+			} else {
+				AlertaErro(data);
+			}
+		},
+		error: function (data) {
+			AlertaErro(data);
+		}
+	});
+});
+
+function handleUpdateDefaultAddress() {
+	$.ajax({
+		url: '/PrettyStyle/controller.do?path=address&command=UpdateDefaultAddress&json=true', 
+		type: 'POST', 
+		data: { addressId: $('input[name="addressId"]:checked').val() },
+		success: function (data) {
+			if (data.success) {
+				AlertaSucesso(data);
+				
+				let tr = $('input[name="addressId"]:checked').closest('tr');
+				
+				$('#addressOlder').val($('input[name="addressId"]:checked').val());
+				$('#addressUpdate').val($('input[name="addressId"]:checked').val());
+				
+				$('#addressRecipient').text($(tr).find('#recipientHidden').val());
+				$('#addressPlace').text($(tr).find('#addressHidden').val());
+				$('#addressNeighborhood').text($(tr).find('#neighborhoodHidden').val());
+				$('#addressCity').text($(tr).find('#cityHidden').val());
+				$('#addressComplement').text($(tr).find('#complementHidden').val());
+				$('#addressZip').text($(tr).find('#zipHidden').val());
+				
+			} else {
+				AlertaErro(data);
+			}
+		},
+		error: function (data) {
+			AlertaErro(data);
+		}
+	});
+}
+
 function handleSwitchPaymentMethodToCreditCard() {
 	$('#bank-slip').hide();
 	$('#credit-card').show();

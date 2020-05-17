@@ -47,13 +47,15 @@
 			  				<form id="id-user" action="/PrettyStyle/controller.do?path=admin&command=UpdateProduct&json=true" method="post" enctype="multipart/form-data" name="update-product">
 				  				<div class="row">
 				  					<input type="hidden" value="${product.id}" name="idProduct">
-				  					<div class="col-md-6">
+				  					<div class="col-md-12">
 					  					<label for="name">Nome do produto<span style="color: #ff0000; margin-left: 5px;">*</span></label>
 					  					<input class="form-control" id="name" name="name" placeholder="Nome do produto" value="${product.name}" />
 					  				</div>
-					  				<div class="col-md-6">
+				  				</div>
+				  				<div class="row">
+				  					<div class="col-md-12">
 					  					<label for="description">Descrição<span style="color: #ff0000; margin-left: 5px;">*</span></label>
-					  					<input class="form-control" id="description" name="description" placeholder="Breve descrição do produto" value="${product.description}" />
+					  					<textarea style="min-height: 120px; max-height: 280px;" class="form-control" id="description" name="description" placeholder="Breve descrição do produto">${product.description}</textarea>
 					  				</div>
 				  				</div>
 				  				<div class="row">
