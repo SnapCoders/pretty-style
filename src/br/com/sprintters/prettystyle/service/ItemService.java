@@ -1,32 +1,40 @@
 package br.com.sprintters.prettystyle.service;
 
-import br.com.sprintters.prettystyle.model.Item;
-import br.com.sprintters.prettystyle.model.virtual.Cart;
-import br.com.sprintters.prettystyle.dao.ItemDAO;
-
 import java.util.ArrayList;
 
+import br.com.sprintters.prettystyle.dao.ItemDAO;
+import br.com.sprintters.prettystyle.dao.ProductDAO;
+import br.com.sprintters.prettystyle.dao.StockDAO;
+import br.com.sprintters.prettystyle.model.Item;
+import br.com.sprintters.prettystyle.model.Product;
+import br.com.sprintters.prettystyle.model.Stock;
+import br.com.sprintters.prettystyle.model.virtual.Cart;
+
 public class ItemService {
-    ItemDAO dao;
+    ItemDAO itemDAO;
+    StockDAO stockDAO;
+    ProductDAO productDAO;
 
     public ItemService() {
-        dao = new ItemDAO();
+        itemDAO = new ItemDAO();
+        stockDAO = new StockDAO();
+        productDAO = new ProductDAO();
     }
 
     public int create(Item item) throws Exception {
         try {
         	int id = 0;
         	
-        	Item itemExists = dao.findByIdProductAndIdClientNotPaid(item.getIdProduct(), item.getIdClient());
+        	Item itemExists = itemDAO.findByIdProductAndIdClientNotPaid(item.getIdProduct(), item.getIdClient());
         	
-        	if (itemExists.getId() == 0) id = dao.insert(item);  
+        	if (itemExists.getId() == 0) id = itemDAO.insert(item);  
         	else {
         		int newQuantity = itemExists.getQuantity() + item.getQuantity();
         		
         		item.setId(itemExists.getId());
         		item.setQuantity(newQuantity);
         		
-        		dao.updateQuantityById(item);
+        		itemDAO.updateQuantityById(item);
         	}
         	
         	return id;
@@ -37,7 +45,7 @@ public class ItemService {
 
     public void update(Item item) throws Exception {
         try {
-        	dao.update(item);
+        	itemDAO.update(item);
     	} catch (Exception e) {
     		throw new Exception(e.getMessage());
     	}
@@ -45,7 +53,7 @@ public class ItemService {
 
     public void delete(Item item) throws Exception {
         try {
-        	dao.delete(item);
+        	itemDAO.delete(item);
     	} catch (Exception e) {
     		throw new Exception(e.getMessage());
     	}
@@ -53,7 +61,7 @@ public class ItemService {
 
     public Item find(int id) throws Exception {
     	try {
-    		return dao.find(id);
+    		return itemDAO.find(id);
     	} catch (Exception e) {
     		throw new Exception(e.getMessage());
     	}
@@ -61,7 +69,7 @@ public class ItemService {
 
     public ArrayList<Item> list() throws Exception {
     	try {
-    		return dao.list();
+    		return itemDAO.list();
     	} catch (Exception e) {
     		throw new Exception(e.getMessage());
     	}
@@ -69,7 +77,7 @@ public class ItemService {
     
     public Cart listItemsInCartByIdClient(int idClient) throws Exception {
     	try {
-    		Cart cart = dao.listItemsInCartByIdClient(idClient);
+    		Cart cart = itemDAO.listItemsInCartByIdClient(idClient);
     		
     		ArrayList<Item> items = cart.getItems();
     		
@@ -106,7 +114,21 @@ public class ItemService {
     
     public void setItemPaid(Item item) throws Exception {
     	try {
-    		dao.setItemPaid(item);
+    		 itemDAO.setItemPaid(item);
+    	} catch (Exception e) {
+    		throw new Exception(e.getMessage());
+    	}
+    }
+        
+    public void updateQuantity(Item item) throws Exception {
+    	try {
+    		Product product = productDAO.find(item.getProduct().getId());
+    		Stock stock = stockDAO.find(product.getIdStock());
+    		int newQuantity = stock.getQuantity()- item.getQuantity();
+    		stock.setQuantity(newQuantity);
+    		
+    		stockDAO.update(stock);
+    		
     	} catch (Exception e) {
     		throw new Exception(e.getMessage());
     	}

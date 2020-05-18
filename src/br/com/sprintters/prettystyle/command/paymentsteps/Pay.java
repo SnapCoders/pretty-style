@@ -199,6 +199,7 @@ public class Pay implements Command {
   					rs.createItemRequest(ir);
   					item.setIdClient(user.getProvider().getId());
   					is.setItemPaid(item);
+  					is.updateQuantity(item);
   				}
   			}
   			else {
@@ -212,6 +213,8 @@ public class Pay implements Command {
   					rs.createItemRequest(ir);
   					item.setIdClient(user.getClient().getId());
   					is.setItemPaid(item);
+  					is.updateQuantity(item);
+  				
   				}
   			}
 			
