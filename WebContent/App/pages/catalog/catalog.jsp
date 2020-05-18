@@ -31,6 +31,7 @@
 						<div class="row content">
 							<div class="col-md-2 title">
 								<label>${filter}</label>
+								<input type="hidden" value="${filter}" id="lblFilter">
 							</div>
 							<div class="col-md-10">
 								<hr />
@@ -45,11 +46,19 @@
 									<hr />
 									<c:forEach var="category" items="${categories}">
 										<div class="filters-inputs">
-	
 											<div class="male-filter">
-												<label class="container-check">${category.name} <input
-													type="checkbox"> <span class="checkmark"></span>
-												</label>
+												<c:if test="${categoriesSelected.contains(category.name)}">
+													<label class="container-check">${category.name} 
+														<input type="checkbox" checked> 
+														<span class="checkmark" onclick="handleFilterCategory('${category.name}')"></span>        
+													</label>
+												</c:if>
+												<c:if test="${!categoriesSelected.contains(category.name)}">
+													<label class="container-check">${category.name} 
+														<input type="checkbox"> 
+														<span class="checkmark" onclick="handleFilterCategory('${category.name}')"></span>        
+													</label>
+												</c:if>
 											</div>
 										</div>
 									</c:forEach>
@@ -112,5 +121,6 @@
 		<c:import url="../../components/footer.jsp" />
 	
 		<script src="../../lib/jquery/1.9.1/jquery-1.9.1.min.js"></script>
+		<script src="script.js" type="text/javascript"></script>
 	</body>
 </html>

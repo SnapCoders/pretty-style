@@ -192,7 +192,7 @@ function AlertaAvisoConfirm(title, question, url, type, method, redirect) {
 					swal({
 						title: 'Sucesso!', text: data.message, type: "success"
 					}, function () {
-						window.location.href=redirect;
+						if(redirect != null) window.location.href=redirect;
 					});
 				} else {
 					swal({
