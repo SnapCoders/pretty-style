@@ -38,7 +38,7 @@ public class ListByCategory implements Command {
 			ArrayList<Product> products = new ArrayList<Product>();
 		
 			String valueCategories = "";
-
+			int quantityProduct = 0;
 			
 				if(filterCategories != null || (categoryFilter.size() < 1 && filterCategories != null)) {
 					if(categoryFilter.size() < 1 && filterCategories != null) {
@@ -56,14 +56,25 @@ public class ListByCategory implements Command {
 					valueCategories = String.join("','", categoryFilter);
 					
 					String valueFilter = filter.substring(0,1) + filter.substring(1).toLowerCase();
+					quantityProduct = ps.findByCategoryAndFilterCount(valueFilter, valueCategories);
 					products = ps.findByCategoryAndFilter(valueFilter, valueCategories);
 				}
 				else {
 					categoryFilter = new ArrayList<String>();
+					quantityProduct = ps.findByCategoryCount(filter);
 					products = ps.findByCategory(filter);				
 				}
-						
-			
+				//int quantityPages = (quantityProduct / 16);
+				int quantityPages = (int) Math.round(((double)quantityProduct / 16)+0.5d);
+				
+				if(quantityPages < 1 && quantityPages >= 0) quantityPages = 1;
+				ArrayList<Integer> pages = new ArrayList<Integer>();
+				
+								
+				for(int i = 1; i <= quantityPages; i++) {
+					pages.add(i);
+				}
+							
 			if (isJson) {
 				Json json = new Json(true, "", products);
 				
@@ -74,6 +85,8 @@ public class ListByCategory implements Command {
 				session.setAttribute("categories", categories);
 				session.setAttribute("filter", filter);
 				session.setAttribute("categoriesSelected", categoryFilter);
+				session.setAttribute("quantityProduct", quantityProduct);
+				session.setAttribute("quantityPages", pages);
 				
 				response.sendRedirect("/PrettyStyle/App/pages/catalog/catalog.jsp");
 			}

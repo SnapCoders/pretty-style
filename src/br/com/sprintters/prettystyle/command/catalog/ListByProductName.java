@@ -32,7 +32,18 @@ public class ListByProductName implements Command {
 			String search = request.getParameter("search");
 			
 			ArrayList<Category> categories = cs.list();
+			int quantityProduct = ps.findByNameCount(search);
 			ArrayList<Product> products = ps.findByName(search);
+			
+			int quantityPages = (quantityProduct / 16);
+			
+			if(quantityPages < 1 && quantityPages >= 0) quantityPages = 1;
+			
+			ArrayList<Integer> pages = new ArrayList<Integer>();
+			
+			for(int i = 1; i <= quantityPages; i++) {
+				pages.add(i);
+			}
 			
 			if (isJson) {
 				Json json = new Json(true, "", products);
@@ -42,6 +53,8 @@ public class ListByProductName implements Command {
 			} else {
 				session.setAttribute("products", products);
 				session.setAttribute("categories", categories);
+				session.setAttribute("quantityProduct", quantityProduct);
+				session.setAttribute("quantityPages", pages);
 
 				response.sendRedirect("/PrettyStyle/App/pages/catalog/catalog.jsp");
 			}
