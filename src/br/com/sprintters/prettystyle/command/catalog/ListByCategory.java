@@ -18,21 +18,51 @@ import br.com.sprintters.prettystyle.service.CategoryService;
 import br.com.sprintters.prettystyle.service.ProductService;
 
 public class ListByCategory implements Command {
+	public static ArrayList<String> categoryFilter = new ArrayList<String>();
+	
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, Exception {
 		boolean isJson = false;
-		
+				
 		try {
 			HttpSession session = request.getSession();
 			
 			String filter = request.getParameter("filter");
 			isJson = Boolean.parseBoolean(request.getParameter("json"));
+			String filterCategories = request.getParameter("categories");
 			
 			ProductService ps = new ProductService();
 			CategoryService cs = new CategoryService();
 			
 			ArrayList<Category> categories = cs.list();
-			ArrayList<Product> products = ps.findByCategory(filter);
+			ArrayList<Product> products = new ArrayList<Product>();
+		
+			String valueCategories = "";
+
+			
+				if(filterCategories != null || (categoryFilter.size() < 1 && filterCategories != null)) {
+					if(categoryFilter.size() < 1 && filterCategories != null) {
+						categoryFilter.add(filterCategories);
+					}
+					else {
+						if(!categoryFilter.contains(filterCategories)) {
+							categoryFilter.add(filterCategories);
+						}
+						else {
+							categoryFilter.remove(filterCategories);
+						}		
+						
+					}
+					valueCategories = String.join("','", categoryFilter);
+					
+					String valueFilter = filter.substring(0,1) + filter.substring(1).toLowerCase();
+					products = ps.findByCategoryAndFilter(valueFilter, valueCategories);
+				}
+				else {
+					categoryFilter = new ArrayList<String>();
+					products = ps.findByCategory(filter);				
+				}
+						
 			
 			if (isJson) {
 				Json json = new Json(true, "", products);
@@ -43,6 +73,7 @@ public class ListByCategory implements Command {
 				session.setAttribute("products", products);
 				session.setAttribute("categories", categories);
 				session.setAttribute("filter", filter);
+				session.setAttribute("categoriesSelected", categoryFilter);
 				
 				response.sendRedirect("/PrettyStyle/App/pages/catalog/catalog.jsp");
 			}
