@@ -240,4 +240,31 @@ public class ProductService{
     		throw new Exception(e.getMessage());
     	}
     }
+    
+    public int findByCategoryAndFilterCount(String filter, String categories) throws Exception {
+    	try {
+    		int quantity = productDAO.findByCategoryAndFilterCount(filter, categories);
+    		return quantity;
+    	} catch (Exception e) {
+    		throw new Exception(e.getMessage());
+    	}
+    }
+    
+    public int findByCategoryCount(String filter) throws Exception {
+    	try {
+    		int quantity = productDAO.findByCategoryCount(filter);
+    		return quantity;
+    	} catch (Exception e) {
+    		throw new Exception(e.getMessage());
+    	}
+    }
+    
+    public int findByNameCount(String search) throws Exception {
+    	try {
+    		int quantity = productDAO.findBynameCount(search);
+    		return quantity;
+    	} catch (Exception e) {
+    		throw new Exception(e.getMessage());
+    	}
+    }
 }

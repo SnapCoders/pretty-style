@@ -538,4 +538,77 @@ public class ProductDAO {
 		
 		return to;
 	}
+	
+	public int findByCategoryAndFilterCount(String filter, String categories) throws Exception  {
+		int quantity = -1;
+		String sqlSelect = "SELECT count(p.id) as qtdProdutos FROM product p \r\n" + 
+				"INNER JOIN product_category pc ON p.id = pc.id_product\r\n" + 
+				"INNER JOIN category c ON pc.id_category = c.id\r\n" + 
+				"WHERE c.name in('"+filter+"','"+categories+"') AND p.deleted_at IS NULL AND c.deleted_at IS NULL;";
+		
+		try (Connection conn = ConnectionFactory.createConnection();
+			 PreparedStatement stm = conn.prepareStatement(sqlSelect)) {
+			
+			try (ResultSet rs = stm.executeQuery()) {
+				if(rs.next()) {
+					quantity = rs.getInt("qtdProdutos");					
+				}
+				
+				conn.close();
+			} catch (SQLException ex) {
+				throw new Exception(ex.getMessage());
+			}
+		} catch (SQLException e) {
+			throw new Exception(e.getMessage());
+		}
+		return quantity;
+	}
+	
+	public int findByCategoryCount(String filter) throws Exception  {
+		int quantity = -1;
+		String sqlSelect = "SELECT count(p.id) as qtdProdutos FROM" + 
+				"	product p\r\n" + 
+				"    INNER JOIN product_category pc ON p.id = pc.id_product\r\n" + 
+				"    INNER JOIN category c ON pc.id_category = c.id\r\n" + 
+				" WHERE c.name LIKE '%" + filter + "%' AND p.deleted_at IS NULL AND c.deleted_at IS NULL;";
+		
+		try (Connection conn = ConnectionFactory.createConnection();
+			 PreparedStatement stm = conn.prepareStatement(sqlSelect)) {
+			
+			try (ResultSet rs = stm.executeQuery()) {
+				if(rs.next()) {
+					quantity = rs.getInt("qtdProdutos");					
+				}
+				
+				conn.close();
+			} catch (SQLException ex) {
+				throw new Exception(ex.getMessage());
+			}
+		} catch (SQLException e) {
+			throw new Exception(e.getMessage());
+		}
+		return quantity;
+	}
+	
+	public int findBynameCount(String filter) throws Exception  {
+		int quantity = -1;
+		String sqlSelect = "SELECT count(p.id) as qtdProdutos FROM product WHERE NAME LIKE '%" + filter + "%' AND deleted_at IS NULL;";
+		
+		try (Connection conn = ConnectionFactory.createConnection();
+			 PreparedStatement stm = conn.prepareStatement(sqlSelect)) {
+			
+			try (ResultSet rs = stm.executeQuery()) {
+				if(rs.next()) {
+					quantity = rs.getInt("qtdProdutos");					
+				}
+				
+				conn.close();
+			} catch (SQLException ex) {
+				throw new Exception(ex.getMessage());
+			}
+		} catch (SQLException e) {
+			throw new Exception(e.getMessage());
+		}
+		return quantity;
+	}
 }
