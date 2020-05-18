@@ -38,6 +38,7 @@
 							</div>
 						</div>
 					</div>
+
 					<div class="col-md-12 body">
 						<div class="row">
 							<div class="col-md-2 body-filters">
@@ -103,11 +104,23 @@
 									</div>
 									<div class="row">
 										<div class="col-md-12">
+											
 											<div class="row button-area">
 												<button type="button">ANTERIOR</button>
-												<div class="pagination active">1</div>
-												<div class="pagination">2</div>
+												<c:forEach  var="pages" items="${quantityPages}">
+													<div class="pagination active">${pages} </div>
+												</c:forEach>
 												<button type="button">PRÓXIMA</button>
+												<div class="infoQuantity" style="margin-top: 1rem; margin-left: 20px;">
+													<p style="color: #585757;">Mostrando 
+													<c:if test="${quantityProduct >= 16}">
+														<strong>16</strong>
+													</c:if>
+													<c:if test="${quantityProduct < 16}">
+														<strong>${quantityProduct} </strong>
+													</c:if>
+													  de <strong>${quantityProduct}</strong> Produtos</p>
+												</div>
 											</div>
 										</div>
 									</div>
