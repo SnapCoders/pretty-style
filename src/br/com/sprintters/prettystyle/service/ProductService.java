@@ -224,4 +224,20 @@ public class ProductService{
     		throw new Exception(e.getMessage());
     	}
     }
+    
+    public ArrayList<Product> findByCategoryAndFilter(String filter, String categories) throws Exception {
+    	try {
+    		ArrayList<Product> products = productDAO.findByCategoryAndFilter(filter, categories);
+    		
+    		for (Product product : products) {
+    			ArrayList<ProductPhoto> photos = productPhotoDAO.findAllPhotosByIdProduct(product.getId());
+    			
+    			product.setPhotos(photos);
+    		}
+    		
+    		return products;
+    	} catch (Exception e) {
+    		throw new Exception(e.getMessage());
+    	}
+    }
 }

@@ -420,6 +420,39 @@ public class ProductDAO {
 		return products;
 	}
 	
+	public ArrayList<Product> findByCategoryAndFilter(String filter, String categories) throws Exception  {
+		ArrayList<Product> products = new ArrayList<Product>();
+		String sqlSelect = "SELECT * FROM product p INNER JOIN product_category pc ON p.id = pc.id_product\r\n" + 
+				" INNER JOIN category c ON pc.id_category = c.id\r\n" + 
+				"			WHERE c.name in('"+filter+"','"+categories+"') AND p.deleted_at IS NULL AND c.deleted_at IS NULL;";
+		
+		try (Connection conn = ConnectionFactory.createConnection();
+			 PreparedStatement stm = conn.prepareStatement(sqlSelect)) {
+			
+			try (ResultSet rs = stm.executeQuery()) {
+				while (rs.next()) {
+					Product to = new Product(
+						rs.getInt("p.id"),
+						rs.getString("p.name"),
+						rs.getString("p.description"),
+						rs.getDouble("p.price"),
+						rs.getInt("p.id_mark")
+					);
+					
+					products.add(to);
+				}
+				
+				conn.close();
+			} catch (SQLException ex) {
+				throw new Exception(ex.getMessage());
+			}
+		} catch (SQLException e) {
+			throw new Exception(e.getMessage());
+		}
+		
+		return products;
+	}
+	
 	public ClientProductLike listFavoriteByIdUserAndIdProduct(int idUser, int idProduct) throws Exception {
 		ClientProductLike to = new ClientProductLike();
 		String sqlSelect = "SELECT * FROM client_product_like WHERE id_user = ? AND id_product = ?";
