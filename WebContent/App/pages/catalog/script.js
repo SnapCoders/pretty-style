@@ -6,3 +6,11 @@ function handleFilterCategory(name) {
 	
 };
 
+function handleFilterCategoryAndNumberPage(page) {
+	let filter = $('#lblFilter').val();
+	
+	console.log(page);
+	
+	window.location.href='/PrettyStyle/controller.do?path=catalog&command=ListByCategory&filter='+filter+'&numberPage='+page;      
+	
+};

@@ -108,16 +108,18 @@
 											<div class="row button-area">
 												<button type="button">ANTERIOR</button>
 												<c:forEach  var="pages" items="${quantityPages}">
-													<div class="pagination active">${pages} </div>
+													<div class="pagination active">
+														<span id="numberPage" onclick="handleFilterCategoryAndNumberPage('${pages}')">${pages}</span>
+													</div>         
 												</c:forEach>
 												<button type="button">PRÓXIMA</button>
 												<div class="infoQuantity" style="margin-top: 1rem; margin-left: 20px;">
 													<p style="color: #585757;">Mostrando 
-													<c:if test="${quantityProduct >= 16}">
+													<c:if test="${quantityProductsList >= 16}">
 														<strong>16</strong>
 													</c:if>
-													<c:if test="${quantityProduct < 16}">
-														<strong>${quantityProduct} </strong>
+													<c:if test="${quantityProductsList < 16}">
+														<strong>${quantityProductsList} </strong>
 													</c:if>
 													  de <strong>${quantityProduct}</strong> Produtos</p>
 												</div>
