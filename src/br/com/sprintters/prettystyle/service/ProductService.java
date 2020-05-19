@@ -178,9 +178,9 @@ public class ProductService{
     	}
     }
     
-    public ArrayList<Product> findByName(String filter) throws Exception {
+    public ArrayList<Product> findByName(String filter, int offset) throws Exception {
     	try {
-    		ArrayList<Product> products = productDAO.findByName(filter);
+    		ArrayList<Product> products = productDAO.findByName(filter, offset);
     		
     		for (Product product : products) {
     			ArrayList<ProductPhoto> photos = productPhotoDAO.findAllPhotosByIdProduct(product.getId());
@@ -195,9 +195,9 @@ public class ProductService{
     }
     
     
-    public ArrayList<Product> findByCategory(String filter) throws Exception {
+    public ArrayList<Product> findByCategory(String filter, int offset) throws Exception {
     	try {
-    		ArrayList<Product> products = productDAO.findByCategory(filter);
+    		ArrayList<Product> products = productDAO.findByCategory(filter, offset);
     		
     		for (Product product : products) {
     			ArrayList<ProductPhoto> photos = productPhotoDAO.findAllPhotosByIdProduct(product.getId());
@@ -225,9 +225,9 @@ public class ProductService{
     	}
     }
     
-    public ArrayList<Product> findByCategoryAndFilter(String filter, String categories) throws Exception {
+    public ArrayList<Product> findByCategoryAndFilter(String filter, String categories, int offset) throws Exception {
     	try {
-    		ArrayList<Product> products = productDAO.findByCategoryAndFilter(filter, categories);
+    		ArrayList<Product> products = productDAO.findByCategoryAndFilter(filter, categories, offset);
     		
     		for (Product product : products) {
     			ArrayList<ProductPhoto> photos = productPhotoDAO.findAllPhotosByIdProduct(product.getId());

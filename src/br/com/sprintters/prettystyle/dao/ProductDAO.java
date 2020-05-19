@@ -352,9 +352,9 @@ public class ProductDAO {
 		return productsLiked;
 	}
 	
-	public ArrayList<Product> findByName(String filter) throws Exception  {
+	public ArrayList<Product> findByName(String filter, int offset) throws Exception  {
 		ArrayList<Product> products = new ArrayList<Product>();
-		String sqlSelect = "SELECT * FROM product WHERE NAME LIKE '%" + filter + "%' AND deleted_at IS NULL;";
+		String sqlSelect = "SELECT * FROM product WHERE NAME LIKE '%" + filter + "%' AND deleted_at IS NULL LIMIT 16 OFFSET "+offset+" ;";
 		
 		try (Connection conn = ConnectionFactory.createConnection();
 			 PreparedStatement stm = conn.prepareStatement(sqlSelect)) {
@@ -383,7 +383,7 @@ public class ProductDAO {
 		return products;
 	}
 	
-	public ArrayList<Product> findByCategory(String filter) throws Exception  {
+	public ArrayList<Product> findByCategory(String filter, int offset) throws Exception  {
 		ArrayList<Product> products = new ArrayList<Product>();
 		String sqlSelect = "SELECT\r\n" + 
 				"	*\r\n" + 
@@ -391,7 +391,7 @@ public class ProductDAO {
 				"	product p\r\n" + 
 				"    INNER JOIN product_category pc ON p.id = pc.id_product\r\n" + 
 				"    INNER JOIN category c ON pc.id_category = c.id\r\n" + 
-				"WHERE c.name LIKE '%" + filter + "%' AND p.deleted_at IS NULL AND c.deleted_at IS NULL;";
+				"WHERE c.name LIKE '%" + filter + "%' AND p.deleted_at IS NULL AND c.deleted_at IS NULL LIMIT 16 OFFSET "+offset+" ;";
 		
 		try (Connection conn = ConnectionFactory.createConnection();
 			 PreparedStatement stm = conn.prepareStatement(sqlSelect)) {
@@ -420,11 +420,11 @@ public class ProductDAO {
 		return products;
 	}
 	
-	public ArrayList<Product> findByCategoryAndFilter(String filter, String categories) throws Exception  {
+	public ArrayList<Product> findByCategoryAndFilter(String filter, String categories, int offset) throws Exception  {
 		ArrayList<Product> products = new ArrayList<Product>();
 		String sqlSelect = "SELECT * FROM product p INNER JOIN product_category pc ON p.id = pc.id_product\r\n" + 
 				" INNER JOIN category c ON pc.id_category = c.id\r\n" + 
-				"			WHERE c.name in('"+filter+"','"+categories+"') AND p.deleted_at IS NULL AND c.deleted_at IS NULL;";
+				"			WHERE c.name in('"+filter+"','"+categories+"') AND p.deleted_at IS NULL AND c.deleted_at IS NULL LIMIT 16 OFFSET "+offset+" ;";
 		
 		try (Connection conn = ConnectionFactory.createConnection();
 			 PreparedStatement stm = conn.prepareStatement(sqlSelect)) {
@@ -592,7 +592,7 @@ public class ProductDAO {
 	
 	public int findBynameCount(String filter) throws Exception  {
 		int quantity = -1;
-		String sqlSelect = "SELECT count(p.id) as qtdProdutos FROM product WHERE NAME LIKE '%" + filter + "%' AND deleted_at IS NULL;";
+		String sqlSelect = "SELECT count(id) as qtdProdutos FROM product WHERE NAME LIKE '%" + filter + "%' AND deleted_at IS NULL;";
 		
 		try (Connection conn = ConnectionFactory.createConnection();
 			 PreparedStatement stm = conn.prepareStatement(sqlSelect)) {
