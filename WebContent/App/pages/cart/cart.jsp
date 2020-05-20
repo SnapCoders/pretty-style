@@ -51,7 +51,7 @@
 											<div class="col-md-12">
 												<div class="product-details-area">
 													<div class="product-photo-area">
-														<img src="../../assets/img/jbl.png" alt="JBL Flip 3 Portable">
+														<img src="${item.product.photos[0].url}" alt="${item.product.name}">
 													</div>
 													<div class="product-info">
 														<label>${item.product.name}</label>
@@ -85,15 +85,12 @@
 										<div class="resume-body">
 											<div class="resume-items">
 												<div class="labels">
-													<label>${quantity} produtos</label> <label>Frete</label>
+													<label>${cart.quantity} produtos</label>
+													<label>Frete</label>
 												</div>
 												<div class="values">
-													<label>
-														<fmt:formatNumber value="${totalItems}" type="currency" currencySymbol="R$" />
-													</label>
-													<label>
-														<fmt:formatNumber value="${frete}" type="currency" currencySymbol="R$" />
-													</label>
+													<label><fmt:formatNumber value="${cart.totalItems}" type="currency" currencySymbol="R$"/></label>
+			  										<label><fmt:formatNumber value="${cart.frete}" type="currency" currencySymbol="R$"/></label>
 												</div>
 											</div>
 											<hr />
@@ -102,12 +99,9 @@
 													<label class="total-of-request">Total:</label>
 												</div>
 												<div class="values">
-													<label class="total-value-of-request"><fmt:formatNumber
-															value="${total}" type="currency" currencySymbol="R$" /></label> <span
-														class="total-installment">em até 12x sem juros</span> <span
-														class="total-with-discount"><fmt:formatNumber
-															value="${bankSlip}" type="currency" currencySymbol="R$" />
-														no boleto</span>
+													<label class="total-value-of-request"><fmt:formatNumber value="${cart.total}" type="currency" currencySymbol="R$"/></label>
+			  										<span class="total-installment">em até 12x sem juros</span>
+			  										<span class="total-with-discount"><fmt:formatNumber value="${cart.bankSlip}" type="currency" currencySymbol="R$"/> à vista no boleto</span>
 												</div>
 											</div>
 											<hr />

@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import br.com.sprintters.prettystyle.dao.ItemRequestDAO;
 import br.com.sprintters.prettystyle.dao.ProductPhotoDAO;
 import br.com.sprintters.prettystyle.dao.RequestDAO;
+import br.com.sprintters.prettystyle.model.Item;
 import br.com.sprintters.prettystyle.model.ItemRequest;
 import br.com.sprintters.prettystyle.model.Product;
 import br.com.sprintters.prettystyle.model.ProductPhoto;
@@ -66,11 +67,15 @@ public class RequestService {
     		ArrayList<Request> requests = requestDAO.listRequestsByIdClient(idClient);
     		
     		for (Request request : requests) {
-    			Product product = request.getProduct();
-    			
-    			ArrayList<ProductPhoto> photos = productPhotoDAO.findAllPhotosByIdProduct(product.getId());
-    			
-    			product.setPhotos(photos);
+    			for (Item item : request.getItems()) {
+    				Product product = item.getProduct();
+    				
+    				ArrayList<ProductPhoto> photos = productPhotoDAO.findAllPhotosByIdProduct(product.getId());
+    				
+    				for (ProductPhoto photo : photos) photo.setUrl(photo.getUrl().replace("\\","/"));
+    				
+    				product.setPhotos(photos);
+    			}
     		}
     		
     		return requests;

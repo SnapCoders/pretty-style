@@ -138,7 +138,6 @@ $("#management-category").on('show.bs.modal', function(event) {
 });
 
 function handleUpdate(){
-	console.log($('#categoryId').val());
 	$.ajax({
 		type: 'POST',
 		url: '/PrettyStyle/controller.do?path=admin&command=EditCategory&json=true',
@@ -149,6 +148,9 @@ function handleUpdate(){
 		success: function (json) {
 			if(json.success){
 				AlertaSucesso(json);
+				setTimeout(() => {
+					window.location.href='/PrettyStyle/controller.do?path=admin&command=ListCategories';
+				}, 2000);
 			}
 			else{
 				AlertaErro(json);
@@ -168,6 +170,7 @@ function handleDelete(id) {
 	var url = '/PrettyStyle/controller.do?path=admin&command=DeleteCategory&json=true&id=' +id;
 	var type = 'warning';
 	var method = 'delete';
-
-	AlertaAvisoConfirm(title, question, url, type, method);
+	var redirect = '/PrettyStyle/controller.do?path=admin&command=ListCategories';
+	
+	AlertaAvisoConfirm(title, question, url, type, method, redirect);
 }

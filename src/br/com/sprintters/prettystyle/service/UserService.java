@@ -3,10 +3,13 @@ package br.com.sprintters.prettystyle.service;
 import java.util.Base64;
 import java.util.ArrayList;
 
+import br.com.sprintters.prettystyle.model.Address;
 import br.com.sprintters.prettystyle.model.Client;
 import br.com.sprintters.prettystyle.model.PhoneNumber;
 import br.com.sprintters.prettystyle.model.Provider;
 import br.com.sprintters.prettystyle.model.User;
+import br.com.sprintters.prettystyle.utils.Crypt;
+import br.com.sprintters.prettystyle.dao.AddressDAO;
 import br.com.sprintters.prettystyle.dao.ClientDAO;
 import br.com.sprintters.prettystyle.dao.PhoneNumberDAO;
 import br.com.sprintters.prettystyle.dao.ProviderDAO;
@@ -17,12 +20,14 @@ public class UserService {
     ClientDAO clientDAO;
     ProviderDAO providerDAO;
     PhoneNumberDAO phoneNumberDAO;
+    AddressDAO addressDAO;
 
     public UserService() {
         userDAO = new UserDAO();
         clientDAO = new ClientDAO();
         providerDAO = new ProviderDAO();
         phoneNumberDAO = new PhoneNumberDAO();
+        addressDAO = new AddressDAO();
     }
 
     public int create(User user) throws Exception {
@@ -30,7 +35,7 @@ public class UserService {
         	int idUser = 0;
         	
         	// 1 - Criptografar senha
-        	String passwordHash = cripto(user.getPassword());
+        	String passwordHash = Crypt.criptoSHAHex(user.getPassword());
         	
         	user.setPassword(null);
         	user.setPasswordHash(passwordHash);
@@ -123,6 +128,12 @@ public class UserService {
 			
 			user.setPhoneNumbers(phones);
 			
+			ArrayList<Address> addresses = new ArrayList<Address>();
+			
+			addresses.add(addressDAO.findByIdUser(id));
+			
+			user.setAddresses(addresses);
+			
     		return user;
     	} catch (Exception e) {
     		throw new Exception(e.getMessage());
@@ -144,7 +155,8 @@ public class UserService {
     		if (usernameOrEmail.contains("@")) user = userDAO.findByEmail(usernameOrEmail);
     		else user = userDAO.findByUsername(usernameOrEmail);
     		
-    		if (password.equals(decripto(user.getPasswordHash()))) {
+    		//if (password.equals(decripto(user.getPasswordHash()))) {
+    		if (Crypt.criptoSHAHex(password).equals(user.getPasswordHash())) {
     			user.setSigned(true);
     			
     			Client client = clientDAO.findByIdUser(user.getId());

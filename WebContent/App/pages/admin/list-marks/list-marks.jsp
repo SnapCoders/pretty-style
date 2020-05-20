@@ -62,9 +62,6 @@
 											<th id="product-id" scope="row" class="details-control">${mark.id}</th>
 											<td>${mark.name}<!-- <span class="badge badge-pill badge-primary" style="margin-left: 10px;">50% OFF</span> --></td>
 											<td style="text-align: center;">
-												<button class="btn btn-sm btn-outline-success">
-													<i class="far fa-eye"></i>
-												</button>
 												<button class="btn btn-sm btn-outline-primary" type="button" data-toggle="modal" data-target="#management-mark" data-mark="${mark}">
 													<i class="far fa-edit"></i>
 												</button>

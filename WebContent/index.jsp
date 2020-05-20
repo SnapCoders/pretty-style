@@ -100,13 +100,13 @@
 																		<img src="${product.photos[0].url}" alt="Imagem de ${product.name}">
 																	</div>
 																	<label class="title-product">${product.name}</label>
-																	<div class="stars">
+																	<!-- <div class="stars">
 																		<span class="star yellow-star">&nbsp;</span>
 																		<span class="star yellow-star">&nbsp;</span>
 																		<span class="star yellow-star">&nbsp;</span>
 																		<span class="star yellow-star">&nbsp;</span>
 																		<span class="star gray-star">&nbsp;</span>
-																	</div>
+																	</div> -->
 																	<label class="price-product">
 																		<fmt:formatNumber value="${product.price}" type="currency" currencySymbol="R$"/>
 																	</label>
@@ -124,13 +124,13 @@
 																		<img src="${product.photos[0].url}" alt="Imagem de ${product.name}">
 																	</div>
 																	<label class="title-product">${product.name}</label>
-																	<div class="stars">
+																	<!-- <div class="stars">
 																		<span class="star yellow-star">&nbsp;</span>
 																		<span class="star yellow-star">&nbsp;</span>
 																		<span class="star yellow-star">&nbsp;</span>
 																		<span class="star yellow-star">&nbsp;</span>
 																		<span class="star gray-star">&nbsp;</span>
-																	</div>
+																	</div> -->
 																	<label class="price-product">
 																		<fmt:formatNumber value="${product.price}" type="currency" currencySymbol="R$"/>
 																	</label>

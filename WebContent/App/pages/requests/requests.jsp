@@ -1,6 +1,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>	
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 	<head>
@@ -45,61 +46,60 @@
 								</div>
 							</c:if>
 							<c:forEach var="request" items="${lista}">
-								<div class="row">
-									<div class="col-md-3 product-photo">
-										<img src="${request.product.photos[0].url}" alt="${request.product.photos[0].name}">
+								<div class="request-grid">
+									<strong class="o-title">
+										Número do pedido: <span>${request.numberRequest}</span>
+										<label onclick="handleShowItems(this);">Mostrar itens</label>
+									</strong>
+									<strong class="o-price">
+										Total: <fmt:formatNumber currencySymbol="R$" value="${request.totalPrice}" type="currency"></fmt:formatNumber>
+									</strong>
+									<div class="o-items">
+										<table>
+											<thead>
+												<tr>
+													<th>Foto</th>
+													<th>Nome do produto</th>
+													<th>Preço</th>
+													<th>Quantidade</th>
+													<!-- <th>Ações</th> -->
+												</tr>
+											</thead>
+											<tbody>
+												<c:forEach var="item" items="${request.items}">
+													<tr>
+														<td><span style="background-image: url(http://localhost:8080${item.product.photos[0].url});"></span></td>
+														<td>${item.product.name}</td>
+														<td>
+															<fmt:formatNumber currencySymbol="R$" value="${item.product.price}" type="currency"></fmt:formatNumber>
+														</td>
+														<td>${item.quantity}</td>
+														<!-- <td><a href="#">Ver</a></td> -->
+													</tr>
+												</c:forEach>
+											</tbody>
+										</table>
 									</div>
-									<div class="col-md-9 product-info">
-										<div class="col-md-12 product-details-area">
-											<div class="row">
-												<div class="col-md-6 product-details">
-													<label>${request.product.name}</label>
-												</div>
-												<div class="col-md-3 product-stars">
-													<div class="stars">
-														<span class="star yellow-star">&nbsp;</span>
-														<span class="star yellow-star">&nbsp;</span>
-														<span class="star yellow-star">&nbsp;</span>
-														<span class="star yellow-star">&nbsp;</span>
-														<span class="star gray-star">&nbsp;</span>
-													</div>
-												</div>
-												<div class="col-md-3 product-price">
-													<span>Preço: </span>
-													<label>
-														<fmt:formatNumber currencySymbol="R$" value="${request.product.price}" type="currency" />
-													</label>
-												</div>
+									<div class="o-steps">
+										<div class="steps">
+											<div class="step checked">
+												<span>1</span>
+												<img src="../../assets/icons/large-check.svg" alt="Check">
 											</div>
-											<div class="row steps">
-												<div class=" col-md-12 request-steps">
-													<div class="step checked">
-														<label>Pedido Realizado</label>
-														<span>1</span>
-														<img src="../../assets/icons/large-check.svg" alt="Check">
-													</div>
-													<div class="step">
-														<label>Aprovação de pagamento</label>
-														<span>2</span>
-														<img src="../../assets/icons/large-check.svg" alt="Check">
-													</div>
-													<div class="step">
-														<label>Produto(s) em transporte</label>
-														<span>3</span>
-														<img src="../../assets/icons/large-check.svg" alt="Check">
-													</div>
-													<div class="step">
-														<label>Produto(s) Entregue(s)</label>
-														<span>4</span>
-														<img src="../../assets/icons/large-check.svg" alt="Check">
-													</div>
-												</div>
-												<hr />
+											<div class="step">
+												<span>2</span>
 											</div>
+											<div class="step">
+												<span>3</span>
+											</div>
+											<div class="step">
+												<span>4</span>
+											</div>
+											<div class="line-divisor"></div>
 										</div>
 									</div>
 								</div>
-								<hr />
+								<hr id="linha" style="margin: 10px 0 60px 0;" />
 							</c:forEach>
 						</div>
 					</div>
@@ -110,5 +110,6 @@
 		
 		<script src="../../lib/jquery/1.9.1/jquery-1.9.1.min.js"></script>
 		<script src="../../lib/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+		<script src="script.js"></script>
 	</body>
 </html>

@@ -50,7 +50,7 @@
 								<thead class="thead-dark">
 									<tr>
 										<th scope="col" style="text-align: center; min-width: 15px;" class="details-control">Id</th>
-										<th scope="col" style="text-align: center; min-width: 205px;">Nome</th>
+										<th scope="col" style="text-align: center; min-width: 605px;">Nome</th>
 										<th scope="col" style="text-align: center; min-width: 100px;">Ações</th>
 									</tr>
 								</thead>
@@ -60,9 +60,6 @@
 											<td id="category-id" scope="row" class="details-control">${category.id}</td>
 											<td id="category-name">${category.name}<!-- <span class="badge badge-pill badge-primary" style="margin-left: 10px;">50% OFF</span> --></td>
 											<td style="text-align: center;">
-												<button class="btn btn-sm btn-outline-success">
-													<i class="far fa-eye"></i>
-												</button>
 												<button class="btn btn-sm btn-outline-primary" type="button" data-toggle="modal" data-target="#management-category" data-category="${category}">
 													<i class="far fa-edit"></i>
 												</button>

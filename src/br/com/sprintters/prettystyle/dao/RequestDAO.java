@@ -1,11 +1,13 @@
 package br.com.sprintters.prettystyle.dao;
 
-import java.sql.ResultSet;
-import java.util.ArrayList;
 import java.sql.Connection;
-import java.sql.SQLException;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
 
+import br.com.sprintters.prettystyle.model.Item;
+import br.com.sprintters.prettystyle.model.Mark;
 import br.com.sprintters.prettystyle.model.Product;
 import br.com.sprintters.prettystyle.model.Request;
 
@@ -135,35 +137,78 @@ public class RequestDAO {
 	
 	public ArrayList<Request> listRequestsByIdClient(int idClient) throws Exception  {
 		ArrayList<Request> reqs = new ArrayList<Request>();
-		String sqlSelect = "SELECT\r\n" +
-				"	p.id as 'idProduct'\r\n" + 
-				"	, p.name\r\n" + 
-				"	, p.description\r\n" + 
-				"	, p.price\r\n" + 
-				"	, p.id_mark\r\n" +
-				"	, r.id_client\r\n" + 
+		String sqlSelect = "SELECT\r\n" + 
+				"	r.id, r.number_request, r.total_price, r.type_payment, r.id_client, r.created_at\r\n" + 
+				"	, i.quantity\r\n" + 
+				"	, p.id as 'id_product', p.name, p.description, p.price\r\n" + 
+				"	, m.id as 'id_mark', m.name\r\n" + 
 				"FROM\r\n" + 
 				"	product p\r\n" + 
+				"	INNER JOIN mark m on m.id = p.id_mark\r\n" + 
 				"	INNER JOIN item i on p.id = i.id_product\r\n" + 
-				"   INNER JOIN item_request ir on i.id = ir.id_item\r\n" + 
+				"	INNER JOIN item_request ir on i.id = ir.id_item\r\n" + 
 				"	INNER JOIN request r on r.id = ir.id_request\r\n" + 
-				"WHERE r.id_client = ?;";
+				"WHERE r.id_client = ?\r\n" + 
+				"ORDER BY r.id ASC;";
 		
 		try (Connection conn = ConnectionFactory.createConnection();
 			 PreparedStatement stm = conn.prepareStatement(sqlSelect)) {
+			
 			stm.setInt(1, idClient);
+			
 			try (ResultSet rs = stm.executeQuery()) {
+				int prevIdRequest = 0;
+				
+				Request request = null;
+				ArrayList<Item> items = null;
+				
 				while (rs.next()) {
-					Product p = new Product(
-						rs.getInt("idProduct"),
-						rs.getString("name"),	
-						rs.getString("description"),
-						rs.getDouble("price"),
-						rs.getInt("id_mark")
-					);
+					int idRequest = rs.getInt("r.id");
 					
-					Request to = new Request(p,rs.getInt("id_client"));
-					reqs.add(to);
+					if (idRequest != prevIdRequest) {
+						request = new Request();
+						
+						request.setId(rs.getInt("r.id"));
+						request.setNumberRequest(rs.getString("number_request"));
+						request.setTotalPrice(rs.getDouble("total_price"));
+						request.setTypePayment(rs.getString("type_payment"));
+						request.setIdClient(rs.getInt("id_client"));
+						request.setCreatedAt(rs.getTimestamp("created_at"));
+						
+						prevIdRequest = idRequest;
+						
+						items = new ArrayList<Item>();
+						
+						Item item = new Item();
+						
+						item.setQuantity(rs.getInt("i.quantity"));
+						item.setProduct(new Product(
+							rs.getInt("id_product"),
+							rs.getString("p.name"),
+							rs.getString("p.description"),
+							rs.getDouble("p.price"),
+							new Mark(rs.getInt("id_mark"), "m.name")
+						));
+						
+						items.add(item);
+						
+						reqs.add(request);
+					} else {
+						Item item = new Item();
+						
+						item.setQuantity(rs.getInt("i.quantity"));
+						item.setProduct(new Product(
+							rs.getInt("id_product"),
+							rs.getString("p.name"),	
+							rs.getString("p.description"),
+							rs.getDouble("p.price"),
+							new Mark(rs.getInt("id_mark"), "m.name")
+						));
+						
+						items.add(item);
+					}
+					
+					request.setItems(items);
 				}
 				
 				conn.close();

@@ -58,7 +58,12 @@
 								<tbody>
 									<c:forEach var="product" items="${products}">
 										<tr>
-											<th id="product-id" scope="row" class="details-control">${product.id}</th>
+											<th id="product-id" scope="row" class="details-control">
+												${product.id}
+												<input id="productIdHidden" type="hidden" value="${product.id}"/>
+												<input id="productNameHidden" type="hidden" value="${product.name}"/>
+												<input id="productQuantityHidden" type="hidden" value="${product.stock.quantity}"/>
+											</th>
 											<td>${product.name}<!-- <span class="badge badge-pill badge-primary" style="margin-left: 10px;">50% OFF</span> --></td>
 											<td style=" text-align: center">${product.stock.quantity}</td>
 											<td style=" text-align: center"><fmt:formatNumber value="${product.stock.quantity * product.price}" type="currency" currencySymbol="R$"/></td>

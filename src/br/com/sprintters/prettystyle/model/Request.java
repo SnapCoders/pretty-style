@@ -1,6 +1,7 @@
 package br.com.sprintters.prettystyle.model;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
 
 import br.com.sprintters.prettystyle.model.generic.Entity;
 
@@ -10,7 +11,8 @@ public class Request extends Entity {
 	private String typePayment;
 	
 	private Client client;
-	private Product product;
+	
+	private ArrayList<Item> items;
 	
 	private double totalPrice;
 	
@@ -33,11 +35,6 @@ public class Request extends Entity {
 		this.idClient = client.getId();
 		this.client = client;
 		this.totalPrice = totalPrice;
-	}
-	
-	public Request(Product product, int idClient) {
-		this.idClient = idClient;
-		this.product = product;		
 	}
 	
 	public Request(int id, int idClient, double totalPrice) {
@@ -67,14 +64,12 @@ public class Request extends Entity {
 	}
 	
 
-	public Request(int id,int idClient, String numberRequest, String typePayment, Client client, Product product,
-			double totalPrice) {
+	public Request(int id,int idClient, String numberRequest, String typePayment, Client client, double totalPrice) {
 		super(id);
 		this.idClient = idClient;
 		this.numberRequest = numberRequest;
 		this.typePayment = typePayment;
 		this.client = client;
-		this.product = product;
 		this.totalPrice = totalPrice;
 	}
 
@@ -110,12 +105,12 @@ public class Request extends Entity {
 		this.client = client;
 	}
 	
-	public Product getProduct() {
-		return product;
+	public ArrayList<Item> getItems() {
+		return items;
 	}
 
-	public void setProduct(Product product) {
-		this.product = product;
+	public void setItems(ArrayList<Item> items) {
+		this.items = items;
 	}
 	
 	public double getTotalPrice() {
@@ -128,6 +123,6 @@ public class Request extends Entity {
 
 	@Override
 	public String toString() {
-		return "Request [idClient=" + idClient + ", numberRequest=" + numberRequest + ", client=" + client + ", product=" + product + ", totalPrice=" + totalPrice + "]";
+		return "Request [idClient=" + idClient + ", numberRequest=" + numberRequest + ", client=" + client + ", totalPrice=" + totalPrice + "]";
 	}
 }

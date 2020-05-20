@@ -8,7 +8,9 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.UUID;
 
 import javax.imageio.ImageIO;
@@ -28,6 +30,7 @@ import br.com.caelum.stella.boleto.Pagador;
 import br.com.caelum.stella.boleto.bancos.BancoDoBrasil;
 import br.com.caelum.stella.boleto.transformer.GeradorDeBoleto;
 import br.com.sprintters.prettystyle.command.Command;
+import br.com.sprintters.prettystyle.model.Address;
 import br.com.sprintters.prettystyle.model.Item;
 import br.com.sprintters.prettystyle.model.ItemRequest;
 import br.com.sprintters.prettystyle.model.Request;
@@ -67,6 +70,9 @@ public class Pay implements Command {
 			double frete = 0.0;
 			double bankSlip = 0.0;
 			
+			String[] items = new String[lista.size()];
+			int iI = 0;
+			
 			for (Item item : lista) {
 				totalItems += item.getProduct().getPrice() * item.getQuantity();
 				if (item.getProduct().getPrice() > 400) {
@@ -74,6 +80,9 @@ public class Pay implements Command {
 				} else {
 					frete += item.getProduct().getPrice() * 0.082;
 				}
+				
+				items[iI] = item.getProduct().getName();
+				iI++;
 			}
 			
 			total = totalItems + frete;
@@ -114,39 +123,50 @@ public class Pay implements Command {
   				checkIfDirectoryExists(savePath);
   				checkIfDirectoryExists(appPath.replace("pretty-style", ""));
   				
-  				Datas datas = Datas.novasDatas()
-					.comDocumento(1, 5, 2008)
-	                .comProcessamento(1, 5, 2008)
-	                .comVencimento(2, 5, 2008);
+  				SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+  				Calendar calendar = Calendar.getInstance();
+  				
+  				String currentDate = sdf.format(calendar.getTime());
+  				
+  				calendar.add(Calendar.DAY_OF_MONTH, 1);
+  				
+  				String afterDate = sdf.format(calendar.getTime());
+  				
+				Datas datas = Datas.novasDatas()
+					.comDocumento(Integer.parseInt(currentDate.split("/")[0]), Integer.parseInt(currentDate.split("/")[1]), Integer.parseInt(currentDate.split("/")[2]))
+	                .comProcessamento(Integer.parseInt(currentDate.split("/")[0]), Integer.parseInt(currentDate.split("/")[1]), Integer.parseInt(currentDate.split("/")[2]))
+	                .comVencimento(Integer.parseInt(afterDate.split("/")[0]), Integer.parseInt(afterDate.split("/")[1]), Integer.parseInt(afterDate.split("/")[2]));
   				
   				Endereco enderecoBeneficiario = Endereco.novoEndereco()
-	        		.comLogradouro("Av das Empresas, 555")  
-	        		.comBairro("Bairro Grande")  
-	        		.comCep("01234-555")  
-	        		.comCidade("São Paulo")  
+	        		.comLogradouro("Rua: José Romano, 28")
+	        		.comBairro("Vila Gomes Cardim")
+	        		.comCep("03322-040")
+	        		.comCidade("São Paulo")
 	        		.comUf("SP");
   				
   				Beneficiario beneficiario = Beneficiario.novoBeneficiario()  
-	                .comNomeBeneficiario("Fulano de Tal")  
-	                .comAgencia("1824").comDigitoAgencia("4")  
-	                .comCodigoBeneficiario("76000")  
-	                .comDigitoCodigoBeneficiario("5")  
-	                .comNumeroConvenio("1207113")  
-	                .comCarteira("18")  
+	                .comNomeBeneficiario("Pretty Style")
+	                .comAgencia("0001").comDigitoAgencia("4")
+	                .comCodigoBeneficiario("76000")
+	                .comDigitoCodigoBeneficiario("5")
+	                .comNumeroConvenio("1207113")
+	                .comCarteira("18")
 	                .comEndereco(enderecoBeneficiario)
 	                .comNossoNumero("9000206")
 	                .comDigitoNossoNumero("347-1");
   				
+  				Address userAddress = user.getAddresses().get(0);
+  				
   				Endereco enderecoPagador = Endereco.novoEndereco()
-	        		.comLogradouro("Av dos testes, 111 apto 333")  
-	        		.comBairro("Bairro Teste")  
-	        		.comCep("01234-111")  
-	        		.comCidade("São Paulo")  
+	        		.comLogradouro(userAddress.getPlace() + ", " + userAddress.getNumber() + " - " + userAddress.getComplement())
+	        		.comBairro(userAddress.getNeighborhood())
+	        		.comCep(userAddress.getZip())
+	        		.comCidade(userAddress.getCity())
 	        		.comUf("SP");
   				
   		        Pagador pagador = Pagador.novoPagador()  
-	                .comNome("Fulano da Silva")  
-	                .comDocumento("111.222.333-12")
+	                .comNome(user.getClient().getName() + " " + user.getClient().getSurname())
+	                .comDocumento(user.getClient().getCpf())
 	                .comEndereco(enderecoPagador);
 
   		        Banco banco = new BancoDoBrasil();
@@ -156,10 +176,10 @@ public class Pay implements Command {
 	                .comDatas(datas)
 	                .comBeneficiario(beneficiario)
 	                .comPagador(pagador)
-	                .comValorBoleto("200.00")
+	                .comValorBoleto(bankSlip)
 	                .comNumeroDoDocumento("1234")
-	                .comInstrucoes("instrucao 1", "instrucao 2", "instrucao 3", "instrucao 4", "instrucao 5")
-	                .comLocaisDePagamento("local 1", "local 2");
+	                .comInstrucoes(items);
+	                //.comLocaisDePagamento("local 1", "local 2");
 
   		        GeradorDeBoleto gerador = new GeradorDeBoleto(boleto);
  

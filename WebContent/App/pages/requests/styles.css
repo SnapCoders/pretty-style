@@ -22,6 +22,10 @@ div.requests-container div.container div.jumbotron.main {
 	padding: 15px;
 }
 
+div.requests-container div.container hr#linha:last-child {
+	display: none;
+}
+
 div.requests-container div.container div.jumbotron.main div.content div.product-photo {
   cursor: pointer;
 
@@ -66,10 +70,10 @@ div.requests-container div.container div.jumbotron.main div.content div.product-
   font-size: 34px;
   margin-bottom: 0;
   
-  text-overflow: ellipsis;
+  /* text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
-  width: 11em;
+  width: 22em; */
 }
 
 div.requests-container div.container div.jumbotron.main div.content div.product-info div.product-details span {
@@ -137,6 +141,176 @@ div.requests-container div.container div.jumbotron.main div.content div.product-
 	font-size: 18px;
 }
 
+div.requests-container div.container div.jumbotron.main div.content .request-grid {
+	display: grid;
+	grid-template-areas:
+		"title price"
+		"items items"
+		"steps steps";
+	gap: 0.1rem;
+	grid-template-columns: auto auto;
+	grid-template-rows: auto auto;
+	margin: 0;
+	padding: 0;
+	outline: 0;
+	box-sizing: border-box;
+}
+
+div.requests-container div.container div.jumbotron.main div.content .request-grid .o-title {
+	grid-area: title;
+	color: #aaa;
+	font-size: 16px;
+	font-weight: bold;
+}
+
+div.requests-container div.container div.jumbotron.main div.content .request-grid .o-title span {
+	color: #0E9AEF;
+	font-size: 24px;
+	font-weight: bold;
+}
+
+div.requests-container div.container div.jumbotron.main div.content .request-grid .o-title label {
+	color: #aaa;
+	cursor: pointer;
+	font-size: 12px;
+	font-weight: bold;
+	text-transform: uppercase;
+}
+
+div.requests-container div.container div.jumbotron.main div.content .request-grid .o-title label:hover {
+	color: #0E9AEF;
+}
+
+div.requests-container div.container div.jumbotron.main div.content .request-grid .o-price {
+	grid-area: price;
+	color: #333;
+	font-size: 20px;
+	font-weight: bold;
+	text-align: right;
+}
+
+div.requests-container div.container div.jumbotron.main div.content .request-grid .o-items {
+	grid-area: items;
+	display: none;
+}
+
+div.requests-container div.container div.jumbotron.main div.content .request-grid .o-items.active {
+	display: block;
+}
+
+div.requests-container div.container div.jumbotron.main div.content .request-grid .o-steps {
+	grid-area: steps;
+	position: relative;
+}
+
+div.requests-container div.container div.jumbotron.main div.content .request-grid .o-items table {
+  border-spacing: 0;
+  width: 100%;
+}
+
+div.requests-container div.container div.jumbotron.main div.content .request-grid .o-items thead tr th {
+  text-align: center;
+}
+
+div.requests-container div.container div.jumbotron.main div.content .request-grid .o-items tbody tr td {
+  text-align: center;
+}
+
+div.requests-container div.container div.jumbotron.main div.content .request-grid .o-items td, th {
+  padding: 16px;
+  border-bottom: 1px solid #d9d9d9;
+}
+
+div.requests-container div.container div.jumbotron.main div.content .request-grid .o-items th {
+  color: #777;
+  font-size: 14px;
+  text-transform: uppercase;
+}
+
+div.requests-container div.container div.jumbotron.main div.content .request-grid .o-items tbody tr:last-child td {
+  border-bottom: none;
+}
+
+div.requests-container div.container div.jumbotron.main div.content .request-grid .o-items tbody tr td:first-child {
+  display: grid;
+  grid-template-columns: 64px;
+  align-items: center;
+}
+
+div.requests-container div.container div.jumbotron.main div.content .request-grid .o-items tbody tr td:nth-child(2) {
+	text-align: left;
+}
+
+div.requests-container div.container div.jumbotron.main div.content .request-grid .o-items tbody tr td:first-child span {
+  width: 40px;
+  height: 40px;
+  background-position: center;
+  background-size: cover;
+  border-radius: 50%;
+  box-shadow: 3px 1px 6px -4px #000;
+  border: 2px solid #fff;
+}
+
+div.requests-container div.container div.jumbotron.main div.content .request-grid .o-items tbody tr td:last-child a {
+  color: #fff;
+  background-color: #0E9AEF;
+  border-radius: 6px;
+  font-size: 12px;
+  padding: 8px 16px;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+div.requests-container div.container div.jumbotron.main div.content .request-grid .o-steps .steps {
+	margin: 40px 0;
+	display: flex;
+	justify-content: space-around;
+	z-index: 10;
+}
+
+div.requests-container div.container div.jumbotron.main div.content .request-grid .o-steps .step {
+	width: 60px;
+	height: 60px;
+	border: 2px solid #00FF43;
+	border-radius: 50%;
+	background: #fff;
+	
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	z-index: 10;
+}
+
+div.requests-container div.container div.jumbotron.main div.content .request-grid .o-steps .step img {
+	display: none;
+	width: 64px;
+    height: 64px;
+    margin-left: 8px;
+}
+
+div.requests-container div.container div.jumbotron.main div.content .request-grid .o-steps .step span {
+	color: #00FF43;
+	font-size: 22px;
+	font-weight: bold;
+	z-index: 10;
+}
+
+div.requests-container div.container div.jumbotron.main div.content .request-grid .o-steps .step.checked img {
+	display: block;
+}
+
+div.requests-container div.container div.jumbotron.main div.content .request-grid .o-steps .step.checked span {
+	display: none;
+}
+
+div.requests-container div.container div.jumbotron.main div.content .request-grid .o-steps .line-divisor {
+	width: 80%;
+	border-bottom: 2px solid #00FF43;
+	position: absolute;
+	top: 50%;
+	z-index: 0;
+}
+
 div.requests-container div.container div.jumbotron.main div.content div.product-info div.request-steps {
   margin-bottom: -52px;
   display: flex;
@@ -146,12 +320,12 @@ div.requests-container div.container div.jumbotron.main div.content div.product-
 
 div.requests-container div.container div.jumbotron.main div.content div.product-info div.row.steps hr {
   width: 96%;
-  margin-top: 0; 
+  margin-top: 10px;
   margin-bottom: 0;
 }
 
 div.requests-container div.container div.jumbotron.main div.content div.product-info div.request-steps div.step label {
-  top: 0;
+  top: -10px;
   color: #707070;
   font-size: 12px;
   position: absolute;

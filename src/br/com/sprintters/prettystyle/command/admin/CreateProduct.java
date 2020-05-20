@@ -65,7 +65,7 @@ public class CreateProduct implements Command {
 			
 			String name = toUTF(m, "name");
 			String description = toUTF(m, "description");
-			Double price = Double.parseDouble(m.getParameter("price"));
+			Double price = Double.parseDouble(m.getParameter("price").replace(",", "."));
 			int idMark = Integer.parseInt(m.getParameter("idMark"));
 			int quantity = Integer.parseInt(m.getParameter("quantity"));
 			String[] idsCategories = m.getParameterValues("idCategory");

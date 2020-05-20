@@ -5,6 +5,8 @@ $(document).ready(function () {
 	  theme: "classic"
 	});
 	
+	$("#price").mask('#.##0,00', {reverse: true});
+	
 	$('form[name="add-product"]').validate({
 		rules: {
 			name: 'required',

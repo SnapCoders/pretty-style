@@ -44,130 +44,28 @@ $(document).ready(function () {
 			handleUpdate(form);
 		},
 	});
-
-	
-	/* function format (d) {
-		console.log(d);
-		return '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">'+
-			'<tr>'+
-				'<td>Full name:</td>'+
-				'<td>'+d.name+'</td>'+
-			'</tr>'+
-			'<tr>'+
-				'<td>Extension number:</td>'+
-				'<td>'+d.description+'</td>'+
-			'</tr>'+
-			'<tr>'+
-				'<td>Extra info:</td>'+
-				'<td>And any further details here (images etc)...</td>'+
-			'</tr>'+
-		'</table>';
-	}
-
-	var data = [
-		{name: "JBL Flip 3 Portable", description: "Qualquer coisa", price: 250, idMark: 1, id: 1 },
-		{name: "Samsung S9 Plus", description: "Qualquer coisa", price: 4250, idMark: 1, id: 2 },
-		{name: "Notebook Dell 15 Gaming", description: "Qualquer coisa", price: 8250, idMark: 1, id: 3 },
-		{name: "iPad 10", description: "O novo iPad da Apple", price: 8999.9, idMark: 2, id: 7 },
-		{name: "iPhone XR Branco", description: "IPhone XR branco com câmera 12 MP", price: 3999.99, idMark: 0, id: 15 },
-		{name: "Fone de ouvido JBL", description: "Fone de ouvido in-Ear sem fio JBL Tune 205 Bluetooth 4.0", price: 156.65, idMark: 1, id: 58 },
-		{name: "Relógio SmartWatch", description: "Relógio moderno.", price: 800, idMark: 2, id: 60 },
-		{name: "Caixa de som Mondial", description: "Caixa de som 20 watts.", price: 250, idMark: 1, id: 61 },
-	];
-
-	var table;
-	
-	$.ajax({
-		url: '/PrettyStyle/controller.do?path=admin&command=ListProducts&id_user=11&json=true',
-		method: 'POST',
-		success: function (json) {
-			table = $('#tbProducts').DataTable({
-				"data": json,
-				"columns": [
-					{
-						"className":      'details-control',
-						"orderable":      false,
-						"data":           null,
-						"defaultContent": ''
-					},
-					{
-						"data": "name",
-						"render": function (_data, _type, _row) {
-							return _data;
-						}
-					},
-					{
-						"data": "description",
-						"render": function (_data, _type, _row) {
-							return _data;
-						}
-					},
-					{
-						"data": "price",
-						"render": function (_data, _type, _row) {
-							return _data;
-						}
-					},
-					{
-						"data": "price",
-						"render": function (_data, _type, _row) {
-							return (
-								'<button class="btn btn-sm btn-outline-primary" style="margin-right: 5px;">Editar</button>' +
-								'<button id="btn-remove" type="button" class="btn btn-sm btn-outline-danger" onclick="handleDelete(' + _row.id + ');">Excluir</button>'
-							);
-						}
-					}
-				],
-				"order": [[1, 'asc']]
-			});
-		}
-	})
-     
-    $('#tbProducts tbody').on('click', 'td.details-control', function () {
-        var tr = $(this).closest('tr');
-        var row = table.row(tr);
- 
-        if (row.child.isShown()) {
-            row.child.hide();
-            tr.removeClass('shown');
-        }
-        else {
-            row.child(format(row.data())).show();
-            tr.addClass('shown');
-        }
-    }); */
 });
 
 $("#management-quantity").on('show.bs.modal', function(event) {
 	$("#newQuantity").val("");
 	$("#productQuantityTotal").text("");
-	var button = $(event.relatedTarget);
-	var product = button.data('product');
-	var productArray = product.split(",");
-	let id = productArray[0];
-	let name = productArray[1];
-	//let description = productArray[2];
-	//let price = productArray[3];
-	//let idMark = productArray[4];
-	let quantity = productArray[5];
 	
-	$("#oldQuantity").val(quantity);
-	$("#idProduct").val(id);
-	$("#productId").text(id);
-	$("#productName").text(name);
-	$("#productQuantity").text(quantity);
+	$("#productId").text($('#productIdHidden').val());
+	$("#productName").text($('#productNameHidden').val());
+	$("#productQuantity").text($('#productQuantityHidden').val());
+	
+	$("#idProduct").val($('#productIdHidden').val());
+	$("#oldQuantity").val($('#productQuantityHidden').val());
 	
 	$("#newQuantity").on("keyup",function (){
 		if($(this).val() != ""){
-			let totalQuantity = parseInt(quantity) + parseInt($(this).val());			
+			let totalQuantity = parseInt($('#productQuantityHidden').val()) + parseInt($(this).val());			
 			$("#productQuantityTotal").text(totalQuantity);		
 		}
 		else{
 			$("#productQuantityTotal").text("");	
 		}
 	});
-	
-	
 });
 
 function handleDelete(id) {
@@ -183,7 +81,7 @@ function handleDelete(id) {
 	var method = 'delete';
 
 	AlertaAvisoConfirm(title, question, url, type, method);
-}
+};
 
 function handleUpdate(form) {
 	var formSerialized = $(form).serialize();
@@ -207,7 +105,7 @@ function handleUpdate(form) {
 			AlertaErro(data);
 		}
 	})
-}
+};
 
 function AlertaSucessoReset(data, values) {
 	swal({
