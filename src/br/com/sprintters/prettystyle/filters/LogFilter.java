@@ -36,11 +36,9 @@ public class LogFilter implements Filter {
 
 		HttpServletRequest req = (HttpServletRequest) request;
 		
-		String idUserStr = (String)request.getAttribute("idUser");
-
 		int idUser = -1;
 		
-		if (idUserStr != null) idUser = Integer.parseInt(idUserStr);
+		if (request.getAttribute("idUser") != null) idUser = (int)request.getAttribute("idUser");
 		
 		UserService us = new UserService();
 		

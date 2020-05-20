@@ -77,7 +77,7 @@
 					<div class="col-md-12 header">
 			  			<div class="row content">
 				  			<div class="title">
-				  				<label>Mais vendidos</label>
+				  				<label>Masculino</label>
 				  			</div>
 				  			<div class="line">
 				  				<hr />
