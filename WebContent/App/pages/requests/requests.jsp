@@ -15,6 +15,8 @@
 		
 		<link rel="stylesheet" href="../../lib/bootstrap/4.4.1/css/bootstrap.min.css">
 		<link rel="stylesheet" href="../../lib/sweetalert/sweetalert.css">
+		<link rel="stylesheet" href="../../assets/fonts/css/all.css">
+		<link rel="stylesheet" href="../../assets/fonts/css/fontawesome.min.css">
 		
 		<link rel="stylesheet" href="../../styles/index.css">
 		<link rel="stylesheet" href="../../styles/header.css">
@@ -62,7 +64,7 @@
 													<th>Nome do produto</th>
 													<th>Preço</th>
 													<th>Quantidade</th>
-													<!-- <th>Ações</th> -->
+													<th>Ações</th>
 												</tr>
 											</thead>
 											<tbody>
@@ -74,7 +76,11 @@
 															<fmt:formatNumber currencySymbol="R$" value="${item.product.price}" type="currency"></fmt:formatNumber>
 														</td>
 														<td>${item.quantity}</td>
-														<!-- <td><a href="#">Ver</a></td> -->
+														<td>
+															<a href="/PrettyStyle/controller.do?path=productdetails&command=ViewProduct&id_product=${item.product.id}">
+																<i class="far fa-eye" style="color: #fff;"></i>
+															</a>
+														</td>
 													</tr>
 												</c:forEach>
 											</tbody>

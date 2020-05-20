@@ -51,7 +51,7 @@
 											<div class="col-md-12">
 												<div class="product-details-area">
 													<div class="product-photo-area">
-														<img src="${item.product.photos[0].url}" alt="${item.product.name}">
+														<img onclick="window.location.href='/PrettyStyle/controller.do?path=productdetails&command=ViewProduct&id_product=${item.product.id}'" src="${item.product.photos[0].url}" alt="${item.product.name}">
 													</div>
 													<div class="product-info">
 														<label>${item.product.name}</label>

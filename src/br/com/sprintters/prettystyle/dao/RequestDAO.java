@@ -149,7 +149,7 @@ public class RequestDAO {
 				"	INNER JOIN item_request ir on i.id = ir.id_item\r\n" + 
 				"	INNER JOIN request r on r.id = ir.id_request\r\n" + 
 				"WHERE r.id_client = ?\r\n" + 
-				"ORDER BY r.id ASC;";
+				"ORDER BY r.id DESC;";
 		
 		try (Connection conn = ConnectionFactory.createConnection();
 			 PreparedStatement stm = conn.prepareStatement(sqlSelect)) {
