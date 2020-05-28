@@ -117,5 +117,8 @@ function AlertaSucessoReset(data, values) {
 			$(value).val("");
 			$(value).text("");
 		}	
+		setTimeout(() => {
+			window.location.href='/PrettyStyle/controller.do?path=admin&command=EditProductQuantity';
+		}, 2000);
 	});
 };
