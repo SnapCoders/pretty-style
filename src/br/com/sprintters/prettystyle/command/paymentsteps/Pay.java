@@ -81,7 +81,7 @@ public class Pay implements Command {
 					frete += item.getProduct().getPrice() * 0.082;
 				}
 				
-				items[iI] = item.getProduct().getName();
+				items[iI] = item.getProduct().getName() + "   x"+item.getQuantity();
 				iI++;
 			}
 			
@@ -164,10 +164,19 @@ public class Pay implements Command {
 	        		.comCidade(userAddress.getCity())
 	        		.comUf("SP");
   				
-  		        Pagador pagador = Pagador.novoPagador()  
-	                .comNome(user.getClient().getName() + " " + user.getClient().getSurname())
-	                .comDocumento(user.getClient().getCpf())
-	                .comEndereco(enderecoPagador);
+  				Pagador pagador = null;
+  				if(user.isProvider()) {
+  					 pagador =  Pagador.novoPagador()
+  							.comNome(user.getProvider().getFantasyName())
+  							.comDocumento(user.getProvider().getCnpj())
+  							.comEndereco(enderecoPagador);  					
+  				}
+  				else {
+  					pagador =  Pagador.novoPagador()
+  							.comNome(user.getClient().getName() + " " + user.getClient().getSurname())
+  							.comDocumento(user.getClient().getCpf())
+  							.comEndereco(enderecoPagador);  
+  				}
 
   		        Banco banco = new BancoDoBrasil();
 

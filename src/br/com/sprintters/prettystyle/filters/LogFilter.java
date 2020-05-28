@@ -44,23 +44,24 @@ public class LogFilter implements Filter {
 		User user = null;
 		
 		try {
-			user = us.find(idUser);
+			user = us.find(idUser);				
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
 		String command = req.getParameter("command");
+		String action = "";
 
-		if (command == null) command = req.getRequestURI();
+		if (command == null) action = req.getRequestURI();
 
 		Calendar timestamp = Calendar.getInstance();
 
 		String textoLog = "";
 		ServletContext servletContext = filterConfig.getServletContext();
 		String contextPath = servletContext.getRealPath(File.separator);
-
+		
 		if (command == null && user == null) {
-			textoLog = String.format("[%1$tA, %1$tB %1$td, %1$tY %1$tZ %1$tI:%1$tM:%1$tS:%1$tL %tp] %s\n", timestamp, command);
+			textoLog = String.format("[%1$tA, %1$tB %1$td, %1$tY %1$tZ %1$tI:%1$tM:%1$tS:%1$tL %tp] %s\n", timestamp, action);
 		} else {
 			textoLog = String.format("[%1$tA, %1$tB %1$td, %1$tY %1$tZ %1$tI:%1$tM:%1$tS:%1$tL %tp] %s -> %s\n", timestamp, user.getUsername(), command);
 		}

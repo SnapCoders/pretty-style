@@ -107,13 +107,13 @@
 										<div class="col-md-12">
 											
 											<div class="row button-area">
-												<button type="button">ANTERIOR</button>
+												<button type="button" id="numberPage" onclick="handleFilterCategoryAndNumberPage('${numberPage - 1}')">ANTERIOR</button>
 												<c:forEach  var="pages" items="${quantityPages}">
 													<div class="pagination active">
 														<span id="numberPage" onclick="handleFilterCategoryAndNumberPage('${pages}')">${pages}</span>
 													</div>         
 												</c:forEach>
-												<button type="button">PRÓXIMA</button>
+												<button type="button" id="numberPage" onclick="handleFilterCategoryAndNumberPage('${numberPage + 1}')">PRÓXIMA</button>
 												<div class="infoQuantity" style="margin-top: 1rem; margin-left: 20px;">
 													<p style="color: #585757;">Mostrando 
 													<c:if test="${quantityProductsList >= 16}">

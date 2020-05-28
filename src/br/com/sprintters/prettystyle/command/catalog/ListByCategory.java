@@ -69,7 +69,7 @@ public class ListByCategory implements Command {
 					products = ps.findByCategoryAndFilter(valueFilter, valueCategories, offset);
 				}
 				else {
-					if(numberPage > 1) {
+					if(numberPage > 1 || (nPage != null)) {
 						valueCategories = String.join("','", categoryFilter);
 						
 						String valueFilter = filter.substring(0,1) + filter.substring(1).toLowerCase();
@@ -114,6 +114,7 @@ public class ListByCategory implements Command {
 				session.setAttribute("quantityProduct", quantityProduct);
 				session.setAttribute("quantityProductsList", quantityProductsList);
 				session.setAttribute("quantityPages", pages);
+				session.setAttribute("numberPage", numberPage);
 				
 				response.sendRedirect("/PrettyStyle/App/pages/catalog/catalog.jsp");
 			}
