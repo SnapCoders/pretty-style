@@ -14,6 +14,7 @@
 	<title>Pretty Style - Carrinho</title>
 	
 	<link rel="stylesheet" href="../../lib/bootstrap/4.4.1/css/bootstrap.min.css">
+	<link rel="stylesheet" href="../../lib/sweetalert/sweetalert.css">
 	
 	<link rel="stylesheet" href="../../styles/index.css">
 	<link rel="stylesheet" href="../../styles/header.css">
@@ -55,22 +56,22 @@
 													</div>
 													<div class="product-info">
 														<label>${item.product.name}</label>
-														<div class="stars">
+														<!-- <div class="stars">
 															<span class="star yellow-star">&nbsp;</span>
 															<span class="star yellow-star">&nbsp;</span>
 															<span class="star yellow-star">&nbsp;</span>
 															<span class="star yellow-star">&nbsp;</span>
 															<span class="star gray-star">&nbsp;</span>
-														</div>
+														</div> -->
 														<div class="content">
 															<span>Preço: </span>
-															<label>
+															<label class="unitValue">
 																<fmt:formatNumber value="${item.product.price}" type="currency" currencySymbol="R$" />
 															</label>
 														</div>
 														<div class="quantity">
 															<span>Quantidade: </span>
-															<input class="form-control" style="margin-left: 5px; width: 60px; height: 22px;" maxlength="3" value="${item.quantity}" />
+															<input class="form-control quantityInput" style="margin-left: 5px; width: 60px; height: 22px;" maxlength="3" value="${item.quantity}" onblur="handleUpdateQuantity(${item.id}, ${item.product.id}, ${item.quantity},this);" />
 														</div>
 													</div>
 												</div>
@@ -85,11 +86,11 @@
 										<div class="resume-body">
 											<div class="resume-items">
 												<div class="labels">
-													<label>${cart.quantity} produtos</label>
+													<label id="lblQuantity">${cart.quantity} produtos</label>
 													<label>Frete</label>
 												</div>
 												<div class="values">
-													<label><fmt:formatNumber value="${cart.totalItems}" type="currency" currencySymbol="R$"/></label>
+													<label id="lblTotalValues"><fmt:formatNumber value="${cart.totalItems}" type="currency" currencySymbol="R$"/></label>
 			  										<label><fmt:formatNumber value="${cart.frete}" type="currency" currencySymbol="R$"/></label>
 												</div>
 											</div>

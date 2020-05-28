@@ -8,6 +8,19 @@ window.onscroll = function () {
 	}
 };
 
+const currentPage = location.pathname;
+const menuItems = document.querySelectorAll('.jumbotron.main .button-area .pagination');
+
+if (currentPage == '/PrettyStyle/App/pages/catalog/catalog.jsp') {
+	console.log(currentPage);
+	
+	for (item of menuItems) {
+	  if (currentPage.includes(item.getAttribute('href'))) {
+	    item.classList.add('active');
+	  }
+	}
+}
+
 var slideIndex = 1;
 
 function productPhotoSlides(n) {

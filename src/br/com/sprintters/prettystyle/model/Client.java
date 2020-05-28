@@ -14,6 +14,8 @@ public class Client extends Entity {
 	
 	private int idUser;
 	private User user;
+	
+	private String birthdayStr;
 
 	public Client() { }
 	
@@ -140,6 +142,14 @@ public class Client extends Entity {
 
 	public void setUser(User user) {
 		this.user = user;
+	}
+	
+	public String getBirthdayStr() {
+		return birthdayStr;
+	}
+	
+	public void setBirthdayStr(String birthdayStr) {
+		this.birthdayStr = birthdayStr;
 	}
 
 	@Override

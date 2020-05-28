@@ -133,4 +133,12 @@ public class ItemService {
     		throw new Exception(e.getMessage());
     	}
     }
+    
+    public void updateQuantityInItemFromCart(int itemId, int productId, int newQuantity) throws Exception {
+    	try {
+    		itemDAO.updateQuantityInItemFromCart(itemId, productId, newQuantity);
+    	} catch (Exception e) {
+    		throw new Exception(e.getMessage());
+    	}
+    }
 }

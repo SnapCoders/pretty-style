@@ -40,7 +40,7 @@ function handleAdd(form) {
 		error: function(data){
 			AlertaErro(data);
 		}
-	})
+	});
 }
 
 // QUANDO TIVER VALIDAÇÃO DE UM SELECT COM OPTIONS

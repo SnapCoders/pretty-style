@@ -94,6 +94,7 @@ public class ProductDAO {
 					to.setName(rs.getString("name"));
 					to.setDescription(rs.getString("description"));
 					to.setPrice(rs.getDouble("price"));
+					to.setIdProvider(rs.getInt("id_provider"));
 					to.setIdMark(rs.getInt("id_mark"));
 					to.setIdStock(rs.getInt("id_stock"));
 					to.setCreatedAt(rs.getTimestamp("created_at"));

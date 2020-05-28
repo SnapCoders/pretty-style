@@ -116,7 +116,7 @@
 											id="birthday"
 											name="birthday"
 											placeholder="Ex: 01/01/2020" 
-											value="${user.client.birthday}"
+											value="${user.client.birthdayStr}"
 										/>
 									</div>
 								</div>

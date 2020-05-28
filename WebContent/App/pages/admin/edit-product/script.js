@@ -43,14 +43,13 @@ $(document).ready(function () {
 			price: 'Campo obrigatório.',
 		},
 		submitHandler: function (form) {
-			//form.submit();
 			handleUpdate(form);
 		},
 	});
 
 	$('#photo').on('change', function () {
 		const element = 
-			'<div id="imagePreview" class="image-preview">'+
+			'<div id="imagePreview" class="image-preview new">'+
 				'<input name="index" type="hidden" value="" />' +
 				//'<i class="fas fa-times remove-image"></i>' +
 				'<img class="image-preview__image" src="" alt="Preview">' +
@@ -89,7 +88,7 @@ $(document).ready(function () {
 				// });
 			}, 1000);
 		} else {
-			$('.previews').children().remove();
+			$('.previews').find('.image-preview.new').remove();
 
 			$('.previews').append(defaultPreview);
 		}

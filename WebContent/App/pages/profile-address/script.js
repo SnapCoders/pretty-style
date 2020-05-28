@@ -12,7 +12,28 @@ function handleDelete(id) {
 	AlertaAvisoConfirm(title, question, url, type, method, redirect);
 }
 
- function handleSelectDefault(input) {
+ function handleSelectDefault(input, id) {
 	$('.jumbotron .address').removeClass('active');
 	$(input).closest('#card-address').addClass('active');
+	
+	handleUpdateDefaultAddress(id);
 }
+
+ function handleUpdateDefaultAddress(id) {
+	$.ajax({
+		url: '/PrettyStyle/controller.do?path=address&command=UpdateDefaultAddress&json=true', 
+		type: 'POST', 
+		data: { addressId: id },
+		success: function (data) {
+			if (data.success) {
+				//AlertaSucesso(data);
+			} else {
+				AlertaErro(data);
+			}
+		},
+		error: function (data) {
+			AlertaErro(data);
+		}
+	});
+}
+ 

@@ -105,6 +105,7 @@ public class AuthFilter implements Filter {
     		case "paymentsteps.CreatePayStep" 	: isAuthorize = true;	break;
     		case "paymentsteps.PayStep"			: isAuthorize = true;	break;
     		case "paymentsteps.Pay"				: isAuthorize = true;	break;
+    		case "paymentsteps.UpdateQuantity"	: isAuthorize = true;	break;
     		case "productdetails.ViewProduct"	: isAuthorize = false;	break;
     		case "profile.EditProfile"			: isAuthorize = true;	break;
     		case "profile.UpdateProfile"		: isAuthorize = true;	break;

@@ -30,6 +30,8 @@ public class UpdateProduct implements Command {
 	
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, Exception {
+		boolean isJson = false;
+		
 		try {
 			int idUser = (int)request.getAttribute("idUser");
 			
@@ -88,16 +90,23 @@ public class UpdateProduct implements Command {
 				}
 			}
 			
-			Json json = new Json(true, "Produto atualizado com sucesso!", product);
-    		
-    		response.setContentType("application/json");
-    		response.getWriter().write(new Gson().toJson(json).toString());
+			if (isJson) {
+				Json json = new Json(true, "Produto atualizado com sucesso!", product);
+				
+				response.setContentType("application/json");
+				response.getWriter().write(new Gson().toJson(json).toString());
+			} else {
+				response.sendRedirect("/PrettyStyle/controller.do?path=admin&command=ListProducts");
+			}
 		} catch (Exception e) {
-			Json json = new Json(false, "Desculpe, houve um erro ao atualizar o produto, verifique os dados e tente novamente!", e);
-    		
-    		response.setContentType("application/json");
-    		response.getWriter().write(new Gson().toJson(json).toString());
+    		if (isJson) {
+    			Json json = new Json(false, "Desculpe, houve um erro ao atualizar o produto, verifique os dados e tente novamente!", e);
+        		
+        		response.setContentType("application/json");
+        		response.getWriter().write(new Gson().toJson(json).toString());
+			} else {
+				response.sendRedirect("/PrettyStyle/App/pages/error/500.jsp");
+			}
 		}
-		
 	}
 }

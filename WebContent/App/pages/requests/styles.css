@@ -268,10 +268,14 @@ div.requests-container div.container div.jumbotron.main div.content .request-gri
 	z-index: 10;
 }
 
+div.requests-container div.container div.jumbotron.main div.content .request-grid .o-steps .step.checked {
+	border: 2px solid #00FF43;
+}
+
 div.requests-container div.container div.jumbotron.main div.content .request-grid .o-steps .step {
 	width: 60px;
 	height: 60px;
-	border: 2px solid #00FF43;
+	border: 2px solid #ccc;
 	border-radius: 50%;
 	background: #fff;
 	
@@ -288,8 +292,24 @@ div.requests-container div.container div.jumbotron.main div.content .request-gri
     margin-left: 8px;
 }
 
-div.requests-container div.container div.jumbotron.main div.content .request-grid .o-steps .step span {
+div.requests-container div.container div.jumbotron.main div.content .request-grid .o-steps .step.checked span.msg {	
 	color: #00FF43;
+}
+
+div.requests-container div.container div.jumbotron.main div.content .request-grid .o-steps .step span.msg {
+	position: absolute;
+	top: 10px;
+	color: #ccc;
+	font-size: 14px;
+	font-weight: bold;
+}
+
+div.requests-container div.container div.jumbotron.main div.content .request-grid .o-steps .step.checked span.number {
+	color: #00FF43;
+}
+
+div.requests-container div.container div.jumbotron.main div.content .request-grid .o-steps .step span.number {
+	color: #ccc;
 	font-size: 22px;
 	font-weight: bold;
 	z-index: 10;
@@ -299,7 +319,7 @@ div.requests-container div.container div.jumbotron.main div.content .request-gri
 	display: block;
 }
 
-div.requests-container div.container div.jumbotron.main div.content .request-grid .o-steps .step.checked span {
+div.requests-container div.container div.jumbotron.main div.content .request-grid .o-steps .step.checked span.number {
 	display: none;
 }
 

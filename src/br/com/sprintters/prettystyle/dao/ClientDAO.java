@@ -1,12 +1,12 @@
 package br.com.sprintters.prettystyle.dao;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 import br.com.sprintters.prettystyle.model.Client;
 
@@ -96,7 +96,14 @@ public class ClientDAO {
 					to.setId(rs.getInt("id"));
 					to.setName(rs.getString("name"));
 					to.setSurname(rs.getString("surname"));
-					to.setBirthday(new Date(22020));
+					
+					Calendar c = Calendar.getInstance();
+					c.setTime(new java.util.Date(rs.getDate("birthday").getTime()));
+					c.add(Calendar.DATE, 1);
+					
+					to.setBirthday(c.getTime());
+					to.setBirthdayStr(new SimpleDateFormat("dd/MM/yyyy").format(c.getTime()));
+					
 					to.setIdUser(rs.getInt("id_user"));
 					to.setCreatedAt(rs.getTimestamp("created_at"));
 					to.setUpdatedAt(rs.getTimestamp("updated_at"));
@@ -126,19 +133,22 @@ public class ClientDAO {
 					to.setId(rs.getInt("id"));
 					to.setName(rs.getString("name"));
 					to.setSurname(rs.getString("surname"));
-					/*
-					 * String birthdayStr = rs.getString("birthday"); SimpleDateFormat sdf = new
-					 * SimpleDateFormat("dd/MM/yyyy"); java.util.Date birthday =
-					 * sdf.parse(birthdayStr);
-					 */
+					
+					Calendar c = Calendar.getInstance();
+					c.setTime(new java.util.Date(rs.getDate("birthday").getTime()));
+					c.add(Calendar.DATE, 1);
+					
+					to.setBirthday(c.getTime());
+					to.setBirthdayStr(new SimpleDateFormat("dd/MM/yyyy").format(c.getTime()));
+					
 					to.setCpf(rs.getString("cpf"));
 					to.setSex(rs.getString("genre"));
-					to.setBirthday(new Date(2003));
 					to.setIdUser(rs.getInt("id_user"));
 					to.setCreatedAt(rs.getTimestamp("created_at"));
 					to.setUpdatedAt(rs.getTimestamp("updated_at"));
 					to.setDeletedAt(rs.getTimestamp("deleted_at"));
 				}
+				
 				conn.close();
 			} catch (SQLException ex) {
 				throw new Exception(ex.getMessage());
@@ -158,20 +168,30 @@ public class ClientDAO {
 			 PreparedStatement stm = conn.prepareStatement(sqlSelect)) {
 			try (ResultSet rs = stm.executeQuery()) {
 				while (rs.next()) {
+					
+					Calendar c = Calendar.getInstance();
+					c.setTime(new java.util.Date(rs.getDate("birthday").getTime()));
+					c.add(Calendar.DATE, 1);
+					
 					Client to = new Client(
 						rs.getInt("id"),
 						rs.getString("name"),
 						rs.getString("surname"),
 						rs.getString("cpf"),
-						new SimpleDateFormat("dd/MM/yyyy").parse(rs.getString("birthday")),
+						c.getTime(),
 						rs.getString("sex"),
 						rs.getInt("id_user"),
 						rs.getTimestamp("created_at"),
 						rs.getTimestamp("updated_at"),
 						rs.getTimestamp("deleted_at")
 					);
+					
+					to.setBirthdayStr(new SimpleDateFormat("dd/MM/yyyy").format(c.getTime()));
+					
 					clients.add(to);
 				}
+				
+				conn.close();
 			} catch (SQLException ex) {
 				throw new Exception(ex.getMessage());
 			}

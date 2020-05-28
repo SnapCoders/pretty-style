@@ -1,4 +1,5 @@
 $(document).ready(function () {
+	$('#birthday').mask('00/00/0000');
 	$('#telephone').mask('(00) 0000-0000');
 	$('#cellphone').mask('(00) 0 0000-0000');
 	
@@ -64,7 +65,7 @@ function AlertaErro(data) {
 
 function handleProfileEdition(form) {
 	$.ajax({
-		url: '/PrettyStyle/controller.do?path=profile&command=UpdateProfile', type: 'PUT', data: $(form).serialize(),
+		url: '/PrettyStyle/controller.do?path=profile&command=UpdateProfile&json=true', type: 'POST', data: $(form).serialize(),
 		success: function (data) {
 			if (data.success) {
 				AlertaSucesso(data);

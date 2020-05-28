@@ -139,6 +139,36 @@ public class UserService {
     		throw new Exception(e.getMessage());
     	}
     }
+    
+    public User findByIdProvider(int idProvider) throws Exception {
+    	try {
+    		Client client = clientDAO.findByIdUser(idProvider);
+			Provider provider = providerDAO.findByIdUser(idProvider);
+			
+    		User user = new User();
+    		user = userDAO.find(provider.getIdUser());
+			
+			if (client != null) {
+				user.setClient(client);
+			} else {
+				user.setProvider(provider);
+			}
+			
+			ArrayList<PhoneNumber> phones = phoneNumberDAO.findByIdUser(user.getId());
+			
+			user.setPhoneNumbers(phones);
+			
+			ArrayList<Address> addresses = new ArrayList<Address>();
+			
+			addresses.add(addressDAO.findByIdUser(idProvider));
+			
+			user.setAddresses(addresses);
+			
+    		return user;
+    	} catch (Exception e) {
+    		throw new Exception(e.getMessage());
+    	}
+    }
 
     public ArrayList<User> list() throws Exception {
     	try {

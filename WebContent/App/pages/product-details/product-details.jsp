@@ -53,8 +53,8 @@
 											<div class="jumbotron product-photo">
 												<div id="dProductPhotos" class="product-photos-slideshow-container">
 													<c:forEach var="photo" items="${product.photos}">
-														<div class="productSlides fade-product-photo-slide">
-															<img src="${photo.url}" alt="" style="width: 100%;">
+														<div class="productSlides fade-product-photo-slide" style="min-height: 400px;">
+															<img src="${photo.url}" alt="" style="width: 100%; min-width: 370px;">
 														</div>
 													</c:forEach>
 													<a class="prev-product-photo" onclick="productPhotoSlides(-1)">
@@ -152,7 +152,14 @@
 												</span>
 											</div>
 											<div class="row button-area">
-												<button type="submit">COMPRAR</button>
+												<c:if test="${productDetails.idUser != product.idProvider}">
+													<button type="submit">COMPRAR</button>
+												</c:if>
+												<c:if test="${productDetails.idUser == product.idProvider}">
+													<button type="button" style="background: #fff; color: #0E9AEF;" onclick="window.location.href='/PrettyStyle/controller.do?path=admin&command=ListProducts'">
+														GERENCIAR PRODUTO
+													</button>
+												</c:if>
 											</div>
 										</div>
 									</div>

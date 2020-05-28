@@ -16,8 +16,8 @@ public class ConnectionFactory {
 	public static Connection createConnection() throws SQLException {
 		String database = "db_pretty_style";
 		String user = "root";
-		String password = "suasenha";
+		String password = "9Km#47mK";
 		
-		return DriverManager.getConnection("jdbc:mysql://localhost:3306/" + database + "?allowPublicKeyRetrieval=true&useTimezone=true&serverTimezone=UTC&characterEncoding=utf-8&useSSL=false", user, password);
+		return DriverManager.getConnection("jdbc:mysql://localhost:3306/" + database + "?useTimezone=true&serverTimezone=UTC&characterEncoding=utf-8&useSSL=false", user, password);
 	}
 }

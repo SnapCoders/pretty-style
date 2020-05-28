@@ -21,18 +21,22 @@ public class ServletController extends HttpServlet {
     public ServletController() { }
     
     protected void doExecute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    	boolean isJson = Boolean.parseBoolean(request.getParameter("json"));
+    	
     	try {
     		String commandCalled = request.getParameter("path") + "." + request.getParameter("command");
     		
 			Command command = (Command)Class.forName("br.com.sprintters.prettystyle.command." + commandCalled).newInstance();
 			command.execute(request, response);
     	} catch (Exception e) {
-    		e.printStackTrace();
-    		
-    		Json json = new Json(false, "Desculpe, houve algum erro no servidor, estamos trabalhando para resolver este problema!", e);
-    		
-    		response.setContentType("application/json");
-    		response.getWriter().write(new Gson().toJson(json).toString());
+    		if (isJson) {
+    			Json json = new Json(false, "Desculpe, houve algum erro no servidor, estamos trabalhando para resolver este problema!", e);
+        		
+        		response.setContentType("application/json");
+        		response.getWriter().write(new Gson().toJson(json).toString());
+			} else {
+				response.sendRedirect("/PrettyStyle/App/pages/error/500.jsp");
+			}
     	}
     }
     

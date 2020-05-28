@@ -279,4 +279,22 @@ public class ItemDAO {
 			throw new Exception(e.getMessage());
 		}
 	}
+	
+	public void updateQuantityInItemFromCart(int itemId, int productId, int newQuantity) throws Exception {
+		String sqlDelete = "UPDATE item SET quantity = ? WHERE id = ? AND id_product = ?";
+		
+		try (Connection conn = ConnectionFactory.createConnection();
+			 PreparedStatement stm = conn.prepareStatement(sqlDelete)) {
+			
+			stm.setInt(1, newQuantity);
+			stm.setInt(2, itemId);
+			stm.setInt(3, productId);
+			
+			stm.execute();
+			
+			conn.close();
+		} catch (SQLException e) {
+			throw new Exception(e.getMessage());
+		}
+	}
 }

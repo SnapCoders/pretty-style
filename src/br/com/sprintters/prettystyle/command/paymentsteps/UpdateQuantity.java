@@ -9,48 +9,36 @@ import javax.servlet.http.HttpServletResponse;
 import com.google.gson.Gson;
 
 import br.com.sprintters.prettystyle.command.Command;
-import br.com.sprintters.prettystyle.model.Item;
-import br.com.sprintters.prettystyle.model.User;
 import br.com.sprintters.prettystyle.model.generic.Json;
 import br.com.sprintters.prettystyle.service.ItemService;
-import br.com.sprintters.prettystyle.service.UserService;
 
-public class CreatePayStep implements Command {
+public class UpdateQuantity implements Command {
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, Exception {
 		boolean isJson = false;
 		
 		try {
-			int idUser = (int)request.getAttribute("idUser");
-			int idProduct = Integer.parseInt(request.getParameter("id_product"));
-			int quantity = Integer.parseInt(request.getParameter("quantity"));
+			int itemId = Integer.parseInt(request.getParameter("itemId"));
+			int productId = Integer.parseInt(request.getParameter("productId"));
+			int newQuantity = Integer.parseInt(request.getParameter("newQuantity"));
+			
 			isJson = Boolean.parseBoolean(request.getParameter("json"));
-			
+
 			ItemService is = new ItemService();
-			UserService us = new UserService();
 			
-			User user = us.find(idUser);
-			
-			Item item;
-			
-			if (user.isProvider())
-				item = new Item(quantity, idProduct, user.getProvider().getId());
-			else
-				item = new Item(quantity, idProduct, user.getClient().getId());
-				
-			is.create(item);
+			is.updateQuantityInItemFromCart(itemId, productId, newQuantity);
 			
 			if (isJson) {
-				Json json = new Json(true, "", null);
+				Json json = new Json(true, "Quantidade modificada com sucesso!", null);
 				
 				response.setContentType("application/json");
 				response.getWriter().write(new Gson().toJson(json).toString());
 			} else {
-				response.sendRedirect("/PrettyStyle/controller.do?path=cart&command=ListCart");
+				response.sendRedirect("/PrettyStyle/App/pages/product-details/product-details.jsp");
 			}
 		} catch (Exception e) {
 			if (isJson) {
-    			Json json = new Json(false, "Desculpe, houve um erro ao cadastrar o produto, verifique os dados e tente novamente!", e);
+    			Json json = new Json(false, "Desculpe, houve um erro ao alterar a quantidade, verifique os dados e tente novamente!", e);
         		
         		response.setContentType("application/json");
         		response.getWriter().write(new Gson().toJson(json).toString());

@@ -33,7 +33,7 @@ public class UpdateProfile implements Command {
 	        String name = request.getParameter("name");
 	        String surname = request.getParameter("surname");
 			String email = request.getParameter("email");
-			String emailConfirmation = request.getParameter("emailConfirmation");
+			String emailConfirmation = request.getParameter("email-confirmation");
 			
 			Date birthday = new Date();
 			

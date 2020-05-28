@@ -34,6 +34,7 @@ public class ViewProduct implements Command {
 			UserService us = new UserService();
 			
 			Product product = ps.find(idProduct);
+			product.setProvider(us.findByIdProvider(product.getIdProvider()).getProvider());
 			
 			User user = us.find(idUser);
 			ClientProductLike cpl = ps.listFavoriteByIdUserAndIdProduct(user.getId(), idProduct);

@@ -79,10 +79,10 @@
 											<hr />
 											<div class="selection-area">
 												<c:if test="${empty address.userAddress}">
-													<input name="defaultAddress" type="radio" onclick="handleSelectDefault(this)" />
+													<input name="defaultAddress" type="radio" onclick="handleSelectDefault(this, ${address.id})" />
 												</c:if>
 												<c:if test="${not empty address.userAddress}">
-													<input name="defaultAddress" type="radio" onclick="handleSelectDefault(this)" checked />
+													<input name="defaultAddress" type="radio" onclick="handleSelectDefault(this, ${address.id})" checked />
 												</c:if>
 												<label>Selecionar como principal</label>
 											</div>

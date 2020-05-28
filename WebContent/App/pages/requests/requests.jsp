@@ -89,17 +89,21 @@
 									<div class="o-steps">
 										<div class="steps">
 											<div class="step checked">
-												<span>1</span>
+												<span class="msg">Pedido realizado</span>
+												<span class="number">1</span>
 												<img src="../../assets/icons/large-check.svg" alt="Check">
 											</div>
 											<div class="step">
-												<span>2</span>
+												<span class="msg">Aprovação de pagamento</span>
+												<span class="number">2</span>
 											</div>
 											<div class="step">
-												<span>3</span>
+												<span class="msg">Em transporte</span>
+												<span class="number">3</span>
 											</div>
 											<div class="step">
-												<span>4</span>
+												<span class="msg">Pedido entregue</span>
+												<span class="number">4</span>
 											</div>
 											<div class="line-divisor"></div>
 										</div>

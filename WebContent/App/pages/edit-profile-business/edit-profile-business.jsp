@@ -70,7 +70,7 @@
 									<div class="col-md-6 email-confirmation-area">
 										<label for="email-confirmation">Confirmação de e-mail<span
 											style="color: #ff0000; margin-left: 5px;">*</span></label> <input
-											class="form-control" id="email-confirmation" name="emailConfirmation"
+											class="form-control" id="email-confirmation" name="email-confirmation"
 											placeholder="Ex: seuemail@email.com.br" value="${user.emailConfirmation}"/>
 									</div>
 								</div>
