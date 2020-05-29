@@ -14,14 +14,15 @@ import br.com.sprintters.prettystyle.model.Request;
 public class RequestDAO {
 	public int insert(Request to) throws Exception {
 		int id = 0;
-		String sqlInsert = "INSERT INTO request (total_price, id_client, number_request, type_payment, created_at) VALUES (?, ?, ?, ?, NOW())";
+		String sqlInsert = "INSERT INTO request (total_price, freight, id_client, number_request, type_payment, created_at) VALUES (?, ?, ?, ?, ?, NOW())";
 		
 		try (Connection conn = ConnectionFactory.createConnection();
 			 PreparedStatement stm = conn.prepareStatement(sqlInsert)) {
 			stm.setDouble(1, to.getTotalPrice());
-			stm.setInt(2, to.getIdClient());
-			stm.setString(3, to.getNumberRequest());
-			stm.setString(4, to.getTypePayment());
+			stm.setDouble(2, to.getFreight());
+			stm.setInt(3, to.getIdClient());
+			stm.setString(4, to.getNumberRequest());
+			stm.setString(5, to.getTypePayment());
 			
 			stm.execute();
 			

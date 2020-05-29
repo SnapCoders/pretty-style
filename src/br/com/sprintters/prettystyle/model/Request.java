@@ -15,6 +15,7 @@ public class Request extends Entity {
 	private ArrayList<Item> items;
 	
 	private double totalPrice;
+	private double freight;
 	
 	public Request() { }
 
@@ -24,9 +25,10 @@ public class Request extends Entity {
 		this.typePayment = typePayment;
 	}
 	
-	public Request(int idClient, double totalPrice, String numberRequest, String typePayment) {
+	public Request(int idClient, double totalPrice, double freight, String numberRequest, String typePayment) {
 		this.idClient = idClient;
 		this.totalPrice = totalPrice;
+		this.freight = freight;
 		this.numberRequest = numberRequest;
 		this.typePayment = typePayment;
 	}
@@ -119,6 +121,14 @@ public class Request extends Entity {
 
 	public void setTotalPrice(double totalPrice) {
 		this.totalPrice = totalPrice;
+	}
+	
+	public double getFreight() {
+		return freight;
+	}
+	
+	public void setFreight(double freight) {
+		this.freight = freight;
 	}
 
 	@Override

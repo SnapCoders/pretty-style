@@ -78,7 +78,6 @@ public class ListByCategory implements Command {
 					offset = (16*numberPage)-16;
 					
 					products = ps.findByCategoryAndFilter(valueFilter, valueCategories, offset);
-																	
 				}
 				else {
 					categoryFilter = new ArrayList<String>();

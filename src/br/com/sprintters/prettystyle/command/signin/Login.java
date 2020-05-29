@@ -50,10 +50,10 @@ public class Login implements Command {
 					String bearerToken = "Bearer " + jwt.signJWT(user, name, nameAndSurnameBase64);
 					
 					session.setAttribute("token", bearerToken);
-					session.setAttribute("name", "Ol·, " + name);
+					session.setAttribute("name", "Ol√°, " + name);
 					
 					if (isJson) {
-						Json json = new Json(true, "Ol· " + name + ", seja bem vindo!", bearerToken);
+						Json json = new Json(true, "Ol√° " + name + ", seja bem vindo!", bearerToken);
 			    		
 			    		response.setContentType("application/json");
 			    		response.getWriter().write(new Gson().toJson(json).toString());
@@ -61,19 +61,19 @@ public class Login implements Command {
 						response.sendRedirect("/PrettyStyle/index.jsp");
 					}
 				} else {
-					Json json = new Json(false, "Login ou senha inv·lidos, verifique seus dados e tente novamente!", "error");
+					Json json = new Json(false, "Login ou senha inv√°lidos, verifique seus dados e tente novamente!", "error");
 		    		
 		    		response.setContentType("application/json");
 		    		response.getWriter().write(new Gson().toJson(json).toString());
 				}
 			} else {
-				Json json = new Json(false, "E-mail n„o encontrado, crie uma conta e faÁa parte da nossa rede.", "info");
+				Json json = new Json(false, "E-mail n√£o encontrado, crie uma conta e fa√ßa parte da nossa rede.", "info");
 				
 				response.setContentType("application/json");
 				response.getWriter().write(new Gson().toJson(json).toString());
 			}
 		} catch (Exception e) {
-			Json json = new Json(false, "Desculpe houve uma falha na autenticaÁ„o, estamos trabalhando para resolver este problema!", e);
+			Json json = new Json(false, "Desculpe houve uma falha na autentica√ß√£o, estamos trabalhando para resolver este problema!", e);
 			
 			response.setContentType("application/json");
     		response.getWriter().write(new Gson().toJson(json).toString());

@@ -13,7 +13,7 @@
 	</div>
 	<div class="footer-contact">
 		<div class="footer-contact-content">
-			<strong>SNAPCODERS</strong>
+			<strong>Desenvolvido pela equipe <a href="https://github.com/SnapCoders" class="team">SNAPCODERS</a></strong>
 			<strong>Copyright &copy; <script>document.write(new Date().getFullYear());</script> -  v1.0.0</strong>
 		</div>
 	</div>

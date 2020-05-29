@@ -91,3 +91,13 @@ footer div.footer-contact-content strong {
 	font-size: 12px;
 	line-height: 40px;
 }
+
+.team {
+	color: #f0f0f0;
+	text-decoration: none;
+}
+
+.team:hover {
+	filter: brightness(90%);
+	text-decoration: none;
+}

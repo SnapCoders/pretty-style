@@ -1,4 +1,4 @@
-function limpa_formulário_cep() {
+function limpa_formulario_cep() {
   document.getElementById('place').value=('');
   document.getElementById('neighborhood').value=('');
   document.getElementById('city').value=('');
@@ -15,7 +15,7 @@ function meu_callback(conteudo) {
     document.getElementById('country').value=("Brasil");
   } 
   else {
-    limpa_formulário_cep();
+    limpa_formulario_cep();
     alert('CEP não encontrado.');
   }
 }
@@ -44,11 +44,11 @@ function pesquisacep(valor) {
 
     } 
     else {
-      limpa_formulário_cep();
+      limpa_formulario_cep();
       alert('Formato de CEP inválido.');
     }
   } 
   else {
-    limpa_formulário_cep();
+    limpa_formulario_cep();
   }
 };
