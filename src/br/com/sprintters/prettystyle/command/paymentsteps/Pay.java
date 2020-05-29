@@ -218,7 +218,7 @@ public class Pay implements Command {
   			Request req = null;
   			
   			if(user.isProvider()) {
-  				req = new Request(user.getProvider().getId(), totalPrice, numberRequest.toString(), typePayment);  				
+  				req = new Request(user.getProvider().getId(), totalPrice, frete, numberRequest.toString(), typePayment);  				
   				int idRequest = rs.create(req);
   				
   				for (Item item : lista) {
@@ -232,7 +232,7 @@ public class Pay implements Command {
   				}
   			}
   			else {
-  				req = new Request(user.getClient().getId(), totalPrice, numberRequest.toString(), typePayment);  				
+  				req = new Request(user.getClient().getId(), totalPrice, frete, numberRequest.toString(), typePayment);  				
   				int idRequest = rs.create(req);
   				
   				for (Item item : lista) {

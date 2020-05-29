@@ -32,7 +32,7 @@ function handleAdd(form) {
 	var id_user = sessionStorage.getItem("id_user");
 	$.ajax({
 		type: "POST",
-		url: "/PrettyStyle/controller.do?path=address&command=CreateAddress&json=true&id_user="+id_user,
+		url: "/PrettyStyle/controller.do?path=address&command=CreateAddress&json=true",
 		data: formSerialized,
 		success: function(data){
 			AlertaSucesso(data);	
@@ -42,9 +42,6 @@ function handleAdd(form) {
 		}
 	});
 }
-
-// QUANDO TIVER VALIDAÇÃO DE UM SELECT COM OPTIONS
-// $.validator.addMethod("valueNotEquals", (value, element, arg) => arg !== value);
 
 function AlertaSucesso(data){
 	swal({

@@ -101,7 +101,7 @@ public class ListByCategory implements Command {
 					quantityProduct = ps.findByNameCount(search);
 					
 					offset = (16*numberPage)-16;
-					
+		
 					products = ps.findByName(search, offset);
 					categoryFilter = new ArrayList<String>();
 				}

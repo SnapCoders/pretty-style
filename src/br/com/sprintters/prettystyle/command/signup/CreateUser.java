@@ -106,7 +106,7 @@ public class CreateUser   implements Command {
 				response.sendRedirect("/PrettyStyle/App/pages/sign-up-business/sign-up-business.jsp");
 			}
     	} catch (Exception e) {
-    		if (e.getMessage().contains("J· existe um usu·rio com este e-mail cadastrado!")) {
+    		if (e.getMessage().contains("J√° existe um usu√°rio com este e-mail cadastrado!")) {
     			Json json = new Json(false, e.getMessage(), "info");
     			
     			response.setContentType("application/json");
