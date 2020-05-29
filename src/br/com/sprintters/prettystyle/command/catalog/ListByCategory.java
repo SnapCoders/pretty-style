@@ -46,19 +46,30 @@ public class ListByCategory implements Command {
 			int quantityProduct = 0;
 			int quantityProductsList = 0;
 			
-				if(filterCategories != null || (categoryFilter.size() < 1 && filterCategories != null)) {
-					if(categoryFilter.size() < 1 && filterCategories != null) {
+			if(filterCategories != null || (categoryFilter.size() < 1 && filterCategories != null)) {
+				if(categoryFilter.size() < 1 && filterCategories != null) {
+					categoryFilter.add(filterCategories);
+				}
+				else {
+					if(!categoryFilter.contains(filterCategories)) {
 						categoryFilter.add(filterCategories);
 					}
 					else {
-						if(!categoryFilter.contains(filterCategories)) {
-							categoryFilter.add(filterCategories);
-						}
-						else {
-							categoryFilter.remove(filterCategories);
-						}		
-						
-					}
+						categoryFilter.remove(filterCategories);
+					}		
+					
+				}
+				valueCategories = String.join("','", categoryFilter);
+				
+				String valueFilter = filter.substring(0,1) + filter.substring(1).toLowerCase();
+				quantityProduct = ps.findByCategoryAndFilterCount(valueFilter, valueCategories);
+				
+				offset = (16*numberPage)-16;
+				
+				products = ps.findByCategoryAndFilter(valueFilter, valueCategories, offset);
+			}
+			else {
+				if(numberPage > 1 || (nPage != null)) {
 					valueCategories = String.join("','", categoryFilter);
 					
 					String valueFilter = filter.substring(0,1) + filter.substring(1).toLowerCase();
@@ -67,39 +78,29 @@ public class ListByCategory implements Command {
 					offset = (16*numberPage)-16;
 					
 					products = ps.findByCategoryAndFilter(valueFilter, valueCategories, offset);
+																	
 				}
 				else {
-					if(numberPage > 1 || (nPage != null)) {
-						valueCategories = String.join("','", categoryFilter);
-						
-						String valueFilter = filter.substring(0,1) + filter.substring(1).toLowerCase();
-						quantityProduct = ps.findByCategoryAndFilterCount(valueFilter, valueCategories);
-						
-						offset = (16*numberPage)-16;
-						
-						products = ps.findByCategoryAndFilter(valueFilter, valueCategories, offset);
-																		
-					}
-					else {
-						categoryFilter = new ArrayList<String>();
-						quantityProduct = ps.findByCategoryCount(filter);
-						
-						offset = (16*numberPage)-16;
-						
-						products = ps.findByCategory(filter, offset);										
-					}
+					categoryFilter = new ArrayList<String>();
+					quantityProduct = ps.findByCategoryCount(filter);
+					
+					offset = (16*numberPage)-16;
+					
+					products = ps.findByCategory(filter, offset);										
 				}
-				
-				quantityProductsList = products.size();
-				int quantityPages = (int) Math.round(((double)quantityProduct / 16)+0.5d);
-				
-				if(quantityPages < 1 && quantityPages >= 0) quantityPages = 1;
-				ArrayList<Integer> pages = new ArrayList<Integer>();
-				
-								
-				for(int i = 1; i <= quantityPages; i++) {
-					pages.add(i);
-				}
+			}
+			
+			quantityProductsList = products.size();
+			
+			int quantityPages = (int) Math.round(((double)quantityProduct / 16)+0.5d);
+			
+			if(quantityPages < 1 && quantityPages >= 0) quantityPages = 1;
+			
+			ArrayList<Integer> pages = new ArrayList<Integer>();
+							
+			for(int i = 1; i <= quantityPages; i++) pages.add(i);
+			
+			int numberMaxPage = pages.get(pages.size()-1);
 							
 			if (isJson) {
 				Json json = new Json(true, "", products);
@@ -115,6 +116,7 @@ public class ListByCategory implements Command {
 				session.setAttribute("quantityProductsList", quantityProductsList);
 				session.setAttribute("quantityPages", pages);
 				session.setAttribute("numberPage", numberPage);
+				session.setAttribute("numberMaxPage", numberMaxPage);
 				
 				response.sendRedirect("/PrettyStyle/App/pages/catalog/catalog.jsp");
 			}

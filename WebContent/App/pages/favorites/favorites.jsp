@@ -60,7 +60,7 @@
 													<span class="star yellow-star">&nbsp;</span>
 													<span class="star yellow-star">&nbsp;</span>
 													<span class="star yellow-star">&nbsp;</span>
-													<span class="star gray-star">&nbsp;</span>
+													<span class="star yellow-star">&nbsp;</span>
 												</div>
 												<div class="content">
 													<span>Preço: </span>

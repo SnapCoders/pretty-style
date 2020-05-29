@@ -278,6 +278,10 @@ div.catalog-container div.container div.button-area button {
 	justify-content: center;
 }
 
+div.catalog-container div.container div.button-area button:disabled {
+	filter: brightness(90%);
+}
+
 div.catalog-container div.button-area button:hover {
 	filter: brightness(90%);
 }

@@ -9,16 +9,23 @@ window.onscroll = function () {
 };
 
 const currentPage = location.pathname;
-const menuItems = document.querySelectorAll('.jumbotron.main .button-area .pagination');
 
 if (currentPage == '/PrettyStyle/App/pages/catalog/catalog.jsp') {
-	console.log(currentPage);
-	
-	for (item of menuItems) {
-	  if (currentPage.includes(item.getAttribute('href'))) {
-	    item.classList.add('active');
-	  }
-	}
+	setTimeout(() => {
+		const menuItems = document.querySelectorAll('.jumbotron.main .button-area .pagination');
+		
+		let actualPageNumber = $('#numberPageActive').val();
+		let actualPageMaxNumber = $('#numberMaxPageActive').val();
+		
+		if (actualPageNumber == 1) $('#prevButton').prop('disabled', true);
+		if (actualPageNumber == actualPageMaxNumber) $('#nextButton').prop('disabled', true);
+		
+		for (item of menuItems) {
+		  if (parseInt($(item).text()) == actualPageNumber) {
+			  $(item).addClass('active');
+		  }
+		}
+	}, 700);
 }
 
 var slideIndex = 1;
@@ -100,17 +107,6 @@ function handleSelectMenu(element) {
 	$('#bottom-header').find('ul').find('li:contains('+$(element).text()+')').addClass('active');
 };
 
-//document.addEventListener('DOMContentLoaded', function() {
-//	let stars = document.querySelectorAll('.star');
-//	stars.forEach(function(star) {
-//		star.addEventListener('click', setRating);
-//	});
-
-//	let rating = parseInt(document.querySelector('.stars').getAttribute('data-rating'));
-//	let target = stars[rating - 1];
-//	target.dispatchEvent(new MouseEvent('click'));
-//});
-
 function AlertaSucesso(data) {
 	swal({
 		title: 'Sucesso!',
@@ -163,26 +159,6 @@ function parseJwt(token) {
 	}).join(''));
 	
 	return JSON.parse(jsonPayload);
-};
-
-function setRating(ev) {
-	let span = ev.currentTarget;
-	let stars = document.querySelectorAll('.star');
-	let match = false;
-	let num = 0;
-	stars.forEach(function(star, index) {
-		if (match) {
-			star.classList.remove('rated');
-		} else {
-			star.classList.add('rated');
-		}
-		
-		if (star === span) {
-			match = true;
-			num = index + 1;
-		}
-	});
-	document.querySelector('.stars').setAttribute('data-rating', num);
 };
 
 function AlertaAvisoConfirm(title, question, url, type, method, redirect) {

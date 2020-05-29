@@ -64,9 +64,9 @@
 											</div>
 										</div>
 									</c:forEach>
-									<div class="divisor"></div>
+									<!-- <div class="divisor"></div>
 									<label>Preço</label>
-									<hr />
+									<hr /> -->
 								</div>
 							</div>
 							<div class="col-md-10 body-main">
@@ -105,15 +105,18 @@
 									</div>
 									<div class="row">
 										<div class="col-md-12">
-											
+											<input type="hidden" value="${numberPage}" id="numberPageActive">
+											<input type="hidden" value="${numberMaxPage}" id="numberMaxPageActive">
 											<div class="row button-area">
-												<button type="button" id="numberPage" onclick="handleFilterCategoryAndNumberPage('${numberPage - 1}')">ANTERIOR</button>
-												<c:forEach  var="pages" items="${quantityPages}">
-													<div class="pagination active">
-														<span id="numberPage" onclick="handleFilterCategoryAndNumberPage('${pages}')">${pages}</span>
-													</div>         
-												</c:forEach>
-												<button type="button" id="numberPage" onclick="handleFilterCategoryAndNumberPage('${numberPage + 1}')">PRÓXIMA</button>
+												<button type="button" id="prevButton" onclick="handleFilterCategoryAndNumberPage('${numberPage - 1}')">ANTERIOR</button>
+												<div id="paginations" style="display: flex;">
+													<c:forEach  var="pages" items="${quantityPages}">
+														<div class="pagination">
+															<span id="numberPage" onclick="handleFilterCategoryAndNumberPage('${pages}')">${pages}</span>
+														</div>
+													</c:forEach>
+												</div>
+												<button type="button" id="nextButton" onclick="handleFilterCategoryAndNumberPage('${numberPage + 1}')">PRÓXIMA</button>
 												<div class="infoQuantity" style="margin-top: 1rem; margin-left: 20px;">
 													<p style="color: #585757;">Mostrando 
 													<c:if test="${quantityProductsList >= 16}">
