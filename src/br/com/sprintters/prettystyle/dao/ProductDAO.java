@@ -593,7 +593,7 @@ public class ProductDAO {
 	
 	public int findBynameCount(String filter) throws Exception  {
 		int quantity = -1;
-		String sqlSelect = "SELECT count(id) as qtdProdutos FROM product WHERE NAME LIKE '%" + filter + "%' AND deleted_at IS NULL group by id;";
+		String sqlSelect = "SELECT count(id) as qtdProdutos FROM product WHERE NAME LIKE '%" + filter + "%' AND deleted_at IS NULL;";
 		
 		try (Connection conn = ConnectionFactory.createConnection();
 			 PreparedStatement stm = conn.prepareStatement(sqlSelect)) {

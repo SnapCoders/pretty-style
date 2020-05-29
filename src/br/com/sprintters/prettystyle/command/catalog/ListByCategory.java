@@ -19,6 +19,7 @@ import br.com.sprintters.prettystyle.service.ProductService;
 
 public class ListByCategory implements Command {
 	public static ArrayList<String> categoryFilter = new ArrayList<String>();
+	public static String search;
 	
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, Exception {
@@ -31,6 +32,9 @@ public class ListByCategory implements Command {
 			isJson = Boolean.parseBoolean(request.getParameter("json"));
 			String filterCategories = request.getParameter("categories");
 			String nPage = request.getParameter("numberPage");
+			String verifySearch = request.getParameter("search");
+			if(verifySearch != null) search = verifySearch;
+			
 			int numberPage = 1;
 			int offset = 1;
 			
@@ -61,7 +65,9 @@ public class ListByCategory implements Command {
 				}
 				valueCategories = String.join("','", categoryFilter);
 				
-				String valueFilter = filter.substring(0,1) + filter.substring(1).toLowerCase();
+				String valueFilter = "";
+				if(filter.length() > 0) valueFilter = filter.substring(0,1) + filter.substring(1).toLowerCase();
+				
 				quantityProduct = ps.findByCategoryAndFilterCount(valueFilter, valueCategories);
 				
 				offset = (16*numberPage)-16;
@@ -70,14 +76,32 @@ public class ListByCategory implements Command {
 			}
 			else {
 				if(numberPage > 1 || (nPage != null)) {
-					valueCategories = String.join("','", categoryFilter);
-					
-					String valueFilter = filter.substring(0,1) + filter.substring(1).toLowerCase();
-					quantityProduct = ps.findByCategoryAndFilterCount(valueFilter, valueCategories);
+					if(search != null) {
+						quantityProduct = ps.findByNameCount(search);
+						
+						offset = (16*numberPage)-16;
+						
+						products = ps.findByName(search, offset);
+					}
+					else {
+						valueCategories = String.join("','", categoryFilter);
+						
+						String valueFilter = filter.substring(0,1) + filter.substring(1).toLowerCase();
+						quantityProduct = ps.findByCategoryAndFilterCount(valueFilter, valueCategories);
+						
+						offset = (16*numberPage)-16;
+						
+						products = ps.findByCategoryAndFilter(valueFilter, valueCategories, offset);
+					}
+																	
+				}
+				else if(verifySearch != null) {
+					quantityProduct = ps.findByNameCount(search);
 					
 					offset = (16*numberPage)-16;
-					
-					products = ps.findByCategoryAndFilter(valueFilter, valueCategories, offset);
+		
+					products = ps.findByName(search, offset);
+					categoryFilter = new ArrayList<String>();
 				}
 				else {
 					categoryFilter = new ArrayList<String>();
