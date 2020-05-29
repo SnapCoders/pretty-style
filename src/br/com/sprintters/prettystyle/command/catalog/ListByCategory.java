@@ -63,6 +63,7 @@ public class ListByCategory implements Command {
 					}		
 					
 				}
+				search = null;
 				valueCategories = String.join("','", categoryFilter);
 				
 				String valueFilter = "";
@@ -86,7 +87,8 @@ public class ListByCategory implements Command {
 					else {
 						valueCategories = String.join("','", categoryFilter);
 						
-						String valueFilter = filter.substring(0,1) + filter.substring(1).toLowerCase();
+						String valueFilter = "";
+						if(filter.length() > 0) valueFilter = filter.substring(0,1) + filter.substring(1).toLowerCase();
 						quantityProduct = ps.findByCategoryAndFilterCount(valueFilter, valueCategories);
 						
 						offset = (16*numberPage)-16;
