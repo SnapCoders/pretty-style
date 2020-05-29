@@ -227,5 +227,5 @@ function handleHideModal() {
 };
 
 function handleSearchProduct() {
-	window.location.href='/PrettyStyle/controller.do?path=catalog&command=ListByProductName&search='+$('#searchId').val();
+	window.location.href='/PrettyStyle/controller.do?path=catalog&command=ListByCategory&search='+$('#searchId').val();
 };
