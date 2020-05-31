@@ -4,6 +4,7 @@
 	<div class="footer-body">
 		<div class="footer-body-content">
 			<div class="links">
+				<a href="/PrettyStyle/App/pages/who-we-are/who-we-are.jsp">Quem Somos</a>
 				<a class="github" href="https://github.com/SnapCoders/pretty-style/" target="_blank">Github</a>
 				<a class="tweet" href="https://twitter.com/rocketseat" target="_blank">Twitter</a>
 				<a class="insta" href="https://www.instagram.com/rocketseat_oficial/" target="_blank">Instagram</a>
