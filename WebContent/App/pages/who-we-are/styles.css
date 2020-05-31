@@ -1,38 +1,99 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 
-.container{
-    text-align: center;
-    justify-content: center;
-    display: flex;
+
+.container__who-we-are{
     font-family: 'Roboto', sans-serif;
+    padding: 50px ;
+    text-align: center;
+    background-color: #fff;
 }
 
-.card{
-    height: 600px;
-    width: 250px;
-    border: 1px solid #000;
+.title-h3{
+    font-size: 2.3em;    
+	color: #0E9AEF;
+}
+
+.cards{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.card-{
+    justify-content: center;
+    height: 650px;
+    width: 280px;
+    border: 1.3px solid #0e9aef66;
     border-radius: 20px;
+    margin: 40px;
 }
 
 .card__photo{
     padding: 10px 0px;
+    text-align: center;
+    height: 250px;
+    width: 250px;
+    margin: 15px;
 }
 
 .card__photo img{
     border-radius: 150px;
-    border: 1px solid #000;
+    border: 1px solid #0e9aef24;
+    height: 100%;
+    width: 100%;
+}
+
+.card__main{
+    padding: 5px;
+    border-top: 1px solid #0e9aef66;
 }
 
 .card__paper{
-    font-size: 1.0em;
+    font-size: 1.2em;
+    text-align: center;
 
 }
+.card__paper p{
+    margin-top: 5px;
+}
+
 
 .card__name{
     padding: 10px 0px;
+    text-align: center;
 }
 .card__name p {
     margin: 0;
-    font-size: 1.3em;
+    font-size: 1.5em;
 }
 
+.card__skills{
+    padding-left: 6px;
+}
+
+.card__skills strong{
+    font-size: 1.1em;
+    color: #0E9AEF;
+}
+
+
+.card__describe a{
+    text-decoration: none;
+    color: #000;
+}
+
+.card__describe{
+    padding-left: 6px;
+}
+.card__describe strong{
+    font-size: 1.1em;
+    color: #0E9AEF;
+}
+
+footer{
+	margin-top: 0px;
+}
+
+ul{
+	margin-bottom: 0;
+}
