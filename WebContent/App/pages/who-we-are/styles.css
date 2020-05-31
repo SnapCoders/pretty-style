@@ -1,0 +1,38 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+.container{
+    text-align: center;
+    justify-content: center;
+    display: flex;
+    font-family: 'Roboto', sans-serif;
+}
+
+.card{
+    height: 600px;
+    width: 250px;
+    border: 1px solid #000;
+    border-radius: 20px;
+}
+
+.card__photo{
+    padding: 10px 0px;
+}
+
+.card__photo img{
+    border-radius: 150px;
+    border: 1px solid #000;
+}
+
+.card__paper{
+    font-size: 1.0em;
+
+}
+
+.card__name{
+    padding: 10px 0px;
+}
+.card__name p {
+    margin: 0;
+    font-size: 1.3em;
+}
+
