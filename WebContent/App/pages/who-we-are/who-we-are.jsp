@@ -29,7 +29,7 @@
 	            <div class="cards">
 	                <div class="card-">
 	                    <div class="card__photo">
-	                        <img src="/PrettyStyle/App/pages/who-we-are/assets/jhon.png" alt="Jhonatan" height="200px" width="200px">
+	                        <img src="/PrettyStyle/App/pages/who-we-are/assets/jhon.png" alt="Jhonatan da Costa" height="200px" width="200px">
 	                    </div>
 	                    <div class="card__main">
 	                        <div class="card__name">
@@ -40,7 +40,7 @@
 	                        </div>
 	                        <div class="card__skills">
 	                            <p><strong>Habilidades: </strong> Java, Javascript, HTML, CSS, ReactJS, React Native,
-	                                Python, Alteryx, SQL, MySql, SqlServer, Metodologias Ágeis </p>
+	                                Python, Alteryx, SQL, MySql, SqlServer, GIT, GitFlow, Scrum </p>
 	                            <p><strong>Áreas: </strong>Desenvolvedor Full-Stack, Mobile, Automação, ETL</p>
 	                        </div>
 	                        <div class="card__describe">
@@ -50,81 +50,83 @@
 	                </div>
 	                <div class="card-">
 	                    <div class="card__photo">
-	                        <img src="" alt="Jhonatan" height="200px" width="200px">
+	                        <img src="/PrettyStyle/App/pages/who-we-are/assets/Bruno.jpeg" alt="Bruno Futema" height="200px" width="200px">
 	                    </div>
 	                    <div class="card__main">
 	                        <div class="card__name">
-	                            <p></p>
+	                            <p>Bruno Amaral Futema</p>
 	                        </div>
 	                        <div class="card__paper">
-	                            <p>Desenvolvedor</p>
+	                            <p>Líder Técnico / Desenvolvedor</p>
 	                        </div>
 	                        <div class="card__skills">
-	                            <p><strong>Habilidades: </strong> </p>
-	                            <p><strong>Áreas: </strong></p>
+	                            <p><strong>Habilidades: </strong> ASP.NET Core, ASP.NET MVC 5, C#, Java, Javascript, 
+	                            Node.js, React JS, React Native, Microsoft SQL Server, PostGRES, MongoDB, MySQL, Design de Interfaces (UI), 
+	                            GIT, GitFlow, Scrum, Agile </p>
+	                            <p><strong>Áreas: </strong> Desenvolvedor Full-Stack Web e Mobile </p>
 	                        </div>
 	                        <div class="card__describe">
-	                            <strong>Github: </strong><a href="https://github.com/"></a>
+	                            <strong>Github: </strong><a href="https://github.com/BrunoFutema" target="_blank">BrunoFutema</a>
 	                        </div>
 	                    </div>
 	                </div>
 	                <div class="card-">
 	                    <div class="card__photo">
-	                        <img src="" alt="Jhonatan" height="200px" width="200px">
+	                        <img src="/PrettyStyle/App/pages/who-we-are/assets/alexandre.jpg" alt="Alexandre Vardai" height="200px" width="200px">
 	                    </div>
 	                    <div class="card__main">
 	                        <div class="card__name">
-	                            <p></p>
+	                            <p>Alexandre Vardai Neto</p>
 	                        </div>
 	                        <div class="card__paper">
 	                            <p>Desenvolvedor</p>
 	                        </div>
 	                        <div class="card__skills">
-	                            <p><strong>Habilidades: </strong> </p>
-	                            <p><strong>Áreas: </strong></p>
+	                            <p><strong>Habilidades: </strong> django/flask, python, nodejs, typescript, SQL/mySQL, GIT, linux, docker/kubernetes </p>
+	                            <p><strong>Áreas: </strong> Desenvolvedor Back-End </p>
 	                        </div>
 	                        <div class="card__describe">
-	                            <strong>Github: </strong><a href="https://github.com/"></a>
+	                            <strong>Github: </strong><a href="https://github.com/1garo" target="_blank">1garo</a>
 	                        </div>
 	                    </div>
 	                </div>
 	                <div class="card-">
 	                    <div class="card__photo">
-	                        <img src="" alt="Jhonatan" height="200px" width="200px">
+	                        <img src="/PrettyStyle/App/pages/who-we-are/assets/douglas.jpeg" alt="Douglas Oliveira" height="200px" width="200px">
 	                    </div>
 	                    <div class="card__main">
 	                        <div class="card__name">
-	                            <p></p>
+	                            <p>Douglas Oliveira</p>
 	                        </div>
 	                        <div class="card__paper">
 	                            <p>Desenvolvedor</p>
 	                        </div>
 	                        <div class="card__skills">
-	                            <p><strong>Habilidades: </strong> </p>
-	                            <p><strong>Áreas: </strong></p>
+	                            <p><strong>Habilidades: </strong> PHP, Java, AngularJS, Angular 8, SQL/MySQL, GIT, NodeJS, Javascript, HTML, CSS. </p>
+	                            <p><strong>Áreas: </strong> Desenvolvedor Full-Stack </p>
 	                        </div>
 	                        <div class="card__describe">
-	                            <strong>Github: </strong><a href="https://github.com/"></a>
+	                            <strong>Github: </strong><a href="https://github.com/Dolitos103">Dolitos103</a>
 	                        </div>
 	                    </div>
 	                </div>
 	                <div class="card-">
 	                    <div class="card__photo">
-	                        <img src="" alt="Jhonatan" height="200px" width="200px">
+	                        <img src="/PrettyStyle/App/pages/who-we-are/assets/amandinha.jpg" alt="Amanda Cano" height="200px" width="200px">
 	                    </div>
 	                    <div class="card__main">
 	                        <div class="card__name">
-	                            <p></p>
+	                            <p>Amanda Cano</p>
 	                        </div>
 	                        <div class="card__paper">
-	                            <p>Desenvolvedor</p>
+	                            <p>Desenvolvedora</p>
 	                        </div>
 	                        <div class="card__skills">
-	                            <p><strong>Habilidades: </strong> </p>
-	                            <p><strong>Áreas: </strong></p>
+	                            <p><strong>Habilidades: </strong> Java, MySQL, MS Project, Cisco Packet Tracer, PMbok, UML, TCP/IP, ITIL 4, Lean It, Scrum Master, Product Owner, GIT </p>
+	                            <p><strong>Áreas: </strong> Bióloga, Gestao de Projetos, Metodologias Ágeis, Atuação com Mobilidade Coorporativa </p>
 	                        </div>
 	                        <div class="card__describe">
-	                            <strong>Github: </strong><a href="https://github.com/"></a>
+	                            <strong>Github: </strong><a href="https://github.com/cjamanda">cjamanda</a>
 	                        </div>
 	                    </div>
 	                </div>
